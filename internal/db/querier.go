@@ -9,7 +9,7 @@ import (
 )
 
 type Querier interface {
-	ILoveRoger(ctx context.Context, hello string) (string, error)
+	ILoveRoger(ctx context.Context, hello string) (Test, error)
 }
 
 var _ Querier = (*Queries)(nil)

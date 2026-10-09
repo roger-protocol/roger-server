@@ -10,13 +10,13 @@ import (
 )
 
 const iLoveRoger = `-- name: ILoveRoger :one
-SELECT hello FROM test
+SELECT id, hello FROM test
 WHERE hello = ? LIMIT 1
 `
 
-func (q *Queries) ILoveRoger(ctx context.Context, hello string) (string, error) {
+func (q *Queries) ILoveRoger(ctx context.Context, hello string) (Test, error) {
 	row := q.db.QueryRowContext(ctx, iLoveRoger, hello)
-	var hello_2 string
-	err := row.Scan(&hello_2)
-	return hello_2, err
+	var i Test
+	err := row.Scan(&i.ID, &i.Hello)
+	return i, err
 }

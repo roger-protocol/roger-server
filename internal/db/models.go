@@ -5,5 +5,6 @@
 package db
 
 type Test struct {
+	ID    string `json:"id"`
 	Hello string `json:"hello"`
 }

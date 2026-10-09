@@ -15,3 +15,6 @@ build: generate
 
 run: generate
 	go run ./cmd/rogerd
+
+migration:
+	go tool goose -dir internal/db/migrations create $(name) sql
