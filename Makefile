@@ -2,6 +2,9 @@
 
 default: build
 
+generate-schema:
+	go run ./cmd/gen-schema
+
 generate-api:
 	go generate ./internal/api
 
