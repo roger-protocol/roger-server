@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Roger Protocol Specification",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   "servers": [
     {
@@ -5600,11 +5600,14 @@
                               "example": 64
                             },
                             "supportedStorageKinds": {
-                              "type": "string",
-                              "enum": [
-                                "S3",
-                                "internal"
-                              ],
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "S3",
+                                  "internal"
+                                ]
+                              },
                               "description": "Supported storage types",
                               "example": [
                                 "S3",
