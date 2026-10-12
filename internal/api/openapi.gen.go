@@ -379,13 +379,13 @@ func (e ValidationErrorErrorType) Valid() bool {
 	}
 }
 
-// Defines values for GetRogerV1AuthOauthParamsCodeChallengeMethod.
+// Defines values for InitiateOAuthLoginParamsCodeChallengeMethod.
 const (
-	S256 GetRogerV1AuthOauthParamsCodeChallengeMethod = "S256"
+	S256 InitiateOAuthLoginParamsCodeChallengeMethod = "S256"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1AuthOauthParamsCodeChallengeMethod enum.
-func (e GetRogerV1AuthOauthParamsCodeChallengeMethod) Valid() bool {
+// Valid indicates whether the value is a known member of the InitiateOAuthLoginParamsCodeChallengeMethod enum.
+func (e InitiateOAuthLoginParamsCodeChallengeMethod) Valid() bool {
 	switch e {
 	case S256:
 		return true
@@ -394,13 +394,13 @@ func (e GetRogerV1AuthOauthParamsCodeChallengeMethod) Valid() bool {
 	}
 }
 
-// Defines values for PostRogerV1AuthRevokeJSONBody0TokenTypeHint.
+// Defines values for RevokeTokenJSONBody0TokenTypeHint.
 const (
-	AccessToken PostRogerV1AuthRevokeJSONBody0TokenTypeHint = "access_token"
+	AccessToken RevokeTokenJSONBody0TokenTypeHint = "access_token"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthRevokeJSONBody0TokenTypeHint enum.
-func (e PostRogerV1AuthRevokeJSONBody0TokenTypeHint) Valid() bool {
+// Valid indicates whether the value is a known member of the RevokeTokenJSONBody0TokenTypeHint enum.
+func (e RevokeTokenJSONBody0TokenTypeHint) Valid() bool {
 	switch e {
 	case AccessToken:
 		return true
@@ -409,28 +409,28 @@ func (e PostRogerV1AuthRevokeJSONBody0TokenTypeHint) Valid() bool {
 	}
 }
 
-// Defines values for PostRogerV1AuthRevokeJSONBody1TokenTypeHint.
+// Defines values for RevokeTokenJSONBody1TokenTypeHint.
 const (
-	PostRogerV1AuthRevokeJSONBody1TokenTypeHintRefreshToken PostRogerV1AuthRevokeJSONBody1TokenTypeHint = "refresh_token"
+	RevokeTokenJSONBody1TokenTypeHintRefreshToken RevokeTokenJSONBody1TokenTypeHint = "refresh_token"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthRevokeJSONBody1TokenTypeHint enum.
-func (e PostRogerV1AuthRevokeJSONBody1TokenTypeHint) Valid() bool {
+// Valid indicates whether the value is a known member of the RevokeTokenJSONBody1TokenTypeHint enum.
+func (e RevokeTokenJSONBody1TokenTypeHint) Valid() bool {
 	switch e {
-	case PostRogerV1AuthRevokeJSONBody1TokenTypeHintRefreshToken:
+	case RevokeTokenJSONBody1TokenTypeHintRefreshToken:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1AuthRevoke400JSONResponseBody1Error.
+// Defines values for RevokeToken400JSONResponseBody1Error.
 const (
-	UnsupportedTokenType PostRogerV1AuthRevoke400JSONResponseBody1Error = "unsupported_token_type"
+	UnsupportedTokenType RevokeToken400JSONResponseBody1Error = "unsupported_token_type"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthRevoke400JSONResponseBody1Error enum.
-func (e PostRogerV1AuthRevoke400JSONResponseBody1Error) Valid() bool {
+// Valid indicates whether the value is a known member of the RevokeToken400JSONResponseBody1Error enum.
+func (e RevokeToken400JSONResponseBody1Error) Valid() bool {
 	switch e {
 	case UnsupportedTokenType:
 		return true
@@ -439,13 +439,13 @@ func (e PostRogerV1AuthRevoke400JSONResponseBody1Error) Valid() bool {
 	}
 }
 
-// Defines values for PostRogerV1AuthTokenJSONBody0GrantType.
+// Defines values for ExchangeTokenJSONBody0GrantType.
 const (
-	AuthorizationCode PostRogerV1AuthTokenJSONBody0GrantType = "authorization_code"
+	AuthorizationCode ExchangeTokenJSONBody0GrantType = "authorization_code"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthTokenJSONBody0GrantType enum.
-func (e PostRogerV1AuthTokenJSONBody0GrantType) Valid() bool {
+// Valid indicates whether the value is a known member of the ExchangeTokenJSONBody0GrantType enum.
+func (e ExchangeTokenJSONBody0GrantType) Valid() bool {
 	switch e {
 	case AuthorizationCode:
 		return true
@@ -454,28 +454,28 @@ func (e PostRogerV1AuthTokenJSONBody0GrantType) Valid() bool {
 	}
 }
 
-// Defines values for PostRogerV1AuthTokenJSONBody1GrantType.
+// Defines values for ExchangeTokenJSONBody1GrantType.
 const (
-	PostRogerV1AuthTokenJSONBody1GrantTypeRefreshToken PostRogerV1AuthTokenJSONBody1GrantType = "refresh_token"
+	ExchangeTokenJSONBody1GrantTypeRefreshToken ExchangeTokenJSONBody1GrantType = "refresh_token"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthTokenJSONBody1GrantType enum.
-func (e PostRogerV1AuthTokenJSONBody1GrantType) Valid() bool {
+// Valid indicates whether the value is a known member of the ExchangeTokenJSONBody1GrantType enum.
+func (e ExchangeTokenJSONBody1GrantType) Valid() bool {
 	switch e {
-	case PostRogerV1AuthTokenJSONBody1GrantTypeRefreshToken:
+	case ExchangeTokenJSONBody1GrantTypeRefreshToken:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1AuthToken200JSONResponseBodyTokenType.
+// Defines values for ExchangeToken200JSONResponseBodyTokenType.
 const (
-	Bearer PostRogerV1AuthToken200JSONResponseBodyTokenType = "Bearer"
+	Bearer ExchangeToken200JSONResponseBodyTokenType = "Bearer"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1AuthToken200JSONResponseBodyTokenType enum.
-func (e PostRogerV1AuthToken200JSONResponseBodyTokenType) Valid() bool {
+// Valid indicates whether the value is a known member of the ExchangeToken200JSONResponseBodyTokenType enum.
+func (e ExchangeToken200JSONResponseBodyTokenType) Valid() bool {
 	switch e {
 	case Bearer:
 		return true
@@ -484,20 +484,20 @@ func (e PostRogerV1AuthToken200JSONResponseBodyTokenType) Valid() bool {
 	}
 }
 
-// Defines values for GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind.
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind.
 const (
-	Apple     GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "apple"
-	Discord   GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "discord"
-	Github    GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "github"
-	Google    GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "google"
-	Microsoft GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "microsoft"
-	Other     GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "other"
-	Password  GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "password"
-	Roblox    GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind = "roblox"
+	Apple     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "apple"
+	Discord   GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "discord"
+	Github    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "github"
+	Google    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "google"
+	Microsoft GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "microsoft"
+	Other     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "other"
+	Password  GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "password"
+	Roblox    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "roblox"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind enum.
-func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind) Valid() bool {
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind) Valid() bool {
 	switch e {
 	case Apple:
 		return true
@@ -520,386 +520,386 @@ func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind) Vali
 	}
 }
 
-// Defines values for GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds.
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds.
 const (
-	GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKindsApiKey GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds = "api-key"
+	GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKindsApiKey GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds enum.
-func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds) Valid() bool {
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds) Valid() bool {
 	switch e {
-	case GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKindsApiKey:
+	case GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKindsApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes.
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds.
 const (
-	GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypesGame GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes = "game"
+	GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKindsGame GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds = "game"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes enum.
-func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes) Valid() bool {
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds) Valid() bool {
 	switch e {
-	case GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypesGame:
+	case GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKindsGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind.
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds.
 const (
-	GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindInternal GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind = "internal"
-	GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindS3       GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind = "S3"
+	GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindsInternal GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds = "internal"
+	GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindsS3       GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds = "S3"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind enum.
-func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind) Valid() bool {
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds) Valid() bool {
 	switch e {
-	case GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindInternal:
+	case GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindsInternal:
 		return true
-	case GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindS3:
+	case GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKindsS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds.
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds.
 const (
-	GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKindsPlace GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds = "place"
+	GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKindsPlace GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds = "place"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds enum.
-func (e GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds) Valid() bool {
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds) Valid() bool {
 	switch e {
-	case GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKindsPlace:
+	case GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKindsPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Projects200JSONResponseBodyKind.
+// Defines values for ListProjects200JSONResponseBodyKind.
 const (
-	GetRogerV1Projects200JSONResponseBodyKindGame GetRogerV1Projects200JSONResponseBodyKind = "game"
+	ListProjects200JSONResponseBodyKindGame ListProjects200JSONResponseBodyKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Projects200JSONResponseBodyKind enum.
-func (e GetRogerV1Projects200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListProjects200JSONResponseBodyKind enum.
+func (e ListProjects200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case GetRogerV1Projects200JSONResponseBodyKindGame:
+	case ListProjects200JSONResponseBodyKindGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsJSONBodyKind.
+// Defines values for CreateProjectJSONBodyKind.
 const (
-	PostRogerV1ProjectsJSONBodyKindGame PostRogerV1ProjectsJSONBodyKind = "game"
+	CreateProjectJSONBodyKindGame CreateProjectJSONBodyKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsJSONBodyKind enum.
-func (e PostRogerV1ProjectsJSONBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateProjectJSONBodyKind enum.
+func (e CreateProjectJSONBodyKind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsJSONBodyKindGame:
+	case CreateProjectJSONBodyKindGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Projects200JSONResponseBodyKind.
+// Defines values for CreateProject200JSONResponseBodyKind.
 const (
-	PostRogerV1Projects200JSONResponseBodyKindGame PostRogerV1Projects200JSONResponseBodyKind = "game"
+	CreateProject200JSONResponseBodyKindGame CreateProject200JSONResponseBodyKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Projects200JSONResponseBodyKind enum.
-func (e PostRogerV1Projects200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateProject200JSONResponseBodyKind enum.
+func (e CreateProject200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case PostRogerV1Projects200JSONResponseBodyKindGame:
+	case CreateProject200JSONResponseBodyKindGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind.
+// Defines values for DeleteProject200JSONResponseBodyKind.
 const (
-	DeleteRogerV1ProjectsProjectId200JSONResponseBodyKindGame DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind = "game"
+	DeleteProject200JSONResponseBodyKindGame DeleteProject200JSONResponseBodyKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind enum.
-func (e DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteProject200JSONResponseBodyKind enum.
+func (e DeleteProject200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectId200JSONResponseBodyKindGame:
+	case DeleteProject200JSONResponseBodyKindGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1ProjectsProjectId200JSONResponseBodyKind.
+// Defines values for RenameProject200JSONResponseBodyKind.
 const (
-	PutRogerV1ProjectsProjectId200JSONResponseBodyKindGame PutRogerV1ProjectsProjectId200JSONResponseBodyKind = "game"
+	RenameProject200JSONResponseBodyKindGame RenameProject200JSONResponseBodyKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1ProjectsProjectId200JSONResponseBodyKind enum.
-func (e PutRogerV1ProjectsProjectId200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameProject200JSONResponseBodyKind enum.
+func (e RenameProject200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case PutRogerV1ProjectsProjectId200JSONResponseBodyKindGame:
+	case RenameProject200JSONResponseBodyKindGame:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind.
+// Defines values for ListCredentials200JSONResponseBody0Kind.
 const (
-	GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0KindApiKey GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind = "api-key"
+	ListCredentials200JSONResponseBody0KindApiKey ListCredentials200JSONResponseBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind enum.
-func (e GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListCredentials200JSONResponseBody0Kind enum.
+func (e ListCredentials200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0KindApiKey:
+	case ListCredentials200JSONResponseBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status.
+// Defines values for ListCredentials200JSONResponseBody0Status.
 const (
-	GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusError   GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "error"
-	GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusInfo    GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "info"
-	GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusSuccess GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "success"
-	GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusWarning GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "warning"
+	ListCredentials200JSONResponseBody0StatusError   ListCredentials200JSONResponseBody0Status = "error"
+	ListCredentials200JSONResponseBody0StatusInfo    ListCredentials200JSONResponseBody0Status = "info"
+	ListCredentials200JSONResponseBody0StatusSuccess ListCredentials200JSONResponseBody0Status = "success"
+	ListCredentials200JSONResponseBody0StatusWarning ListCredentials200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status enum.
-func (e GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the ListCredentials200JSONResponseBody0Status enum.
+func (e ListCredentials200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusError:
+	case ListCredentials200JSONResponseBody0StatusError:
 		return true
-	case GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusInfo:
+	case ListCredentials200JSONResponseBody0StatusInfo:
 		return true
-	case GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusSuccess:
+	case ListCredentials200JSONResponseBody0StatusSuccess:
 		return true
-	case GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusWarning:
+	case ListCredentials200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind.
+// Defines values for CreateCredentialJSONBody0Kind.
 const (
-	PostRogerV1ProjectsProjectIdCredentialsJSONBody0KindApiKey PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind = "api-key"
+	CreateCredentialJSONBody0KindApiKey CreateCredentialJSONBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind enum.
-func (e PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateCredentialJSONBody0Kind enum.
+func (e CreateCredentialJSONBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdCredentialsJSONBody0KindApiKey:
+	case CreateCredentialJSONBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind.
+// Defines values for CreateCredential200JSONResponseBody0Kind.
 const (
-	PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0KindApiKey PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind = "api-key"
+	CreateCredential200JSONResponseBody0KindApiKey CreateCredential200JSONResponseBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind enum.
-func (e PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateCredential200JSONResponseBody0Kind enum.
+func (e CreateCredential200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0KindApiKey:
+	case CreateCredential200JSONResponseBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status.
+// Defines values for CreateCredential200JSONResponseBody0Status.
 const (
-	PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusError   PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "error"
-	PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusInfo    PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "info"
-	PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusSuccess PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "success"
-	PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusWarning PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status = "warning"
+	CreateCredential200JSONResponseBody0StatusError   CreateCredential200JSONResponseBody0Status = "error"
+	CreateCredential200JSONResponseBody0StatusInfo    CreateCredential200JSONResponseBody0Status = "info"
+	CreateCredential200JSONResponseBody0StatusSuccess CreateCredential200JSONResponseBody0Status = "success"
+	CreateCredential200JSONResponseBody0StatusWarning CreateCredential200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status enum.
-func (e PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateCredential200JSONResponseBody0Status enum.
+func (e CreateCredential200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusError:
+	case CreateCredential200JSONResponseBody0StatusError:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusInfo:
+	case CreateCredential200JSONResponseBody0StatusInfo:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusSuccess:
+	case CreateCredential200JSONResponseBody0StatusSuccess:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0StatusWarning:
+	case CreateCredential200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind.
+// Defines values for DeleteCredential200JSONResponseBody0Kind.
 const (
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0KindApiKey DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind = "api-key"
+	DeleteCredential200JSONResponseBody0KindApiKey DeleteCredential200JSONResponseBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind enum.
-func (e DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteCredential200JSONResponseBody0Kind enum.
+func (e DeleteCredential200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0KindApiKey:
+	case DeleteCredential200JSONResponseBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status.
+// Defines values for DeleteCredential200JSONResponseBody0Status.
 const (
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusError   DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "error"
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusInfo    DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "info"
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusSuccess DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "success"
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusWarning DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "warning"
+	DeleteCredential200JSONResponseBody0StatusError   DeleteCredential200JSONResponseBody0Status = "error"
+	DeleteCredential200JSONResponseBody0StatusInfo    DeleteCredential200JSONResponseBody0Status = "info"
+	DeleteCredential200JSONResponseBody0StatusSuccess DeleteCredential200JSONResponseBody0Status = "success"
+	DeleteCredential200JSONResponseBody0StatusWarning DeleteCredential200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status enum.
-func (e DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteCredential200JSONResponseBody0Status enum.
+func (e DeleteCredential200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusError:
+	case DeleteCredential200JSONResponseBody0StatusError:
 		return true
-	case DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusInfo:
+	case DeleteCredential200JSONResponseBody0StatusInfo:
 		return true
-	case DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusSuccess:
+	case DeleteCredential200JSONResponseBody0StatusSuccess:
 		return true
-	case DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusWarning:
+	case DeleteCredential200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind.
+// Defines values for RenameCredential200JSONResponseBody0Kind.
 const (
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0KindApiKey PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind = "api-key"
+	RenameCredential200JSONResponseBody0KindApiKey RenameCredential200JSONResponseBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind enum.
-func (e PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameCredential200JSONResponseBody0Kind enum.
+func (e RenameCredential200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0KindApiKey:
+	case RenameCredential200JSONResponseBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status.
+// Defines values for RenameCredential200JSONResponseBody0Status.
 const (
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusError   PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "error"
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusInfo    PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "info"
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusSuccess PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "success"
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusWarning PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status = "warning"
+	RenameCredential200JSONResponseBody0StatusError   RenameCredential200JSONResponseBody0Status = "error"
+	RenameCredential200JSONResponseBody0StatusInfo    RenameCredential200JSONResponseBody0Status = "info"
+	RenameCredential200JSONResponseBody0StatusSuccess RenameCredential200JSONResponseBody0Status = "success"
+	RenameCredential200JSONResponseBody0StatusWarning RenameCredential200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status enum.
-func (e PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameCredential200JSONResponseBody0Status enum.
+func (e RenameCredential200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusError:
+	case RenameCredential200JSONResponseBody0StatusError:
 		return true
-	case PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusInfo:
+	case RenameCredential200JSONResponseBody0StatusInfo:
 		return true
-	case PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusSuccess:
+	case RenameCredential200JSONResponseBody0StatusSuccess:
 		return true
-	case PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0StatusWarning:
+	case RenameCredential200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind.
+// Defines values for RotateCredential200JSONResponseBody0Kind.
 const (
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0KindApiKey PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind = "api-key"
+	RotateCredential200JSONResponseBody0KindApiKey RotateCredential200JSONResponseBody0Kind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind enum.
-func (e PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateCredential200JSONResponseBody0Kind enum.
+func (e RotateCredential200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0KindApiKey:
+	case RotateCredential200JSONResponseBody0KindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status.
+// Defines values for RotateCredential200JSONResponseBody0Status.
 const (
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusError   PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status = "error"
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusInfo    PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status = "info"
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusSuccess PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status = "success"
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusWarning PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status = "warning"
+	RotateCredential200JSONResponseBody0StatusError   RotateCredential200JSONResponseBody0Status = "error"
+	RotateCredential200JSONResponseBody0StatusInfo    RotateCredential200JSONResponseBody0Status = "info"
+	RotateCredential200JSONResponseBody0StatusSuccess RotateCredential200JSONResponseBody0Status = "success"
+	RotateCredential200JSONResponseBody0StatusWarning RotateCredential200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status enum.
-func (e PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateCredential200JSONResponseBody0Status enum.
+func (e RotateCredential200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusError:
+	case RotateCredential200JSONResponseBody0StatusError:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusInfo:
+	case RotateCredential200JSONResponseBody0StatusInfo:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusSuccess:
+	case RotateCredential200JSONResponseBody0StatusSuccess:
 		return true
-	case PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0StatusWarning:
+	case RotateCredential200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus.
+// Defines values for ListDeployments200JSONResponseBodyStatus.
 const (
-	GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusActive   GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "active"
-	GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusError    GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "error"
-	GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusInactive GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "inactive"
-	GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusStaged   GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "staged"
+	ListDeployments200JSONResponseBodyStatusActive   ListDeployments200JSONResponseBodyStatus = "active"
+	ListDeployments200JSONResponseBodyStatusError    ListDeployments200JSONResponseBodyStatus = "error"
+	ListDeployments200JSONResponseBodyStatusInactive ListDeployments200JSONResponseBodyStatus = "inactive"
+	ListDeployments200JSONResponseBodyStatusStaged   ListDeployments200JSONResponseBodyStatus = "staged"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus enum.
-func (e GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus) Valid() bool {
+// Valid indicates whether the value is a known member of the ListDeployments200JSONResponseBodyStatus enum.
+func (e ListDeployments200JSONResponseBodyStatus) Valid() bool {
 	switch e {
-	case GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusActive:
+	case ListDeployments200JSONResponseBodyStatusActive:
 		return true
-	case GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusError:
+	case ListDeployments200JSONResponseBodyStatusError:
 		return true
-	case GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusInactive:
+	case ListDeployments200JSONResponseBodyStatusInactive:
 		return true
-	case GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusStaged:
+	case ListDeployments200JSONResponseBodyStatusStaged:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction.
+// Defines values for CreateDeploymentMultipartBodyAction.
 const (
-	Deploy PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction = "deploy"
-	Stage  PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction = "stage"
+	Deploy CreateDeploymentMultipartBodyAction = "deploy"
+	Stage  CreateDeploymentMultipartBodyAction = "stage"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction enum.
-func (e PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateDeploymentMultipartBodyAction enum.
+func (e CreateDeploymentMultipartBodyAction) Valid() bool {
 	switch e {
 	case Deploy:
 		return true
@@ -910,759 +910,759 @@ func (e PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction) Valid() bool
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus.
+// Defines values for CreateDeployment200JSONResponseBodyStatus.
 const (
-	PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusActive   PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "active"
-	PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusError    PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "error"
-	PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusInactive PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "inactive"
-	PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusStaged   PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus = "staged"
+	CreateDeployment200JSONResponseBodyStatusActive   CreateDeployment200JSONResponseBodyStatus = "active"
+	CreateDeployment200JSONResponseBodyStatusError    CreateDeployment200JSONResponseBodyStatus = "error"
+	CreateDeployment200JSONResponseBodyStatusInactive CreateDeployment200JSONResponseBodyStatus = "inactive"
+	CreateDeployment200JSONResponseBodyStatusStaged   CreateDeployment200JSONResponseBodyStatus = "staged"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus enum.
-func (e PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateDeployment200JSONResponseBodyStatus enum.
+func (e CreateDeployment200JSONResponseBodyStatus) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusActive:
+	case CreateDeployment200JSONResponseBodyStatusActive:
 		return true
-	case PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusError:
+	case CreateDeployment200JSONResponseBodyStatusError:
 		return true
-	case PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusInactive:
+	case CreateDeployment200JSONResponseBodyStatusInactive:
 		return true
-	case PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatusStaged:
+	case CreateDeployment200JSONResponseBodyStatusStaged:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus.
+// Defines values for DeleteDeployment200JSONResponseBodyStatus.
 const (
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusActive   DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus = "active"
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusError    DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus = "error"
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusInactive DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus = "inactive"
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusStaged   DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus = "staged"
+	DeleteDeployment200JSONResponseBodyStatusActive   DeleteDeployment200JSONResponseBodyStatus = "active"
+	DeleteDeployment200JSONResponseBodyStatusError    DeleteDeployment200JSONResponseBodyStatus = "error"
+	DeleteDeployment200JSONResponseBodyStatusInactive DeleteDeployment200JSONResponseBodyStatus = "inactive"
+	DeleteDeployment200JSONResponseBodyStatusStaged   DeleteDeployment200JSONResponseBodyStatus = "staged"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus enum.
-func (e DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteDeployment200JSONResponseBodyStatus enum.
+func (e DeleteDeployment200JSONResponseBodyStatus) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusActive:
+	case DeleteDeployment200JSONResponseBodyStatusActive:
 		return true
-	case DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusError:
+	case DeleteDeployment200JSONResponseBodyStatusError:
 		return true
-	case DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusInactive:
+	case DeleteDeployment200JSONResponseBodyStatusInactive:
 		return true
-	case DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatusStaged:
+	case DeleteDeployment200JSONResponseBodyStatusStaged:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus.
+// Defines values for TriggerDeployment200JSONResponseBodyStatus.
 const (
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusActive   PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus = "active"
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusError    PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus = "error"
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusInactive PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus = "inactive"
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusStaged   PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus = "staged"
+	TriggerDeployment200JSONResponseBodyStatusActive   TriggerDeployment200JSONResponseBodyStatus = "active"
+	TriggerDeployment200JSONResponseBodyStatusError    TriggerDeployment200JSONResponseBodyStatus = "error"
+	TriggerDeployment200JSONResponseBodyStatusInactive TriggerDeployment200JSONResponseBodyStatus = "inactive"
+	TriggerDeployment200JSONResponseBodyStatusStaged   TriggerDeployment200JSONResponseBodyStatus = "staged"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus enum.
-func (e PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus) Valid() bool {
+// Valid indicates whether the value is a known member of the TriggerDeployment200JSONResponseBodyStatus enum.
+func (e TriggerDeployment200JSONResponseBodyStatus) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusActive:
+	case TriggerDeployment200JSONResponseBodyStatusActive:
 		return true
-	case PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusError:
+	case TriggerDeployment200JSONResponseBodyStatusError:
 		return true
-	case PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusInactive:
+	case TriggerDeployment200JSONResponseBodyStatusInactive:
 		return true
-	case PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatusStaged:
+	case TriggerDeployment200JSONResponseBodyStatusStaged:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind.
+// Defines values for ListEnvironments200JSONResponseBodyKind.
 const (
-	GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindPlace    GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind = "place"
-	GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindUniverse GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind = "universe"
+	ListEnvironments200JSONResponseBodyKindPlace    ListEnvironments200JSONResponseBodyKind = "place"
+	ListEnvironments200JSONResponseBodyKindUniverse ListEnvironments200JSONResponseBodyKind = "universe"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind enum.
-func (e GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListEnvironments200JSONResponseBodyKind enum.
+func (e ListEnvironments200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindPlace:
+	case ListEnvironments200JSONResponseBodyKindPlace:
 		return true
-	case GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindUniverse:
+	case ListEnvironments200JSONResponseBodyKindUniverse:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind.
+// Defines values for CreateEnvironmentJSONBodyKind.
 const (
-	PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKindPlace    PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind = "place"
-	PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKindUniverse PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind = "universe"
+	CreateEnvironmentJSONBodyKindPlace    CreateEnvironmentJSONBodyKind = "place"
+	CreateEnvironmentJSONBodyKindUniverse CreateEnvironmentJSONBodyKind = "universe"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind enum.
-func (e PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateEnvironmentJSONBodyKind enum.
+func (e CreateEnvironmentJSONBodyKind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKindPlace:
+	case CreateEnvironmentJSONBodyKindPlace:
 		return true
-	case PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKindUniverse:
+	case CreateEnvironmentJSONBodyKindUniverse:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind.
+// Defines values for CreateEnvironment200JSONResponseBodyKind.
 const (
-	PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindPlace    PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind = "place"
-	PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindUniverse PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind = "universe"
+	CreateEnvironment200JSONResponseBodyKindPlace    CreateEnvironment200JSONResponseBodyKind = "place"
+	CreateEnvironment200JSONResponseBodyKindUniverse CreateEnvironment200JSONResponseBodyKind = "universe"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind enum.
-func (e PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateEnvironment200JSONResponseBodyKind enum.
+func (e CreateEnvironment200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindPlace:
+	case CreateEnvironment200JSONResponseBodyKindPlace:
 		return true
-	case PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKindUniverse:
+	case CreateEnvironment200JSONResponseBodyKindUniverse:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind.
+// Defines values for DeleteEnvironment200JSONResponseBodyKind.
 const (
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKindPlace    DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind = "place"
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKindUniverse DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind = "universe"
+	DeleteEnvironment200JSONResponseBodyKindPlace    DeleteEnvironment200JSONResponseBodyKind = "place"
+	DeleteEnvironment200JSONResponseBodyKindUniverse DeleteEnvironment200JSONResponseBodyKind = "universe"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind enum.
-func (e DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteEnvironment200JSONResponseBodyKind enum.
+func (e DeleteEnvironment200JSONResponseBodyKind) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKindPlace:
+	case DeleteEnvironment200JSONResponseBodyKindPlace:
 		return true
-	case DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKindUniverse:
+	case DeleteEnvironment200JSONResponseBodyKindUniverse:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind.
+// Defines values for ListTargets200JSONResponseBody0Kind.
 const (
-	GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0KindPlace GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind = "place"
+	ListTargets200JSONResponseBody0KindPlace ListTargets200JSONResponseBody0Kind = "place"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind enum.
-func (e GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListTargets200JSONResponseBody0Kind enum.
+func (e ListTargets200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0KindPlace:
+	case ListTargets200JSONResponseBody0KindPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind.
+// Defines values for CreateTarget200JSONResponseBody0Kind.
 const (
-	PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0KindPlace PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind = "place"
+	CreateTarget200JSONResponseBody0KindPlace CreateTarget200JSONResponseBody0Kind = "place"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind enum.
-func (e PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateTarget200JSONResponseBody0Kind enum.
+func (e CreateTarget200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0KindPlace:
+	case CreateTarget200JSONResponseBody0KindPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind.
+// Defines values for DeleteTarget200JSONResponseBody0Kind.
 const (
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0KindPlace DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind = "place"
+	DeleteTarget200JSONResponseBody0KindPlace DeleteTarget200JSONResponseBody0Kind = "place"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind enum.
-func (e DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteTarget200JSONResponseBody0Kind enum.
+func (e DeleteTarget200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0KindPlace:
+	case DeleteTarget200JSONResponseBody0KindPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind.
+// Defines values for ChangeTargetRessourceId200JSONResponseBody0Kind.
 const (
-	PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0KindPlace PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind = "place"
+	ChangeTargetRessourceId200JSONResponseBody0KindPlace ChangeTargetRessourceId200JSONResponseBody0Kind = "place"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind enum.
-func (e PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ChangeTargetRessourceId200JSONResponseBody0Kind enum.
+func (e ChangeTargetRessourceId200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0KindPlace:
+	case ChangeTargetRessourceId200JSONResponseBody0KindPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody0Kind.
+// Defines values for ListStorageObjects200JSONResponseBody0Kind.
 const (
-	GetRogerV1Storage200JSONResponseBody0KindS3 GetRogerV1Storage200JSONResponseBody0Kind = "S3"
+	ListStorageObjects200JSONResponseBody0KindS3 ListStorageObjects200JSONResponseBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody0Kind enum.
-func (e GetRogerV1Storage200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Kind enum.
+func (e ListStorageObjects200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody0KindS3:
+	case ListStorageObjects200JSONResponseBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody0Owner0Kind.
+// Defines values for ListStorageObjects200JSONResponseBody0Owner0Kind.
 const (
-	GetRogerV1Storage200JSONResponseBody0Owner0KindUser GetRogerV1Storage200JSONResponseBody0Owner0Kind = "user"
+	ListStorageObjects200JSONResponseBody0Owner0KindUser ListStorageObjects200JSONResponseBody0Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody0Owner0Kind enum.
-func (e GetRogerV1Storage200JSONResponseBody0Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Owner0Kind enum.
+func (e ListStorageObjects200JSONResponseBody0Owner0Kind) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody0Owner0KindUser:
+	case ListStorageObjects200JSONResponseBody0Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody0Status.
+// Defines values for ListStorageObjects200JSONResponseBody0Status.
 const (
-	GetRogerV1Storage200JSONResponseBody0StatusError   GetRogerV1Storage200JSONResponseBody0Status = "error"
-	GetRogerV1Storage200JSONResponseBody0StatusInfo    GetRogerV1Storage200JSONResponseBody0Status = "info"
-	GetRogerV1Storage200JSONResponseBody0StatusSuccess GetRogerV1Storage200JSONResponseBody0Status = "success"
-	GetRogerV1Storage200JSONResponseBody0StatusWarning GetRogerV1Storage200JSONResponseBody0Status = "warning"
+	ListStorageObjects200JSONResponseBody0StatusError   ListStorageObjects200JSONResponseBody0Status = "error"
+	ListStorageObjects200JSONResponseBody0StatusInfo    ListStorageObjects200JSONResponseBody0Status = "info"
+	ListStorageObjects200JSONResponseBody0StatusSuccess ListStorageObjects200JSONResponseBody0Status = "success"
+	ListStorageObjects200JSONResponseBody0StatusWarning ListStorageObjects200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody0Status enum.
-func (e GetRogerV1Storage200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Status enum.
+func (e ListStorageObjects200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody0StatusError:
+	case ListStorageObjects200JSONResponseBody0StatusError:
 		return true
-	case GetRogerV1Storage200JSONResponseBody0StatusInfo:
+	case ListStorageObjects200JSONResponseBody0StatusInfo:
 		return true
-	case GetRogerV1Storage200JSONResponseBody0StatusSuccess:
+	case ListStorageObjects200JSONResponseBody0StatusSuccess:
 		return true
-	case GetRogerV1Storage200JSONResponseBody0StatusWarning:
+	case ListStorageObjects200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody1Kind.
+// Defines values for ListStorageObjects200JSONResponseBody1Kind.
 const (
-	GetRogerV1Storage200JSONResponseBody1KindInternal GetRogerV1Storage200JSONResponseBody1Kind = "internal"
+	ListStorageObjects200JSONResponseBody1KindInternal ListStorageObjects200JSONResponseBody1Kind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody1Kind enum.
-func (e GetRogerV1Storage200JSONResponseBody1Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Kind enum.
+func (e ListStorageObjects200JSONResponseBody1Kind) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody1KindInternal:
+	case ListStorageObjects200JSONResponseBody1KindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody1Owner0Kind.
+// Defines values for ListStorageObjects200JSONResponseBody1Owner0Kind.
 const (
-	GetRogerV1Storage200JSONResponseBody1Owner0KindUser GetRogerV1Storage200JSONResponseBody1Owner0Kind = "user"
+	ListStorageObjects200JSONResponseBody1Owner0KindUser ListStorageObjects200JSONResponseBody1Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody1Owner0Kind enum.
-func (e GetRogerV1Storage200JSONResponseBody1Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Owner0Kind enum.
+func (e ListStorageObjects200JSONResponseBody1Owner0Kind) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody1Owner0KindUser:
+	case ListStorageObjects200JSONResponseBody1Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for GetRogerV1Storage200JSONResponseBody1Status.
+// Defines values for ListStorageObjects200JSONResponseBody1Status.
 const (
-	GetRogerV1Storage200JSONResponseBody1StatusError   GetRogerV1Storage200JSONResponseBody1Status = "error"
-	GetRogerV1Storage200JSONResponseBody1StatusInfo    GetRogerV1Storage200JSONResponseBody1Status = "info"
-	GetRogerV1Storage200JSONResponseBody1StatusSuccess GetRogerV1Storage200JSONResponseBody1Status = "success"
-	GetRogerV1Storage200JSONResponseBody1StatusWarning GetRogerV1Storage200JSONResponseBody1Status = "warning"
+	ListStorageObjects200JSONResponseBody1StatusError   ListStorageObjects200JSONResponseBody1Status = "error"
+	ListStorageObjects200JSONResponseBody1StatusInfo    ListStorageObjects200JSONResponseBody1Status = "info"
+	ListStorageObjects200JSONResponseBody1StatusSuccess ListStorageObjects200JSONResponseBody1Status = "success"
+	ListStorageObjects200JSONResponseBody1StatusWarning ListStorageObjects200JSONResponseBody1Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the GetRogerV1Storage200JSONResponseBody1Status enum.
-func (e GetRogerV1Storage200JSONResponseBody1Status) Valid() bool {
+// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Status enum.
+func (e ListStorageObjects200JSONResponseBody1Status) Valid() bool {
 	switch e {
-	case GetRogerV1Storage200JSONResponseBody1StatusError:
+	case ListStorageObjects200JSONResponseBody1StatusError:
 		return true
-	case GetRogerV1Storage200JSONResponseBody1StatusInfo:
+	case ListStorageObjects200JSONResponseBody1StatusInfo:
 		return true
-	case GetRogerV1Storage200JSONResponseBody1StatusSuccess:
+	case ListStorageObjects200JSONResponseBody1StatusSuccess:
 		return true
-	case GetRogerV1Storage200JSONResponseBody1StatusWarning:
+	case ListStorageObjects200JSONResponseBody1StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageJSONBody0Kind.
+// Defines values for CreateStorageObjectJSONBody0Kind.
 const (
-	PostRogerV1StorageJSONBody0KindS3 PostRogerV1StorageJSONBody0Kind = "S3"
+	CreateStorageObjectJSONBody0KindS3 CreateStorageObjectJSONBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageJSONBody0Kind enum.
-func (e PostRogerV1StorageJSONBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObjectJSONBody0Kind enum.
+func (e CreateStorageObjectJSONBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1StorageJSONBody0KindS3:
+	case CreateStorageObjectJSONBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody0Kind.
+// Defines values for CreateStorageObject200JSONResponseBody0Kind.
 const (
-	PostRogerV1Storage200JSONResponseBody0KindS3 PostRogerV1Storage200JSONResponseBody0Kind = "S3"
+	CreateStorageObject200JSONResponseBody0KindS3 CreateStorageObject200JSONResponseBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody0Kind enum.
-func (e PostRogerV1Storage200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Kind enum.
+func (e CreateStorageObject200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody0KindS3:
+	case CreateStorageObject200JSONResponseBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody0Owner0Kind.
+// Defines values for CreateStorageObject200JSONResponseBody0Owner0Kind.
 const (
-	PostRogerV1Storage200JSONResponseBody0Owner0KindUser PostRogerV1Storage200JSONResponseBody0Owner0Kind = "user"
+	CreateStorageObject200JSONResponseBody0Owner0KindUser CreateStorageObject200JSONResponseBody0Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody0Owner0Kind enum.
-func (e PostRogerV1Storage200JSONResponseBody0Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Owner0Kind enum.
+func (e CreateStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody0Owner0KindUser:
+	case CreateStorageObject200JSONResponseBody0Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody0Status.
+// Defines values for CreateStorageObject200JSONResponseBody0Status.
 const (
-	PostRogerV1Storage200JSONResponseBody0StatusError   PostRogerV1Storage200JSONResponseBody0Status = "error"
-	PostRogerV1Storage200JSONResponseBody0StatusInfo    PostRogerV1Storage200JSONResponseBody0Status = "info"
-	PostRogerV1Storage200JSONResponseBody0StatusSuccess PostRogerV1Storage200JSONResponseBody0Status = "success"
-	PostRogerV1Storage200JSONResponseBody0StatusWarning PostRogerV1Storage200JSONResponseBody0Status = "warning"
+	CreateStorageObject200JSONResponseBody0StatusError   CreateStorageObject200JSONResponseBody0Status = "error"
+	CreateStorageObject200JSONResponseBody0StatusInfo    CreateStorageObject200JSONResponseBody0Status = "info"
+	CreateStorageObject200JSONResponseBody0StatusSuccess CreateStorageObject200JSONResponseBody0Status = "success"
+	CreateStorageObject200JSONResponseBody0StatusWarning CreateStorageObject200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody0Status enum.
-func (e PostRogerV1Storage200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Status enum.
+func (e CreateStorageObject200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody0StatusError:
+	case CreateStorageObject200JSONResponseBody0StatusError:
 		return true
-	case PostRogerV1Storage200JSONResponseBody0StatusInfo:
+	case CreateStorageObject200JSONResponseBody0StatusInfo:
 		return true
-	case PostRogerV1Storage200JSONResponseBody0StatusSuccess:
+	case CreateStorageObject200JSONResponseBody0StatusSuccess:
 		return true
-	case PostRogerV1Storage200JSONResponseBody0StatusWarning:
+	case CreateStorageObject200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody1Kind.
+// Defines values for CreateStorageObject200JSONResponseBody1Kind.
 const (
-	PostRogerV1Storage200JSONResponseBody1KindInternal PostRogerV1Storage200JSONResponseBody1Kind = "internal"
+	CreateStorageObject200JSONResponseBody1KindInternal CreateStorageObject200JSONResponseBody1Kind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody1Kind enum.
-func (e PostRogerV1Storage200JSONResponseBody1Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Kind enum.
+func (e CreateStorageObject200JSONResponseBody1Kind) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody1KindInternal:
+	case CreateStorageObject200JSONResponseBody1KindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody1Owner0Kind.
+// Defines values for CreateStorageObject200JSONResponseBody1Owner0Kind.
 const (
-	PostRogerV1Storage200JSONResponseBody1Owner0KindUser PostRogerV1Storage200JSONResponseBody1Owner0Kind = "user"
+	CreateStorageObject200JSONResponseBody1Owner0KindUser CreateStorageObject200JSONResponseBody1Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody1Owner0Kind enum.
-func (e PostRogerV1Storage200JSONResponseBody1Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Owner0Kind enum.
+func (e CreateStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody1Owner0KindUser:
+	case CreateStorageObject200JSONResponseBody1Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1Storage200JSONResponseBody1Status.
+// Defines values for CreateStorageObject200JSONResponseBody1Status.
 const (
-	PostRogerV1Storage200JSONResponseBody1StatusError   PostRogerV1Storage200JSONResponseBody1Status = "error"
-	PostRogerV1Storage200JSONResponseBody1StatusInfo    PostRogerV1Storage200JSONResponseBody1Status = "info"
-	PostRogerV1Storage200JSONResponseBody1StatusSuccess PostRogerV1Storage200JSONResponseBody1Status = "success"
-	PostRogerV1Storage200JSONResponseBody1StatusWarning PostRogerV1Storage200JSONResponseBody1Status = "warning"
+	CreateStorageObject200JSONResponseBody1StatusError   CreateStorageObject200JSONResponseBody1Status = "error"
+	CreateStorageObject200JSONResponseBody1StatusInfo    CreateStorageObject200JSONResponseBody1Status = "info"
+	CreateStorageObject200JSONResponseBody1StatusSuccess CreateStorageObject200JSONResponseBody1Status = "success"
+	CreateStorageObject200JSONResponseBody1StatusWarning CreateStorageObject200JSONResponseBody1Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1Storage200JSONResponseBody1Status enum.
-func (e PostRogerV1Storage200JSONResponseBody1Status) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Status enum.
+func (e CreateStorageObject200JSONResponseBody1Status) Valid() bool {
 	switch e {
-	case PostRogerV1Storage200JSONResponseBody1StatusError:
+	case CreateStorageObject200JSONResponseBody1StatusError:
 		return true
-	case PostRogerV1Storage200JSONResponseBody1StatusInfo:
+	case CreateStorageObject200JSONResponseBody1StatusInfo:
 		return true
-	case PostRogerV1Storage200JSONResponseBody1StatusSuccess:
+	case CreateStorageObject200JSONResponseBody1StatusSuccess:
 		return true
-	case PostRogerV1Storage200JSONResponseBody1StatusWarning:
+	case CreateStorageObject200JSONResponseBody1StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody0Kind.
+// Defines values for DeleteStorageObject200JSONResponseBody0Kind.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody0KindS3 DeleteRogerV1StorageStorageId200JSONResponseBody0Kind = "S3"
+	DeleteStorageObject200JSONResponseBody0KindS3 DeleteStorageObject200JSONResponseBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody0Kind enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Kind enum.
+func (e DeleteStorageObject200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0KindS3:
+	case DeleteStorageObject200JSONResponseBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind.
+// Defines values for DeleteStorageObject200JSONResponseBody0Owner0Kind.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0KindUser DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind = "user"
+	DeleteStorageObject200JSONResponseBody0Owner0KindUser DeleteStorageObject200JSONResponseBody0Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Owner0Kind enum.
+func (e DeleteStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0KindUser:
+	case DeleteStorageObject200JSONResponseBody0Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody0Status.
+// Defines values for DeleteStorageObject200JSONResponseBody0Status.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody0StatusError   DeleteRogerV1StorageStorageId200JSONResponseBody0Status = "error"
-	DeleteRogerV1StorageStorageId200JSONResponseBody0StatusInfo    DeleteRogerV1StorageStorageId200JSONResponseBody0Status = "info"
-	DeleteRogerV1StorageStorageId200JSONResponseBody0StatusSuccess DeleteRogerV1StorageStorageId200JSONResponseBody0Status = "success"
-	DeleteRogerV1StorageStorageId200JSONResponseBody0StatusWarning DeleteRogerV1StorageStorageId200JSONResponseBody0Status = "warning"
+	DeleteStorageObject200JSONResponseBody0StatusError   DeleteStorageObject200JSONResponseBody0Status = "error"
+	DeleteStorageObject200JSONResponseBody0StatusInfo    DeleteStorageObject200JSONResponseBody0Status = "info"
+	DeleteStorageObject200JSONResponseBody0StatusSuccess DeleteStorageObject200JSONResponseBody0Status = "success"
+	DeleteStorageObject200JSONResponseBody0StatusWarning DeleteStorageObject200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody0Status enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Status enum.
+func (e DeleteStorageObject200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0StatusError:
+	case DeleteStorageObject200JSONResponseBody0StatusError:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0StatusInfo:
+	case DeleteStorageObject200JSONResponseBody0StatusInfo:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0StatusSuccess:
+	case DeleteStorageObject200JSONResponseBody0StatusSuccess:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody0StatusWarning:
+	case DeleteStorageObject200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody1Kind.
+// Defines values for DeleteStorageObject200JSONResponseBody1Kind.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody1KindInternal DeleteRogerV1StorageStorageId200JSONResponseBody1Kind = "internal"
+	DeleteStorageObject200JSONResponseBody1KindInternal DeleteStorageObject200JSONResponseBody1Kind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody1Kind enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody1Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Kind enum.
+func (e DeleteStorageObject200JSONResponseBody1Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1KindInternal:
+	case DeleteStorageObject200JSONResponseBody1KindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind.
+// Defines values for DeleteStorageObject200JSONResponseBody1Owner0Kind.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0KindUser DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind = "user"
+	DeleteStorageObject200JSONResponseBody1Owner0KindUser DeleteStorageObject200JSONResponseBody1Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Owner0Kind enum.
+func (e DeleteStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0KindUser:
+	case DeleteStorageObject200JSONResponseBody1Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeleteRogerV1StorageStorageId200JSONResponseBody1Status.
+// Defines values for DeleteStorageObject200JSONResponseBody1Status.
 const (
-	DeleteRogerV1StorageStorageId200JSONResponseBody1StatusError   DeleteRogerV1StorageStorageId200JSONResponseBody1Status = "error"
-	DeleteRogerV1StorageStorageId200JSONResponseBody1StatusInfo    DeleteRogerV1StorageStorageId200JSONResponseBody1Status = "info"
-	DeleteRogerV1StorageStorageId200JSONResponseBody1StatusSuccess DeleteRogerV1StorageStorageId200JSONResponseBody1Status = "success"
-	DeleteRogerV1StorageStorageId200JSONResponseBody1StatusWarning DeleteRogerV1StorageStorageId200JSONResponseBody1Status = "warning"
+	DeleteStorageObject200JSONResponseBody1StatusError   DeleteStorageObject200JSONResponseBody1Status = "error"
+	DeleteStorageObject200JSONResponseBody1StatusInfo    DeleteStorageObject200JSONResponseBody1Status = "info"
+	DeleteStorageObject200JSONResponseBody1StatusSuccess DeleteStorageObject200JSONResponseBody1Status = "success"
+	DeleteStorageObject200JSONResponseBody1StatusWarning DeleteStorageObject200JSONResponseBody1Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the DeleteRogerV1StorageStorageId200JSONResponseBody1Status enum.
-func (e DeleteRogerV1StorageStorageId200JSONResponseBody1Status) Valid() bool {
+// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Status enum.
+func (e DeleteStorageObject200JSONResponseBody1Status) Valid() bool {
 	switch e {
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1StatusError:
+	case DeleteStorageObject200JSONResponseBody1StatusError:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1StatusInfo:
+	case DeleteStorageObject200JSONResponseBody1StatusInfo:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1StatusSuccess:
+	case DeleteStorageObject200JSONResponseBody1StatusSuccess:
 		return true
-	case DeleteRogerV1StorageStorageId200JSONResponseBody1StatusWarning:
+	case DeleteStorageObject200JSONResponseBody1StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody0Kind.
+// Defines values for RenameStorageObject200JSONResponseBody0Kind.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody0KindS3 PutRogerV1StorageStorageId200JSONResponseBody0Kind = "S3"
+	RenameStorageObject200JSONResponseBody0KindS3 RenameStorageObject200JSONResponseBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody0Kind enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Kind enum.
+func (e RenameStorageObject200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody0KindS3:
+	case RenameStorageObject200JSONResponseBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind.
+// Defines values for RenameStorageObject200JSONResponseBody0Owner0Kind.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody0Owner0KindUser PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind = "user"
+	RenameStorageObject200JSONResponseBody0Owner0KindUser RenameStorageObject200JSONResponseBody0Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Owner0Kind enum.
+func (e RenameStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody0Owner0KindUser:
+	case RenameStorageObject200JSONResponseBody0Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody0Status.
+// Defines values for RenameStorageObject200JSONResponseBody0Status.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody0StatusError   PutRogerV1StorageStorageId200JSONResponseBody0Status = "error"
-	PutRogerV1StorageStorageId200JSONResponseBody0StatusInfo    PutRogerV1StorageStorageId200JSONResponseBody0Status = "info"
-	PutRogerV1StorageStorageId200JSONResponseBody0StatusSuccess PutRogerV1StorageStorageId200JSONResponseBody0Status = "success"
-	PutRogerV1StorageStorageId200JSONResponseBody0StatusWarning PutRogerV1StorageStorageId200JSONResponseBody0Status = "warning"
+	RenameStorageObject200JSONResponseBody0StatusError   RenameStorageObject200JSONResponseBody0Status = "error"
+	RenameStorageObject200JSONResponseBody0StatusInfo    RenameStorageObject200JSONResponseBody0Status = "info"
+	RenameStorageObject200JSONResponseBody0StatusSuccess RenameStorageObject200JSONResponseBody0Status = "success"
+	RenameStorageObject200JSONResponseBody0StatusWarning RenameStorageObject200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody0Status enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Status enum.
+func (e RenameStorageObject200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody0StatusError:
+	case RenameStorageObject200JSONResponseBody0StatusError:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody0StatusInfo:
+	case RenameStorageObject200JSONResponseBody0StatusInfo:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody0StatusSuccess:
+	case RenameStorageObject200JSONResponseBody0StatusSuccess:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody0StatusWarning:
+	case RenameStorageObject200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody1Kind.
+// Defines values for RenameStorageObject200JSONResponseBody1Kind.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody1KindInternal PutRogerV1StorageStorageId200JSONResponseBody1Kind = "internal"
+	RenameStorageObject200JSONResponseBody1KindInternal RenameStorageObject200JSONResponseBody1Kind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody1Kind enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody1Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Kind enum.
+func (e RenameStorageObject200JSONResponseBody1Kind) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody1KindInternal:
+	case RenameStorageObject200JSONResponseBody1KindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind.
+// Defines values for RenameStorageObject200JSONResponseBody1Owner0Kind.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody1Owner0KindUser PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind = "user"
+	RenameStorageObject200JSONResponseBody1Owner0KindUser RenameStorageObject200JSONResponseBody1Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Owner0Kind enum.
+func (e RenameStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody1Owner0KindUser:
+	case RenameStorageObject200JSONResponseBody1Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PutRogerV1StorageStorageId200JSONResponseBody1Status.
+// Defines values for RenameStorageObject200JSONResponseBody1Status.
 const (
-	PutRogerV1StorageStorageId200JSONResponseBody1StatusError   PutRogerV1StorageStorageId200JSONResponseBody1Status = "error"
-	PutRogerV1StorageStorageId200JSONResponseBody1StatusInfo    PutRogerV1StorageStorageId200JSONResponseBody1Status = "info"
-	PutRogerV1StorageStorageId200JSONResponseBody1StatusSuccess PutRogerV1StorageStorageId200JSONResponseBody1Status = "success"
-	PutRogerV1StorageStorageId200JSONResponseBody1StatusWarning PutRogerV1StorageStorageId200JSONResponseBody1Status = "warning"
+	RenameStorageObject200JSONResponseBody1StatusError   RenameStorageObject200JSONResponseBody1Status = "error"
+	RenameStorageObject200JSONResponseBody1StatusInfo    RenameStorageObject200JSONResponseBody1Status = "info"
+	RenameStorageObject200JSONResponseBody1StatusSuccess RenameStorageObject200JSONResponseBody1Status = "success"
+	RenameStorageObject200JSONResponseBody1StatusWarning RenameStorageObject200JSONResponseBody1Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PutRogerV1StorageStorageId200JSONResponseBody1Status enum.
-func (e PutRogerV1StorageStorageId200JSONResponseBody1Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Status enum.
+func (e RenameStorageObject200JSONResponseBody1Status) Valid() bool {
 	switch e {
-	case PutRogerV1StorageStorageId200JSONResponseBody1StatusError:
+	case RenameStorageObject200JSONResponseBody1StatusError:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody1StatusInfo:
+	case RenameStorageObject200JSONResponseBody1StatusInfo:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody1StatusSuccess:
+	case RenameStorageObject200JSONResponseBody1StatusSuccess:
 		return true
-	case PutRogerV1StorageStorageId200JSONResponseBody1StatusWarning:
+	case RenameStorageObject200JSONResponseBody1StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind.
+// Defines values for RotateStorageObject200JSONResponseBody0Kind.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0KindS3 PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind = "S3"
+	RotateStorageObject200JSONResponseBody0KindS3 RotateStorageObject200JSONResponseBody0Kind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Kind enum.
+func (e RotateStorageObject200JSONResponseBody0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0KindS3:
+	case RotateStorageObject200JSONResponseBody0KindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind.
+// Defines values for RotateStorageObject200JSONResponseBody0Owner0Kind.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0KindUser PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind = "user"
+	RotateStorageObject200JSONResponseBody0Owner0KindUser RotateStorageObject200JSONResponseBody0Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Owner0Kind enum.
+func (e RotateStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0KindUser:
+	case RotateStorageObject200JSONResponseBody0Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status.
+// Defines values for RotateStorageObject200JSONResponseBody0Status.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusError   PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status = "error"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusInfo    PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status = "info"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusSuccess PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status = "success"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusWarning PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status = "warning"
+	RotateStorageObject200JSONResponseBody0StatusError   RotateStorageObject200JSONResponseBody0Status = "error"
+	RotateStorageObject200JSONResponseBody0StatusInfo    RotateStorageObject200JSONResponseBody0Status = "info"
+	RotateStorageObject200JSONResponseBody0StatusSuccess RotateStorageObject200JSONResponseBody0Status = "success"
+	RotateStorageObject200JSONResponseBody0StatusWarning RotateStorageObject200JSONResponseBody0Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Status enum.
+func (e RotateStorageObject200JSONResponseBody0Status) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusError:
+	case RotateStorageObject200JSONResponseBody0StatusError:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusInfo:
+	case RotateStorageObject200JSONResponseBody0StatusInfo:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusSuccess:
+	case RotateStorageObject200JSONResponseBody0StatusSuccess:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody0StatusWarning:
+	case RotateStorageObject200JSONResponseBody0StatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind.
+// Defines values for RotateStorageObject200JSONResponseBody1Kind.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1KindInternal PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind = "internal"
+	RotateStorageObject200JSONResponseBody1KindInternal RotateStorageObject200JSONResponseBody1Kind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Kind enum.
+func (e RotateStorageObject200JSONResponseBody1Kind) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1KindInternal:
+	case RotateStorageObject200JSONResponseBody1KindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind.
+// Defines values for RotateStorageObject200JSONResponseBody1Owner0Kind.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0KindUser PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind = "user"
+	RotateStorageObject200JSONResponseBody1Owner0KindUser RotateStorageObject200JSONResponseBody1Owner0Kind = "user"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Owner0Kind enum.
+func (e RotateStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0KindUser:
+	case RotateStorageObject200JSONResponseBody1Owner0KindUser:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status.
+// Defines values for RotateStorageObject200JSONResponseBody1Status.
 const (
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusError   PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status = "error"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusInfo    PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status = "info"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusSuccess PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status = "success"
-	PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusWarning PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status = "warning"
+	RotateStorageObject200JSONResponseBody1StatusError   RotateStorageObject200JSONResponseBody1Status = "error"
+	RotateStorageObject200JSONResponseBody1StatusInfo    RotateStorageObject200JSONResponseBody1Status = "info"
+	RotateStorageObject200JSONResponseBody1StatusSuccess RotateStorageObject200JSONResponseBody1Status = "success"
+	RotateStorageObject200JSONResponseBody1StatusWarning RotateStorageObject200JSONResponseBody1Status = "warning"
 )
 
-// Valid indicates whether the value is a known member of the PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status enum.
-func (e PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status) Valid() bool {
+// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Status enum.
+func (e RotateStorageObject200JSONResponseBody1Status) Valid() bool {
 	switch e {
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusError:
+	case RotateStorageObject200JSONResponseBody1StatusError:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusInfo:
+	case RotateStorageObject200JSONResponseBody1StatusInfo:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusSuccess:
+	case RotateStorageObject200JSONResponseBody1StatusSuccess:
 		return true
-	case PostRogerV1StorageStorageIdRotate200JSONResponseBody1StatusWarning:
+	case RotateStorageObject200JSONResponseBody1StatusWarning:
 		return true
 	default:
 		return false
@@ -2023,8 +2023,8 @@ type ValidationErrorErrorCode string
 // Example: ValidationError
 type ValidationErrorErrorType string
 
-// GetRogerV1AuthOauthParams defines parameters for GetRogerV1AuthOauth.
-type GetRogerV1AuthOauthParams struct {
+// InitiateOAuthLoginParams defines parameters for InitiateOAuthLogin.
+type InitiateOAuthLoginParams struct {
 	// Provider The ID of the provider to use
 	Provider string `form:"provider" json:"provider"`
 
@@ -2032,7 +2032,7 @@ type GetRogerV1AuthOauthParams struct {
 	CodeChallenge string `form:"code_challenge" json:"code_challenge"`
 
 	// CodeChallengeMethod The hashing method used to create the code challenge (RFC 7636)
-	CodeChallengeMethod *GetRogerV1AuthOauthParamsCodeChallengeMethod `form:"code_challenge_method,omitempty" json:"code_challenge_method,omitempty"`
+	CodeChallengeMethod *InitiateOAuthLoginParamsCodeChallengeMethod `form:"code_challenge_method,omitempty" json:"code_challenge_method,omitempty"`
 
 	// RedirectUri The client callback URL the user will be redirected to with a server-issued authorization code
 	RedirectUri string `form:"redirect_uri" json:"redirect_uri"`
@@ -2041,48 +2041,48 @@ type GetRogerV1AuthOauthParams struct {
 	State string `form:"state" json:"state"`
 }
 
-// GetRogerV1AuthOauthParamsCodeChallengeMethod defines parameters for GetRogerV1AuthOauth.
-type GetRogerV1AuthOauthParamsCodeChallengeMethod string
+// InitiateOAuthLoginParamsCodeChallengeMethod defines parameters for InitiateOAuthLogin.
+type InitiateOAuthLoginParamsCodeChallengeMethod string
 
-// PostRogerV1AuthRevokeJSONBody defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevokeJSONBody struct {
+// RevokeTokenJSONBody defines parameters for RevokeToken.
+type RevokeTokenJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1AuthRevokeJSONBody0 defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevokeJSONBody0 struct {
+// RevokeTokenJSONBody0 defines parameters for RevokeToken.
+type RevokeTokenJSONBody0 struct {
 	// Token A valid short-lived access token (JWT)
 	//
 	// Example: eyJhbGciOiJSUzI1NiIs...
 	Token string `json:"token"`
 
 	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint *PostRogerV1AuthRevokeJSONBody0TokenTypeHint `json:"token_type_hint,omitempty"`
+	TokenTypeHint *RevokeTokenJSONBody0TokenTypeHint `json:"token_type_hint,omitempty"`
 }
 
-// PostRogerV1AuthRevokeJSONBody0TokenTypeHint defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevokeJSONBody0TokenTypeHint string
+// RevokeTokenJSONBody0TokenTypeHint defines parameters for RevokeToken.
+type RevokeTokenJSONBody0TokenTypeHint string
 
-// PostRogerV1AuthRevokeJSONBody1 defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevokeJSONBody1 struct {
+// RevokeTokenJSONBody1 defines parameters for RevokeToken.
+type RevokeTokenJSONBody1 struct {
 	// Token A long-lived token used to request new short-lived JWTs
 	//
 	// Example: rgr_rt_abc123
 	Token string `json:"token"`
 
 	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint *PostRogerV1AuthRevokeJSONBody1TokenTypeHint `json:"token_type_hint,omitempty"`
+	TokenTypeHint *RevokeTokenJSONBody1TokenTypeHint `json:"token_type_hint,omitempty"`
 }
 
-// PostRogerV1AuthRevokeJSONBody1TokenTypeHint defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevokeJSONBody1TokenTypeHint string
+// RevokeTokenJSONBody1TokenTypeHint defines parameters for RevokeToken.
+type RevokeTokenJSONBody1TokenTypeHint string
 
-// PostRogerV1AuthRevoke400JSONResponseBody1 defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevoke400JSONResponseBody1 struct {
+// RevokeToken400JSONResponseBody1 defines parameters for RevokeToken.
+type RevokeToken400JSONResponseBody1 struct {
 	// Error RFC 7009 token revocation error code
 	//
 	// Example: unsupported_token_type
-	Error PostRogerV1AuthRevoke400JSONResponseBody1Error `json:"error"`
+	Error RevokeToken400JSONResponseBody1Error `json:"error"`
 
 	// ErrorDescription A human-readable error description
 	//
@@ -2090,21 +2090,21 @@ type PostRogerV1AuthRevoke400JSONResponseBody1 struct {
 	ErrorDescription string `json:"error_description"`
 }
 
-// PostRogerV1AuthRevoke400JSONResponseBody1Error defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevoke400JSONResponseBody1Error string
+// RevokeToken400JSONResponseBody1Error defines parameters for RevokeToken.
+type RevokeToken400JSONResponseBody1Error string
 
-// PostRogerV1AuthRevoke400JSONResponseBody defines parameters for PostRogerV1AuthRevoke.
-type PostRogerV1AuthRevoke400JSONResponseBody struct {
+// RevokeToken400JSONResponseBody defines parameters for RevokeToken.
+type RevokeToken400JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1AuthTokenJSONBody defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthTokenJSONBody struct {
+// ExchangeTokenJSONBody defines parameters for ExchangeToken.
+type ExchangeTokenJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1AuthTokenJSONBody0 defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthTokenJSONBody0 struct {
+// ExchangeTokenJSONBody0 defines parameters for ExchangeToken.
+type ExchangeTokenJSONBody0 struct {
 	// ClientName A user-friendly client name bound to the user's session
 	//
 	// Example: Roger CLI (Windows 11)
@@ -2119,19 +2119,19 @@ type PostRogerV1AuthTokenJSONBody0 struct {
 	CodeVerifier string `json:"code_verifier"`
 
 	// GrantType OAuth 2.1 grant type
-	GrantType PostRogerV1AuthTokenJSONBody0GrantType `json:"grant_type"`
+	GrantType ExchangeTokenJSONBody0GrantType `json:"grant_type"`
 
 	// RedirectUri The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))
 	RedirectUri string `json:"redirect_uri"`
 }
 
-// PostRogerV1AuthTokenJSONBody0GrantType defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthTokenJSONBody0GrantType string
+// ExchangeTokenJSONBody0GrantType defines parameters for ExchangeToken.
+type ExchangeTokenJSONBody0GrantType string
 
-// PostRogerV1AuthTokenJSONBody1 defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthTokenJSONBody1 struct {
+// ExchangeTokenJSONBody1 defines parameters for ExchangeToken.
+type ExchangeTokenJSONBody1 struct {
 	// GrantType OAuth 2.1 grant type
-	GrantType PostRogerV1AuthTokenJSONBody1GrantType `json:"grant_type"`
+	GrantType ExchangeTokenJSONBody1GrantType `json:"grant_type"`
 
 	// RefreshToken The long-lived refresh token issued by the node on last refresh
 	//
@@ -2139,36 +2139,36 @@ type PostRogerV1AuthTokenJSONBody1 struct {
 	RefreshToken string `json:"refresh_token"`
 }
 
-// PostRogerV1AuthTokenJSONBody1GrantType defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthTokenJSONBody1GrantType string
+// ExchangeTokenJSONBody1GrantType defines parameters for ExchangeToken.
+type ExchangeTokenJSONBody1GrantType string
 
-// PostRogerV1AuthToken200JSONResponseBodyTokenType defines parameters for PostRogerV1AuthToken.
-type PostRogerV1AuthToken200JSONResponseBodyTokenType string
+// ExchangeToken200JSONResponseBodyTokenType defines parameters for ExchangeToken.
+type ExchangeToken200JSONResponseBodyTokenType string
 
-// GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind defines parameters for GetRogerV1Features.
-type GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind string
+// GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind string
 
-// GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds defines parameters for GetRogerV1Features.
-type GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds string
+// GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds string
 
-// GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes defines parameters for GetRogerV1Features.
-type GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes string
+// GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds string
 
-// GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind defines parameters for GetRogerV1Features.
-type GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind string
+// GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds string
 
-// GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds defines parameters for GetRogerV1Features.
-type GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds string
+// GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds string
 
-// GetRogerV1Projects200JSONResponseBodyKind defines parameters for GetRogerV1Projects.
-type GetRogerV1Projects200JSONResponseBodyKind string
+// ListProjects200JSONResponseBodyKind defines parameters for ListProjects.
+type ListProjects200JSONResponseBodyKind string
 
-// PostRogerV1ProjectsJSONBody defines parameters for PostRogerV1Projects.
-type PostRogerV1ProjectsJSONBody struct {
+// CreateProjectJSONBody defines parameters for CreateProject.
+type CreateProjectJSONBody struct {
 	// Kind The type of ressource the project will manage
 	//
 	// Example: game
-	Kind PostRogerV1ProjectsJSONBodyKind `json:"kind"`
+	Kind CreateProjectJSONBodyKind `json:"kind"`
 
 	// Name The name of the project
 	//
@@ -2181,36 +2181,36 @@ type PostRogerV1ProjectsJSONBody struct {
 	StorageId string `json:"storage_id"`
 }
 
-// PostRogerV1ProjectsJSONBodyKind defines parameters for PostRogerV1Projects.
-type PostRogerV1ProjectsJSONBodyKind string
+// CreateProjectJSONBodyKind defines parameters for CreateProject.
+type CreateProjectJSONBodyKind string
 
-// PostRogerV1Projects200JSONResponseBodyKind defines parameters for PostRogerV1Projects.
-type PostRogerV1Projects200JSONResponseBodyKind string
+// CreateProject200JSONResponseBodyKind defines parameters for CreateProject.
+type CreateProject200JSONResponseBodyKind string
 
-// DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind defines parameters for DeleteRogerV1ProjectsProjectId.
-type DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind string
+// DeleteProject200JSONResponseBodyKind defines parameters for DeleteProject.
+type DeleteProject200JSONResponseBodyKind string
 
-// PutRogerV1ProjectsProjectIdJSONBody defines parameters for PutRogerV1ProjectsProjectId.
-type PutRogerV1ProjectsProjectIdJSONBody struct {
+// RenameProjectJSONBody defines parameters for RenameProject.
+type RenameProjectJSONBody struct {
 	// Name The name of the project
 	//
 	// Example: My Awesome Game!
 	Name string `json:"name"`
 }
 
-// PutRogerV1ProjectsProjectId200JSONResponseBodyKind defines parameters for PutRogerV1ProjectsProjectId.
-type PutRogerV1ProjectsProjectId200JSONResponseBodyKind string
+// RenameProject200JSONResponseBodyKind defines parameters for RenameProject.
+type RenameProject200JSONResponseBodyKind string
 
-// PostRogerV1ProjectsProjectIdArtifactsCheckJSONBody defines parameters for PostRogerV1ProjectsProjectIdArtifactsCheck.
-type PostRogerV1ProjectsProjectIdArtifactsCheckJSONBody struct {
+// CheckArtifactsJSONBody defines parameters for CheckArtifacts.
+type CheckArtifactsJSONBody struct {
 	// Hashes An array of hashes to check
 	//
 	// Example: ["abcd1234","qwerty0987"]
 	Hashes []string `json:"hashes"`
 }
 
-// GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 defines parameters for GetRogerV1ProjectsProjectIdCredentials.
-type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
+// ListCredentials200JSONResponseBody0 defines parameters for ListCredentials.
+type ListCredentials200JSONResponseBody0 struct {
 	// AccountId The ID of the Roblox account that owns the API Key
 	//
 	// Example: 1501705133
@@ -2229,7 +2229,7 @@ type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind `json:"kind"`
+	Kind ListCredentials200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2239,7 +2239,7 @@ type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	// Status The current status of the API Key
 	//
 	// Example: error
-	Status GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status `json:"status"`
+	Status ListCredentials200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional status message attached to the key
 	//
@@ -2252,28 +2252,28 @@ type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind defines parameters for GetRogerV1ProjectsProjectIdCredentials.
-type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind string
+// ListCredentials200JSONResponseBody0Kind defines parameters for ListCredentials.
+type ListCredentials200JSONResponseBody0Kind string
 
-// GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status defines parameters for GetRogerV1ProjectsProjectIdCredentials.
-type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status string
+// ListCredentials200JSONResponseBody0Status defines parameters for ListCredentials.
+type ListCredentials200JSONResponseBody0Status string
 
-// GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item defines parameters for GetRogerV1ProjectsProjectIdCredentials.
-type GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item struct {
+// ListCredentials200JSONResponseBody_Item defines parameters for ListCredentials.
+type ListCredentials200JSONResponseBody_Item struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsJSONBody defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentialsJSONBody struct {
+// CreateCredentialJSONBody defines parameters for CreateCredential.
+type CreateCredentialJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsJSONBody0 defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentialsJSONBody0 struct {
+// CreateCredentialJSONBody0 defines parameters for CreateCredential.
+type CreateCredentialJSONBody0 struct {
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind `json:"kind"`
+	Kind CreateCredentialJSONBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2286,11 +2286,11 @@ type PostRogerV1ProjectsProjectIdCredentialsJSONBody0 struct {
 	SecretKey string `json:"secret_key"`
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentialsJSONBody0Kind string
+// CreateCredentialJSONBody0Kind defines parameters for CreateCredential.
+type CreateCredentialJSONBody0Kind string
 
-// PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
+// CreateCredential200JSONResponseBody0 defines parameters for CreateCredential.
+type CreateCredential200JSONResponseBody0 struct {
 	// AccountId The ID of the Roblox account that owns the API Key
 	//
 	// Example: 1501705133
@@ -2309,7 +2309,7 @@ type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind `json:"kind"`
+	Kind CreateCredential200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2319,7 +2319,7 @@ type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	// Status The current status of the API Key
 	//
 	// Example: error
-	Status PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status `json:"status"`
+	Status CreateCredential200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional status message attached to the key
 	//
@@ -2332,19 +2332,19 @@ type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Kind string
+// CreateCredential200JSONResponseBody0Kind defines parameters for CreateCredential.
+type CreateCredential200JSONResponseBody0Kind string
 
-// PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0Status string
+// CreateCredential200JSONResponseBody0Status defines parameters for CreateCredential.
+type CreateCredential200JSONResponseBody0Status string
 
-// PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody defines parameters for PostRogerV1ProjectsProjectIdCredentials.
-type PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody struct {
+// CreateCredential200JSONResponseBody defines parameters for CreateCredential.
+type CreateCredential200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 defines parameters for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId.
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 struct {
+// DeleteCredential200JSONResponseBody0 defines parameters for DeleteCredential.
+type DeleteCredential200JSONResponseBody0 struct {
 	// AccountId The ID of the Roblox account that owns the API Key
 	//
 	// Example: 1501705133
@@ -2363,7 +2363,7 @@ type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 s
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind `json:"kind"`
+	Kind DeleteCredential200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2373,7 +2373,7 @@ type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 s
 	// Status The current status of the API Key
 	//
 	// Example: error
-	Status DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status `json:"status"`
+	Status DeleteCredential200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional status message attached to the key
 	//
@@ -2386,27 +2386,27 @@ type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 s
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind defines parameters for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId.
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind string
+// DeleteCredential200JSONResponseBody0Kind defines parameters for DeleteCredential.
+type DeleteCredential200JSONResponseBody0Kind string
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status defines parameters for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId.
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status string
+// DeleteCredential200JSONResponseBody0Status defines parameters for DeleteCredential.
+type DeleteCredential200JSONResponseBody0Status string
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody defines parameters for DeleteRogerV1ProjectsProjectIdCredentialsCredentialId.
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody struct {
+// DeleteCredential200JSONResponseBody defines parameters for DeleteCredential.
+type DeleteCredential200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONBody defines parameters for PutRogerV1ProjectsProjectIdCredentialsCredentialId.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONBody struct {
+// RenameCredentialJSONBody defines parameters for RenameCredential.
+type RenameCredentialJSONBody struct {
 	// Name The human-friendly name of the API Key
 	//
 	// Example: Test Key
 	Name string `json:"name"`
 }
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 defines parameters for PutRogerV1ProjectsProjectIdCredentialsCredentialId.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 struct {
+// RenameCredential200JSONResponseBody0 defines parameters for RenameCredential.
+type RenameCredential200JSONResponseBody0 struct {
 	// AccountId The ID of the Roblox account that owns the API Key
 	//
 	// Example: 1501705133
@@ -2425,7 +2425,7 @@ type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 stru
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind `json:"kind"`
+	Kind RenameCredential200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2435,7 +2435,7 @@ type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 stru
 	// Status The current status of the API Key
 	//
 	// Example: error
-	Status PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status `json:"status"`
+	Status RenameCredential200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional status message attached to the key
 	//
@@ -2448,32 +2448,32 @@ type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 stru
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind defines parameters for PutRogerV1ProjectsProjectIdCredentialsCredentialId.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Kind string
+// RenameCredential200JSONResponseBody0Kind defines parameters for RenameCredential.
+type RenameCredential200JSONResponseBody0Kind string
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status defines parameters for PutRogerV1ProjectsProjectIdCredentialsCredentialId.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0Status string
+// RenameCredential200JSONResponseBody0Status defines parameters for RenameCredential.
+type RenameCredential200JSONResponseBody0Status string
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody defines parameters for PutRogerV1ProjectsProjectIdCredentialsCredentialId.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody struct {
+// RenameCredential200JSONResponseBody defines parameters for RenameCredential.
+type RenameCredential200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody struct {
+// RotateCredentialJSONBody defines parameters for RotateCredential.
+type RotateCredentialJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0 defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0 struct {
+// RotateCredentialJSONBody0 defines parameters for RotateCredential.
+type RotateCredentialJSONBody0 struct {
 	// SecretKey The API Key secret key
 	//
 	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
 	SecretKey string `json:"secret_key"`
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0 defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0 struct {
+// RotateCredential200JSONResponseBody0 defines parameters for RotateCredential.
+type RotateCredential200JSONResponseBody0 struct {
 	// AccountId The ID of the Roblox account that owns the API Key
 	//
 	// Example: 1501705133
@@ -2492,7 +2492,7 @@ type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBod
 	// Kind The kind of the credential
 	//
 	// Example: api-key
-	Kind PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind `json:"kind"`
+	Kind RotateCredential200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly name of the API Key
 	//
@@ -2502,7 +2502,7 @@ type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBod
 	// Status The current status of the API Key
 	//
 	// Example: error
-	Status PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status `json:"status"`
+	Status RotateCredential200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional status message attached to the key
 	//
@@ -2515,31 +2515,31 @@ type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBod
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Kind string
+// RotateCredential200JSONResponseBody0Kind defines parameters for RotateCredential.
+type RotateCredential200JSONResponseBody0Kind string
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0Status string
+// RotateCredential200JSONResponseBody0Status defines parameters for RotateCredential.
+type RotateCredential200JSONResponseBody0Status string
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody struct {
+// RotateCredential200JSONResponseBody defines parameters for RotateCredential.
+type RotateCredential200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody defines parameters for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody struct {
+// RotateCredential400JSONResponseBody defines parameters for RotateCredential.
+type RotateCredential400JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus defines parameters for GetRogerV1ProjectsProjectIdDeployments.
-type GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus string
+// ListDeployments200JSONResponseBodyStatus defines parameters for ListDeployments.
+type ListDeployments200JSONResponseBodyStatus string
 
-// PostRogerV1ProjectsProjectIdDeploymentsMultipartBody defines parameters for PostRogerV1ProjectsProjectIdDeployments.
-type PostRogerV1ProjectsProjectIdDeploymentsMultipartBody struct {
+// CreateDeploymentMultipartBody defines parameters for CreateDeployment.
+type CreateDeploymentMultipartBody struct {
 	// Action The action that should be done on the deployment after upload
 	//
 	// Example: stage
-	Action PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction `json:"action"`
+	Action CreateDeploymentMultipartBodyAction `json:"action"`
 
 	// Config The roger.yml config file
 	Config *openapi_types.File `json:"config,omitempty"`
@@ -2563,23 +2563,23 @@ type PostRogerV1ProjectsProjectIdDeploymentsMultipartBody struct {
 	Version string `json:"version"`
 }
 
-// PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction defines parameters for PostRogerV1ProjectsProjectIdDeployments.
-type PostRogerV1ProjectsProjectIdDeploymentsMultipartBodyAction string
+// CreateDeploymentMultipartBodyAction defines parameters for CreateDeployment.
+type CreateDeploymentMultipartBodyAction string
 
-// PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus defines parameters for PostRogerV1ProjectsProjectIdDeployments.
-type PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus string
+// CreateDeployment200JSONResponseBodyStatus defines parameters for CreateDeployment.
+type CreateDeployment200JSONResponseBodyStatus string
 
-// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus defines parameters for DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId.
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus string
+// DeleteDeployment200JSONResponseBodyStatus defines parameters for DeleteDeployment.
+type DeleteDeployment200JSONResponseBodyStatus string
 
-// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus defines parameters for PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy.
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus string
+// TriggerDeployment200JSONResponseBodyStatus defines parameters for TriggerDeployment.
+type TriggerDeployment200JSONResponseBodyStatus string
 
-// GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind defines parameters for GetRogerV1ProjectsProjectIdEnvironments.
-type GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind string
+// ListEnvironments200JSONResponseBodyKind defines parameters for ListEnvironments.
+type ListEnvironments200JSONResponseBodyKind string
 
-// PostRogerV1ProjectsProjectIdEnvironmentsJSONBody defines parameters for PostRogerV1ProjectsProjectIdEnvironments.
-type PostRogerV1ProjectsProjectIdEnvironmentsJSONBody struct {
+// CreateEnvironmentJSONBody defines parameters for CreateEnvironment.
+type CreateEnvironmentJSONBody struct {
 	// CredentialId The ID of the credential that will be used to communicate to Roblox for this environment
 	//
 	// Example: rgr_cred_abc123
@@ -2588,7 +2588,7 @@ type PostRogerV1ProjectsProjectIdEnvironmentsJSONBody struct {
 	// Kind The kind of ressource the environment will manage (whole universe or single place)
 	//
 	// Example: universe
-	Kind PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind `json:"kind"`
+	Kind CreateEnvironmentJSONBodyKind `json:"kind"`
 
 	// Name The name of the environment (immutable)
 	//
@@ -2601,17 +2601,17 @@ type PostRogerV1ProjectsProjectIdEnvironmentsJSONBody struct {
 	UniverseId string `json:"universe_id"`
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind defines parameters for PostRogerV1ProjectsProjectIdEnvironments.
-type PostRogerV1ProjectsProjectIdEnvironmentsJSONBodyKind string
+// CreateEnvironmentJSONBodyKind defines parameters for CreateEnvironment.
+type CreateEnvironmentJSONBodyKind string
 
-// PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind defines parameters for PostRogerV1ProjectsProjectIdEnvironments.
-type PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind string
+// CreateEnvironment200JSONResponseBodyKind defines parameters for CreateEnvironment.
+type CreateEnvironment200JSONResponseBodyKind string
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind defines parameters for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId.
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind string
+// DeleteEnvironment200JSONResponseBodyKind defines parameters for DeleteEnvironment.
+type DeleteEnvironment200JSONResponseBodyKind string
 
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 defines parameters for GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 struct {
+// ListTargets200JSONResponseBody0 defines parameters for ListTargets.
+type ListTargets200JSONResponseBody0 struct {
 	// CreatedAt The ISO timestamp at which the place was registered
 	CreatedAt time.Time `json:"created_at"`
 
@@ -2621,7 +2621,7 @@ type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseB
 	EnvironmentId string `json:"environment_id"`
 
 	// Kind The type of ressource the target points to
-	Kind GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind `json:"kind"`
+	Kind ListTargets200JSONResponseBody0Kind `json:"kind"`
 
 	// LastUpdatedAt The ISO timestamp at which the place was last updated
 	LastUpdatedAt time.Time `json:"last_updated_at"`
@@ -2638,16 +2638,16 @@ type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseB
 	UsedIn []string `json:"used_in"`
 }
 
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind defines parameters for GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind string
+// ListTargets200JSONResponseBody0Kind defines parameters for ListTargets.
+type ListTargets200JSONResponseBody0Kind string
 
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody defines parameters for GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody struct {
+// ListTargets200JSONResponseBody defines parameters for ListTargets.
+type ListTargets200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONBody defines parameters for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONBody struct {
+// CreateTargetJSONBody defines parameters for CreateTarget.
+type CreateTargetJSONBody struct {
 	// Name The name used in the config file to reference this place
 	//
 	// Example: arena
@@ -2657,8 +2657,8 @@ type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONBody struct
 	PlaceId string `json:"place_id"`
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 defines parameters for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 struct {
+// CreateTarget200JSONResponseBody0 defines parameters for CreateTarget.
+type CreateTarget200JSONResponseBody0 struct {
 	// CreatedAt The ISO timestamp at which the place was registered
 	CreatedAt time.Time `json:"created_at"`
 
@@ -2668,7 +2668,7 @@ type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse
 	EnvironmentId string `json:"environment_id"`
 
 	// Kind The type of ressource the target points to
-	Kind PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind `json:"kind"`
+	Kind CreateTarget200JSONResponseBody0Kind `json:"kind"`
 
 	// LastUpdatedAt The ISO timestamp at which the place was last updated
 	LastUpdatedAt time.Time `json:"last_updated_at"`
@@ -2685,16 +2685,16 @@ type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse
 	UsedIn []string `json:"used_in"`
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind defines parameters for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0Kind string
+// CreateTarget200JSONResponseBody0Kind defines parameters for CreateTarget.
+type CreateTarget200JSONResponseBody0Kind string
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody defines parameters for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets.
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody struct {
+// CreateTarget200JSONResponseBody defines parameters for CreateTarget.
+type CreateTarget200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 defines parameters for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 struct {
+// DeleteTarget200JSONResponseBody0 defines parameters for DeleteTarget.
+type DeleteTarget200JSONResponseBody0 struct {
 	// CreatedAt The ISO timestamp at which the place was registered
 	CreatedAt time.Time `json:"created_at"`
 
@@ -2704,7 +2704,7 @@ type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONRe
 	EnvironmentId string `json:"environment_id"`
 
 	// Kind The type of ressource the target points to
-	Kind DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind `json:"kind"`
+	Kind DeleteTarget200JSONResponseBody0Kind `json:"kind"`
 
 	// LastUpdatedAt The ISO timestamp at which the place was last updated
 	LastUpdatedAt time.Time `json:"last_updated_at"`
@@ -2721,22 +2721,22 @@ type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONRe
 	UsedIn []string `json:"used_in"`
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind defines parameters for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind string
+// DeleteTarget200JSONResponseBody0Kind defines parameters for DeleteTarget.
+type DeleteTarget200JSONResponseBody0Kind string
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody defines parameters for DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody struct {
+// DeleteTarget200JSONResponseBody defines parameters for DeleteTarget.
+type DeleteTarget200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONBody defines parameters for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONBody struct {
+// ChangeTargetRessourceIdJSONBody defines parameters for ChangeTargetRessourceId.
+type ChangeTargetRessourceIdJSONBody struct {
 	// PlaceId The linked Roblox place's ID
 	PlaceId string `json:"place_id"`
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 defines parameters for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 struct {
+// ChangeTargetRessourceId200JSONResponseBody0 defines parameters for ChangeTargetRessourceId.
+type ChangeTargetRessourceId200JSONResponseBody0 struct {
 	// CreatedAt The ISO timestamp at which the place was registered
 	CreatedAt time.Time `json:"created_at"`
 
@@ -2746,7 +2746,7 @@ type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONRespo
 	EnvironmentId string `json:"environment_id"`
 
 	// Kind The type of ressource the target points to
-	Kind PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind `json:"kind"`
+	Kind ChangeTargetRessourceId200JSONResponseBody0Kind `json:"kind"`
 
 	// LastUpdatedAt The ISO timestamp at which the place was last updated
 	LastUpdatedAt time.Time `json:"last_updated_at"`
@@ -2763,16 +2763,16 @@ type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONRespo
 	UsedIn []string `json:"used_in"`
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind defines parameters for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0Kind string
+// ChangeTargetRessourceId200JSONResponseBody0Kind defines parameters for ChangeTargetRessourceId.
+type ChangeTargetRessourceId200JSONResponseBody0Kind string
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody defines parameters for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName.
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody struct {
+// ChangeTargetRessourceId200JSONResponseBody defines parameters for ChangeTargetRessourceId.
+type ChangeTargetRessourceId200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// GetRogerV1Storage200JSONResponseBody0 defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody0 struct {
+// ListStorageObjects200JSONResponseBody0 defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody0 struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
@@ -2791,7 +2791,7 @@ type GetRogerV1Storage200JSONResponseBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind GetRogerV1Storage200JSONResponseBody0Kind `json:"kind"`
+	Kind ListStorageObjects200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -2799,7 +2799,7 @@ type GetRogerV1Storage200JSONResponseBody0 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner GetRogerV1Storage200JSONResponseBody_0_Owner `json:"owner"`
+	Owner ListStorageObjects200JSONResponseBody_0_Owner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -2809,7 +2809,7 @@ type GetRogerV1Storage200JSONResponseBody0 struct {
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status GetRogerV1Storage200JSONResponseBody0Status `json:"status"`
+	Status ListStorageObjects200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -2827,11 +2827,11 @@ type GetRogerV1Storage200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// GetRogerV1Storage200JSONResponseBody0Kind defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody0Kind string
+// ListStorageObjects200JSONResponseBody0Kind defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody0Kind string
 
-// GetRogerV1Storage200JSONResponseBody0Owner0 defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody0Owner0 struct {
+// ListStorageObjects200JSONResponseBody0Owner0 defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody0Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -2840,22 +2840,22 @@ type GetRogerV1Storage200JSONResponseBody0Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind GetRogerV1Storage200JSONResponseBody0Owner0Kind `json:"kind"`
+	Kind ListStorageObjects200JSONResponseBody0Owner0Kind `json:"kind"`
 }
 
-// GetRogerV1Storage200JSONResponseBody0Owner0Kind defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody0Owner0Kind string
+// ListStorageObjects200JSONResponseBody0Owner0Kind defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody0Owner0Kind string
 
-// GetRogerV1Storage200JSONResponseBody_0_Owner defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody_0_Owner struct {
+// ListStorageObjects200JSONResponseBody_0_Owner defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody_0_Owner struct {
 	union json.RawMessage
 }
 
-// GetRogerV1Storage200JSONResponseBody0Status defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody0Status string
+// ListStorageObjects200JSONResponseBody0Status defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody0Status string
 
-// GetRogerV1Storage200JSONResponseBody1 defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody1 struct {
+// ListStorageObjects200JSONResponseBody1 defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody1 struct {
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -2864,7 +2864,7 @@ type GetRogerV1Storage200JSONResponseBody1 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: internal
-	Kind GetRogerV1Storage200JSONResponseBody1Kind `json:"kind"`
+	Kind ListStorageObjects200JSONResponseBody1Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -2872,12 +2872,12 @@ type GetRogerV1Storage200JSONResponseBody1 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner GetRogerV1Storage200JSONResponseBody_1_Owner `json:"owner"`
+	Owner ListStorageObjects200JSONResponseBody_1_Owner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status GetRogerV1Storage200JSONResponseBody1Status `json:"status"`
+	Status ListStorageObjects200JSONResponseBody1Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -2900,11 +2900,11 @@ type GetRogerV1Storage200JSONResponseBody1 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// GetRogerV1Storage200JSONResponseBody1Kind defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody1Kind string
+// ListStorageObjects200JSONResponseBody1Kind defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody1Kind string
 
-// GetRogerV1Storage200JSONResponseBody1Owner0 defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody1Owner0 struct {
+// ListStorageObjects200JSONResponseBody1Owner0 defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody1Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -2913,32 +2913,32 @@ type GetRogerV1Storage200JSONResponseBody1Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind GetRogerV1Storage200JSONResponseBody1Owner0Kind `json:"kind"`
+	Kind ListStorageObjects200JSONResponseBody1Owner0Kind `json:"kind"`
 }
 
-// GetRogerV1Storage200JSONResponseBody1Owner0Kind defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody1Owner0Kind string
+// ListStorageObjects200JSONResponseBody1Owner0Kind defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody1Owner0Kind string
 
-// GetRogerV1Storage200JSONResponseBody_1_Owner defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody_1_Owner struct {
+// ListStorageObjects200JSONResponseBody_1_Owner defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody_1_Owner struct {
 	union json.RawMessage
 }
 
-// GetRogerV1Storage200JSONResponseBody1Status defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody1Status string
+// ListStorageObjects200JSONResponseBody1Status defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody1Status string
 
-// GetRogerV1Storage200JSONResponseBody_Item defines parameters for GetRogerV1Storage.
-type GetRogerV1Storage200JSONResponseBody_Item struct {
+// ListStorageObjects200JSONResponseBody_Item defines parameters for ListStorageObjects.
+type ListStorageObjects200JSONResponseBody_Item struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageJSONBody defines parameters for PostRogerV1Storage.
-type PostRogerV1StorageJSONBody struct {
+// CreateStorageObjectJSONBody defines parameters for CreateStorageObject.
+type CreateStorageObjectJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageJSONBody0 defines parameters for PostRogerV1Storage.
-type PostRogerV1StorageJSONBody0 struct {
+// CreateStorageObjectJSONBody0 defines parameters for CreateStorageObject.
+type CreateStorageObjectJSONBody0 struct {
 	// AccessKeyId The S3 access key id
 	//
 	// Example: SomeAccessKeyId
@@ -2952,7 +2952,7 @@ type PostRogerV1StorageJSONBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind PostRogerV1StorageJSONBody0Kind `json:"kind"`
+	Kind CreateStorageObjectJSONBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -2975,11 +2975,11 @@ type PostRogerV1StorageJSONBody0 struct {
 	StorageEndpoint string `json:"storage_endpoint"`
 }
 
-// PostRogerV1StorageJSONBody0Kind defines parameters for PostRogerV1Storage.
-type PostRogerV1StorageJSONBody0Kind string
+// CreateStorageObjectJSONBody0Kind defines parameters for CreateStorageObject.
+type CreateStorageObjectJSONBody0Kind string
 
-// PostRogerV1Storage200JSONResponseBody0 defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody0 struct {
+// CreateStorageObject200JSONResponseBody0 defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody0 struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
@@ -2998,7 +2998,7 @@ type PostRogerV1Storage200JSONResponseBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind PostRogerV1Storage200JSONResponseBody0Kind `json:"kind"`
+	Kind CreateStorageObject200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3006,7 +3006,7 @@ type PostRogerV1Storage200JSONResponseBody0 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PostRogerV1Storage200JSONResponseBody_0_Owner `json:"owner"`
+	Owner CreateStorageObject200JSONResponseBody_0_Owner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -3016,7 +3016,7 @@ type PostRogerV1Storage200JSONResponseBody0 struct {
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PostRogerV1Storage200JSONResponseBody0Status `json:"status"`
+	Status CreateStorageObject200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3034,11 +3034,11 @@ type PostRogerV1Storage200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1Storage200JSONResponseBody0Kind defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody0Kind string
+// CreateStorageObject200JSONResponseBody0Kind defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody0Kind string
 
-// PostRogerV1Storage200JSONResponseBody0Owner0 defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody0Owner0 struct {
+// CreateStorageObject200JSONResponseBody0Owner0 defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody0Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3047,22 +3047,22 @@ type PostRogerV1Storage200JSONResponseBody0Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PostRogerV1Storage200JSONResponseBody0Owner0Kind `json:"kind"`
+	Kind CreateStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
 }
 
-// PostRogerV1Storage200JSONResponseBody0Owner0Kind defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody0Owner0Kind string
+// CreateStorageObject200JSONResponseBody0Owner0Kind defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody0Owner0Kind string
 
-// PostRogerV1Storage200JSONResponseBody_0_Owner defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody_0_Owner struct {
+// CreateStorageObject200JSONResponseBody_0_Owner defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody_0_Owner struct {
 	union json.RawMessage
 }
 
-// PostRogerV1Storage200JSONResponseBody0Status defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody0Status string
+// CreateStorageObject200JSONResponseBody0Status defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody0Status string
 
-// PostRogerV1Storage200JSONResponseBody1 defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody1 struct {
+// CreateStorageObject200JSONResponseBody1 defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody1 struct {
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -3071,7 +3071,7 @@ type PostRogerV1Storage200JSONResponseBody1 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: internal
-	Kind PostRogerV1Storage200JSONResponseBody1Kind `json:"kind"`
+	Kind CreateStorageObject200JSONResponseBody1Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3079,12 +3079,12 @@ type PostRogerV1Storage200JSONResponseBody1 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PostRogerV1Storage200JSONResponseBody_1_Owner `json:"owner"`
+	Owner CreateStorageObject200JSONResponseBody_1_Owner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PostRogerV1Storage200JSONResponseBody1Status `json:"status"`
+	Status CreateStorageObject200JSONResponseBody1Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3107,11 +3107,11 @@ type PostRogerV1Storage200JSONResponseBody1 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1Storage200JSONResponseBody1Kind defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody1Kind string
+// CreateStorageObject200JSONResponseBody1Kind defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody1Kind string
 
-// PostRogerV1Storage200JSONResponseBody1Owner0 defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody1Owner0 struct {
+// CreateStorageObject200JSONResponseBody1Owner0 defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody1Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3120,32 +3120,32 @@ type PostRogerV1Storage200JSONResponseBody1Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PostRogerV1Storage200JSONResponseBody1Owner0Kind `json:"kind"`
+	Kind CreateStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
 }
 
-// PostRogerV1Storage200JSONResponseBody1Owner0Kind defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody1Owner0Kind string
+// CreateStorageObject200JSONResponseBody1Owner0Kind defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody1Owner0Kind string
 
-// PostRogerV1Storage200JSONResponseBody_1_Owner defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody_1_Owner struct {
+// CreateStorageObject200JSONResponseBody_1_Owner defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody_1_Owner struct {
 	union json.RawMessage
 }
 
-// PostRogerV1Storage200JSONResponseBody1Status defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody1Status string
+// CreateStorageObject200JSONResponseBody1Status defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody1Status string
 
-// PostRogerV1Storage200JSONResponseBody defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage200JSONResponseBody struct {
+// CreateStorageObject200JSONResponseBody defines parameters for CreateStorageObject.
+type CreateStorageObject200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1Storage400JSONResponseBody defines parameters for PostRogerV1Storage.
-type PostRogerV1Storage400JSONResponseBody struct {
+// CreateStorageObject400JSONResponseBody defines parameters for CreateStorageObject.
+type CreateStorageObject400JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody0 defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody0 struct {
+// DeleteStorageObject200JSONResponseBody0 defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody0 struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
@@ -3164,7 +3164,7 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind DeleteRogerV1StorageStorageId200JSONResponseBody0Kind `json:"kind"`
+	Kind DeleteStorageObject200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3172,7 +3172,7 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody0 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner `json:"owner"`
+	Owner DeleteStorageObject200JSONResponseBody_0_Owner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -3182,7 +3182,7 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody0 struct {
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status DeleteRogerV1StorageStorageId200JSONResponseBody0Status `json:"status"`
+	Status DeleteStorageObject200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3200,11 +3200,11 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody0Kind defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody0Kind string
+// DeleteStorageObject200JSONResponseBody0Kind defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody0Kind string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 struct {
+// DeleteStorageObject200JSONResponseBody0Owner0 defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody0Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3213,22 +3213,22 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind `json:"kind"`
+	Kind DeleteStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0Kind string
+// DeleteStorageObject200JSONResponseBody0Owner0Kind defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody0Owner0Kind string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner struct {
+// DeleteStorageObject200JSONResponseBody_0_Owner defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody_0_Owner struct {
 	union json.RawMessage
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody0Status defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody0Status string
+// DeleteStorageObject200JSONResponseBody0Status defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody0Status string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody1 defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody1 struct {
+// DeleteStorageObject200JSONResponseBody1 defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody1 struct {
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -3237,7 +3237,7 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody1 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: internal
-	Kind DeleteRogerV1StorageStorageId200JSONResponseBody1Kind `json:"kind"`
+	Kind DeleteStorageObject200JSONResponseBody1Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3245,12 +3245,12 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody1 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner `json:"owner"`
+	Owner DeleteStorageObject200JSONResponseBody_1_Owner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status DeleteRogerV1StorageStorageId200JSONResponseBody1Status `json:"status"`
+	Status DeleteStorageObject200JSONResponseBody1Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3273,11 +3273,11 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody1 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody1Kind defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody1Kind string
+// DeleteStorageObject200JSONResponseBody1Kind defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody1Kind string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 struct {
+// DeleteStorageObject200JSONResponseBody1Owner0 defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody1Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3286,35 +3286,35 @@ type DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind `json:"kind"`
+	Kind DeleteStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0Kind string
+// DeleteStorageObject200JSONResponseBody1Owner0Kind defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody1Owner0Kind string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner struct {
+// DeleteStorageObject200JSONResponseBody_1_Owner defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody_1_Owner struct {
 	union json.RawMessage
 }
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody1Status defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody1Status string
+// DeleteStorageObject200JSONResponseBody1Status defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody1Status string
 
-// DeleteRogerV1StorageStorageId200JSONResponseBody defines parameters for DeleteRogerV1StorageStorageId.
-type DeleteRogerV1StorageStorageId200JSONResponseBody struct {
+// DeleteStorageObject200JSONResponseBody defines parameters for DeleteStorageObject.
+type DeleteStorageObject200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PutRogerV1StorageStorageIdJSONBody defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageIdJSONBody struct {
+// RenameStorageObjectJSONBody defines parameters for RenameStorageObject.
+type RenameStorageObjectJSONBody struct {
 	// Name The human-friendly display name of the storage object
 	//
 	// Example: Main Storage
 	Name string `json:"name"`
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody0 defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody0 struct {
+// RenameStorageObject200JSONResponseBody0 defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody0 struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
@@ -3333,7 +3333,7 @@ type PutRogerV1StorageStorageId200JSONResponseBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind PutRogerV1StorageStorageId200JSONResponseBody0Kind `json:"kind"`
+	Kind RenameStorageObject200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3341,7 +3341,7 @@ type PutRogerV1StorageStorageId200JSONResponseBody0 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PutRogerV1StorageStorageId200JSONResponseBody_0_Owner `json:"owner"`
+	Owner RenameStorageObject200JSONResponseBody_0_Owner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -3351,7 +3351,7 @@ type PutRogerV1StorageStorageId200JSONResponseBody0 struct {
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PutRogerV1StorageStorageId200JSONResponseBody0Status `json:"status"`
+	Status RenameStorageObject200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3369,11 +3369,11 @@ type PutRogerV1StorageStorageId200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody0Kind defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody0Kind string
+// RenameStorageObject200JSONResponseBody0Kind defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody0Kind string
 
-// PutRogerV1StorageStorageId200JSONResponseBody0Owner0 defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody0Owner0 struct {
+// RenameStorageObject200JSONResponseBody0Owner0 defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody0Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3382,22 +3382,22 @@ type PutRogerV1StorageStorageId200JSONResponseBody0Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind `json:"kind"`
+	Kind RenameStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody0Owner0Kind string
+// RenameStorageObject200JSONResponseBody0Owner0Kind defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody0Owner0Kind string
 
-// PutRogerV1StorageStorageId200JSONResponseBody_0_Owner defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody_0_Owner struct {
+// RenameStorageObject200JSONResponseBody_0_Owner defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody_0_Owner struct {
 	union json.RawMessage
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody0Status defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody0Status string
+// RenameStorageObject200JSONResponseBody0Status defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody0Status string
 
-// PutRogerV1StorageStorageId200JSONResponseBody1 defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody1 struct {
+// RenameStorageObject200JSONResponseBody1 defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody1 struct {
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -3406,7 +3406,7 @@ type PutRogerV1StorageStorageId200JSONResponseBody1 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: internal
-	Kind PutRogerV1StorageStorageId200JSONResponseBody1Kind `json:"kind"`
+	Kind RenameStorageObject200JSONResponseBody1Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3414,12 +3414,12 @@ type PutRogerV1StorageStorageId200JSONResponseBody1 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PutRogerV1StorageStorageId200JSONResponseBody_1_Owner `json:"owner"`
+	Owner RenameStorageObject200JSONResponseBody_1_Owner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PutRogerV1StorageStorageId200JSONResponseBody1Status `json:"status"`
+	Status RenameStorageObject200JSONResponseBody1Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3442,11 +3442,11 @@ type PutRogerV1StorageStorageId200JSONResponseBody1 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody1Kind defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody1Kind string
+// RenameStorageObject200JSONResponseBody1Kind defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody1Kind string
 
-// PutRogerV1StorageStorageId200JSONResponseBody1Owner0 defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody1Owner0 struct {
+// RenameStorageObject200JSONResponseBody1Owner0 defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody1Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3455,32 +3455,32 @@ type PutRogerV1StorageStorageId200JSONResponseBody1Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind `json:"kind"`
+	Kind RenameStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody1Owner0Kind string
+// RenameStorageObject200JSONResponseBody1Owner0Kind defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody1Owner0Kind string
 
-// PutRogerV1StorageStorageId200JSONResponseBody_1_Owner defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody_1_Owner struct {
+// RenameStorageObject200JSONResponseBody_1_Owner defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody_1_Owner struct {
 	union json.RawMessage
 }
 
-// PutRogerV1StorageStorageId200JSONResponseBody1Status defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody1Status string
+// RenameStorageObject200JSONResponseBody1Status defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody1Status string
 
-// PutRogerV1StorageStorageId200JSONResponseBody defines parameters for PutRogerV1StorageStorageId.
-type PutRogerV1StorageStorageId200JSONResponseBody struct {
+// RenameStorageObject200JSONResponseBody defines parameters for RenameStorageObject.
+type RenameStorageObject200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageStorageIdRotateJSONBody defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotateJSONBody struct {
+// RotateStorageObjectJSONBody defines parameters for RotateStorageObject.
+type RotateStorageObjectJSONBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageStorageIdRotateJSONBody0 defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotateJSONBody0 struct {
+// RotateStorageObjectJSONBody0 defines parameters for RotateStorageObject.
+type RotateStorageObjectJSONBody0 struct {
 	// AccessKeyId The S3 access key id
 	//
 	// Example: SomeAccessKeyId
@@ -3492,8 +3492,8 @@ type PostRogerV1StorageStorageIdRotateJSONBody0 struct {
 	SecretAccessKey string `json:"secret_access_key"`
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody0 defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody0 struct {
+// RotateStorageObject200JSONResponseBody0 defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody0 struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
@@ -3512,7 +3512,7 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody0 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: S3
-	Kind PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind `json:"kind"`
+	Kind RotateStorageObject200JSONResponseBody0Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3520,7 +3520,7 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody0 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner `json:"owner"`
+	Owner RotateStorageObject200JSONResponseBody_0_Owner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -3530,7 +3530,7 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody0 struct {
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status `json:"status"`
+	Status RotateStorageObject200JSONResponseBody0Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3548,11 +3548,11 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody0 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody0Kind string
+// RotateStorageObject200JSONResponseBody0Kind defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody0Kind string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 struct {
+// RotateStorageObject200JSONResponseBody0Owner0 defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody0Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3561,22 +3561,22 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind `json:"kind"`
+	Kind RotateStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0Kind string
+// RotateStorageObject200JSONResponseBody0Owner0Kind defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody0Owner0Kind string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner struct {
+// RotateStorageObject200JSONResponseBody_0_Owner defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody_0_Owner struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody0Status string
+// RotateStorageObject200JSONResponseBody0Status defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody0Status string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody1 defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody1 struct {
+// RotateStorageObject200JSONResponseBody1 defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody1 struct {
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -3585,7 +3585,7 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody1 struct {
 	// Kind The kind of storage referenced by this object
 	//
 	// Example: internal
-	Kind PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind `json:"kind"`
+	Kind RotateStorageObject200JSONResponseBody1Kind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -3593,12 +3593,12 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody1 struct {
 	Name string `json:"name"`
 
 	// Owner An object representing the ressource that owns the storage object
-	Owner PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner `json:"owner"`
+	Owner RotateStorageObject200JSONResponseBody_1_Owner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
 	// Example: warning
-	Status PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status `json:"status"`
+	Status RotateStorageObject200JSONResponseBody1Status `json:"status"`
 
 	// StatusMessage An optional message attached to the storage object status
 	//
@@ -3621,11 +3621,11 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody1 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody1Kind string
+// RotateStorageObject200JSONResponseBody1Kind defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody1Kind string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 struct {
+// RotateStorageObject200JSONResponseBody1Owner0 defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody1Owner0 struct {
 	// Id A unique prefixed user identifier
 	//
 	// Example: rgr_usr_abc123
@@ -3634,91 +3634,91 @@ type PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 struct {
 	// Kind The type of owner that owns the storage object
 	//
 	// Example: user
-	Kind PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind `json:"kind"`
+	Kind RotateStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0Kind string
+// RotateStorageObject200JSONResponseBody1Owner0Kind defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody1Owner0Kind string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner struct {
+// RotateStorageObject200JSONResponseBody_1_Owner defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody_1_Owner struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody1Status string
+// RotateStorageObject200JSONResponseBody1Status defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody1Status string
 
-// PostRogerV1StorageStorageIdRotate200JSONResponseBody defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate200JSONResponseBody struct {
+// RotateStorageObject200JSONResponseBody defines parameters for RotateStorageObject.
+type RotateStorageObject200JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1StorageStorageIdRotate400JSONResponseBody defines parameters for PostRogerV1StorageStorageIdRotate.
-type PostRogerV1StorageStorageIdRotate400JSONResponseBody struct {
+// RotateStorageObject400JSONResponseBody defines parameters for RotateStorageObject.
+type RotateStorageObject400JSONResponseBody struct {
 	union json.RawMessage
 }
 
-// PostRogerV1AuthRevokeJSONRequestBody defines body for PostRogerV1AuthRevoke for application/json ContentType.
-type PostRogerV1AuthRevokeJSONRequestBody PostRogerV1AuthRevokeJSONBody
+// RevokeTokenJSONRequestBody defines body for RevokeToken for application/json ContentType.
+type RevokeTokenJSONRequestBody RevokeTokenJSONBody
 
-// PostRogerV1AuthTokenJSONRequestBody defines body for PostRogerV1AuthToken for application/json ContentType.
-type PostRogerV1AuthTokenJSONRequestBody PostRogerV1AuthTokenJSONBody
+// ExchangeTokenJSONRequestBody defines body for ExchangeToken for application/json ContentType.
+type ExchangeTokenJSONRequestBody ExchangeTokenJSONBody
 
-// PostRogerV1ProjectsJSONRequestBody defines body for PostRogerV1Projects for application/json ContentType.
-type PostRogerV1ProjectsJSONRequestBody PostRogerV1ProjectsJSONBody
+// CreateProjectJSONRequestBody defines body for CreateProject for application/json ContentType.
+type CreateProjectJSONRequestBody CreateProjectJSONBody
 
-// PutRogerV1ProjectsProjectIdJSONRequestBody defines body for PutRogerV1ProjectsProjectId for application/json ContentType.
-type PutRogerV1ProjectsProjectIdJSONRequestBody PutRogerV1ProjectsProjectIdJSONBody
+// RenameProjectJSONRequestBody defines body for RenameProject for application/json ContentType.
+type RenameProjectJSONRequestBody RenameProjectJSONBody
 
-// PostRogerV1ProjectsProjectIdArtifactsCheckJSONRequestBody defines body for PostRogerV1ProjectsProjectIdArtifactsCheck for application/json ContentType.
-type PostRogerV1ProjectsProjectIdArtifactsCheckJSONRequestBody PostRogerV1ProjectsProjectIdArtifactsCheckJSONBody
+// CheckArtifactsJSONRequestBody defines body for CheckArtifacts for application/json ContentType.
+type CheckArtifactsJSONRequestBody CheckArtifactsJSONBody
 
-// PostRogerV1ProjectsProjectIdCredentialsJSONRequestBody defines body for PostRogerV1ProjectsProjectIdCredentials for application/json ContentType.
-type PostRogerV1ProjectsProjectIdCredentialsJSONRequestBody PostRogerV1ProjectsProjectIdCredentialsJSONBody
+// CreateCredentialJSONRequestBody defines body for CreateCredential for application/json ContentType.
+type CreateCredentialJSONRequestBody CreateCredentialJSONBody
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONRequestBody defines body for PutRogerV1ProjectsProjectIdCredentialsCredentialId for application/json ContentType.
-type PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONRequestBody PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONBody
+// RenameCredentialJSONRequestBody defines body for RenameCredential for application/json ContentType.
+type RenameCredentialJSONRequestBody RenameCredentialJSONBody
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONRequestBody defines body for PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate for application/json ContentType.
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONRequestBody PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody
+// RotateCredentialJSONRequestBody defines body for RotateCredential for application/json ContentType.
+type RotateCredentialJSONRequestBody RotateCredentialJSONBody
 
-// PostRogerV1ProjectsProjectIdDeploymentsMultipartRequestBody defines body for PostRogerV1ProjectsProjectIdDeployments for multipart/form-data ContentType.
-type PostRogerV1ProjectsProjectIdDeploymentsMultipartRequestBody PostRogerV1ProjectsProjectIdDeploymentsMultipartBody
+// CreateDeploymentMultipartRequestBody defines body for CreateDeployment for multipart/form-data ContentType.
+type CreateDeploymentMultipartRequestBody CreateDeploymentMultipartBody
 
-// PostRogerV1ProjectsProjectIdEnvironmentsJSONRequestBody defines body for PostRogerV1ProjectsProjectIdEnvironments for application/json ContentType.
-type PostRogerV1ProjectsProjectIdEnvironmentsJSONRequestBody PostRogerV1ProjectsProjectIdEnvironmentsJSONBody
+// CreateEnvironmentJSONRequestBody defines body for CreateEnvironment for application/json ContentType.
+type CreateEnvironmentJSONRequestBody CreateEnvironmentJSONBody
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONRequestBody defines body for PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets for application/json ContentType.
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONRequestBody PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONBody
+// CreateTargetJSONRequestBody defines body for CreateTarget for application/json ContentType.
+type CreateTargetJSONRequestBody CreateTargetJSONBody
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONRequestBody defines body for PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName for application/json ContentType.
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONRequestBody PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONBody
+// ChangeTargetRessourceIdJSONRequestBody defines body for ChangeTargetRessourceId for application/json ContentType.
+type ChangeTargetRessourceIdJSONRequestBody ChangeTargetRessourceIdJSONBody
 
-// PostRogerV1StorageJSONRequestBody defines body for PostRogerV1Storage for application/json ContentType.
-type PostRogerV1StorageJSONRequestBody PostRogerV1StorageJSONBody
+// CreateStorageObjectJSONRequestBody defines body for CreateStorageObject for application/json ContentType.
+type CreateStorageObjectJSONRequestBody CreateStorageObjectJSONBody
 
-// PutRogerV1StorageStorageIdJSONRequestBody defines body for PutRogerV1StorageStorageId for application/json ContentType.
-type PutRogerV1StorageStorageIdJSONRequestBody PutRogerV1StorageStorageIdJSONBody
+// RenameStorageObjectJSONRequestBody defines body for RenameStorageObject for application/json ContentType.
+type RenameStorageObjectJSONRequestBody RenameStorageObjectJSONBody
 
-// PostRogerV1StorageStorageIdRotateJSONRequestBody defines body for PostRogerV1StorageStorageIdRotate for application/json ContentType.
-type PostRogerV1StorageStorageIdRotateJSONRequestBody PostRogerV1StorageStorageIdRotateJSONBody
+// RotateStorageObjectJSONRequestBody defines body for RotateStorageObject for application/json ContentType.
+type RotateStorageObjectJSONRequestBody RotateStorageObjectJSONBody
 
-// AsPostRogerV1AuthRevokeJSONBody0 returns the union data inside the PostRogerV1AuthRevokeJSONBody as a PostRogerV1AuthRevokeJSONBody0
-func (t PostRogerV1AuthRevokeJSONBody) AsPostRogerV1AuthRevokeJSONBody0() (PostRogerV1AuthRevokeJSONBody0, error) {
-	var body PostRogerV1AuthRevokeJSONBody0
+// AsRevokeTokenJSONBody0 returns the union data inside the RevokeTokenJSONBody as a RevokeTokenJSONBody0
+func (t RevokeTokenJSONBody) AsRevokeTokenJSONBody0() (RevokeTokenJSONBody0, error) {
+	var body RevokeTokenJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1AuthRevokeJSONBody0 overwrites any union data inside the PostRogerV1AuthRevokeJSONBody as the provided PostRogerV1AuthRevokeJSONBody0
-func (t *PostRogerV1AuthRevokeJSONBody) FromPostRogerV1AuthRevokeJSONBody0(v PostRogerV1AuthRevokeJSONBody0) error {
+// FromRevokeTokenJSONBody0 overwrites any union data inside the RevokeTokenJSONBody as the provided RevokeTokenJSONBody0
+func (t *RevokeTokenJSONBody) FromRevokeTokenJSONBody0(v RevokeTokenJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1AuthRevokeJSONBody0 performs a merge with any union data inside the PostRogerV1AuthRevokeJSONBody, using the provided PostRogerV1AuthRevokeJSONBody0
-func (t *PostRogerV1AuthRevokeJSONBody) MergePostRogerV1AuthRevokeJSONBody0(v PostRogerV1AuthRevokeJSONBody0) error {
+// MergeRevokeTokenJSONBody0 performs a merge with any union data inside the RevokeTokenJSONBody, using the provided RevokeTokenJSONBody0
+func (t *RevokeTokenJSONBody) MergeRevokeTokenJSONBody0(v RevokeTokenJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3729,22 +3729,22 @@ func (t *PostRogerV1AuthRevokeJSONBody) MergePostRogerV1AuthRevokeJSONBody0(v Po
 	return err
 }
 
-// AsPostRogerV1AuthRevokeJSONBody1 returns the union data inside the PostRogerV1AuthRevokeJSONBody as a PostRogerV1AuthRevokeJSONBody1
-func (t PostRogerV1AuthRevokeJSONBody) AsPostRogerV1AuthRevokeJSONBody1() (PostRogerV1AuthRevokeJSONBody1, error) {
-	var body PostRogerV1AuthRevokeJSONBody1
+// AsRevokeTokenJSONBody1 returns the union data inside the RevokeTokenJSONBody as a RevokeTokenJSONBody1
+func (t RevokeTokenJSONBody) AsRevokeTokenJSONBody1() (RevokeTokenJSONBody1, error) {
+	var body RevokeTokenJSONBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1AuthRevokeJSONBody1 overwrites any union data inside the PostRogerV1AuthRevokeJSONBody as the provided PostRogerV1AuthRevokeJSONBody1
-func (t *PostRogerV1AuthRevokeJSONBody) FromPostRogerV1AuthRevokeJSONBody1(v PostRogerV1AuthRevokeJSONBody1) error {
+// FromRevokeTokenJSONBody1 overwrites any union data inside the RevokeTokenJSONBody as the provided RevokeTokenJSONBody1
+func (t *RevokeTokenJSONBody) FromRevokeTokenJSONBody1(v RevokeTokenJSONBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1AuthRevokeJSONBody1 performs a merge with any union data inside the PostRogerV1AuthRevokeJSONBody, using the provided PostRogerV1AuthRevokeJSONBody1
-func (t *PostRogerV1AuthRevokeJSONBody) MergePostRogerV1AuthRevokeJSONBody1(v PostRogerV1AuthRevokeJSONBody1) error {
+// MergeRevokeTokenJSONBody1 performs a merge with any union data inside the RevokeTokenJSONBody, using the provided RevokeTokenJSONBody1
+func (t *RevokeTokenJSONBody) MergeRevokeTokenJSONBody1(v RevokeTokenJSONBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3755,32 +3755,32 @@ func (t *PostRogerV1AuthRevokeJSONBody) MergePostRogerV1AuthRevokeJSONBody1(v Po
 	return err
 }
 
-func (t PostRogerV1AuthRevokeJSONBody) MarshalJSON() ([]byte, error) {
+func (t RevokeTokenJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1AuthRevokeJSONBody) UnmarshalJSON(b []byte) error {
+func (t *RevokeTokenJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsOAuthError returns the union data inside the PostRogerV1AuthRevoke400JSONResponseBody as a OAuthError
-func (t PostRogerV1AuthRevoke400JSONResponseBody) AsOAuthError() (OAuthError, error) {
+// AsOAuthError returns the union data inside the RevokeToken400JSONResponseBody as a OAuthError
+func (t RevokeToken400JSONResponseBody) AsOAuthError() (OAuthError, error) {
 	var body OAuthError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOAuthError overwrites any union data inside the PostRogerV1AuthRevoke400JSONResponseBody as the provided OAuthError
-func (t *PostRogerV1AuthRevoke400JSONResponseBody) FromOAuthError(v OAuthError) error {
+// FromOAuthError overwrites any union data inside the RevokeToken400JSONResponseBody as the provided OAuthError
+func (t *RevokeToken400JSONResponseBody) FromOAuthError(v OAuthError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeOAuthError performs a merge with any union data inside the PostRogerV1AuthRevoke400JSONResponseBody, using the provided OAuthError
-func (t *PostRogerV1AuthRevoke400JSONResponseBody) MergeOAuthError(v OAuthError) error {
+// MergeOAuthError performs a merge with any union data inside the RevokeToken400JSONResponseBody, using the provided OAuthError
+func (t *RevokeToken400JSONResponseBody) MergeOAuthError(v OAuthError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3791,22 +3791,22 @@ func (t *PostRogerV1AuthRevoke400JSONResponseBody) MergeOAuthError(v OAuthError)
 	return err
 }
 
-// AsPostRogerV1AuthRevoke400JSONResponseBody1 returns the union data inside the PostRogerV1AuthRevoke400JSONResponseBody as a PostRogerV1AuthRevoke400JSONResponseBody1
-func (t PostRogerV1AuthRevoke400JSONResponseBody) AsPostRogerV1AuthRevoke400JSONResponseBody1() (PostRogerV1AuthRevoke400JSONResponseBody1, error) {
-	var body PostRogerV1AuthRevoke400JSONResponseBody1
+// AsRevokeToken400JSONResponseBody1 returns the union data inside the RevokeToken400JSONResponseBody as a RevokeToken400JSONResponseBody1
+func (t RevokeToken400JSONResponseBody) AsRevokeToken400JSONResponseBody1() (RevokeToken400JSONResponseBody1, error) {
+	var body RevokeToken400JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1AuthRevoke400JSONResponseBody1 overwrites any union data inside the PostRogerV1AuthRevoke400JSONResponseBody as the provided PostRogerV1AuthRevoke400JSONResponseBody1
-func (t *PostRogerV1AuthRevoke400JSONResponseBody) FromPostRogerV1AuthRevoke400JSONResponseBody1(v PostRogerV1AuthRevoke400JSONResponseBody1) error {
+// FromRevokeToken400JSONResponseBody1 overwrites any union data inside the RevokeToken400JSONResponseBody as the provided RevokeToken400JSONResponseBody1
+func (t *RevokeToken400JSONResponseBody) FromRevokeToken400JSONResponseBody1(v RevokeToken400JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1AuthRevoke400JSONResponseBody1 performs a merge with any union data inside the PostRogerV1AuthRevoke400JSONResponseBody, using the provided PostRogerV1AuthRevoke400JSONResponseBody1
-func (t *PostRogerV1AuthRevoke400JSONResponseBody) MergePostRogerV1AuthRevoke400JSONResponseBody1(v PostRogerV1AuthRevoke400JSONResponseBody1) error {
+// MergeRevokeToken400JSONResponseBody1 performs a merge with any union data inside the RevokeToken400JSONResponseBody, using the provided RevokeToken400JSONResponseBody1
+func (t *RevokeToken400JSONResponseBody) MergeRevokeToken400JSONResponseBody1(v RevokeToken400JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3817,32 +3817,32 @@ func (t *PostRogerV1AuthRevoke400JSONResponseBody) MergePostRogerV1AuthRevoke400
 	return err
 }
 
-func (t PostRogerV1AuthRevoke400JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RevokeToken400JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1AuthRevoke400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RevokeToken400JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1AuthTokenJSONBody0 returns the union data inside the PostRogerV1AuthTokenJSONBody as a PostRogerV1AuthTokenJSONBody0
-func (t PostRogerV1AuthTokenJSONBody) AsPostRogerV1AuthTokenJSONBody0() (PostRogerV1AuthTokenJSONBody0, error) {
-	var body PostRogerV1AuthTokenJSONBody0
+// AsExchangeTokenJSONBody0 returns the union data inside the ExchangeTokenJSONBody as a ExchangeTokenJSONBody0
+func (t ExchangeTokenJSONBody) AsExchangeTokenJSONBody0() (ExchangeTokenJSONBody0, error) {
+	var body ExchangeTokenJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1AuthTokenJSONBody0 overwrites any union data inside the PostRogerV1AuthTokenJSONBody as the provided PostRogerV1AuthTokenJSONBody0
-func (t *PostRogerV1AuthTokenJSONBody) FromPostRogerV1AuthTokenJSONBody0(v PostRogerV1AuthTokenJSONBody0) error {
+// FromExchangeTokenJSONBody0 overwrites any union data inside the ExchangeTokenJSONBody as the provided ExchangeTokenJSONBody0
+func (t *ExchangeTokenJSONBody) FromExchangeTokenJSONBody0(v ExchangeTokenJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1AuthTokenJSONBody0 performs a merge with any union data inside the PostRogerV1AuthTokenJSONBody, using the provided PostRogerV1AuthTokenJSONBody0
-func (t *PostRogerV1AuthTokenJSONBody) MergePostRogerV1AuthTokenJSONBody0(v PostRogerV1AuthTokenJSONBody0) error {
+// MergeExchangeTokenJSONBody0 performs a merge with any union data inside the ExchangeTokenJSONBody, using the provided ExchangeTokenJSONBody0
+func (t *ExchangeTokenJSONBody) MergeExchangeTokenJSONBody0(v ExchangeTokenJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3853,22 +3853,22 @@ func (t *PostRogerV1AuthTokenJSONBody) MergePostRogerV1AuthTokenJSONBody0(v Post
 	return err
 }
 
-// AsPostRogerV1AuthTokenJSONBody1 returns the union data inside the PostRogerV1AuthTokenJSONBody as a PostRogerV1AuthTokenJSONBody1
-func (t PostRogerV1AuthTokenJSONBody) AsPostRogerV1AuthTokenJSONBody1() (PostRogerV1AuthTokenJSONBody1, error) {
-	var body PostRogerV1AuthTokenJSONBody1
+// AsExchangeTokenJSONBody1 returns the union data inside the ExchangeTokenJSONBody as a ExchangeTokenJSONBody1
+func (t ExchangeTokenJSONBody) AsExchangeTokenJSONBody1() (ExchangeTokenJSONBody1, error) {
+	var body ExchangeTokenJSONBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1AuthTokenJSONBody1 overwrites any union data inside the PostRogerV1AuthTokenJSONBody as the provided PostRogerV1AuthTokenJSONBody1
-func (t *PostRogerV1AuthTokenJSONBody) FromPostRogerV1AuthTokenJSONBody1(v PostRogerV1AuthTokenJSONBody1) error {
+// FromExchangeTokenJSONBody1 overwrites any union data inside the ExchangeTokenJSONBody as the provided ExchangeTokenJSONBody1
+func (t *ExchangeTokenJSONBody) FromExchangeTokenJSONBody1(v ExchangeTokenJSONBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1AuthTokenJSONBody1 performs a merge with any union data inside the PostRogerV1AuthTokenJSONBody, using the provided PostRogerV1AuthTokenJSONBody1
-func (t *PostRogerV1AuthTokenJSONBody) MergePostRogerV1AuthTokenJSONBody1(v PostRogerV1AuthTokenJSONBody1) error {
+// MergeExchangeTokenJSONBody1 performs a merge with any union data inside the ExchangeTokenJSONBody, using the provided ExchangeTokenJSONBody1
+func (t *ExchangeTokenJSONBody) MergeExchangeTokenJSONBody1(v ExchangeTokenJSONBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3879,32 +3879,32 @@ func (t *PostRogerV1AuthTokenJSONBody) MergePostRogerV1AuthTokenJSONBody1(v Post
 	return err
 }
 
-func (t PostRogerV1AuthTokenJSONBody) MarshalJSON() ([]byte, error) {
+func (t ExchangeTokenJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1AuthTokenJSONBody) UnmarshalJSON(b []byte) error {
+func (t *ExchangeTokenJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 returns the union data inside the GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item as a GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) AsGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0() (GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0, error) {
-	var body GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
+// AsListCredentials200JSONResponseBody0 returns the union data inside the ListCredentials200JSONResponseBody_Item as a ListCredentials200JSONResponseBody0
+func (t ListCredentials200JSONResponseBody_Item) AsListCredentials200JSONResponseBody0() (ListCredentials200JSONResponseBody0, error) {
+	var body ListCredentials200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 overwrites any union data inside the GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item as the provided GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t *GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) FromGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0(v GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0) error {
+// FromListCredentials200JSONResponseBody0 overwrites any union data inside the ListCredentials200JSONResponseBody_Item as the provided ListCredentials200JSONResponseBody0
+func (t *ListCredentials200JSONResponseBody_Item) FromListCredentials200JSONResponseBody0(v ListCredentials200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 performs a merge with any union data inside the GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item, using the provided GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t *GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) MergeGetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0(v GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody0) error {
+// MergeListCredentials200JSONResponseBody0 performs a merge with any union data inside the ListCredentials200JSONResponseBody_Item, using the provided ListCredentials200JSONResponseBody0
+func (t *ListCredentials200JSONResponseBody_Item) MergeListCredentials200JSONResponseBody0(v ListCredentials200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3915,32 +3915,32 @@ func (t *GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) MergeGe
 	return err
 }
 
-func (t GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
+func (t ListCredentials200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
+func (t *ListCredentials200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1ProjectsProjectIdCredentialsJSONBody0 returns the union data inside the PostRogerV1ProjectsProjectIdCredentialsJSONBody as a PostRogerV1ProjectsProjectIdCredentialsJSONBody0
-func (t PostRogerV1ProjectsProjectIdCredentialsJSONBody) AsPostRogerV1ProjectsProjectIdCredentialsJSONBody0() (PostRogerV1ProjectsProjectIdCredentialsJSONBody0, error) {
-	var body PostRogerV1ProjectsProjectIdCredentialsJSONBody0
+// AsCreateCredentialJSONBody0 returns the union data inside the CreateCredentialJSONBody as a CreateCredentialJSONBody0
+func (t CreateCredentialJSONBody) AsCreateCredentialJSONBody0() (CreateCredentialJSONBody0, error) {
+	var body CreateCredentialJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1ProjectsProjectIdCredentialsJSONBody0 overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentialsJSONBody as the provided PostRogerV1ProjectsProjectIdCredentialsJSONBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsJSONBody) FromPostRogerV1ProjectsProjectIdCredentialsJSONBody0(v PostRogerV1ProjectsProjectIdCredentialsJSONBody0) error {
+// FromCreateCredentialJSONBody0 overwrites any union data inside the CreateCredentialJSONBody as the provided CreateCredentialJSONBody0
+func (t *CreateCredentialJSONBody) FromCreateCredentialJSONBody0(v CreateCredentialJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1ProjectsProjectIdCredentialsJSONBody0 performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentialsJSONBody, using the provided PostRogerV1ProjectsProjectIdCredentialsJSONBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsJSONBody) MergePostRogerV1ProjectsProjectIdCredentialsJSONBody0(v PostRogerV1ProjectsProjectIdCredentialsJSONBody0) error {
+// MergeCreateCredentialJSONBody0 performs a merge with any union data inside the CreateCredentialJSONBody, using the provided CreateCredentialJSONBody0
+func (t *CreateCredentialJSONBody) MergeCreateCredentialJSONBody0(v CreateCredentialJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3951,32 +3951,32 @@ func (t *PostRogerV1ProjectsProjectIdCredentialsJSONBody) MergePostRogerV1Projec
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdCredentialsJSONBody) MarshalJSON() ([]byte, error) {
+func (t CreateCredentialJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdCredentialsJSONBody) UnmarshalJSON(b []byte) error {
+func (t *CreateCredentialJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 returns the union data inside the PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody as a PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) AsPostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0() (PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0, error) {
-	var body PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
+// AsCreateCredential200JSONResponseBody0 returns the union data inside the CreateCredential200JSONResponseBody as a CreateCredential200JSONResponseBody0
+func (t CreateCredential200JSONResponseBody) AsCreateCredential200JSONResponseBody0() (CreateCredential200JSONResponseBody0, error) {
+	var body CreateCredential200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody as the provided PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) FromPostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0(v PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0) error {
+// FromCreateCredential200JSONResponseBody0 overwrites any union data inside the CreateCredential200JSONResponseBody as the provided CreateCredential200JSONResponseBody0
+func (t *CreateCredential200JSONResponseBody) FromCreateCredential200JSONResponseBody0(v CreateCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0 performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody, using the provided PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) MergePostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0(v PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody0) error {
+// MergeCreateCredential200JSONResponseBody0 performs a merge with any union data inside the CreateCredential200JSONResponseBody, using the provided CreateCredential200JSONResponseBody0
+func (t *CreateCredential200JSONResponseBody) MergeCreateCredential200JSONResponseBody0(v CreateCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3987,32 +3987,32 @@ func (t *PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) MergePostRo
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t CreateCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *CreateCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 returns the union data inside the DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody as a DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) AsDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0() (DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0, error) {
-	var body DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
+// AsDeleteCredential200JSONResponseBody0 returns the union data inside the DeleteCredential200JSONResponseBody as a DeleteCredential200JSONResponseBody0
+func (t DeleteCredential200JSONResponseBody) AsDeleteCredential200JSONResponseBody0() (DeleteCredential200JSONResponseBody0, error) {
+	var body DeleteCredential200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 overwrites any union data inside the DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody as the provided DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t *DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) FromDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0(v DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0) error {
+// FromDeleteCredential200JSONResponseBody0 overwrites any union data inside the DeleteCredential200JSONResponseBody as the provided DeleteCredential200JSONResponseBody0
+func (t *DeleteCredential200JSONResponseBody) FromDeleteCredential200JSONResponseBody0(v DeleteCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 performs a merge with any union data inside the DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody, using the provided DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t *DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) MergeDeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0(v DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0) error {
+// MergeDeleteCredential200JSONResponseBody0 performs a merge with any union data inside the DeleteCredential200JSONResponseBody, using the provided DeleteCredential200JSONResponseBody0
+func (t *DeleteCredential200JSONResponseBody) MergeDeleteCredential200JSONResponseBody0(v DeleteCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4023,32 +4023,32 @@ func (t *DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBod
 	return err
 }
 
-func (t DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t DeleteCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *DeleteCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 returns the union data inside the PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody as a PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) AsPutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0() (PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0, error) {
-	var body PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
+// AsRenameCredential200JSONResponseBody0 returns the union data inside the RenameCredential200JSONResponseBody as a RenameCredential200JSONResponseBody0
+func (t RenameCredential200JSONResponseBody) AsRenameCredential200JSONResponseBody0() (RenameCredential200JSONResponseBody0, error) {
+	var body RenameCredential200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 overwrites any union data inside the PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody as the provided PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t *PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) FromPutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0(v PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0) error {
+// FromRenameCredential200JSONResponseBody0 overwrites any union data inside the RenameCredential200JSONResponseBody as the provided RenameCredential200JSONResponseBody0
+func (t *RenameCredential200JSONResponseBody) FromRenameCredential200JSONResponseBody0(v RenameCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0 performs a merge with any union data inside the PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody, using the provided PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0
-func (t *PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) MergePutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0(v PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody0) error {
+// MergeRenameCredential200JSONResponseBody0 performs a merge with any union data inside the RenameCredential200JSONResponseBody, using the provided RenameCredential200JSONResponseBody0
+func (t *RenameCredential200JSONResponseBody) MergeRenameCredential200JSONResponseBody0(v RenameCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4059,32 +4059,32 @@ func (t *PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) 
 	return err
 }
 
-func (t PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RenameCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RenameCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0 returns the union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody as a PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) AsPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0() (PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0, error) {
-	var body PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0
+// AsRotateCredentialJSONBody0 returns the union data inside the RotateCredentialJSONBody as a RotateCredentialJSONBody0
+func (t RotateCredentialJSONBody) AsRotateCredentialJSONBody0() (RotateCredentialJSONBody0, error) {
+	var body RotateCredentialJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0 overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody as the provided PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) FromPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0(v PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0) error {
+// FromRotateCredentialJSONBody0 overwrites any union data inside the RotateCredentialJSONBody as the provided RotateCredentialJSONBody0
+func (t *RotateCredentialJSONBody) FromRotateCredentialJSONBody0(v RotateCredentialJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0 performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody, using the provided PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) MergePostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0(v PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody0) error {
+// MergeRotateCredentialJSONBody0 performs a merge with any union data inside the RotateCredentialJSONBody, using the provided RotateCredentialJSONBody0
+func (t *RotateCredentialJSONBody) MergeRotateCredentialJSONBody0(v RotateCredentialJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4095,32 +4095,32 @@ func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) Merg
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) MarshalJSON() ([]byte, error) {
+func (t RotateCredentialJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONBody) UnmarshalJSON(b []byte) error {
+func (t *RotateCredentialJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0 returns the union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody as a PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody) AsPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0() (PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0, error) {
-	var body PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0
+// AsRotateCredential200JSONResponseBody0 returns the union data inside the RotateCredential200JSONResponseBody as a RotateCredential200JSONResponseBody0
+func (t RotateCredential200JSONResponseBody) AsRotateCredential200JSONResponseBody0() (RotateCredential200JSONResponseBody0, error) {
+	var body RotateCredential200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0 overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody as the provided PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody) FromPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0(v PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0) error {
+// FromRotateCredential200JSONResponseBody0 overwrites any union data inside the RotateCredential200JSONResponseBody as the provided RotateCredential200JSONResponseBody0
+func (t *RotateCredential200JSONResponseBody) FromRotateCredential200JSONResponseBody0(v RotateCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0 performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody, using the provided PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody) MergePostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0(v PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody0) error {
+// MergeRotateCredential200JSONResponseBody0 performs a merge with any union data inside the RotateCredential200JSONResponseBody, using the provided RotateCredential200JSONResponseBody0
+func (t *RotateCredential200JSONResponseBody) MergeRotateCredential200JSONResponseBody0(v RotateCredential200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4131,32 +4131,32 @@ func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONRespons
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RotateCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RotateCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsValidationError returns the union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody as a ValidationError
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) AsValidationError() (ValidationError, error) {
+// AsValidationError returns the union data inside the RotateCredential400JSONResponseBody as a ValidationError
+func (t RotateCredential400JSONResponseBody) AsValidationError() (ValidationError, error) {
 	var body ValidationError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromValidationError overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody as the provided ValidationError
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) FromValidationError(v ValidationError) error {
+// FromValidationError overwrites any union data inside the RotateCredential400JSONResponseBody as the provided ValidationError
+func (t *RotateCredential400JSONResponseBody) FromValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeValidationError performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody, using the provided ValidationError
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) MergeValidationError(v ValidationError) error {
+// MergeValidationError performs a merge with any union data inside the RotateCredential400JSONResponseBody, using the provided ValidationError
+func (t *RotateCredential400JSONResponseBody) MergeValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4167,22 +4167,22 @@ func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONRespons
 	return err
 }
 
-// AsCredentialsError returns the union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody as a CredentialsError
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) AsCredentialsError() (CredentialsError, error) {
+// AsCredentialsError returns the union data inside the RotateCredential400JSONResponseBody as a CredentialsError
+func (t RotateCredential400JSONResponseBody) AsCredentialsError() (CredentialsError, error) {
 	var body CredentialsError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromCredentialsError overwrites any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody as the provided CredentialsError
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) FromCredentialsError(v CredentialsError) error {
+// FromCredentialsError overwrites any union data inside the RotateCredential400JSONResponseBody as the provided CredentialsError
+func (t *RotateCredential400JSONResponseBody) FromCredentialsError(v CredentialsError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeCredentialsError performs a merge with any union data inside the PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody, using the provided CredentialsError
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) MergeCredentialsError(v CredentialsError) error {
+// MergeCredentialsError performs a merge with any union data inside the RotateCredential400JSONResponseBody, using the provided CredentialsError
+func (t *RotateCredential400JSONResponseBody) MergeCredentialsError(v CredentialsError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4193,32 +4193,32 @@ func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONRespons
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RotateCredential400JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RotateCredential400JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 returns the union data inside the GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody as a GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) AsGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0() (GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0, error) {
-	var body GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
+// AsListTargets200JSONResponseBody0 returns the union data inside the ListTargets200JSONResponseBody as a ListTargets200JSONResponseBody0
+func (t ListTargets200JSONResponseBody) AsListTargets200JSONResponseBody0() (ListTargets200JSONResponseBody0, error) {
+	var body ListTargets200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 overwrites any union data inside the GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody as the provided GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t *GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) FromGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0(v GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0) error {
+// FromListTargets200JSONResponseBody0 overwrites any union data inside the ListTargets200JSONResponseBody as the provided ListTargets200JSONResponseBody0
+func (t *ListTargets200JSONResponseBody) FromListTargets200JSONResponseBody0(v ListTargets200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 performs a merge with any union data inside the GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody, using the provided GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t *GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) MergeGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0(v GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0) error {
+// MergeListTargets200JSONResponseBody0 performs a merge with any union data inside the ListTargets200JSONResponseBody, using the provided ListTargets200JSONResponseBody0
+func (t *ListTargets200JSONResponseBody) MergeListTargets200JSONResponseBody0(v ListTargets200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4229,32 +4229,32 @@ func (t *GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONRespo
 	return err
 }
 
-func (t GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t ListTargets200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *ListTargets200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 returns the union data inside the PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody as a PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) AsPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0() (PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0, error) {
-	var body PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
+// AsCreateTarget200JSONResponseBody0 returns the union data inside the CreateTarget200JSONResponseBody as a CreateTarget200JSONResponseBody0
+func (t CreateTarget200JSONResponseBody) AsCreateTarget200JSONResponseBody0() (CreateTarget200JSONResponseBody0, error) {
+	var body CreateTarget200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 overwrites any union data inside the PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody as the provided PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) FromPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0(v PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0) error {
+// FromCreateTarget200JSONResponseBody0 overwrites any union data inside the CreateTarget200JSONResponseBody as the provided CreateTarget200JSONResponseBody0
+func (t *CreateTarget200JSONResponseBody) FromCreateTarget200JSONResponseBody0(v CreateTarget200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0 performs a merge with any union data inside the PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody, using the provided PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0
-func (t *PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) MergePostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0(v PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody0) error {
+// MergeCreateTarget200JSONResponseBody0 performs a merge with any union data inside the CreateTarget200JSONResponseBody, using the provided CreateTarget200JSONResponseBody0
+func (t *CreateTarget200JSONResponseBody) MergeCreateTarget200JSONResponseBody0(v CreateTarget200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4265,32 +4265,32 @@ func (t *PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResp
 	return err
 }
 
-func (t PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t CreateTarget200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *CreateTarget200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 returns the union data inside the DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody as a DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) AsDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0() (DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0, error) {
-	var body DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
+// AsDeleteTarget200JSONResponseBody0 returns the union data inside the DeleteTarget200JSONResponseBody as a DeleteTarget200JSONResponseBody0
+func (t DeleteTarget200JSONResponseBody) AsDeleteTarget200JSONResponseBody0() (DeleteTarget200JSONResponseBody0, error) {
+	var body DeleteTarget200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 overwrites any union data inside the DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody as the provided DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t *DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) FromDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0(v DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0) error {
+// FromDeleteTarget200JSONResponseBody0 overwrites any union data inside the DeleteTarget200JSONResponseBody as the provided DeleteTarget200JSONResponseBody0
+func (t *DeleteTarget200JSONResponseBody) FromDeleteTarget200JSONResponseBody0(v DeleteTarget200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 performs a merge with any union data inside the DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody, using the provided DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t *DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) MergeDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0(v DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0) error {
+// MergeDeleteTarget200JSONResponseBody0 performs a merge with any union data inside the DeleteTarget200JSONResponseBody, using the provided DeleteTarget200JSONResponseBody0
+func (t *DeleteTarget200JSONResponseBody) MergeDeleteTarget200JSONResponseBody0(v DeleteTarget200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4301,32 +4301,32 @@ func (t *DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JS
 	return err
 }
 
-func (t DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t DeleteTarget200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *DeleteTarget200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 returns the union data inside the PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody as a PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) AsPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0() (PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0, error) {
-	var body PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
+// AsChangeTargetRessourceId200JSONResponseBody0 returns the union data inside the ChangeTargetRessourceId200JSONResponseBody as a ChangeTargetRessourceId200JSONResponseBody0
+func (t ChangeTargetRessourceId200JSONResponseBody) AsChangeTargetRessourceId200JSONResponseBody0() (ChangeTargetRessourceId200JSONResponseBody0, error) {
+	var body ChangeTargetRessourceId200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 overwrites any union data inside the PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody as the provided PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t *PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) FromPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0(v PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0) error {
+// FromChangeTargetRessourceId200JSONResponseBody0 overwrites any union data inside the ChangeTargetRessourceId200JSONResponseBody as the provided ChangeTargetRessourceId200JSONResponseBody0
+func (t *ChangeTargetRessourceId200JSONResponseBody) FromChangeTargetRessourceId200JSONResponseBody0(v ChangeTargetRessourceId200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0 performs a merge with any union data inside the PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody, using the provided PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0
-func (t *PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) MergePutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0(v PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody0) error {
+// MergeChangeTargetRessourceId200JSONResponseBody0 performs a merge with any union data inside the ChangeTargetRessourceId200JSONResponseBody, using the provided ChangeTargetRessourceId200JSONResponseBody0
+func (t *ChangeTargetRessourceId200JSONResponseBody) MergeChangeTargetRessourceId200JSONResponseBody0(v ChangeTargetRessourceId200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4337,32 +4337,32 @@ func (t *PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONR
 	return err
 }
 
-func (t PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t ChangeTargetRessourceId200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *ChangeTargetRessourceId200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsGetRogerV1Storage200JSONResponseBody0Owner0 returns the union data inside the GetRogerV1Storage200JSONResponseBody_0_Owner as a GetRogerV1Storage200JSONResponseBody0Owner0
-func (t GetRogerV1Storage200JSONResponseBody_0_Owner) AsGetRogerV1Storage200JSONResponseBody0Owner0() (GetRogerV1Storage200JSONResponseBody0Owner0, error) {
-	var body GetRogerV1Storage200JSONResponseBody0Owner0
+// AsListStorageObjects200JSONResponseBody0Owner0 returns the union data inside the ListStorageObjects200JSONResponseBody_0_Owner as a ListStorageObjects200JSONResponseBody0Owner0
+func (t ListStorageObjects200JSONResponseBody_0_Owner) AsListStorageObjects200JSONResponseBody0Owner0() (ListStorageObjects200JSONResponseBody0Owner0, error) {
+	var body ListStorageObjects200JSONResponseBody0Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1Storage200JSONResponseBody0Owner0 overwrites any union data inside the GetRogerV1Storage200JSONResponseBody_0_Owner as the provided GetRogerV1Storage200JSONResponseBody0Owner0
-func (t *GetRogerV1Storage200JSONResponseBody_0_Owner) FromGetRogerV1Storage200JSONResponseBody0Owner0(v GetRogerV1Storage200JSONResponseBody0Owner0) error {
+// FromListStorageObjects200JSONResponseBody0Owner0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_0_Owner as the provided ListStorageObjects200JSONResponseBody0Owner0
+func (t *ListStorageObjects200JSONResponseBody_0_Owner) FromListStorageObjects200JSONResponseBody0Owner0(v ListStorageObjects200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1Storage200JSONResponseBody0Owner0 performs a merge with any union data inside the GetRogerV1Storage200JSONResponseBody_0_Owner, using the provided GetRogerV1Storage200JSONResponseBody0Owner0
-func (t *GetRogerV1Storage200JSONResponseBody_0_Owner) MergeGetRogerV1Storage200JSONResponseBody0Owner0(v GetRogerV1Storage200JSONResponseBody0Owner0) error {
+// MergeListStorageObjects200JSONResponseBody0Owner0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_0_Owner, using the provided ListStorageObjects200JSONResponseBody0Owner0
+func (t *ListStorageObjects200JSONResponseBody_0_Owner) MergeListStorageObjects200JSONResponseBody0Owner0(v ListStorageObjects200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4373,32 +4373,32 @@ func (t *GetRogerV1Storage200JSONResponseBody_0_Owner) MergeGetRogerV1Storage200
 	return err
 }
 
-func (t GetRogerV1Storage200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
+func (t ListStorageObjects200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *GetRogerV1Storage200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
+func (t *ListStorageObjects200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsGetRogerV1Storage200JSONResponseBody1Owner0 returns the union data inside the GetRogerV1Storage200JSONResponseBody_1_Owner as a GetRogerV1Storage200JSONResponseBody1Owner0
-func (t GetRogerV1Storage200JSONResponseBody_1_Owner) AsGetRogerV1Storage200JSONResponseBody1Owner0() (GetRogerV1Storage200JSONResponseBody1Owner0, error) {
-	var body GetRogerV1Storage200JSONResponseBody1Owner0
+// AsListStorageObjects200JSONResponseBody1Owner0 returns the union data inside the ListStorageObjects200JSONResponseBody_1_Owner as a ListStorageObjects200JSONResponseBody1Owner0
+func (t ListStorageObjects200JSONResponseBody_1_Owner) AsListStorageObjects200JSONResponseBody1Owner0() (ListStorageObjects200JSONResponseBody1Owner0, error) {
+	var body ListStorageObjects200JSONResponseBody1Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1Storage200JSONResponseBody1Owner0 overwrites any union data inside the GetRogerV1Storage200JSONResponseBody_1_Owner as the provided GetRogerV1Storage200JSONResponseBody1Owner0
-func (t *GetRogerV1Storage200JSONResponseBody_1_Owner) FromGetRogerV1Storage200JSONResponseBody1Owner0(v GetRogerV1Storage200JSONResponseBody1Owner0) error {
+// FromListStorageObjects200JSONResponseBody1Owner0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_1_Owner as the provided ListStorageObjects200JSONResponseBody1Owner0
+func (t *ListStorageObjects200JSONResponseBody_1_Owner) FromListStorageObjects200JSONResponseBody1Owner0(v ListStorageObjects200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1Storage200JSONResponseBody1Owner0 performs a merge with any union data inside the GetRogerV1Storage200JSONResponseBody_1_Owner, using the provided GetRogerV1Storage200JSONResponseBody1Owner0
-func (t *GetRogerV1Storage200JSONResponseBody_1_Owner) MergeGetRogerV1Storage200JSONResponseBody1Owner0(v GetRogerV1Storage200JSONResponseBody1Owner0) error {
+// MergeListStorageObjects200JSONResponseBody1Owner0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_1_Owner, using the provided ListStorageObjects200JSONResponseBody1Owner0
+func (t *ListStorageObjects200JSONResponseBody_1_Owner) MergeListStorageObjects200JSONResponseBody1Owner0(v ListStorageObjects200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4409,32 +4409,32 @@ func (t *GetRogerV1Storage200JSONResponseBody_1_Owner) MergeGetRogerV1Storage200
 	return err
 }
 
-func (t GetRogerV1Storage200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
+func (t ListStorageObjects200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *GetRogerV1Storage200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
+func (t *ListStorageObjects200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsGetRogerV1Storage200JSONResponseBody0 returns the union data inside the GetRogerV1Storage200JSONResponseBody_Item as a GetRogerV1Storage200JSONResponseBody0
-func (t GetRogerV1Storage200JSONResponseBody_Item) AsGetRogerV1Storage200JSONResponseBody0() (GetRogerV1Storage200JSONResponseBody0, error) {
-	var body GetRogerV1Storage200JSONResponseBody0
+// AsListStorageObjects200JSONResponseBody0 returns the union data inside the ListStorageObjects200JSONResponseBody_Item as a ListStorageObjects200JSONResponseBody0
+func (t ListStorageObjects200JSONResponseBody_Item) AsListStorageObjects200JSONResponseBody0() (ListStorageObjects200JSONResponseBody0, error) {
+	var body ListStorageObjects200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1Storage200JSONResponseBody0 overwrites any union data inside the GetRogerV1Storage200JSONResponseBody_Item as the provided GetRogerV1Storage200JSONResponseBody0
-func (t *GetRogerV1Storage200JSONResponseBody_Item) FromGetRogerV1Storage200JSONResponseBody0(v GetRogerV1Storage200JSONResponseBody0) error {
+// FromListStorageObjects200JSONResponseBody0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_Item as the provided ListStorageObjects200JSONResponseBody0
+func (t *ListStorageObjects200JSONResponseBody_Item) FromListStorageObjects200JSONResponseBody0(v ListStorageObjects200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1Storage200JSONResponseBody0 performs a merge with any union data inside the GetRogerV1Storage200JSONResponseBody_Item, using the provided GetRogerV1Storage200JSONResponseBody0
-func (t *GetRogerV1Storage200JSONResponseBody_Item) MergeGetRogerV1Storage200JSONResponseBody0(v GetRogerV1Storage200JSONResponseBody0) error {
+// MergeListStorageObjects200JSONResponseBody0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_Item, using the provided ListStorageObjects200JSONResponseBody0
+func (t *ListStorageObjects200JSONResponseBody_Item) MergeListStorageObjects200JSONResponseBody0(v ListStorageObjects200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4445,22 +4445,22 @@ func (t *GetRogerV1Storage200JSONResponseBody_Item) MergeGetRogerV1Storage200JSO
 	return err
 }
 
-// AsGetRogerV1Storage200JSONResponseBody1 returns the union data inside the GetRogerV1Storage200JSONResponseBody_Item as a GetRogerV1Storage200JSONResponseBody1
-func (t GetRogerV1Storage200JSONResponseBody_Item) AsGetRogerV1Storage200JSONResponseBody1() (GetRogerV1Storage200JSONResponseBody1, error) {
-	var body GetRogerV1Storage200JSONResponseBody1
+// AsListStorageObjects200JSONResponseBody1 returns the union data inside the ListStorageObjects200JSONResponseBody_Item as a ListStorageObjects200JSONResponseBody1
+func (t ListStorageObjects200JSONResponseBody_Item) AsListStorageObjects200JSONResponseBody1() (ListStorageObjects200JSONResponseBody1, error) {
+	var body ListStorageObjects200JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGetRogerV1Storage200JSONResponseBody1 overwrites any union data inside the GetRogerV1Storage200JSONResponseBody_Item as the provided GetRogerV1Storage200JSONResponseBody1
-func (t *GetRogerV1Storage200JSONResponseBody_Item) FromGetRogerV1Storage200JSONResponseBody1(v GetRogerV1Storage200JSONResponseBody1) error {
+// FromListStorageObjects200JSONResponseBody1 overwrites any union data inside the ListStorageObjects200JSONResponseBody_Item as the provided ListStorageObjects200JSONResponseBody1
+func (t *ListStorageObjects200JSONResponseBody_Item) FromListStorageObjects200JSONResponseBody1(v ListStorageObjects200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGetRogerV1Storage200JSONResponseBody1 performs a merge with any union data inside the GetRogerV1Storage200JSONResponseBody_Item, using the provided GetRogerV1Storage200JSONResponseBody1
-func (t *GetRogerV1Storage200JSONResponseBody_Item) MergeGetRogerV1Storage200JSONResponseBody1(v GetRogerV1Storage200JSONResponseBody1) error {
+// MergeListStorageObjects200JSONResponseBody1 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_Item, using the provided ListStorageObjects200JSONResponseBody1
+func (t *ListStorageObjects200JSONResponseBody_Item) MergeListStorageObjects200JSONResponseBody1(v ListStorageObjects200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4471,32 +4471,32 @@ func (t *GetRogerV1Storage200JSONResponseBody_Item) MergeGetRogerV1Storage200JSO
 	return err
 }
 
-func (t GetRogerV1Storage200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
+func (t ListStorageObjects200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *GetRogerV1Storage200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
+func (t *ListStorageObjects200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1StorageJSONBody0 returns the union data inside the PostRogerV1StorageJSONBody as a PostRogerV1StorageJSONBody0
-func (t PostRogerV1StorageJSONBody) AsPostRogerV1StorageJSONBody0() (PostRogerV1StorageJSONBody0, error) {
-	var body PostRogerV1StorageJSONBody0
+// AsCreateStorageObjectJSONBody0 returns the union data inside the CreateStorageObjectJSONBody as a CreateStorageObjectJSONBody0
+func (t CreateStorageObjectJSONBody) AsCreateStorageObjectJSONBody0() (CreateStorageObjectJSONBody0, error) {
+	var body CreateStorageObjectJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageJSONBody0 overwrites any union data inside the PostRogerV1StorageJSONBody as the provided PostRogerV1StorageJSONBody0
-func (t *PostRogerV1StorageJSONBody) FromPostRogerV1StorageJSONBody0(v PostRogerV1StorageJSONBody0) error {
+// FromCreateStorageObjectJSONBody0 overwrites any union data inside the CreateStorageObjectJSONBody as the provided CreateStorageObjectJSONBody0
+func (t *CreateStorageObjectJSONBody) FromCreateStorageObjectJSONBody0(v CreateStorageObjectJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageJSONBody0 performs a merge with any union data inside the PostRogerV1StorageJSONBody, using the provided PostRogerV1StorageJSONBody0
-func (t *PostRogerV1StorageJSONBody) MergePostRogerV1StorageJSONBody0(v PostRogerV1StorageJSONBody0) error {
+// MergeCreateStorageObjectJSONBody0 performs a merge with any union data inside the CreateStorageObjectJSONBody, using the provided CreateStorageObjectJSONBody0
+func (t *CreateStorageObjectJSONBody) MergeCreateStorageObjectJSONBody0(v CreateStorageObjectJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4507,32 +4507,32 @@ func (t *PostRogerV1StorageJSONBody) MergePostRogerV1StorageJSONBody0(v PostRoge
 	return err
 }
 
-func (t PostRogerV1StorageJSONBody) MarshalJSON() ([]byte, error) {
+func (t CreateStorageObjectJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageJSONBody) UnmarshalJSON(b []byte) error {
+func (t *CreateStorageObjectJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1Storage200JSONResponseBody0Owner0 returns the union data inside the PostRogerV1Storage200JSONResponseBody_0_Owner as a PostRogerV1Storage200JSONResponseBody0Owner0
-func (t PostRogerV1Storage200JSONResponseBody_0_Owner) AsPostRogerV1Storage200JSONResponseBody0Owner0() (PostRogerV1Storage200JSONResponseBody0Owner0, error) {
-	var body PostRogerV1Storage200JSONResponseBody0Owner0
+// AsCreateStorageObject200JSONResponseBody0Owner0 returns the union data inside the CreateStorageObject200JSONResponseBody_0_Owner as a CreateStorageObject200JSONResponseBody0Owner0
+func (t CreateStorageObject200JSONResponseBody_0_Owner) AsCreateStorageObject200JSONResponseBody0Owner0() (CreateStorageObject200JSONResponseBody0Owner0, error) {
+	var body CreateStorageObject200JSONResponseBody0Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1Storage200JSONResponseBody0Owner0 overwrites any union data inside the PostRogerV1Storage200JSONResponseBody_0_Owner as the provided PostRogerV1Storage200JSONResponseBody0Owner0
-func (t *PostRogerV1Storage200JSONResponseBody_0_Owner) FromPostRogerV1Storage200JSONResponseBody0Owner0(v PostRogerV1Storage200JSONResponseBody0Owner0) error {
+// FromCreateStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the CreateStorageObject200JSONResponseBody_0_Owner as the provided CreateStorageObject200JSONResponseBody0Owner0
+func (t *CreateStorageObject200JSONResponseBody_0_Owner) FromCreateStorageObject200JSONResponseBody0Owner0(v CreateStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1Storage200JSONResponseBody0Owner0 performs a merge with any union data inside the PostRogerV1Storage200JSONResponseBody_0_Owner, using the provided PostRogerV1Storage200JSONResponseBody0Owner0
-func (t *PostRogerV1Storage200JSONResponseBody_0_Owner) MergePostRogerV1Storage200JSONResponseBody0Owner0(v PostRogerV1Storage200JSONResponseBody0Owner0) error {
+// MergeCreateStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody_0_Owner, using the provided CreateStorageObject200JSONResponseBody0Owner0
+func (t *CreateStorageObject200JSONResponseBody_0_Owner) MergeCreateStorageObject200JSONResponseBody0Owner0(v CreateStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4543,32 +4543,32 @@ func (t *PostRogerV1Storage200JSONResponseBody_0_Owner) MergePostRogerV1Storage2
 	return err
 }
 
-func (t PostRogerV1Storage200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
+func (t CreateStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1Storage200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
+func (t *CreateStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1Storage200JSONResponseBody1Owner0 returns the union data inside the PostRogerV1Storage200JSONResponseBody_1_Owner as a PostRogerV1Storage200JSONResponseBody1Owner0
-func (t PostRogerV1Storage200JSONResponseBody_1_Owner) AsPostRogerV1Storage200JSONResponseBody1Owner0() (PostRogerV1Storage200JSONResponseBody1Owner0, error) {
-	var body PostRogerV1Storage200JSONResponseBody1Owner0
+// AsCreateStorageObject200JSONResponseBody1Owner0 returns the union data inside the CreateStorageObject200JSONResponseBody_1_Owner as a CreateStorageObject200JSONResponseBody1Owner0
+func (t CreateStorageObject200JSONResponseBody_1_Owner) AsCreateStorageObject200JSONResponseBody1Owner0() (CreateStorageObject200JSONResponseBody1Owner0, error) {
+	var body CreateStorageObject200JSONResponseBody1Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1Storage200JSONResponseBody1Owner0 overwrites any union data inside the PostRogerV1Storage200JSONResponseBody_1_Owner as the provided PostRogerV1Storage200JSONResponseBody1Owner0
-func (t *PostRogerV1Storage200JSONResponseBody_1_Owner) FromPostRogerV1Storage200JSONResponseBody1Owner0(v PostRogerV1Storage200JSONResponseBody1Owner0) error {
+// FromCreateStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the CreateStorageObject200JSONResponseBody_1_Owner as the provided CreateStorageObject200JSONResponseBody1Owner0
+func (t *CreateStorageObject200JSONResponseBody_1_Owner) FromCreateStorageObject200JSONResponseBody1Owner0(v CreateStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1Storage200JSONResponseBody1Owner0 performs a merge with any union data inside the PostRogerV1Storage200JSONResponseBody_1_Owner, using the provided PostRogerV1Storage200JSONResponseBody1Owner0
-func (t *PostRogerV1Storage200JSONResponseBody_1_Owner) MergePostRogerV1Storage200JSONResponseBody1Owner0(v PostRogerV1Storage200JSONResponseBody1Owner0) error {
+// MergeCreateStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody_1_Owner, using the provided CreateStorageObject200JSONResponseBody1Owner0
+func (t *CreateStorageObject200JSONResponseBody_1_Owner) MergeCreateStorageObject200JSONResponseBody1Owner0(v CreateStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4579,32 +4579,32 @@ func (t *PostRogerV1Storage200JSONResponseBody_1_Owner) MergePostRogerV1Storage2
 	return err
 }
 
-func (t PostRogerV1Storage200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
+func (t CreateStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1Storage200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
+func (t *CreateStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1Storage200JSONResponseBody0 returns the union data inside the PostRogerV1Storage200JSONResponseBody as a PostRogerV1Storage200JSONResponseBody0
-func (t PostRogerV1Storage200JSONResponseBody) AsPostRogerV1Storage200JSONResponseBody0() (PostRogerV1Storage200JSONResponseBody0, error) {
-	var body PostRogerV1Storage200JSONResponseBody0
+// AsCreateStorageObject200JSONResponseBody0 returns the union data inside the CreateStorageObject200JSONResponseBody as a CreateStorageObject200JSONResponseBody0
+func (t CreateStorageObject200JSONResponseBody) AsCreateStorageObject200JSONResponseBody0() (CreateStorageObject200JSONResponseBody0, error) {
+	var body CreateStorageObject200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1Storage200JSONResponseBody0 overwrites any union data inside the PostRogerV1Storage200JSONResponseBody as the provided PostRogerV1Storage200JSONResponseBody0
-func (t *PostRogerV1Storage200JSONResponseBody) FromPostRogerV1Storage200JSONResponseBody0(v PostRogerV1Storage200JSONResponseBody0) error {
+// FromCreateStorageObject200JSONResponseBody0 overwrites any union data inside the CreateStorageObject200JSONResponseBody as the provided CreateStorageObject200JSONResponseBody0
+func (t *CreateStorageObject200JSONResponseBody) FromCreateStorageObject200JSONResponseBody0(v CreateStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1Storage200JSONResponseBody0 performs a merge with any union data inside the PostRogerV1Storage200JSONResponseBody, using the provided PostRogerV1Storage200JSONResponseBody0
-func (t *PostRogerV1Storage200JSONResponseBody) MergePostRogerV1Storage200JSONResponseBody0(v PostRogerV1Storage200JSONResponseBody0) error {
+// MergeCreateStorageObject200JSONResponseBody0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody, using the provided CreateStorageObject200JSONResponseBody0
+func (t *CreateStorageObject200JSONResponseBody) MergeCreateStorageObject200JSONResponseBody0(v CreateStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4615,22 +4615,22 @@ func (t *PostRogerV1Storage200JSONResponseBody) MergePostRogerV1Storage200JSONRe
 	return err
 }
 
-// AsPostRogerV1Storage200JSONResponseBody1 returns the union data inside the PostRogerV1Storage200JSONResponseBody as a PostRogerV1Storage200JSONResponseBody1
-func (t PostRogerV1Storage200JSONResponseBody) AsPostRogerV1Storage200JSONResponseBody1() (PostRogerV1Storage200JSONResponseBody1, error) {
-	var body PostRogerV1Storage200JSONResponseBody1
+// AsCreateStorageObject200JSONResponseBody1 returns the union data inside the CreateStorageObject200JSONResponseBody as a CreateStorageObject200JSONResponseBody1
+func (t CreateStorageObject200JSONResponseBody) AsCreateStorageObject200JSONResponseBody1() (CreateStorageObject200JSONResponseBody1, error) {
+	var body CreateStorageObject200JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1Storage200JSONResponseBody1 overwrites any union data inside the PostRogerV1Storage200JSONResponseBody as the provided PostRogerV1Storage200JSONResponseBody1
-func (t *PostRogerV1Storage200JSONResponseBody) FromPostRogerV1Storage200JSONResponseBody1(v PostRogerV1Storage200JSONResponseBody1) error {
+// FromCreateStorageObject200JSONResponseBody1 overwrites any union data inside the CreateStorageObject200JSONResponseBody as the provided CreateStorageObject200JSONResponseBody1
+func (t *CreateStorageObject200JSONResponseBody) FromCreateStorageObject200JSONResponseBody1(v CreateStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1Storage200JSONResponseBody1 performs a merge with any union data inside the PostRogerV1Storage200JSONResponseBody, using the provided PostRogerV1Storage200JSONResponseBody1
-func (t *PostRogerV1Storage200JSONResponseBody) MergePostRogerV1Storage200JSONResponseBody1(v PostRogerV1Storage200JSONResponseBody1) error {
+// MergeCreateStorageObject200JSONResponseBody1 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody, using the provided CreateStorageObject200JSONResponseBody1
+func (t *CreateStorageObject200JSONResponseBody) MergeCreateStorageObject200JSONResponseBody1(v CreateStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4641,32 +4641,32 @@ func (t *PostRogerV1Storage200JSONResponseBody) MergePostRogerV1Storage200JSONRe
 	return err
 }
 
-func (t PostRogerV1Storage200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t CreateStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1Storage200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *CreateStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsValidationError returns the union data inside the PostRogerV1Storage400JSONResponseBody as a ValidationError
-func (t PostRogerV1Storage400JSONResponseBody) AsValidationError() (ValidationError, error) {
+// AsValidationError returns the union data inside the CreateStorageObject400JSONResponseBody as a ValidationError
+func (t CreateStorageObject400JSONResponseBody) AsValidationError() (ValidationError, error) {
 	var body ValidationError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromValidationError overwrites any union data inside the PostRogerV1Storage400JSONResponseBody as the provided ValidationError
-func (t *PostRogerV1Storage400JSONResponseBody) FromValidationError(v ValidationError) error {
+// FromValidationError overwrites any union data inside the CreateStorageObject400JSONResponseBody as the provided ValidationError
+func (t *CreateStorageObject400JSONResponseBody) FromValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeValidationError performs a merge with any union data inside the PostRogerV1Storage400JSONResponseBody, using the provided ValidationError
-func (t *PostRogerV1Storage400JSONResponseBody) MergeValidationError(v ValidationError) error {
+// MergeValidationError performs a merge with any union data inside the CreateStorageObject400JSONResponseBody, using the provided ValidationError
+func (t *CreateStorageObject400JSONResponseBody) MergeValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4677,22 +4677,22 @@ func (t *PostRogerV1Storage400JSONResponseBody) MergeValidationError(v Validatio
 	return err
 }
 
-// AsStorageError returns the union data inside the PostRogerV1Storage400JSONResponseBody as a StorageError
-func (t PostRogerV1Storage400JSONResponseBody) AsStorageError() (StorageError, error) {
+// AsStorageError returns the union data inside the CreateStorageObject400JSONResponseBody as a StorageError
+func (t CreateStorageObject400JSONResponseBody) AsStorageError() (StorageError, error) {
 	var body StorageError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromStorageError overwrites any union data inside the PostRogerV1Storage400JSONResponseBody as the provided StorageError
-func (t *PostRogerV1Storage400JSONResponseBody) FromStorageError(v StorageError) error {
+// FromStorageError overwrites any union data inside the CreateStorageObject400JSONResponseBody as the provided StorageError
+func (t *CreateStorageObject400JSONResponseBody) FromStorageError(v StorageError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeStorageError performs a merge with any union data inside the PostRogerV1Storage400JSONResponseBody, using the provided StorageError
-func (t *PostRogerV1Storage400JSONResponseBody) MergeStorageError(v StorageError) error {
+// MergeStorageError performs a merge with any union data inside the CreateStorageObject400JSONResponseBody, using the provided StorageError
+func (t *CreateStorageObject400JSONResponseBody) MergeStorageError(v StorageError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4703,32 +4703,32 @@ func (t *PostRogerV1Storage400JSONResponseBody) MergeStorageError(v StorageError
 	return err
 }
 
-func (t PostRogerV1Storage400JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t CreateStorageObject400JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1Storage400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *CreateStorageObject400JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 returns the union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner as a DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) AsDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0() (DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0, error) {
-	var body DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0
+// AsDeleteStorageObject200JSONResponseBody0Owner0 returns the union data inside the DeleteStorageObject200JSONResponseBody_0_Owner as a DeleteStorageObject200JSONResponseBody0Owner0
+func (t DeleteStorageObject200JSONResponseBody_0_Owner) AsDeleteStorageObject200JSONResponseBody0Owner0() (DeleteStorageObject200JSONResponseBody0Owner0, error) {
+	var body DeleteStorageObject200JSONResponseBody0Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 overwrites any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner as the provided DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) FromDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0(v DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0) error {
+// FromDeleteStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody_0_Owner as the provided DeleteStorageObject200JSONResponseBody0Owner0
+func (t *DeleteStorageObject200JSONResponseBody_0_Owner) FromDeleteStorageObject200JSONResponseBody0Owner0(v DeleteStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0 performs a merge with any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner, using the provided DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) MergeDeleteRogerV1StorageStorageId200JSONResponseBody0Owner0(v DeleteRogerV1StorageStorageId200JSONResponseBody0Owner0) error {
+// MergeDeleteStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody_0_Owner, using the provided DeleteStorageObject200JSONResponseBody0Owner0
+func (t *DeleteStorageObject200JSONResponseBody_0_Owner) MergeDeleteStorageObject200JSONResponseBody0Owner0(v DeleteStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4739,32 +4739,32 @@ func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) MergeDeleteRo
 	return err
 }
 
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
+func (t DeleteStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
+func (t *DeleteStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 returns the union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner as a DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) AsDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0() (DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0, error) {
-	var body DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0
+// AsDeleteStorageObject200JSONResponseBody1Owner0 returns the union data inside the DeleteStorageObject200JSONResponseBody_1_Owner as a DeleteStorageObject200JSONResponseBody1Owner0
+func (t DeleteStorageObject200JSONResponseBody_1_Owner) AsDeleteStorageObject200JSONResponseBody1Owner0() (DeleteStorageObject200JSONResponseBody1Owner0, error) {
+	var body DeleteStorageObject200JSONResponseBody1Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 overwrites any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner as the provided DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) FromDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0(v DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0) error {
+// FromDeleteStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody_1_Owner as the provided DeleteStorageObject200JSONResponseBody1Owner0
+func (t *DeleteStorageObject200JSONResponseBody_1_Owner) FromDeleteStorageObject200JSONResponseBody1Owner0(v DeleteStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0 performs a merge with any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner, using the provided DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) MergeDeleteRogerV1StorageStorageId200JSONResponseBody1Owner0(v DeleteRogerV1StorageStorageId200JSONResponseBody1Owner0) error {
+// MergeDeleteStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody_1_Owner, using the provided DeleteStorageObject200JSONResponseBody1Owner0
+func (t *DeleteStorageObject200JSONResponseBody_1_Owner) MergeDeleteStorageObject200JSONResponseBody1Owner0(v DeleteStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4775,32 +4775,32 @@ func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) MergeDeleteRo
 	return err
 }
 
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
+func (t DeleteStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
+func (t *DeleteStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteRogerV1StorageStorageId200JSONResponseBody0 returns the union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody as a DeleteRogerV1StorageStorageId200JSONResponseBody0
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody) AsDeleteRogerV1StorageStorageId200JSONResponseBody0() (DeleteRogerV1StorageStorageId200JSONResponseBody0, error) {
-	var body DeleteRogerV1StorageStorageId200JSONResponseBody0
+// AsDeleteStorageObject200JSONResponseBody0 returns the union data inside the DeleteStorageObject200JSONResponseBody as a DeleteStorageObject200JSONResponseBody0
+func (t DeleteStorageObject200JSONResponseBody) AsDeleteStorageObject200JSONResponseBody0() (DeleteStorageObject200JSONResponseBody0, error) {
+	var body DeleteStorageObject200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1StorageStorageId200JSONResponseBody0 overwrites any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody as the provided DeleteRogerV1StorageStorageId200JSONResponseBody0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) FromDeleteRogerV1StorageStorageId200JSONResponseBody0(v DeleteRogerV1StorageStorageId200JSONResponseBody0) error {
+// FromDeleteStorageObject200JSONResponseBody0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody as the provided DeleteStorageObject200JSONResponseBody0
+func (t *DeleteStorageObject200JSONResponseBody) FromDeleteStorageObject200JSONResponseBody0(v DeleteStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1StorageStorageId200JSONResponseBody0 performs a merge with any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody, using the provided DeleteRogerV1StorageStorageId200JSONResponseBody0
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) MergeDeleteRogerV1StorageStorageId200JSONResponseBody0(v DeleteRogerV1StorageStorageId200JSONResponseBody0) error {
+// MergeDeleteStorageObject200JSONResponseBody0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody, using the provided DeleteStorageObject200JSONResponseBody0
+func (t *DeleteStorageObject200JSONResponseBody) MergeDeleteStorageObject200JSONResponseBody0(v DeleteStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4811,22 +4811,22 @@ func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) MergeDeleteRogerV1Sto
 	return err
 }
 
-// AsDeleteRogerV1StorageStorageId200JSONResponseBody1 returns the union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody as a DeleteRogerV1StorageStorageId200JSONResponseBody1
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody) AsDeleteRogerV1StorageStorageId200JSONResponseBody1() (DeleteRogerV1StorageStorageId200JSONResponseBody1, error) {
-	var body DeleteRogerV1StorageStorageId200JSONResponseBody1
+// AsDeleteStorageObject200JSONResponseBody1 returns the union data inside the DeleteStorageObject200JSONResponseBody as a DeleteStorageObject200JSONResponseBody1
+func (t DeleteStorageObject200JSONResponseBody) AsDeleteStorageObject200JSONResponseBody1() (DeleteStorageObject200JSONResponseBody1, error) {
+	var body DeleteStorageObject200JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteRogerV1StorageStorageId200JSONResponseBody1 overwrites any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody as the provided DeleteRogerV1StorageStorageId200JSONResponseBody1
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) FromDeleteRogerV1StorageStorageId200JSONResponseBody1(v DeleteRogerV1StorageStorageId200JSONResponseBody1) error {
+// FromDeleteStorageObject200JSONResponseBody1 overwrites any union data inside the DeleteStorageObject200JSONResponseBody as the provided DeleteStorageObject200JSONResponseBody1
+func (t *DeleteStorageObject200JSONResponseBody) FromDeleteStorageObject200JSONResponseBody1(v DeleteStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeDeleteRogerV1StorageStorageId200JSONResponseBody1 performs a merge with any union data inside the DeleteRogerV1StorageStorageId200JSONResponseBody, using the provided DeleteRogerV1StorageStorageId200JSONResponseBody1
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) MergeDeleteRogerV1StorageStorageId200JSONResponseBody1(v DeleteRogerV1StorageStorageId200JSONResponseBody1) error {
+// MergeDeleteStorageObject200JSONResponseBody1 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody, using the provided DeleteStorageObject200JSONResponseBody1
+func (t *DeleteStorageObject200JSONResponseBody) MergeDeleteStorageObject200JSONResponseBody1(v DeleteStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4837,32 +4837,32 @@ func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) MergeDeleteRogerV1Sto
 	return err
 }
 
-func (t DeleteRogerV1StorageStorageId200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t DeleteStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteRogerV1StorageStorageId200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *DeleteStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPutRogerV1StorageStorageId200JSONResponseBody0Owner0 returns the union data inside the PutRogerV1StorageStorageId200JSONResponseBody_0_Owner as a PutRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) AsPutRogerV1StorageStorageId200JSONResponseBody0Owner0() (PutRogerV1StorageStorageId200JSONResponseBody0Owner0, error) {
-	var body PutRogerV1StorageStorageId200JSONResponseBody0Owner0
+// AsRenameStorageObject200JSONResponseBody0Owner0 returns the union data inside the RenameStorageObject200JSONResponseBody_0_Owner as a RenameStorageObject200JSONResponseBody0Owner0
+func (t RenameStorageObject200JSONResponseBody_0_Owner) AsRenameStorageObject200JSONResponseBody0Owner0() (RenameStorageObject200JSONResponseBody0Owner0, error) {
+	var body RenameStorageObject200JSONResponseBody0Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1StorageStorageId200JSONResponseBody0Owner0 overwrites any union data inside the PutRogerV1StorageStorageId200JSONResponseBody_0_Owner as the provided PutRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) FromPutRogerV1StorageStorageId200JSONResponseBody0Owner0(v PutRogerV1StorageStorageId200JSONResponseBody0Owner0) error {
+// FromRenameStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the RenameStorageObject200JSONResponseBody_0_Owner as the provided RenameStorageObject200JSONResponseBody0Owner0
+func (t *RenameStorageObject200JSONResponseBody_0_Owner) FromRenameStorageObject200JSONResponseBody0Owner0(v RenameStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1StorageStorageId200JSONResponseBody0Owner0 performs a merge with any union data inside the PutRogerV1StorageStorageId200JSONResponseBody_0_Owner, using the provided PutRogerV1StorageStorageId200JSONResponseBody0Owner0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) MergePutRogerV1StorageStorageId200JSONResponseBody0Owner0(v PutRogerV1StorageStorageId200JSONResponseBody0Owner0) error {
+// MergeRenameStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody_0_Owner, using the provided RenameStorageObject200JSONResponseBody0Owner0
+func (t *RenameStorageObject200JSONResponseBody_0_Owner) MergeRenameStorageObject200JSONResponseBody0Owner0(v RenameStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4873,32 +4873,32 @@ func (t *PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) MergePutRogerV1S
 	return err
 }
 
-func (t PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
+func (t RenameStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
+func (t *RenameStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPutRogerV1StorageStorageId200JSONResponseBody1Owner0 returns the union data inside the PutRogerV1StorageStorageId200JSONResponseBody_1_Owner as a PutRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) AsPutRogerV1StorageStorageId200JSONResponseBody1Owner0() (PutRogerV1StorageStorageId200JSONResponseBody1Owner0, error) {
-	var body PutRogerV1StorageStorageId200JSONResponseBody1Owner0
+// AsRenameStorageObject200JSONResponseBody1Owner0 returns the union data inside the RenameStorageObject200JSONResponseBody_1_Owner as a RenameStorageObject200JSONResponseBody1Owner0
+func (t RenameStorageObject200JSONResponseBody_1_Owner) AsRenameStorageObject200JSONResponseBody1Owner0() (RenameStorageObject200JSONResponseBody1Owner0, error) {
+	var body RenameStorageObject200JSONResponseBody1Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1StorageStorageId200JSONResponseBody1Owner0 overwrites any union data inside the PutRogerV1StorageStorageId200JSONResponseBody_1_Owner as the provided PutRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) FromPutRogerV1StorageStorageId200JSONResponseBody1Owner0(v PutRogerV1StorageStorageId200JSONResponseBody1Owner0) error {
+// FromRenameStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the RenameStorageObject200JSONResponseBody_1_Owner as the provided RenameStorageObject200JSONResponseBody1Owner0
+func (t *RenameStorageObject200JSONResponseBody_1_Owner) FromRenameStorageObject200JSONResponseBody1Owner0(v RenameStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1StorageStorageId200JSONResponseBody1Owner0 performs a merge with any union data inside the PutRogerV1StorageStorageId200JSONResponseBody_1_Owner, using the provided PutRogerV1StorageStorageId200JSONResponseBody1Owner0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) MergePutRogerV1StorageStorageId200JSONResponseBody1Owner0(v PutRogerV1StorageStorageId200JSONResponseBody1Owner0) error {
+// MergeRenameStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody_1_Owner, using the provided RenameStorageObject200JSONResponseBody1Owner0
+func (t *RenameStorageObject200JSONResponseBody_1_Owner) MergeRenameStorageObject200JSONResponseBody1Owner0(v RenameStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4909,32 +4909,32 @@ func (t *PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) MergePutRogerV1S
 	return err
 }
 
-func (t PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
+func (t RenameStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PutRogerV1StorageStorageId200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
+func (t *RenameStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPutRogerV1StorageStorageId200JSONResponseBody0 returns the union data inside the PutRogerV1StorageStorageId200JSONResponseBody as a PutRogerV1StorageStorageId200JSONResponseBody0
-func (t PutRogerV1StorageStorageId200JSONResponseBody) AsPutRogerV1StorageStorageId200JSONResponseBody0() (PutRogerV1StorageStorageId200JSONResponseBody0, error) {
-	var body PutRogerV1StorageStorageId200JSONResponseBody0
+// AsRenameStorageObject200JSONResponseBody0 returns the union data inside the RenameStorageObject200JSONResponseBody as a RenameStorageObject200JSONResponseBody0
+func (t RenameStorageObject200JSONResponseBody) AsRenameStorageObject200JSONResponseBody0() (RenameStorageObject200JSONResponseBody0, error) {
+	var body RenameStorageObject200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1StorageStorageId200JSONResponseBody0 overwrites any union data inside the PutRogerV1StorageStorageId200JSONResponseBody as the provided PutRogerV1StorageStorageId200JSONResponseBody0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody) FromPutRogerV1StorageStorageId200JSONResponseBody0(v PutRogerV1StorageStorageId200JSONResponseBody0) error {
+// FromRenameStorageObject200JSONResponseBody0 overwrites any union data inside the RenameStorageObject200JSONResponseBody as the provided RenameStorageObject200JSONResponseBody0
+func (t *RenameStorageObject200JSONResponseBody) FromRenameStorageObject200JSONResponseBody0(v RenameStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1StorageStorageId200JSONResponseBody0 performs a merge with any union data inside the PutRogerV1StorageStorageId200JSONResponseBody, using the provided PutRogerV1StorageStorageId200JSONResponseBody0
-func (t *PutRogerV1StorageStorageId200JSONResponseBody) MergePutRogerV1StorageStorageId200JSONResponseBody0(v PutRogerV1StorageStorageId200JSONResponseBody0) error {
+// MergeRenameStorageObject200JSONResponseBody0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody, using the provided RenameStorageObject200JSONResponseBody0
+func (t *RenameStorageObject200JSONResponseBody) MergeRenameStorageObject200JSONResponseBody0(v RenameStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4945,22 +4945,22 @@ func (t *PutRogerV1StorageStorageId200JSONResponseBody) MergePutRogerV1StorageSt
 	return err
 }
 
-// AsPutRogerV1StorageStorageId200JSONResponseBody1 returns the union data inside the PutRogerV1StorageStorageId200JSONResponseBody as a PutRogerV1StorageStorageId200JSONResponseBody1
-func (t PutRogerV1StorageStorageId200JSONResponseBody) AsPutRogerV1StorageStorageId200JSONResponseBody1() (PutRogerV1StorageStorageId200JSONResponseBody1, error) {
-	var body PutRogerV1StorageStorageId200JSONResponseBody1
+// AsRenameStorageObject200JSONResponseBody1 returns the union data inside the RenameStorageObject200JSONResponseBody as a RenameStorageObject200JSONResponseBody1
+func (t RenameStorageObject200JSONResponseBody) AsRenameStorageObject200JSONResponseBody1() (RenameStorageObject200JSONResponseBody1, error) {
+	var body RenameStorageObject200JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPutRogerV1StorageStorageId200JSONResponseBody1 overwrites any union data inside the PutRogerV1StorageStorageId200JSONResponseBody as the provided PutRogerV1StorageStorageId200JSONResponseBody1
-func (t *PutRogerV1StorageStorageId200JSONResponseBody) FromPutRogerV1StorageStorageId200JSONResponseBody1(v PutRogerV1StorageStorageId200JSONResponseBody1) error {
+// FromRenameStorageObject200JSONResponseBody1 overwrites any union data inside the RenameStorageObject200JSONResponseBody as the provided RenameStorageObject200JSONResponseBody1
+func (t *RenameStorageObject200JSONResponseBody) FromRenameStorageObject200JSONResponseBody1(v RenameStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePutRogerV1StorageStorageId200JSONResponseBody1 performs a merge with any union data inside the PutRogerV1StorageStorageId200JSONResponseBody, using the provided PutRogerV1StorageStorageId200JSONResponseBody1
-func (t *PutRogerV1StorageStorageId200JSONResponseBody) MergePutRogerV1StorageStorageId200JSONResponseBody1(v PutRogerV1StorageStorageId200JSONResponseBody1) error {
+// MergeRenameStorageObject200JSONResponseBody1 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody, using the provided RenameStorageObject200JSONResponseBody1
+func (t *RenameStorageObject200JSONResponseBody) MergeRenameStorageObject200JSONResponseBody1(v RenameStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -4971,32 +4971,32 @@ func (t *PutRogerV1StorageStorageId200JSONResponseBody) MergePutRogerV1StorageSt
 	return err
 }
 
-func (t PutRogerV1StorageStorageId200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RenameStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PutRogerV1StorageStorageId200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RenameStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1StorageStorageIdRotateJSONBody0 returns the union data inside the PostRogerV1StorageStorageIdRotateJSONBody as a PostRogerV1StorageStorageIdRotateJSONBody0
-func (t PostRogerV1StorageStorageIdRotateJSONBody) AsPostRogerV1StorageStorageIdRotateJSONBody0() (PostRogerV1StorageStorageIdRotateJSONBody0, error) {
-	var body PostRogerV1StorageStorageIdRotateJSONBody0
+// AsRotateStorageObjectJSONBody0 returns the union data inside the RotateStorageObjectJSONBody as a RotateStorageObjectJSONBody0
+func (t RotateStorageObjectJSONBody) AsRotateStorageObjectJSONBody0() (RotateStorageObjectJSONBody0, error) {
+	var body RotateStorageObjectJSONBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageStorageIdRotateJSONBody0 overwrites any union data inside the PostRogerV1StorageStorageIdRotateJSONBody as the provided PostRogerV1StorageStorageIdRotateJSONBody0
-func (t *PostRogerV1StorageStorageIdRotateJSONBody) FromPostRogerV1StorageStorageIdRotateJSONBody0(v PostRogerV1StorageStorageIdRotateJSONBody0) error {
+// FromRotateStorageObjectJSONBody0 overwrites any union data inside the RotateStorageObjectJSONBody as the provided RotateStorageObjectJSONBody0
+func (t *RotateStorageObjectJSONBody) FromRotateStorageObjectJSONBody0(v RotateStorageObjectJSONBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageStorageIdRotateJSONBody0 performs a merge with any union data inside the PostRogerV1StorageStorageIdRotateJSONBody, using the provided PostRogerV1StorageStorageIdRotateJSONBody0
-func (t *PostRogerV1StorageStorageIdRotateJSONBody) MergePostRogerV1StorageStorageIdRotateJSONBody0(v PostRogerV1StorageStorageIdRotateJSONBody0) error {
+// MergeRotateStorageObjectJSONBody0 performs a merge with any union data inside the RotateStorageObjectJSONBody, using the provided RotateStorageObjectJSONBody0
+func (t *RotateStorageObjectJSONBody) MergeRotateStorageObjectJSONBody0(v RotateStorageObjectJSONBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5007,32 +5007,32 @@ func (t *PostRogerV1StorageStorageIdRotateJSONBody) MergePostRogerV1StorageStora
 	return err
 }
 
-func (t PostRogerV1StorageStorageIdRotateJSONBody) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObjectJSONBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageStorageIdRotateJSONBody) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObjectJSONBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 returns the union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner as a PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) AsPostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0() (PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0, error) {
-	var body PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0
+// AsRotateStorageObject200JSONResponseBody0Owner0 returns the union data inside the RotateStorageObject200JSONResponseBody_0_Owner as a RotateStorageObject200JSONResponseBody0Owner0
+func (t RotateStorageObject200JSONResponseBody_0_Owner) AsRotateStorageObject200JSONResponseBody0Owner0() (RotateStorageObject200JSONResponseBody0Owner0, error) {
+	var body RotateStorageObject200JSONResponseBody0Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 overwrites any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner as the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) FromPostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0) error {
+// FromRotateStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the RotateStorageObject200JSONResponseBody_0_Owner as the provided RotateStorageObject200JSONResponseBody0Owner0
+func (t *RotateStorageObject200JSONResponseBody_0_Owner) FromRotateStorageObject200JSONResponseBody0Owner0(v RotateStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0 performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner, using the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) MergePostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody0Owner0) error {
+// MergeRotateStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody_0_Owner, using the provided RotateStorageObject200JSONResponseBody0Owner0
+func (t *RotateStorageObject200JSONResponseBody_0_Owner) MergeRotateStorageObject200JSONResponseBody0Owner0(v RotateStorageObject200JSONResponseBody0Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5043,32 +5043,32 @@ func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) MergePost
 	return err
 }
 
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 returns the union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner as a PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) AsPostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0() (PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0, error) {
-	var body PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0
+// AsRotateStorageObject200JSONResponseBody1Owner0 returns the union data inside the RotateStorageObject200JSONResponseBody_1_Owner as a RotateStorageObject200JSONResponseBody1Owner0
+func (t RotateStorageObject200JSONResponseBody_1_Owner) AsRotateStorageObject200JSONResponseBody1Owner0() (RotateStorageObject200JSONResponseBody1Owner0, error) {
+	var body RotateStorageObject200JSONResponseBody1Owner0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 overwrites any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner as the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) FromPostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0) error {
+// FromRotateStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the RotateStorageObject200JSONResponseBody_1_Owner as the provided RotateStorageObject200JSONResponseBody1Owner0
+func (t *RotateStorageObject200JSONResponseBody_1_Owner) FromRotateStorageObject200JSONResponseBody1Owner0(v RotateStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0 performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner, using the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) MergePostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody1Owner0) error {
+// MergeRotateStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody_1_Owner, using the provided RotateStorageObject200JSONResponseBody1Owner0
+func (t *RotateStorageObject200JSONResponseBody_1_Owner) MergeRotateStorageObject200JSONResponseBody1Owner0(v RotateStorageObject200JSONResponseBody1Owner0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5079,32 +5079,32 @@ func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) MergePost
 	return err
 }
 
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsPostRogerV1StorageStorageIdRotate200JSONResponseBody0 returns the union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody as a PostRogerV1StorageStorageIdRotate200JSONResponseBody0
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody) AsPostRogerV1StorageStorageIdRotate200JSONResponseBody0() (PostRogerV1StorageStorageIdRotate200JSONResponseBody0, error) {
-	var body PostRogerV1StorageStorageIdRotate200JSONResponseBody0
+// AsRotateStorageObject200JSONResponseBody0 returns the union data inside the RotateStorageObject200JSONResponseBody as a RotateStorageObject200JSONResponseBody0
+func (t RotateStorageObject200JSONResponseBody) AsRotateStorageObject200JSONResponseBody0() (RotateStorageObject200JSONResponseBody0, error) {
+	var body RotateStorageObject200JSONResponseBody0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageStorageIdRotate200JSONResponseBody0 overwrites any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody as the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) FromPostRogerV1StorageStorageIdRotate200JSONResponseBody0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody0) error {
+// FromRotateStorageObject200JSONResponseBody0 overwrites any union data inside the RotateStorageObject200JSONResponseBody as the provided RotateStorageObject200JSONResponseBody0
+func (t *RotateStorageObject200JSONResponseBody) FromRotateStorageObject200JSONResponseBody0(v RotateStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageStorageIdRotate200JSONResponseBody0 performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody, using the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody0
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) MergePostRogerV1StorageStorageIdRotate200JSONResponseBody0(v PostRogerV1StorageStorageIdRotate200JSONResponseBody0) error {
+// MergeRotateStorageObject200JSONResponseBody0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody, using the provided RotateStorageObject200JSONResponseBody0
+func (t *RotateStorageObject200JSONResponseBody) MergeRotateStorageObject200JSONResponseBody0(v RotateStorageObject200JSONResponseBody0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5115,22 +5115,22 @@ func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) MergePostRogerV1S
 	return err
 }
 
-// AsPostRogerV1StorageStorageIdRotate200JSONResponseBody1 returns the union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody as a PostRogerV1StorageStorageIdRotate200JSONResponseBody1
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody) AsPostRogerV1StorageStorageIdRotate200JSONResponseBody1() (PostRogerV1StorageStorageIdRotate200JSONResponseBody1, error) {
-	var body PostRogerV1StorageStorageIdRotate200JSONResponseBody1
+// AsRotateStorageObject200JSONResponseBody1 returns the union data inside the RotateStorageObject200JSONResponseBody as a RotateStorageObject200JSONResponseBody1
+func (t RotateStorageObject200JSONResponseBody) AsRotateStorageObject200JSONResponseBody1() (RotateStorageObject200JSONResponseBody1, error) {
+	var body RotateStorageObject200JSONResponseBody1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromPostRogerV1StorageStorageIdRotate200JSONResponseBody1 overwrites any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody as the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody1
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) FromPostRogerV1StorageStorageIdRotate200JSONResponseBody1(v PostRogerV1StorageStorageIdRotate200JSONResponseBody1) error {
+// FromRotateStorageObject200JSONResponseBody1 overwrites any union data inside the RotateStorageObject200JSONResponseBody as the provided RotateStorageObject200JSONResponseBody1
+func (t *RotateStorageObject200JSONResponseBody) FromRotateStorageObject200JSONResponseBody1(v RotateStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergePostRogerV1StorageStorageIdRotate200JSONResponseBody1 performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate200JSONResponseBody, using the provided PostRogerV1StorageStorageIdRotate200JSONResponseBody1
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) MergePostRogerV1StorageStorageIdRotate200JSONResponseBody1(v PostRogerV1StorageStorageIdRotate200JSONResponseBody1) error {
+// MergeRotateStorageObject200JSONResponseBody1 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody, using the provided RotateStorageObject200JSONResponseBody1
+func (t *RotateStorageObject200JSONResponseBody) MergeRotateStorageObject200JSONResponseBody1(v RotateStorageObject200JSONResponseBody1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5141,32 +5141,32 @@ func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) MergePostRogerV1S
 	return err
 }
 
-func (t PostRogerV1StorageStorageIdRotate200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageStorageIdRotate200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsValidationError returns the union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody as a ValidationError
-func (t PostRogerV1StorageStorageIdRotate400JSONResponseBody) AsValidationError() (ValidationError, error) {
+// AsValidationError returns the union data inside the RotateStorageObject400JSONResponseBody as a ValidationError
+func (t RotateStorageObject400JSONResponseBody) AsValidationError() (ValidationError, error) {
 	var body ValidationError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromValidationError overwrites any union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody as the provided ValidationError
-func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) FromValidationError(v ValidationError) error {
+// FromValidationError overwrites any union data inside the RotateStorageObject400JSONResponseBody as the provided ValidationError
+func (t *RotateStorageObject400JSONResponseBody) FromValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeValidationError performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody, using the provided ValidationError
-func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) MergeValidationError(v ValidationError) error {
+// MergeValidationError performs a merge with any union data inside the RotateStorageObject400JSONResponseBody, using the provided ValidationError
+func (t *RotateStorageObject400JSONResponseBody) MergeValidationError(v ValidationError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5177,22 +5177,22 @@ func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) MergeValidationEr
 	return err
 }
 
-// AsStorageError returns the union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody as a StorageError
-func (t PostRogerV1StorageStorageIdRotate400JSONResponseBody) AsStorageError() (StorageError, error) {
+// AsStorageError returns the union data inside the RotateStorageObject400JSONResponseBody as a StorageError
+func (t RotateStorageObject400JSONResponseBody) AsStorageError() (StorageError, error) {
 	var body StorageError
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromStorageError overwrites any union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody as the provided StorageError
-func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) FromStorageError(v StorageError) error {
+// FromStorageError overwrites any union data inside the RotateStorageObject400JSONResponseBody as the provided StorageError
+func (t *RotateStorageObject400JSONResponseBody) FromStorageError(v StorageError) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeStorageError performs a merge with any union data inside the PostRogerV1StorageStorageIdRotate400JSONResponseBody, using the provided StorageError
-func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) MergeStorageError(v StorageError) error {
+// MergeStorageError performs a merge with any union data inside the RotateStorageObject400JSONResponseBody, using the provided StorageError
+func (t *RotateStorageObject400JSONResponseBody) MergeStorageError(v StorageError) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -5203,327 +5203,327 @@ func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) MergeStorageError
 	return err
 }
 
-func (t PostRogerV1StorageStorageIdRotate400JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObject400JSONResponseBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *PostRogerV1StorageStorageIdRotate400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObject400JSONResponseBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
-	// GetRogerV1AuthOauth Initiate OAuth Login
+	// InitiateOAuthLogin Initiate OAuth Login
 	// (GET /_roger/v1/auth/oauth)
-	GetRogerV1AuthOauth(w http.ResponseWriter, r *http.Request, params GetRogerV1AuthOauthParams)
-	// PostRogerV1AuthRevoke Revoke a Token
+	InitiateOAuthLogin(w http.ResponseWriter, r *http.Request, params InitiateOAuthLoginParams)
+	// RevokeToken Revoke a Token
 	// (POST /_roger/v1/auth/revoke)
-	PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Request)
-	// DeleteRogerV1AuthSessions Revoke Every Other Sessions
+	RevokeToken(w http.ResponseWriter, r *http.Request)
+	// RevokeOtherSessions Revoke Every Other Sessions
 	// (DELETE /_roger/v1/auth/sessions)
-	DeleteRogerV1AuthSessions(w http.ResponseWriter, r *http.Request)
-	// GetRogerV1AuthSessions List Active Sessions
+	RevokeOtherSessions(w http.ResponseWriter, r *http.Request)
+	// ListSessions List Active Sessions
 	// (GET /_roger/v1/auth/sessions)
-	GetRogerV1AuthSessions(w http.ResponseWriter, r *http.Request)
-	// DeleteRogerV1AuthSessionsSessionId Revoke a Session
+	ListSessions(w http.ResponseWriter, r *http.Request)
+	// RevokeSession Revoke a Session
 	// (DELETE /_roger/v1/auth/sessions/{sessionId})
-	DeleteRogerV1AuthSessionsSessionId(w http.ResponseWriter, r *http.Request, sessionId string)
-	// PostRogerV1AuthToken Obtain or Refresh Access Token
+	RevokeSession(w http.ResponseWriter, r *http.Request, sessionId string)
+	// ExchangeToken Obtain or Refresh Access Token
 	// (POST /_roger/v1/auth/token)
-	PostRogerV1AuthToken(w http.ResponseWriter, r *http.Request)
-	// GetRogerV1Features Get Node Features
+	ExchangeToken(w http.ResponseWriter, r *http.Request)
+	// GetFeatures Get Node Features
 	// (GET /_roger/v1/features)
-	GetRogerV1Features(w http.ResponseWriter, r *http.Request)
-	// GetRogerV1Projects Get All Projects
+	GetFeatures(w http.ResponseWriter, r *http.Request)
+	// ListProjects List Projects
 	// (GET /_roger/v1/projects)
-	GetRogerV1Projects(w http.ResponseWriter, r *http.Request)
-	// PostRogerV1Projects Create A Project
+	ListProjects(w http.ResponseWriter, r *http.Request)
+	// CreateProject Create A Project
 	// (POST /_roger/v1/projects)
-	PostRogerV1Projects(w http.ResponseWriter, r *http.Request)
-	// DeleteRogerV1ProjectsProjectId Delete a Project
+	CreateProject(w http.ResponseWriter, r *http.Request)
+	// DeleteProject Delete a Project
 	// (DELETE /_roger/v1/projects/{projectId})
-	DeleteRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string)
-	// PutRogerV1ProjectsProjectId Rename a Project
+	DeleteProject(w http.ResponseWriter, r *http.Request, projectId string)
+	// RenameProject Rename a Project
 	// (PUT /_roger/v1/projects/{projectId})
-	PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string)
-	// PostRogerV1ProjectsProjectIdArtifactsCheck Check Artifact is Already Stored
+	RenameProject(w http.ResponseWriter, r *http.Request, projectId string)
+	// CheckArtifacts Check Artifact is Already Stored
 	// (POST /_roger/v1/projects/{projectId}/artifacts/check)
-	PostRogerV1ProjectsProjectIdArtifactsCheck(w http.ResponseWriter, r *http.Request, projectId string)
-	// GetRogerV1ProjectsProjectIdCredentials List every Credentials
+	CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string)
+	// ListCredentials List every Credentials
 	// (GET /_roger/v1/projects/{projectId}/credentials)
-	GetRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string)
-	// PostRogerV1ProjectsProjectIdCredentials Register a Credential
+	ListCredentials(w http.ResponseWriter, r *http.Request, projectId string)
+	// CreateCredential Create a Credential
 	// (POST /_roger/v1/projects/{projectId}/credentials)
-	PostRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string)
-	// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId Delete a Credential
+	CreateCredential(w http.ResponseWriter, r *http.Request, projectId string)
+	// DeleteCredential Delete a Credential
 	// (DELETE /_roger/v1/projects/{projectId}/credentials/{credentialId})
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
-	// PutRogerV1ProjectsProjectIdCredentialsCredentialId Rename a Credential
+	DeleteCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
+	// RenameCredential Rename a Credential
 	// (PUT /_roger/v1/projects/{projectId}/credentials/{credentialId})
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
-	// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate Rotate a Credential
+	RenameCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
+	// RotateCredential Rotate a Credential
 	// (POST /_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate)
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
-	// GetRogerV1ProjectsProjectIdDeployments List Deployments
+	RotateCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string)
+	// ListDeployments List Deployments
 	// (GET /_roger/v1/projects/{projectId}/deployments)
-	GetRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string)
-	// PostRogerV1ProjectsProjectIdDeployments Create a Deployment
+	ListDeployments(w http.ResponseWriter, r *http.Request, projectId string)
+	// CreateDeployment Create a Deployment
 	// (POST /_roger/v1/projects/{projectId}/deployments)
-	PostRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string)
-	// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId Delete a Deployment
+	CreateDeployment(w http.ResponseWriter, r *http.Request, projectId string)
+	// DeleteDeployment Delete a Deployment
 	// (DELETE /_roger/v1/projects/{projectId}/deployments/{deploymentId})
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string)
-	// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy Deploy a Staged Deployment
+	DeleteDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string)
+	// TriggerDeployment Trigger a Staged Deployment
 	// (POST /_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy)
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string)
-	// GetRogerV1ProjectsProjectIdEnvironments Get All Environments
+	TriggerDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string)
+	// ListEnvironments List Environments
 	// (GET /_roger/v1/projects/{projectId}/environments)
-	GetRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string)
-	// PostRogerV1ProjectsProjectIdEnvironments Create a new Environment
+	ListEnvironments(w http.ResponseWriter, r *http.Request, projectId string)
+	// CreateEnvironment Create a new Environment
 	// (POST /_roger/v1/projects/{projectId}/environments)
-	PostRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string)
-	// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId Delete an Environment
+	CreateEnvironment(w http.ResponseWriter, r *http.Request, projectId string)
+	// DeleteEnvironment Delete an Environment
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId})
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
-	// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Fetch Targets
+	DeleteEnvironment(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
+	// ListTargets List Targets
 	// (GET /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-	GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
-	// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Create Target
+	ListTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
+	// CreateTarget Create Target
 	// (POST /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-	PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
-	// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Delete Target
+	CreateTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string)
+	// DeleteTarget Delete Target
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
-	// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Edit Target Ressource ID
+	DeleteTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
+	// ChangeTargetRessourceId Edit Target Ressource ID
 	// (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
-	// GetRogerV1Storage Fetch Storage Objects
+	ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
+	// ListStorageObjects List Storage Objects
 	// (GET /_roger/v1/storage)
-	GetRogerV1Storage(w http.ResponseWriter, r *http.Request)
-	// PostRogerV1Storage Link a Storage Object
+	ListStorageObjects(w http.ResponseWriter, r *http.Request)
+	// CreateStorageObject Create a Storage Object
 	// (POST /_roger/v1/storage)
-	PostRogerV1Storage(w http.ResponseWriter, r *http.Request)
-	// DeleteRogerV1StorageStorageId Delete a Storage Object
+	CreateStorageObject(w http.ResponseWriter, r *http.Request)
+	// DeleteStorageObject Delete a Storage Object
 	// (DELETE /_roger/v1/storage/{storageId})
-	DeleteRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string)
-	// PutRogerV1StorageStorageId Rename a Storage Object
+	DeleteStorageObject(w http.ResponseWriter, r *http.Request, storageId string)
+	// RenameStorageObject Rename a Storage Object
 	// (PUT /_roger/v1/storage/{storageId})
-	PutRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string)
-	// PostRogerV1StorageStorageIdRotate Rotate a Storage Object
+	RenameStorageObject(w http.ResponseWriter, r *http.Request, storageId string)
+	// RotateStorageObject Rotate a Storage Object
 	// (POST /_roger/v1/storage/{storageId}/rotate)
-	PostRogerV1StorageStorageIdRotate(w http.ResponseWriter, r *http.Request, storageId string)
-	// GetRogerVersion Get Node Information
+	RotateStorageObject(w http.ResponseWriter, r *http.Request, storageId string)
+	// GetVersion Get Node Information
 	// (GET /_roger/version)
-	GetRogerVersion(w http.ResponseWriter, r *http.Request)
+	GetVersion(w http.ResponseWriter, r *http.Request)
 }
 
 // Unimplemented server implementation that returns http.StatusNotImplemented for each endpoint.
 
 type Unimplemented struct{}
 
-// GetRogerV1AuthOauth Initiate OAuth Login
+// InitiateOAuthLogin Initiate OAuth Login
 // (GET /_roger/v1/auth/oauth)
-func (_ Unimplemented) GetRogerV1AuthOauth(w http.ResponseWriter, r *http.Request, params GetRogerV1AuthOauthParams) {
+func (_ Unimplemented) InitiateOAuthLogin(w http.ResponseWriter, r *http.Request, params InitiateOAuthLoginParams) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1AuthRevoke Revoke a Token
+// RevokeToken Revoke a Token
 // (POST /_roger/v1/auth/revoke)
-func (_ Unimplemented) PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) RevokeToken(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1AuthSessions Revoke Every Other Sessions
+// RevokeOtherSessions Revoke Every Other Sessions
 // (DELETE /_roger/v1/auth/sessions)
-func (_ Unimplemented) DeleteRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) RevokeOtherSessions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1AuthSessions List Active Sessions
+// ListSessions List Active Sessions
 // (GET /_roger/v1/auth/sessions)
-func (_ Unimplemented) GetRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) ListSessions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1AuthSessionsSessionId Revoke a Session
+// RevokeSession Revoke a Session
 // (DELETE /_roger/v1/auth/sessions/{sessionId})
-func (_ Unimplemented) DeleteRogerV1AuthSessionsSessionId(w http.ResponseWriter, r *http.Request, sessionId string) {
+func (_ Unimplemented) RevokeSession(w http.ResponseWriter, r *http.Request, sessionId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1AuthToken Obtain or Refresh Access Token
+// ExchangeToken Obtain or Refresh Access Token
 // (POST /_roger/v1/auth/token)
-func (_ Unimplemented) PostRogerV1AuthToken(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) ExchangeToken(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1Features Get Node Features
+// GetFeatures Get Node Features
 // (GET /_roger/v1/features)
-func (_ Unimplemented) GetRogerV1Features(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) GetFeatures(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1Projects Get All Projects
+// ListProjects List Projects
 // (GET /_roger/v1/projects)
-func (_ Unimplemented) GetRogerV1Projects(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) ListProjects(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1Projects Create A Project
+// CreateProject Create A Project
 // (POST /_roger/v1/projects)
-func (_ Unimplemented) PostRogerV1Projects(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) CreateProject(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1ProjectsProjectId Delete a Project
+// DeleteProject Delete a Project
 // (DELETE /_roger/v1/projects/{projectId})
-func (_ Unimplemented) DeleteRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) DeleteProject(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PutRogerV1ProjectsProjectId Rename a Project
+// RenameProject Rename a Project
 // (PUT /_roger/v1/projects/{projectId})
-func (_ Unimplemented) PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) RenameProject(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdArtifactsCheck Check Artifact is Already Stored
+// CheckArtifacts Check Artifact is Already Stored
 // (POST /_roger/v1/projects/{projectId}/artifacts/check)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdArtifactsCheck(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1ProjectsProjectIdCredentials List every Credentials
+// ListCredentials List every Credentials
 // (GET /_roger/v1/projects/{projectId}/credentials)
-func (_ Unimplemented) GetRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) ListCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdCredentials Register a Credential
+// CreateCredential Create a Credential
 // (POST /_roger/v1/projects/{projectId}/credentials)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) CreateCredential(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId Delete a Credential
+// DeleteCredential Delete a Credential
 // (DELETE /_roger/v1/projects/{projectId}/credentials/{credentialId})
-func (_ Unimplemented) DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+func (_ Unimplemented) DeleteCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId Rename a Credential
+// RenameCredential Rename a Credential
 // (PUT /_roger/v1/projects/{projectId}/credentials/{credentialId})
-func (_ Unimplemented) PutRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+func (_ Unimplemented) RenameCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate Rotate a Credential
+// RotateCredential Rotate a Credential
 // (POST /_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+func (_ Unimplemented) RotateCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1ProjectsProjectIdDeployments List Deployments
+// ListDeployments List Deployments
 // (GET /_roger/v1/projects/{projectId}/deployments)
-func (_ Unimplemented) GetRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) ListDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdDeployments Create a Deployment
+// CreateDeployment Create a Deployment
 // (POST /_roger/v1/projects/{projectId}/deployments)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) CreateDeployment(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId Delete a Deployment
+// DeleteDeployment Delete a Deployment
 // (DELETE /_roger/v1/projects/{projectId}/deployments/{deploymentId})
-func (_ Unimplemented) DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
+func (_ Unimplemented) DeleteDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy Deploy a Staged Deployment
+// TriggerDeployment Trigger a Staged Deployment
 // (POST /_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
+func (_ Unimplemented) TriggerDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1ProjectsProjectIdEnvironments Get All Environments
+// ListEnvironments List Environments
 // (GET /_roger/v1/projects/{projectId}/environments)
-func (_ Unimplemented) GetRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) ListEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdEnvironments Create a new Environment
+// CreateEnvironment Create a new Environment
 // (POST /_roger/v1/projects/{projectId}/environments)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
+func (_ Unimplemented) CreateEnvironment(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId Delete an Environment
+// DeleteEnvironment Delete an Environment
 // (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId})
-func (_ Unimplemented) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+func (_ Unimplemented) DeleteEnvironment(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Fetch Targets
+// ListTargets List Targets
 // (GET /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-func (_ Unimplemented) GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+func (_ Unimplemented) ListTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Create Target
+// CreateTarget Create Target
 // (POST /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-func (_ Unimplemented) PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+func (_ Unimplemented) CreateTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Delete Target
+// DeleteTarget Delete Target
 // (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-func (_ Unimplemented) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+func (_ Unimplemented) DeleteTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Edit Target Ressource ID
+// ChangeTargetRessourceId Edit Target Ressource ID
 // (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-func (_ Unimplemented) PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+func (_ Unimplemented) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerV1Storage Fetch Storage Objects
+// ListStorageObjects List Storage Objects
 // (GET /_roger/v1/storage)
-func (_ Unimplemented) GetRogerV1Storage(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) ListStorageObjects(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1Storage Link a Storage Object
+// CreateStorageObject Create a Storage Object
 // (POST /_roger/v1/storage)
-func (_ Unimplemented) PostRogerV1Storage(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) CreateStorageObject(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DeleteRogerV1StorageStorageId Delete a Storage Object
+// DeleteStorageObject Delete a Storage Object
 // (DELETE /_roger/v1/storage/{storageId})
-func (_ Unimplemented) DeleteRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string) {
+func (_ Unimplemented) DeleteStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PutRogerV1StorageStorageId Rename a Storage Object
+// RenameStorageObject Rename a Storage Object
 // (PUT /_roger/v1/storage/{storageId})
-func (_ Unimplemented) PutRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string) {
+func (_ Unimplemented) RenameStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// PostRogerV1StorageStorageIdRotate Rotate a Storage Object
+// RotateStorageObject Rotate a Storage Object
 // (POST /_roger/v1/storage/{storageId}/rotate)
-func (_ Unimplemented) PostRogerV1StorageStorageIdRotate(w http.ResponseWriter, r *http.Request, storageId string) {
+func (_ Unimplemented) RotateStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GetRogerVersion Get Node Information
+// GetVersion Get Node Information
 // (GET /_roger/version)
-func (_ Unimplemented) GetRogerVersion(w http.ResponseWriter, r *http.Request) {
+func (_ Unimplemented) GetVersion(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
@@ -5536,14 +5536,14 @@ type ServerInterfaceWrapper struct {
 
 type MiddlewareFunc func(http.Handler) http.Handler
 
-// GetRogerV1AuthOauth operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1AuthOauth(w http.ResponseWriter, r *http.Request) {
+// InitiateOAuthLogin operation middleware
+func (siw *ServerInterfaceWrapper) InitiateOAuthLogin(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
 
 	// Parameter object where we will unmarshal all parameters from the context
-	var params GetRogerV1AuthOauthParams
+	var params InitiateOAuthLoginParams
 
 	// ------------- Required query parameter "provider" -------------
 
@@ -5611,7 +5611,7 @@ func (siw *ServerInterfaceWrapper) GetRogerV1AuthOauth(w http.ResponseWriter, r 
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1AuthOauth(w, r, params)
+		siw.Handler.InitiateOAuthLogin(w, r, params)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5621,11 +5621,11 @@ func (siw *ServerInterfaceWrapper) GetRogerV1AuthOauth(w http.ResponseWriter, r 
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1AuthRevoke operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Request) {
+// RevokeToken operation middleware
+func (siw *ServerInterfaceWrapper) RevokeToken(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1AuthRevoke(w, r)
+		siw.Handler.RevokeToken(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5635,11 +5635,11 @@ func (siw *ServerInterfaceWrapper) PostRogerV1AuthRevoke(w http.ResponseWriter, 
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1AuthSessions operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
+// RevokeOtherSessions operation middleware
+func (siw *ServerInterfaceWrapper) RevokeOtherSessions(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1AuthSessions(w, r)
+		siw.Handler.RevokeOtherSessions(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5649,11 +5649,11 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1AuthSessions(w http.ResponseWrit
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1AuthSessions operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
+// ListSessions operation middleware
+func (siw *ServerInterfaceWrapper) ListSessions(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1AuthSessions(w, r)
+		siw.Handler.ListSessions(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5663,8 +5663,8 @@ func (siw *ServerInterfaceWrapper) GetRogerV1AuthSessions(w http.ResponseWriter,
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1AuthSessionsSessionId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1AuthSessionsSessionId(w http.ResponseWriter, r *http.Request) {
+// RevokeSession operation middleware
+func (siw *ServerInterfaceWrapper) RevokeSession(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5679,7 +5679,7 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1AuthSessionsSessionId(w http.Res
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1AuthSessionsSessionId(w, r, sessionId)
+		siw.Handler.RevokeSession(w, r, sessionId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5689,11 +5689,11 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1AuthSessionsSessionId(w http.Res
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1AuthToken operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1AuthToken(w http.ResponseWriter, r *http.Request) {
+// ExchangeToken operation middleware
+func (siw *ServerInterfaceWrapper) ExchangeToken(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1AuthToken(w, r)
+		siw.Handler.ExchangeToken(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5703,11 +5703,11 @@ func (siw *ServerInterfaceWrapper) PostRogerV1AuthToken(w http.ResponseWriter, r
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1Features operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1Features(w http.ResponseWriter, r *http.Request) {
+// GetFeatures operation middleware
+func (siw *ServerInterfaceWrapper) GetFeatures(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1Features(w, r)
+		siw.Handler.GetFeatures(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5717,11 +5717,11 @@ func (siw *ServerInterfaceWrapper) GetRogerV1Features(w http.ResponseWriter, r *
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1Projects operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1Projects(w http.ResponseWriter, r *http.Request) {
+// ListProjects operation middleware
+func (siw *ServerInterfaceWrapper) ListProjects(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1Projects(w, r)
+		siw.Handler.ListProjects(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5731,11 +5731,11 @@ func (siw *ServerInterfaceWrapper) GetRogerV1Projects(w http.ResponseWriter, r *
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1Projects operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1Projects(w http.ResponseWriter, r *http.Request) {
+// CreateProject operation middleware
+func (siw *ServerInterfaceWrapper) CreateProject(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1Projects(w, r)
+		siw.Handler.CreateProject(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5745,8 +5745,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1Projects(w http.ResponseWriter, r 
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1ProjectsProjectId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request) {
+// DeleteProject operation middleware
+func (siw *ServerInterfaceWrapper) DeleteProject(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5761,7 +5761,7 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectId(w http.Respons
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1ProjectsProjectId(w, r, projectId)
+		siw.Handler.DeleteProject(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5771,8 +5771,8 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectId(w http.Respons
 	handler.ServeHTTP(w, r)
 }
 
-// PutRogerV1ProjectsProjectId operation middleware
-func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request) {
+// RenameProject operation middleware
+func (siw *ServerInterfaceWrapper) RenameProject(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5787,7 +5787,7 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectId(w http.ResponseWr
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PutRogerV1ProjectsProjectId(w, r, projectId)
+		siw.Handler.RenameProject(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5797,8 +5797,8 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectId(w http.ResponseWr
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdArtifactsCheck operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdArtifactsCheck(w http.ResponseWriter, r *http.Request) {
+// CheckArtifacts operation middleware
+func (siw *ServerInterfaceWrapper) CheckArtifacts(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5813,7 +5813,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdArtifactsCheck(w 
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdArtifactsCheck(w, r, projectId)
+		siw.Handler.CheckArtifacts(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5823,8 +5823,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdArtifactsCheck(w 
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1ProjectsProjectIdCredentials operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request) {
+// ListCredentials operation middleware
+func (siw *ServerInterfaceWrapper) ListCredentials(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5839,7 +5839,7 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdCredentials(w http
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1ProjectsProjectIdCredentials(w, r, projectId)
+		siw.Handler.ListCredentials(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5849,8 +5849,8 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdCredentials(w http
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdCredentials operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request) {
+// CreateCredential operation middleware
+func (siw *ServerInterfaceWrapper) CreateCredential(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5865,7 +5865,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentials(w htt
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdCredentials(w, r, projectId)
+		siw.Handler.CreateCredential(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5875,43 +5875,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentials(w htt
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request) {
-
-	var err error
-	_ = err
-
-	// ------------- Path parameter "projectId" -------------
-	var projectId string
-
-	err = runtime.BindStyledParameterWithOptions("simple", "projectId", chi.URLParam(r, "projectId"), &projectId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
-	if err != nil {
-		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "projectId", Err: err})
-		return
-	}
-
-	// ------------- Path parameter "credentialId" -------------
-	var credentialId string
-
-	err = runtime.BindStyledParameterWithOptions("simple", "credentialId", chi.URLParam(r, "credentialId"), &credentialId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
-	if err != nil {
-		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "credentialId", Err: err})
-		return
-	}
-
-	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w, r, projectId, credentialId)
-	}))
-
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
-	}
-
-	handler.ServeHTTP(w, r)
-}
-
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId operation middleware
-func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request) {
+// DeleteCredential operation middleware
+func (siw *ServerInterfaceWrapper) DeleteCredential(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5935,7 +5900,7 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdCredentialsCredent
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PutRogerV1ProjectsProjectIdCredentialsCredentialId(w, r, projectId, credentialId)
+		siw.Handler.DeleteCredential(w, r, projectId, credentialId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5945,8 +5910,8 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdCredentialsCredent
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(w http.ResponseWriter, r *http.Request) {
+// RenameCredential operation middleware
+func (siw *ServerInterfaceWrapper) RenameCredential(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5970,7 +5935,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentialsCreden
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(w, r, projectId, credentialId)
+		siw.Handler.RenameCredential(w, r, projectId, credentialId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -5980,8 +5945,43 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdCredentialsCreden
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1ProjectsProjectIdDeployments operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request) {
+// RotateCredential operation middleware
+func (siw *ServerInterfaceWrapper) RotateCredential(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+	_ = err
+
+	// ------------- Path parameter "projectId" -------------
+	var projectId string
+
+	err = runtime.BindStyledParameterWithOptions("simple", "projectId", chi.URLParam(r, "projectId"), &projectId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "projectId", Err: err})
+		return
+	}
+
+	// ------------- Path parameter "credentialId" -------------
+	var credentialId string
+
+	err = runtime.BindStyledParameterWithOptions("simple", "credentialId", chi.URLParam(r, "credentialId"), &credentialId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "credentialId", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.RotateCredential(w, r, projectId, credentialId)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// ListDeployments operation middleware
+func (siw *ServerInterfaceWrapper) ListDeployments(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -5996,7 +5996,7 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdDeployments(w http
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1ProjectsProjectIdDeployments(w, r, projectId)
+		siw.Handler.ListDeployments(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6006,8 +6006,8 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdDeployments(w http
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdDeployments operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request) {
+// CreateDeployment operation middleware
+func (siw *ServerInterfaceWrapper) CreateDeployment(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6022,7 +6022,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeployments(w htt
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdDeployments(w, r, projectId)
+		siw.Handler.CreateDeployment(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6032,8 +6032,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeployments(w htt
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w http.ResponseWriter, r *http.Request) {
+// DeleteDeployment operation middleware
+func (siw *ServerInterfaceWrapper) DeleteDeployment(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6057,7 +6057,7 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdDeploymentsDepl
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w, r, projectId, deploymentId)
+		siw.Handler.DeleteDeployment(w, r, projectId, deploymentId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6067,8 +6067,8 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdDeploymentsDepl
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(w http.ResponseWriter, r *http.Request) {
+// TriggerDeployment operation middleware
+func (siw *ServerInterfaceWrapper) TriggerDeployment(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6092,7 +6092,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeploymentsDeploy
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(w, r, projectId, deploymentId)
+		siw.Handler.TriggerDeployment(w, r, projectId, deploymentId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6102,8 +6102,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdDeploymentsDeploy
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1ProjectsProjectIdEnvironments operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request) {
+// ListEnvironments operation middleware
+func (siw *ServerInterfaceWrapper) ListEnvironments(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6118,7 +6118,7 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironments(w htt
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1ProjectsProjectIdEnvironments(w, r, projectId)
+		siw.Handler.ListEnvironments(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6128,8 +6128,8 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironments(w htt
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdEnvironments operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request) {
+// CreateEnvironment operation middleware
+func (siw *ServerInterfaceWrapper) CreateEnvironment(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6144,7 +6144,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironments(w ht
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdEnvironments(w, r, projectId)
+		siw.Handler.CreateEnvironment(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6154,43 +6154,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironments(w ht
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(w http.ResponseWriter, r *http.Request) {
-
-	var err error
-	_ = err
-
-	// ------------- Path parameter "projectId" -------------
-	var projectId string
-
-	err = runtime.BindStyledParameterWithOptions("simple", "projectId", chi.URLParam(r, "projectId"), &projectId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
-	if err != nil {
-		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "projectId", Err: err})
-		return
-	}
-
-	// ------------- Path parameter "environmentId" -------------
-	var environmentId string
-
-	err = runtime.BindStyledParameterWithOptions("simple", "environmentId", chi.URLParam(r, "environmentId"), &environmentId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
-	if err != nil {
-		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "environmentId", Err: err})
-		return
-	}
-
-	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(w, r, projectId, environmentId)
-	}))
-
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
-	}
-
-	handler.ServeHTTP(w, r)
-}
-
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request) {
+// DeleteEnvironment operation middleware
+func (siw *ServerInterfaceWrapper) DeleteEnvironment(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6214,7 +6179,7 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironmentsEnviro
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w, r, projectId, environmentId)
+		siw.Handler.DeleteEnvironment(w, r, projectId, environmentId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6224,8 +6189,8 @@ func (siw *ServerInterfaceWrapper) GetRogerV1ProjectsProjectIdEnvironmentsEnviro
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request) {
+// ListTargets operation middleware
+func (siw *ServerInterfaceWrapper) ListTargets(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6249,7 +6214,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironmentsEnvir
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w, r, projectId, environmentId)
+		siw.Handler.ListTargets(w, r, projectId, environmentId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6259,8 +6224,43 @@ func (siw *ServerInterfaceWrapper) PostRogerV1ProjectsProjectIdEnvironmentsEnvir
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request) {
+// CreateTarget operation middleware
+func (siw *ServerInterfaceWrapper) CreateTarget(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+	_ = err
+
+	// ------------- Path parameter "projectId" -------------
+	var projectId string
+
+	err = runtime.BindStyledParameterWithOptions("simple", "projectId", chi.URLParam(r, "projectId"), &projectId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "projectId", Err: err})
+		return
+	}
+
+	// ------------- Path parameter "environmentId" -------------
+	var environmentId string
+
+	err = runtime.BindStyledParameterWithOptions("simple", "environmentId", chi.URLParam(r, "environmentId"), &environmentId, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true, Type: "string", Format: "", ValueIsUnescaped: r.URL.RawPath == ""})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "environmentId", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.CreateTarget(w, r, projectId, environmentId)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// DeleteTarget operation middleware
+func (siw *ServerInterfaceWrapper) DeleteTarget(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6293,7 +6293,7 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdEnvironmentsEnv
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w, r, projectId, environmentId, name)
+		siw.Handler.DeleteTarget(w, r, projectId, environmentId, name)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6303,8 +6303,8 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1ProjectsProjectIdEnvironmentsEnv
 	handler.ServeHTTP(w, r)
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName operation middleware
-func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request) {
+// ChangeTargetRessourceId operation middleware
+func (siw *ServerInterfaceWrapper) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6337,7 +6337,7 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdEnvironmentsEnviro
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w, r, projectId, environmentId, name)
+		siw.Handler.ChangeTargetRessourceId(w, r, projectId, environmentId, name)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6347,11 +6347,11 @@ func (siw *ServerInterfaceWrapper) PutRogerV1ProjectsProjectIdEnvironmentsEnviro
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerV1Storage operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerV1Storage(w http.ResponseWriter, r *http.Request) {
+// ListStorageObjects operation middleware
+func (siw *ServerInterfaceWrapper) ListStorageObjects(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerV1Storage(w, r)
+		siw.Handler.ListStorageObjects(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6361,11 +6361,11 @@ func (siw *ServerInterfaceWrapper) GetRogerV1Storage(w http.ResponseWriter, r *h
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1Storage operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1Storage(w http.ResponseWriter, r *http.Request) {
+// CreateStorageObject operation middleware
+func (siw *ServerInterfaceWrapper) CreateStorageObject(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1Storage(w, r)
+		siw.Handler.CreateStorageObject(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6375,8 +6375,8 @@ func (siw *ServerInterfaceWrapper) PostRogerV1Storage(w http.ResponseWriter, r *
 	handler.ServeHTTP(w, r)
 }
 
-// DeleteRogerV1StorageStorageId operation middleware
-func (siw *ServerInterfaceWrapper) DeleteRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request) {
+// DeleteStorageObject operation middleware
+func (siw *ServerInterfaceWrapper) DeleteStorageObject(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6391,7 +6391,7 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1StorageStorageId(w http.Response
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.DeleteRogerV1StorageStorageId(w, r, storageId)
+		siw.Handler.DeleteStorageObject(w, r, storageId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6401,8 +6401,8 @@ func (siw *ServerInterfaceWrapper) DeleteRogerV1StorageStorageId(w http.Response
 	handler.ServeHTTP(w, r)
 }
 
-// PutRogerV1StorageStorageId operation middleware
-func (siw *ServerInterfaceWrapper) PutRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request) {
+// RenameStorageObject operation middleware
+func (siw *ServerInterfaceWrapper) RenameStorageObject(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6417,7 +6417,7 @@ func (siw *ServerInterfaceWrapper) PutRogerV1StorageStorageId(w http.ResponseWri
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PutRogerV1StorageStorageId(w, r, storageId)
+		siw.Handler.RenameStorageObject(w, r, storageId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6427,8 +6427,8 @@ func (siw *ServerInterfaceWrapper) PutRogerV1StorageStorageId(w http.ResponseWri
 	handler.ServeHTTP(w, r)
 }
 
-// PostRogerV1StorageStorageIdRotate operation middleware
-func (siw *ServerInterfaceWrapper) PostRogerV1StorageStorageIdRotate(w http.ResponseWriter, r *http.Request) {
+// RotateStorageObject operation middleware
+func (siw *ServerInterfaceWrapper) RotateStorageObject(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -6443,7 +6443,7 @@ func (siw *ServerInterfaceWrapper) PostRogerV1StorageStorageIdRotate(w http.Resp
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostRogerV1StorageStorageIdRotate(w, r, storageId)
+		siw.Handler.RotateStorageObject(w, r, storageId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6453,11 +6453,11 @@ func (siw *ServerInterfaceWrapper) PostRogerV1StorageStorageIdRotate(w http.Resp
 	handler.ServeHTTP(w, r)
 }
 
-// GetRogerVersion operation middleware
-func (siw *ServerInterfaceWrapper) GetRogerVersion(w http.ResponseWriter, r *http.Request) {
+// GetVersion operation middleware
+func (siw *ServerInterfaceWrapper) GetVersion(w http.ResponseWriter, r *http.Request) {
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetRogerVersion(w, r)
+		siw.Handler.GetVersion(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -6581,135 +6581,135 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 	}
 
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/auth/oauth", wrapper.GetRogerV1AuthOauth)
+		r.Get(options.BaseURL+"/_roger/v1/auth/oauth", wrapper.InitiateOAuthLogin)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/auth/revoke", wrapper.PostRogerV1AuthRevoke)
+		r.Post(options.BaseURL+"/_roger/v1/auth/revoke", wrapper.RevokeToken)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/auth/sessions", wrapper.DeleteRogerV1AuthSessions)
+		r.Delete(options.BaseURL+"/_roger/v1/auth/sessions", wrapper.RevokeOtherSessions)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/auth/sessions", wrapper.GetRogerV1AuthSessions)
+		r.Get(options.BaseURL+"/_roger/v1/auth/sessions", wrapper.ListSessions)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/auth/sessions/{sessionId}", wrapper.DeleteRogerV1AuthSessionsSessionId)
+		r.Delete(options.BaseURL+"/_roger/v1/auth/sessions/{sessionId}", wrapper.RevokeSession)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/auth/token", wrapper.PostRogerV1AuthToken)
+		r.Post(options.BaseURL+"/_roger/v1/auth/token", wrapper.ExchangeToken)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/features", wrapper.GetRogerV1Features)
+		r.Get(options.BaseURL+"/_roger/v1/features", wrapper.GetFeatures)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects", wrapper.GetRogerV1Projects)
+		r.Get(options.BaseURL+"/_roger/v1/projects", wrapper.ListProjects)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects", wrapper.PostRogerV1Projects)
+		r.Post(options.BaseURL+"/_roger/v1/projects", wrapper.CreateProject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.DeleteRogerV1ProjectsProjectId)
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.DeleteProject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.PutRogerV1ProjectsProjectId)
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.RenameProject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/artifacts/check", wrapper.PostRogerV1ProjectsProjectIdArtifactsCheck)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/artifacts/check", wrapper.CheckArtifacts)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.GetRogerV1ProjectsProjectIdCredentials)
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.ListCredentials)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.PostRogerV1ProjectsProjectIdCredentials)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.CreateCredential)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.DeleteRogerV1ProjectsProjectIdCredentialsCredentialId)
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.DeleteCredential)
 	})
 	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.PutRogerV1ProjectsProjectIdCredentialsCredentialId)
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.RenameCredential)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate", wrapper.PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate", wrapper.RotateCredential)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.GetRogerV1ProjectsProjectIdDeployments)
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.ListDeployments)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.PostRogerV1ProjectsProjectIdDeployments)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.CreateDeployment)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}", wrapper.DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId)
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}", wrapper.DeleteDeployment)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy", wrapper.PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy", wrapper.TriggerDeployment)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.GetRogerV1ProjectsProjectIdEnvironments)
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.ListEnvironments)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.PostRogerV1ProjectsProjectIdEnvironments)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.CreateEnvironment)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}", wrapper.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId)
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}", wrapper.DeleteEnvironment)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets)
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.ListTargets)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets)
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.CreateTarget)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName)
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.DeleteTarget)
 	})
 	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName)
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.ChangeTargetRessourceId)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/storage", wrapper.GetRogerV1Storage)
+		r.Get(options.BaseURL+"/_roger/v1/storage", wrapper.ListStorageObjects)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/storage", wrapper.PostRogerV1Storage)
+		r.Post(options.BaseURL+"/_roger/v1/storage", wrapper.CreateStorageObject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/storage/{storageId}", wrapper.DeleteRogerV1StorageStorageId)
+		r.Delete(options.BaseURL+"/_roger/v1/storage/{storageId}", wrapper.DeleteStorageObject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/storage/{storageId}", wrapper.PutRogerV1StorageStorageId)
+		r.Put(options.BaseURL+"/_roger/v1/storage/{storageId}", wrapper.RenameStorageObject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/storage/{storageId}/rotate", wrapper.PostRogerV1StorageStorageIdRotate)
+		r.Post(options.BaseURL+"/_roger/v1/storage/{storageId}/rotate", wrapper.RotateStorageObject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/version", wrapper.GetRogerVersion)
+		r.Get(options.BaseURL+"/_roger/version", wrapper.GetVersion)
 	})
 
 	return r
 }
 
-type GetRogerV1AuthOauthRequestObject struct {
-	Params GetRogerV1AuthOauthParams
+type InitiateOAuthLoginRequestObject struct {
+	Params InitiateOAuthLoginParams
 }
 
-type GetRogerV1AuthOauthResponseObject interface {
-	VisitGetRogerV1AuthOauthResponse(w http.ResponseWriter) error
+type InitiateOAuthLoginResponseObject interface {
+	VisitInitiateOAuthLoginResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1AuthOauth302Response struct {
+type InitiateOAuthLogin302Response struct {
 }
 
-func (response GetRogerV1AuthOauth302Response) VisitGetRogerV1AuthOauthResponse(w http.ResponseWriter) error {
+func (response InitiateOAuthLogin302Response) VisitInitiateOAuthLoginResponse(w http.ResponseWriter) error {
 	w.WriteHeader(302)
 	return nil
 }
 
-type GetRogerV1AuthOauth400JSONResponse struct {
+type InitiateOAuthLogin400JSONResponse struct {
 	// Error Error message
 	//
 	// Example: Unsupported provider
 	Error string `json:"error"`
 }
 
-func (response GetRogerV1AuthOauth400JSONResponse) VisitGetRogerV1AuthOauthResponse(w http.ResponseWriter) error {
+func (response InitiateOAuthLogin400JSONResponse) VisitInitiateOAuthLoginResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6721,25 +6721,25 @@ func (response GetRogerV1AuthOauth400JSONResponse) VisitGetRogerV1AuthOauthRespo
 	return err
 }
 
-type PostRogerV1AuthRevokeRequestObject struct {
-	Body *PostRogerV1AuthRevokeJSONRequestBody
+type RevokeTokenRequestObject struct {
+	Body *RevokeTokenJSONRequestBody
 }
 
-type PostRogerV1AuthRevokeResponseObject interface {
-	VisitPostRogerV1AuthRevokeResponse(w http.ResponseWriter) error
+type RevokeTokenResponseObject interface {
+	VisitRevokeTokenResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1AuthRevoke200Response struct {
+type RevokeToken200Response struct {
 }
 
-func (response PostRogerV1AuthRevoke200Response) VisitPostRogerV1AuthRevokeResponse(w http.ResponseWriter) error {
+func (response RevokeToken200Response) VisitRevokeTokenResponse(w http.ResponseWriter) error {
 	w.WriteHeader(200)
 	return nil
 }
 
-type PostRogerV1AuthRevoke400JSONResponse = PostRogerV1AuthRevoke400JSONResponseBody
+type RevokeToken400JSONResponse = RevokeToken400JSONResponseBody
 
-func (response PostRogerV1AuthRevoke400JSONResponse) VisitPostRogerV1AuthRevokeResponse(w http.ResponseWriter) error {
+func (response RevokeToken400JSONResponse) VisitRevokeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -6751,9 +6751,9 @@ func (response PostRogerV1AuthRevoke400JSONResponse) VisitPostRogerV1AuthRevokeR
 	return err
 }
 
-type PostRogerV1AuthRevoke500JSONResponse OAuthError
+type RevokeToken500JSONResponse OAuthError
 
-func (response PostRogerV1AuthRevoke500JSONResponse) VisitPostRogerV1AuthRevokeResponse(w http.ResponseWriter) error {
+func (response RevokeToken500JSONResponse) VisitRevokeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6765,24 +6765,24 @@ func (response PostRogerV1AuthRevoke500JSONResponse) VisitPostRogerV1AuthRevokeR
 	return err
 }
 
-type DeleteRogerV1AuthSessionsRequestObject struct {
+type RevokeOtherSessionsRequestObject struct {
 }
 
-type DeleteRogerV1AuthSessionsResponseObject interface {
-	VisitDeleteRogerV1AuthSessionsResponse(w http.ResponseWriter) error
+type RevokeOtherSessionsResponseObject interface {
+	VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1AuthSessions204Response struct {
+type RevokeOtherSessions204Response struct {
 }
 
-func (response DeleteRogerV1AuthSessions204Response) VisitDeleteRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response RevokeOtherSessions204Response) VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error {
 	w.WriteHeader(204)
 	return nil
 }
 
-type DeleteRogerV1AuthSessions401JSONResponse AuthError
+type RevokeOtherSessions401JSONResponse AuthError
 
-func (response DeleteRogerV1AuthSessions401JSONResponse) VisitDeleteRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response RevokeOtherSessions401JSONResponse) VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6794,9 +6794,9 @@ func (response DeleteRogerV1AuthSessions401JSONResponse) VisitDeleteRogerV1AuthS
 	return err
 }
 
-type DeleteRogerV1AuthSessions500JSONResponse ServerError
+type RevokeOtherSessions500JSONResponse ServerError
 
-func (response DeleteRogerV1AuthSessions500JSONResponse) VisitDeleteRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response RevokeOtherSessions500JSONResponse) VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6808,16 +6808,16 @@ func (response DeleteRogerV1AuthSessions500JSONResponse) VisitDeleteRogerV1AuthS
 	return err
 }
 
-type GetRogerV1AuthSessionsRequestObject struct {
+type ListSessionsRequestObject struct {
 }
 
-type GetRogerV1AuthSessionsResponseObject interface {
-	VisitGetRogerV1AuthSessionsResponse(w http.ResponseWriter) error
+type ListSessionsResponseObject interface {
+	VisitListSessionsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1AuthSessions200JSONResponse []UserSession
+type ListSessions200JSONResponse []UserSession
 
-func (response GetRogerV1AuthSessions200JSONResponse) VisitGetRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response ListSessions200JSONResponse) VisitListSessionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6829,9 +6829,9 @@ func (response GetRogerV1AuthSessions200JSONResponse) VisitGetRogerV1AuthSession
 	return err
 }
 
-type GetRogerV1AuthSessions401JSONResponse AuthError
+type ListSessions401JSONResponse AuthError
 
-func (response GetRogerV1AuthSessions401JSONResponse) VisitGetRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response ListSessions401JSONResponse) VisitListSessionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6843,9 +6843,9 @@ func (response GetRogerV1AuthSessions401JSONResponse) VisitGetRogerV1AuthSession
 	return err
 }
 
-type GetRogerV1AuthSessions500JSONResponse ServerError
+type ListSessions500JSONResponse ServerError
 
-func (response GetRogerV1AuthSessions500JSONResponse) VisitGetRogerV1AuthSessionsResponse(w http.ResponseWriter) error {
+func (response ListSessions500JSONResponse) VisitListSessionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6857,25 +6857,25 @@ func (response GetRogerV1AuthSessions500JSONResponse) VisitGetRogerV1AuthSession
 	return err
 }
 
-type DeleteRogerV1AuthSessionsSessionIdRequestObject struct {
+type RevokeSessionRequestObject struct {
 	SessionId string `json:"sessionId"`
 }
 
-type DeleteRogerV1AuthSessionsSessionIdResponseObject interface {
-	VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error
+type RevokeSessionResponseObject interface {
+	VisitRevokeSessionResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1AuthSessionsSessionId204Response struct {
+type RevokeSession204Response struct {
 }
 
-func (response DeleteRogerV1AuthSessionsSessionId204Response) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession204Response) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 	w.WriteHeader(204)
 	return nil
 }
 
-type DeleteRogerV1AuthSessionsSessionId400JSONResponse ValidationError
+type RevokeSession400JSONResponse ValidationError
 
-func (response DeleteRogerV1AuthSessionsSessionId400JSONResponse) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession400JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6887,9 +6887,9 @@ func (response DeleteRogerV1AuthSessionsSessionId400JSONResponse) VisitDeleteRog
 	return err
 }
 
-type DeleteRogerV1AuthSessionsSessionId401JSONResponse AuthError
+type RevokeSession401JSONResponse AuthError
 
-func (response DeleteRogerV1AuthSessionsSessionId401JSONResponse) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession401JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6901,9 +6901,9 @@ func (response DeleteRogerV1AuthSessionsSessionId401JSONResponse) VisitDeleteRog
 	return err
 }
 
-type DeleteRogerV1AuthSessionsSessionId403JSONResponse ForbiddenError
+type RevokeSession403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1AuthSessionsSessionId403JSONResponse) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession403JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6915,9 +6915,9 @@ func (response DeleteRogerV1AuthSessionsSessionId403JSONResponse) VisitDeleteRog
 	return err
 }
 
-type DeleteRogerV1AuthSessionsSessionId404JSONResponse NotFoundError
+type RevokeSession404JSONResponse NotFoundError
 
-func (response DeleteRogerV1AuthSessionsSessionId404JSONResponse) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession404JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6929,9 +6929,9 @@ func (response DeleteRogerV1AuthSessionsSessionId404JSONResponse) VisitDeleteRog
 	return err
 }
 
-type DeleteRogerV1AuthSessionsSessionId500JSONResponse ServerError
+type RevokeSession500JSONResponse ServerError
 
-func (response DeleteRogerV1AuthSessionsSessionId500JSONResponse) VisitDeleteRogerV1AuthSessionsSessionIdResponse(w http.ResponseWriter) error {
+func (response RevokeSession500JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6943,15 +6943,15 @@ func (response DeleteRogerV1AuthSessionsSessionId500JSONResponse) VisitDeleteRog
 	return err
 }
 
-type PostRogerV1AuthTokenRequestObject struct {
-	Body *PostRogerV1AuthTokenJSONRequestBody
+type ExchangeTokenRequestObject struct {
+	Body *ExchangeTokenJSONRequestBody
 }
 
-type PostRogerV1AuthTokenResponseObject interface {
-	VisitPostRogerV1AuthTokenResponse(w http.ResponseWriter) error
+type ExchangeTokenResponseObject interface {
+	VisitExchangeTokenResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1AuthToken200JSONResponse struct {
+type ExchangeToken200JSONResponse struct {
 	// AccessToken Short-lived JWT access token
 	//
 	// Example: eyJhbGciOiJSUzI1NiIs...
@@ -6968,10 +6968,10 @@ type PostRogerV1AuthToken200JSONResponse struct {
 	RefreshToken *string `json:"refresh_token,omitempty"`
 
 	// TokenType The type of the issued token (standard OAuth 2.1 token type)
-	TokenType *PostRogerV1AuthToken200JSONResponseBodyTokenType `json:"token_type,omitempty"`
+	TokenType *ExchangeToken200JSONResponseBodyTokenType `json:"token_type,omitempty"`
 }
 
-func (response PostRogerV1AuthToken200JSONResponse) VisitPostRogerV1AuthTokenResponse(w http.ResponseWriter) error {
+func (response ExchangeToken200JSONResponse) VisitExchangeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6983,9 +6983,9 @@ func (response PostRogerV1AuthToken200JSONResponse) VisitPostRogerV1AuthTokenRes
 	return err
 }
 
-type PostRogerV1AuthToken400JSONResponse OAuthError
+type ExchangeToken400JSONResponse OAuthError
 
-func (response PostRogerV1AuthToken400JSONResponse) VisitPostRogerV1AuthTokenResponse(w http.ResponseWriter) error {
+func (response ExchangeToken400JSONResponse) VisitExchangeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6997,9 +6997,9 @@ func (response PostRogerV1AuthToken400JSONResponse) VisitPostRogerV1AuthTokenRes
 	return err
 }
 
-type PostRogerV1AuthToken500JSONResponse OAuthError
+type ExchangeToken500JSONResponse OAuthError
 
-func (response PostRogerV1AuthToken500JSONResponse) VisitPostRogerV1AuthTokenResponse(w http.ResponseWriter) error {
+func (response ExchangeToken500JSONResponse) VisitExchangeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7011,14 +7011,14 @@ func (response PostRogerV1AuthToken500JSONResponse) VisitPostRogerV1AuthTokenRes
 	return err
 }
 
-type GetRogerV1FeaturesRequestObject struct {
+type GetFeaturesRequestObject struct {
 }
 
-type GetRogerV1FeaturesResponseObject interface {
-	VisitGetRogerV1FeaturesResponse(w http.ResponseWriter) error
+type GetFeaturesResponseObject interface {
+	VisitGetFeaturesResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1Features200JSONResponse struct {
+type GetFeatures200JSONResponse struct {
 	Features struct {
 		CoreAuth struct {
 			// JwtPublicKey Public key used to verify JWT signature (PEM-encoded)
@@ -7036,7 +7036,7 @@ type GetRogerV1Features200JSONResponse struct {
 				// Kind A predefined provider list for client to determine the type of the provider (to display icons for example)
 				//
 				// Example: google
-				Kind GetRogerV1Features200JSONResponseBodyFeaturesCoreAuthProvidersKind `json:"kind"`
+				Kind GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind `json:"kind"`
 
 				// Name A human-friendly name for the provider
 				//
@@ -7063,7 +7063,7 @@ type GetRogerV1Features200JSONResponse struct {
 			// SupportedCredentialKinds An array of supported credential kinds
 			//
 			// Example: ["api-key"]
-			SupportedCredentialKinds []GetRogerV1Features200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds `json:"supportedCredentialKinds"`
+			SupportedCredentialKinds []GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds `json:"supportedCredentialKinds"`
 		} `json:"core:credentials"`
 		CoreDeployments struct {
 			// MaxDeploymentsPerProject The maximum number of deployments a single project can hold
@@ -7075,11 +7075,6 @@ type GetRogerV1Features200JSONResponse struct {
 			//
 			// Example: 5368709120
 			MaxPlaceFileSizeBytes int `json:"maxPlaceFileSizeBytes"`
-
-			// MaxPlacesPerDeployment The maximum amount of places a single deployment can manage
-			//
-			// Example: 10
-			MaxPlacesPerDeployment int `json:"maxPlacesPerDeployment"`
 
 			// MaxVersionLength The maximum length of a deployment version string
 			//
@@ -7097,15 +7092,15 @@ type GetRogerV1Features200JSONResponse struct {
 			// Example: 64
 			MaxEnvironmentNameLength int `json:"maxEnvironmentNameLength"`
 
+			// MaxEnvironmentsPerProject The maximum amount of environments a single project can hold
+			//
+			// Example: 5
+			MaxEnvironmentsPerProject int `json:"maxEnvironmentsPerProject"`
+
 			// MaxPlacesPerUniverse The maximum amount of places you can add to an environment of type 'universe'
 			//
 			// Example: 20
 			MaxPlacesPerUniverse int `json:"maxPlacesPerUniverse"`
-
-			// MaxProjectEnvironments The maximum amount of environments a single project can hold
-			//
-			// Example: 5
-			MaxProjectEnvironments int `json:"maxProjectEnvironments"`
 
 			// MinEnvironmentNameLength The minimum number of characters an environment name must have
 			//
@@ -7113,25 +7108,25 @@ type GetRogerV1Features200JSONResponse struct {
 			MinEnvironmentNameLength int `json:"minEnvironmentNameLength"`
 		} `json:"core:environments"`
 		CoreProjects struct {
-			// MaxProjectNameLenght The maximum length of a project name
+			// MaxProjectNameLength The maximum length of a project name
 			//
 			// Example: 64
-			MaxProjectNameLenght float32 `json:"maxProjectNameLenght"`
+			MaxProjectNameLength float32 `json:"maxProjectNameLength"`
 
-			// MaxUserProjects The maximum number of projects a user can own
+			// MaxProjectsPerAccount The maximum number of projects an account can hold
 			//
 			// Example: 10
-			MaxUserProjects float32 `json:"maxUserProjects"`
+			MaxProjectsPerAccount float32 `json:"maxProjectsPerAccount"`
 
-			// MinProjectNameLenght The minimum length of a project name
+			// MinProjectNameLength The minimum length of a project name
 			//
 			// Example: 3
-			MinProjectNameLenght float32 `json:"minProjectNameLenght"`
+			MinProjectNameLength float32 `json:"minProjectNameLength"`
 
-			// SupportedProjectTypes All project kinds supported by this node
+			// SupportedProjectKinds All project kinds supported by this node
 			//
 			// Example: ["game"]
-			SupportedProjectTypes []GetRogerV1Features200JSONResponseBodyFeaturesCoreProjectsSupportedProjectTypes `json:"supportedProjectTypes"`
+			SupportedProjectKinds []GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds `json:"supportedProjectKinds"`
 		} `json:"core:projects"`
 		CoreStorage struct {
 			// MaxStorageNameLength The maximum number of characters a storage object name can have
@@ -7139,20 +7134,20 @@ type GetRogerV1Features200JSONResponse struct {
 			// Example: 64
 			MaxStorageNameLength int `json:"maxStorageNameLength"`
 
-			// MaxStorageObjectsPerOwner The maximum amount of storage objects an owner can have
+			// MaxStorageObjectsPerAccount The maximum amount of storage objects an account can hold
 			//
 			// Example: 3
-			MaxStorageObjectsPerOwner int `json:"maxStorageObjectsPerOwner"`
+			MaxStorageObjectsPerAccount int `json:"maxStorageObjectsPerAccount"`
 
 			// MinStorageNameLength The minimum number of characters a storage object name must have
 			//
 			// Example: 3
 			MinStorageNameLength int `json:"minStorageNameLength"`
 
-			// SupportedStorageKind Supported storage types
+			// SupportedStorageKinds Supported storage types
 			//
 			// Example: ["S3","internal"]
-			SupportedStorageKind GetRogerV1Features200JSONResponseBodyFeaturesCoreStorageSupportedStorageKind `json:"supportedStorageKind"`
+			SupportedStorageKinds GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds `json:"supportedStorageKinds"`
 		} `json:"core:storage"`
 		CoreTargets struct {
 			// MaxTargetNameLength The maximum length of a target name
@@ -7173,12 +7168,12 @@ type GetRogerV1Features200JSONResponse struct {
 			// SupportedTargetKinds Target kinds supported by the node
 			//
 			// Example: ["place"]
-			SupportedTargetKinds []GetRogerV1Features200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds `json:"supportedTargetKinds"`
+			SupportedTargetKinds []GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds `json:"supportedTargetKinds"`
 		} `json:"core:targets"`
 	} `json:"features"`
 }
 
-func (response GetRogerV1Features200JSONResponse) VisitGetRogerV1FeaturesResponse(w http.ResponseWriter) error {
+func (response GetFeatures200JSONResponse) VisitGetFeaturesResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7190,14 +7185,14 @@ func (response GetRogerV1Features200JSONResponse) VisitGetRogerV1FeaturesRespons
 	return err
 }
 
-type GetRogerV1ProjectsRequestObject struct {
+type ListProjectsRequestObject struct {
 }
 
-type GetRogerV1ProjectsResponseObject interface {
-	VisitGetRogerV1ProjectsResponse(w http.ResponseWriter) error
+type ListProjectsResponseObject interface {
+	VisitListProjectsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1Projects200JSONResponse []struct {
+type ListProjects200JSONResponse []struct {
 	// CreatedAt The ISO timestamp at which the project was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -7211,7 +7206,7 @@ type GetRogerV1Projects200JSONResponse []struct {
 	// Kind The type of ressource the project will manage
 	//
 	// Example: game
-	Kind GetRogerV1Projects200JSONResponseBodyKind `json:"kind"`
+	Kind ListProjects200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp of the last project deployment
 	//
@@ -7234,7 +7229,7 @@ type GetRogerV1Projects200JSONResponse []struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (response GetRogerV1Projects200JSONResponse) VisitGetRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response ListProjects200JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7246,9 +7241,9 @@ func (response GetRogerV1Projects200JSONResponse) VisitGetRogerV1ProjectsRespons
 	return err
 }
 
-type GetRogerV1Projects401JSONResponse AuthError
+type ListProjects401JSONResponse AuthError
 
-func (response GetRogerV1Projects401JSONResponse) VisitGetRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response ListProjects401JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7260,9 +7255,9 @@ func (response GetRogerV1Projects401JSONResponse) VisitGetRogerV1ProjectsRespons
 	return err
 }
 
-type GetRogerV1Projects500JSONResponse ServerError
+type ListProjects500JSONResponse ServerError
 
-func (response GetRogerV1Projects500JSONResponse) VisitGetRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response ListProjects500JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7274,15 +7269,15 @@ func (response GetRogerV1Projects500JSONResponse) VisitGetRogerV1ProjectsRespons
 	return err
 }
 
-type PostRogerV1ProjectsRequestObject struct {
-	Body *PostRogerV1ProjectsJSONRequestBody
+type CreateProjectRequestObject struct {
+	Body *CreateProjectJSONRequestBody
 }
 
-type PostRogerV1ProjectsResponseObject interface {
-	VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error
+type CreateProjectResponseObject interface {
+	VisitCreateProjectResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1Projects200JSONResponse struct {
+type CreateProject200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the project was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -7296,7 +7291,7 @@ type PostRogerV1Projects200JSONResponse struct {
 	// Kind The type of ressource the project will manage
 	//
 	// Example: game
-	Kind PostRogerV1Projects200JSONResponseBodyKind `json:"kind"`
+	Kind CreateProject200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp of the last project deployment
 	//
@@ -7319,7 +7314,7 @@ type PostRogerV1Projects200JSONResponse struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (response PostRogerV1Projects200JSONResponse) VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response CreateProject200JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7331,9 +7326,9 @@ func (response PostRogerV1Projects200JSONResponse) VisitPostRogerV1ProjectsRespo
 	return err
 }
 
-type PostRogerV1Projects400JSONResponse ValidationError
+type CreateProject400JSONResponse ValidationError
 
-func (response PostRogerV1Projects400JSONResponse) VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response CreateProject400JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7345,9 +7340,9 @@ func (response PostRogerV1Projects400JSONResponse) VisitPostRogerV1ProjectsRespo
 	return err
 }
 
-type PostRogerV1Projects401JSONResponse AuthError
+type CreateProject401JSONResponse AuthError
 
-func (response PostRogerV1Projects401JSONResponse) VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response CreateProject401JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7359,9 +7354,9 @@ func (response PostRogerV1Projects401JSONResponse) VisitPostRogerV1ProjectsRespo
 	return err
 }
 
-type PostRogerV1Projects422JSONResponse ProjectError
+type CreateProject422JSONResponse ProjectError
 
-func (response PostRogerV1Projects422JSONResponse) VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response CreateProject422JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7373,9 +7368,9 @@ func (response PostRogerV1Projects422JSONResponse) VisitPostRogerV1ProjectsRespo
 	return err
 }
 
-type PostRogerV1Projects500JSONResponse ServerError
+type CreateProject500JSONResponse ServerError
 
-func (response PostRogerV1Projects500JSONResponse) VisitPostRogerV1ProjectsResponse(w http.ResponseWriter) error {
+func (response CreateProject500JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7387,15 +7382,15 @@ func (response PostRogerV1Projects500JSONResponse) VisitPostRogerV1ProjectsRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdRequestObject struct {
+type DeleteProjectRequestObject struct {
 	ProjectId string `json:"projectId"`
 }
 
-type DeleteRogerV1ProjectsProjectIdResponseObject interface {
-	VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error
+type DeleteProjectResponseObject interface {
+	VisitDeleteProjectResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1ProjectsProjectId200JSONResponse struct {
+type DeleteProject200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the project was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -7409,7 +7404,7 @@ type DeleteRogerV1ProjectsProjectId200JSONResponse struct {
 	// Kind The type of ressource the project will manage
 	//
 	// Example: game
-	Kind DeleteRogerV1ProjectsProjectId200JSONResponseBodyKind `json:"kind"`
+	Kind DeleteProject200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp of the last project deployment
 	//
@@ -7432,7 +7427,7 @@ type DeleteRogerV1ProjectsProjectId200JSONResponse struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (response DeleteRogerV1ProjectsProjectId200JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject200JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7444,9 +7439,9 @@ func (response DeleteRogerV1ProjectsProjectId200JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectId400JSONResponse ValidationError
+type DeleteProject400JSONResponse ValidationError
 
-func (response DeleteRogerV1ProjectsProjectId400JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject400JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7458,9 +7453,9 @@ func (response DeleteRogerV1ProjectsProjectId400JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectId401JSONResponse AuthError
+type DeleteProject401JSONResponse AuthError
 
-func (response DeleteRogerV1ProjectsProjectId401JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject401JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7472,9 +7467,9 @@ func (response DeleteRogerV1ProjectsProjectId401JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectId403JSONResponse ForbiddenError
+type DeleteProject403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1ProjectsProjectId403JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject403JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7486,9 +7481,9 @@ func (response DeleteRogerV1ProjectsProjectId403JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectId404JSONResponse NotFoundError
+type DeleteProject404JSONResponse NotFoundError
 
-func (response DeleteRogerV1ProjectsProjectId404JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject404JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7500,9 +7495,9 @@ func (response DeleteRogerV1ProjectsProjectId404JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectId500JSONResponse ServerError
+type DeleteProject500JSONResponse ServerError
 
-func (response DeleteRogerV1ProjectsProjectId500JSONResponse) VisitDeleteRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response DeleteProject500JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7514,16 +7509,16 @@ func (response DeleteRogerV1ProjectsProjectId500JSONResponse) VisitDeleteRogerV1
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdRequestObject struct {
+type RenameProjectRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *PutRogerV1ProjectsProjectIdJSONRequestBody
+	Body      *RenameProjectJSONRequestBody
 }
 
-type PutRogerV1ProjectsProjectIdResponseObject interface {
-	VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error
+type RenameProjectResponseObject interface {
+	VisitRenameProjectResponse(w http.ResponseWriter) error
 }
 
-type PutRogerV1ProjectsProjectId200JSONResponse struct {
+type RenameProject200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the project was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -7537,7 +7532,7 @@ type PutRogerV1ProjectsProjectId200JSONResponse struct {
 	// Kind The type of ressource the project will manage
 	//
 	// Example: game
-	Kind PutRogerV1ProjectsProjectId200JSONResponseBodyKind `json:"kind"`
+	Kind RenameProject200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp of the last project deployment
 	//
@@ -7560,7 +7555,7 @@ type PutRogerV1ProjectsProjectId200JSONResponse struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (response PutRogerV1ProjectsProjectId200JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject200JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7572,9 +7567,9 @@ func (response PutRogerV1ProjectsProjectId200JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PutRogerV1ProjectsProjectId400JSONResponse ValidationError
+type RenameProject400JSONResponse ValidationError
 
-func (response PutRogerV1ProjectsProjectId400JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject400JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7586,9 +7581,9 @@ func (response PutRogerV1ProjectsProjectId400JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PutRogerV1ProjectsProjectId401JSONResponse AuthError
+type RenameProject401JSONResponse AuthError
 
-func (response PutRogerV1ProjectsProjectId401JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject401JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7600,9 +7595,9 @@ func (response PutRogerV1ProjectsProjectId401JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PutRogerV1ProjectsProjectId403JSONResponse ForbiddenError
+type RenameProject403JSONResponse ForbiddenError
 
-func (response PutRogerV1ProjectsProjectId403JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject403JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7614,9 +7609,9 @@ func (response PutRogerV1ProjectsProjectId403JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PutRogerV1ProjectsProjectId404JSONResponse NotFoundError
+type RenameProject404JSONResponse NotFoundError
 
-func (response PutRogerV1ProjectsProjectId404JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject404JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7628,9 +7623,9 @@ func (response PutRogerV1ProjectsProjectId404JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PutRogerV1ProjectsProjectId500JSONResponse ServerError
+type RenameProject500JSONResponse ServerError
 
-func (response PutRogerV1ProjectsProjectId500JSONResponse) VisitPutRogerV1ProjectsProjectIdResponse(w http.ResponseWriter) error {
+func (response RenameProject500JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7642,23 +7637,23 @@ func (response PutRogerV1ProjectsProjectId500JSONResponse) VisitPutRogerV1Projec
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheckRequestObject struct {
+type CheckArtifactsRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *PostRogerV1ProjectsProjectIdArtifactsCheckJSONRequestBody
+	Body      *CheckArtifactsJSONRequestBody
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheckResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error
+type CheckArtifactsResponseObject interface {
+	VisitCheckArtifactsResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck200JSONResponse struct {
+type CheckArtifacts200JSONResponse struct {
 	// Artifacts Returns true(stored)/false(not stored) for every passed hash
 	//
 	// Example: {"abcd1234":false,"qwerty0987":true}
 	Artifacts map[string]bool `json:"artifacts"`
 }
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck200JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts200JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7670,9 +7665,9 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck200JSONResponse) VisitP
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck400JSONResponse ValidationError
+type CheckArtifacts400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck400JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts400JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7684,9 +7679,9 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck400JSONResponse) VisitP
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck401JSONResponse AuthError
+type CheckArtifacts401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck401JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts401JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7698,9 +7693,9 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck401JSONResponse) VisitP
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck403JSONResponse ForbiddenError
+type CheckArtifacts403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck403JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts403JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7712,9 +7707,9 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck403JSONResponse) VisitP
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck404JSONResponse NotFoundError
+type CheckArtifacts404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck404JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts404JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7726,9 +7721,9 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck404JSONResponse) VisitP
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdArtifactsCheck500JSONResponse ServerError
+type CheckArtifacts500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdArtifactsCheck500JSONResponse) VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w http.ResponseWriter) error {
+func (response CheckArtifacts500JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7740,17 +7735,17 @@ func (response PostRogerV1ProjectsProjectIdArtifactsCheck500JSONResponse) VisitP
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentialsRequestObject struct {
+type ListCredentialsRequestObject struct {
 	ProjectId string `json:"projectId"`
 }
 
-type GetRogerV1ProjectsProjectIdCredentialsResponseObject interface {
-	VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error
+type ListCredentialsResponseObject interface {
+	VisitListCredentialsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1ProjectsProjectIdCredentials200JSONResponse []GetRogerV1ProjectsProjectIdCredentials200JSONResponseBody_Item
+type ListCredentials200JSONResponse []ListCredentials200JSONResponseBody_Item
 
-func (response GetRogerV1ProjectsProjectIdCredentials200JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials200JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7762,9 +7757,9 @@ func (response GetRogerV1ProjectsProjectIdCredentials200JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentials400JSONResponse ValidationError
+type ListCredentials400JSONResponse ValidationError
 
-func (response GetRogerV1ProjectsProjectIdCredentials400JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials400JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7776,9 +7771,9 @@ func (response GetRogerV1ProjectsProjectIdCredentials400JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentials401JSONResponse AuthError
+type ListCredentials401JSONResponse AuthError
 
-func (response GetRogerV1ProjectsProjectIdCredentials401JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials401JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7790,9 +7785,9 @@ func (response GetRogerV1ProjectsProjectIdCredentials401JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentials403JSONResponse ForbiddenError
+type ListCredentials403JSONResponse ForbiddenError
 
-func (response GetRogerV1ProjectsProjectIdCredentials403JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials403JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7804,9 +7799,9 @@ func (response GetRogerV1ProjectsProjectIdCredentials403JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentials404JSONResponse NotFoundError
+type ListCredentials404JSONResponse NotFoundError
 
-func (response GetRogerV1ProjectsProjectIdCredentials404JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials404JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7818,9 +7813,9 @@ func (response GetRogerV1ProjectsProjectIdCredentials404JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdCredentials500JSONResponse ServerError
+type ListCredentials500JSONResponse ServerError
 
-func (response GetRogerV1ProjectsProjectIdCredentials500JSONResponse) VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response ListCredentials500JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7832,18 +7827,18 @@ func (response GetRogerV1ProjectsProjectIdCredentials500JSONResponse) VisitGetRo
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsRequestObject struct {
+type CreateCredentialRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *PostRogerV1ProjectsProjectIdCredentialsJSONRequestBody
+	Body      *CreateCredentialJSONRequestBody
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error
+type CreateCredentialResponseObject interface {
+	VisitCreateCredentialResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdCredentials200JSONResponse = PostRogerV1ProjectsProjectIdCredentials200JSONResponseBody
+type CreateCredential200JSONResponse = CreateCredential200JSONResponseBody
 
-func (response PostRogerV1ProjectsProjectIdCredentials200JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential200JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -7855,9 +7850,9 @@ func (response PostRogerV1ProjectsProjectIdCredentials200JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentials400JSONResponse ValidationError
+type CreateCredential400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdCredentials400JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential400JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7869,9 +7864,9 @@ func (response PostRogerV1ProjectsProjectIdCredentials400JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentials401JSONResponse AuthError
+type CreateCredential401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdCredentials401JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential401JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7883,9 +7878,9 @@ func (response PostRogerV1ProjectsProjectIdCredentials401JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentials403JSONResponse ForbiddenError
+type CreateCredential403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdCredentials403JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential403JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7897,9 +7892,9 @@ func (response PostRogerV1ProjectsProjectIdCredentials403JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentials404JSONResponse NotFoundError
+type CreateCredential404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdCredentials404JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential404JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7911,9 +7906,9 @@ func (response PostRogerV1ProjectsProjectIdCredentials404JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentials500JSONResponse ServerError
+type CreateCredential500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdCredentials500JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w http.ResponseWriter) error {
+func (response CreateCredential500JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7925,18 +7920,18 @@ func (response PostRogerV1ProjectsProjectIdCredentials500JSONResponse) VisitPost
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject struct {
+type DeleteCredentialRequestObject struct {
 	ProjectId    string `json:"projectId"`
 	CredentialId string `json:"credentialId"`
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject interface {
-	VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error
+type DeleteCredentialResponseObject interface {
+	VisitDeleteCredentialResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponse = DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody
+type DeleteCredential200JSONResponse = DeleteCredential200JSONResponseBody
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential200JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -7948,9 +7943,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId200JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId400JSONResponse ValidationError
+type DeleteCredential400JSONResponse ValidationError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId400JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential400JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7962,9 +7957,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId400JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId401JSONResponse AuthError
+type DeleteCredential401JSONResponse AuthError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId401JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential401JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7976,9 +7971,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId401JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId403JSONResponse ForbiddenError
+type DeleteCredential403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId403JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential403JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -7990,9 +7985,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId403JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId404JSONResponse NotFoundError
+type DeleteCredential404JSONResponse NotFoundError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId404JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential404JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8004,9 +7999,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId404JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId409JSONResponse CredentialsError
+type DeleteCredential409JSONResponse CredentialsError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId409JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential409JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8018,9 +8013,9 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId409JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdCredentialsCredentialId500JSONResponse ServerError
+type DeleteCredential500JSONResponse ServerError
 
-func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId500JSONResponse) VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response DeleteCredential500JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8032,19 +8027,19 @@ func (response DeleteRogerV1ProjectsProjectIdCredentialsCredentialId500JSONRespo
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject struct {
+type RenameCredentialRequestObject struct {
 	ProjectId    string `json:"projectId"`
 	CredentialId string `json:"credentialId"`
-	Body         *PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONRequestBody
+	Body         *RenameCredentialJSONRequestBody
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject interface {
-	VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error
+type RenameCredentialResponseObject interface {
+	VisitRenameCredentialResponse(w http.ResponseWriter) error
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponse = PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponseBody
+type RenameCredential200JSONResponse = RenameCredential200JSONResponseBody
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential200JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -8056,9 +8051,9 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId200JSONResponse
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId400JSONResponse ValidationError
+type RenameCredential400JSONResponse ValidationError
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId400JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential400JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8070,9 +8065,9 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId400JSONResponse
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId401JSONResponse AuthError
+type RenameCredential401JSONResponse AuthError
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId401JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential401JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8084,9 +8079,9 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId401JSONResponse
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId403JSONResponse ForbiddenError
+type RenameCredential403JSONResponse ForbiddenError
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId403JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential403JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8098,9 +8093,9 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId403JSONResponse
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId404JSONResponse NotFoundError
+type RenameCredential404JSONResponse NotFoundError
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId404JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential404JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8112,9 +8107,9 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId404JSONResponse
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdCredentialsCredentialId500JSONResponse ServerError
+type RenameCredential500JSONResponse ServerError
 
-func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId500JSONResponse) VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w http.ResponseWriter) error {
+func (response RenameCredential500JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8126,19 +8121,19 @@ func (response PutRogerV1ProjectsProjectIdCredentialsCredentialId500JSONResponse
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateRequestObject struct {
+type RotateCredentialRequestObject struct {
 	ProjectId    string `json:"projectId"`
 	CredentialId string `json:"credentialId"`
-	Body         *PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONRequestBody
+	Body         *RotateCredentialJSONRequestBody
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error
+type RotateCredentialResponseObject interface {
+	VisitRotateCredentialResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponse = PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponseBody
+type RotateCredential200JSONResponse = RotateCredential200JSONResponseBody
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential200JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -8150,9 +8145,9 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate200JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponse = PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponseBody
+type RotateCredential400JSONResponse = RotateCredential400JSONResponseBody
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential400JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -8164,9 +8159,9 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate400JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate401JSONResponse AuthError
+type RotateCredential401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate401JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential401JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8178,9 +8173,9 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate401JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate403JSONResponse ForbiddenError
+type RotateCredential403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate403JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential403JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8192,9 +8187,9 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate403JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate404JSONResponse NotFoundError
+type RotateCredential404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate404JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential404JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8206,9 +8201,9 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate404JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate500JSONResponse ServerError
+type RotateCredential500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate500JSONResponse) VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateCredential500JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8220,15 +8215,15 @@ func (response PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate500JSONR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeploymentsRequestObject struct {
+type ListDeploymentsRequestObject struct {
 	ProjectId string `json:"projectId"`
 }
 
-type GetRogerV1ProjectsProjectIdDeploymentsResponseObject interface {
-	VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error
+type ListDeploymentsResponseObject interface {
+	VisitListDeploymentsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1ProjectsProjectIdDeployments200JSONResponse []struct {
+type ListDeployments200JSONResponse []struct {
 	// CreatedAt The ISO timestamp at which the deployment was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -8252,7 +8247,7 @@ type GetRogerV1ProjectsProjectIdDeployments200JSONResponse []struct {
 	// Status The status of the deployment
 	//
 	// Example: staged
-	Status GetRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus `json:"status"`
+	Status ListDeployments200JSONResponseBodyStatus `json:"status"`
 
 	// Version The deployment version string
 	//
@@ -8260,7 +8255,7 @@ type GetRogerV1ProjectsProjectIdDeployments200JSONResponse []struct {
 	Version string `json:"version"`
 }
 
-func (response GetRogerV1ProjectsProjectIdDeployments200JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments200JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8272,9 +8267,9 @@ func (response GetRogerV1ProjectsProjectIdDeployments200JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeployments400JSONResponse ValidationError
+type ListDeployments400JSONResponse ValidationError
 
-func (response GetRogerV1ProjectsProjectIdDeployments400JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments400JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8286,9 +8281,9 @@ func (response GetRogerV1ProjectsProjectIdDeployments400JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeployments401JSONResponse AuthError
+type ListDeployments401JSONResponse AuthError
 
-func (response GetRogerV1ProjectsProjectIdDeployments401JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments401JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8300,9 +8295,9 @@ func (response GetRogerV1ProjectsProjectIdDeployments401JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeployments403JSONResponse ForbiddenError
+type ListDeployments403JSONResponse ForbiddenError
 
-func (response GetRogerV1ProjectsProjectIdDeployments403JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments403JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8314,9 +8309,9 @@ func (response GetRogerV1ProjectsProjectIdDeployments403JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeployments404JSONResponse NotFoundError
+type ListDeployments404JSONResponse NotFoundError
 
-func (response GetRogerV1ProjectsProjectIdDeployments404JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments404JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8328,9 +8323,9 @@ func (response GetRogerV1ProjectsProjectIdDeployments404JSONResponse) VisitGetRo
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdDeployments500JSONResponse ServerError
+type ListDeployments500JSONResponse ServerError
 
-func (response GetRogerV1ProjectsProjectIdDeployments500JSONResponse) VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response ListDeployments500JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8342,16 +8337,16 @@ func (response GetRogerV1ProjectsProjectIdDeployments500JSONResponse) VisitGetRo
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsRequestObject struct {
+type CreateDeploymentRequestObject struct {
 	ProjectId string `json:"projectId"`
 	Body      *multipart.Reader
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error
+type CreateDeploymentResponseObject interface {
+	VisitCreateDeploymentResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdDeployments200JSONResponse struct {
+type CreateDeployment200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the deployment was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -8375,7 +8370,7 @@ type PostRogerV1ProjectsProjectIdDeployments200JSONResponse struct {
 	// Status The status of the deployment
 	//
 	// Example: staged
-	Status PostRogerV1ProjectsProjectIdDeployments200JSONResponseBodyStatus `json:"status"`
+	Status CreateDeployment200JSONResponseBodyStatus `json:"status"`
 
 	// Version The deployment version string
 	//
@@ -8383,7 +8378,7 @@ type PostRogerV1ProjectsProjectIdDeployments200JSONResponse struct {
 	Version string `json:"version"`
 }
 
-func (response PostRogerV1ProjectsProjectIdDeployments200JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment200JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8395,9 +8390,9 @@ func (response PostRogerV1ProjectsProjectIdDeployments200JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeployments400JSONResponse ValidationError
+type CreateDeployment400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdDeployments400JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment400JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8409,9 +8404,9 @@ func (response PostRogerV1ProjectsProjectIdDeployments400JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeployments401JSONResponse AuthError
+type CreateDeployment401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdDeployments401JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment401JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8423,9 +8418,9 @@ func (response PostRogerV1ProjectsProjectIdDeployments401JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeployments403JSONResponse ForbiddenError
+type CreateDeployment403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdDeployments403JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment403JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8437,9 +8432,9 @@ func (response PostRogerV1ProjectsProjectIdDeployments403JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeployments404JSONResponse NotFoundError
+type CreateDeployment404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdDeployments404JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment404JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8451,9 +8446,9 @@ func (response PostRogerV1ProjectsProjectIdDeployments404JSONResponse) VisitPost
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeployments500JSONResponse ServerError
+type CreateDeployment500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdDeployments500JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w http.ResponseWriter) error {
+func (response CreateDeployment500JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8465,16 +8460,16 @@ func (response PostRogerV1ProjectsProjectIdDeployments500JSONResponse) VisitPost
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdRequestObject struct {
+type DeleteDeploymentRequestObject struct {
 	ProjectId    string `json:"projectId"`
 	DeploymentId string `json:"deploymentId"`
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponseObject interface {
-	VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error
+type DeleteDeploymentResponseObject interface {
+	VisitDeleteDeploymentResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponse struct {
+type DeleteDeployment200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the deployment was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -8498,7 +8493,7 @@ type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponse struct
 	// Status The status of the deployment
 	//
 	// Example: staged
-	Status DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponseBodyStatus `json:"status"`
+	Status DeleteDeployment200JSONResponseBodyStatus `json:"status"`
 
 	// Version The deployment version string
 	//
@@ -8506,7 +8501,7 @@ type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponse struct
 	Version string `json:"version"`
 }
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment200JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8518,9 +8513,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId200JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId400JSONResponse ValidationError
+type DeleteDeployment400JSONResponse ValidationError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId400JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment400JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8532,9 +8527,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId400JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId401JSONResponse AuthError
+type DeleteDeployment401JSONResponse AuthError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId401JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment401JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8546,9 +8541,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId401JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId403JSONResponse ForbiddenError
+type DeleteDeployment403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId403JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment403JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8560,9 +8555,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId403JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId404JSONResponse NotFoundError
+type DeleteDeployment404JSONResponse NotFoundError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId404JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment404JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8574,9 +8569,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId404JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId409JSONResponse DeploymentError
+type DeleteDeployment409JSONResponse DeploymentError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId409JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment409JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8588,9 +8583,9 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId409JSONRespo
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId500JSONResponse ServerError
+type DeleteDeployment500JSONResponse ServerError
 
-func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId500JSONResponse) VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w http.ResponseWriter) error {
+func (response DeleteDeployment500JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8602,16 +8597,16 @@ func (response DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId500JSONRespo
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployRequestObject struct {
+type TriggerDeploymentRequestObject struct {
 	ProjectId    string `json:"projectId"`
 	DeploymentId string `json:"deploymentId"`
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error
+type TriggerDeploymentResponseObject interface {
+	VisitTriggerDeploymentResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponse struct {
+type TriggerDeployment200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the deployment was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
@@ -8635,7 +8630,7 @@ type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponse st
 	// Status The status of the deployment
 	//
 	// Example: staged
-	Status PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponseBodyStatus `json:"status"`
+	Status TriggerDeployment200JSONResponseBodyStatus `json:"status"`
 
 	// Version The deployment version string
 	//
@@ -8643,7 +8638,7 @@ type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponse st
 	Version string `json:"version"`
 }
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment200JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8655,9 +8650,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy200JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy400JSONResponse ValidationError
+type TriggerDeployment400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy400JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment400JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8669,9 +8664,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy400JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy401JSONResponse AuthError
+type TriggerDeployment401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy401JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment401JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8683,9 +8678,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy401JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy403JSONResponse ForbiddenError
+type TriggerDeployment403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy403JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment403JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8697,9 +8692,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy403JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy404JSONResponse NotFoundError
+type TriggerDeployment404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy404JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment404JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8711,9 +8706,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy404JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy409JSONResponse DeploymentError
+type TriggerDeployment409JSONResponse DeploymentError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy409JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment409JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8725,9 +8720,9 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy409JSONR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy500JSONResponse ServerError
+type TriggerDeployment500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy500JSONResponse) VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w http.ResponseWriter) error {
+func (response TriggerDeployment500JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8739,15 +8734,15 @@ func (response PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy500JSONR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsRequestObject struct {
+type ListEnvironmentsRequestObject struct {
 	ProjectId string `json:"projectId"`
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsResponseObject interface {
-	VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error
+type ListEnvironmentsResponseObject interface {
+	VisitListEnvironmentsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
+type ListEnvironments200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the environment was created
 	CreatedAt time.Time `json:"created_at"`
 
@@ -8764,7 +8759,7 @@ type GetRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
 	// Kind The kind of ressource the environment will manage (whole universe or single place)
 	//
 	// Example: universe
-	Kind GetRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind `json:"kind"`
+	Kind ListEnvironments200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
 	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
@@ -8783,7 +8778,7 @@ type GetRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
 	UniverseId string `json:"universe_id"`
 }
 
-func (response GetRogerV1ProjectsProjectIdEnvironments200JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response ListEnvironments200JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8795,9 +8790,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironments200JSONResponse) VisitGetR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironments401JSONResponse AuthError
+type ListEnvironments401JSONResponse AuthError
 
-func (response GetRogerV1ProjectsProjectIdEnvironments401JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response ListEnvironments401JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8809,9 +8804,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironments401JSONResponse) VisitGetR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironments403JSONResponse ForbiddenError
+type ListEnvironments403JSONResponse ForbiddenError
 
-func (response GetRogerV1ProjectsProjectIdEnvironments403JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response ListEnvironments403JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8823,9 +8818,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironments403JSONResponse) VisitGetR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironments404JSONResponse NotFoundError
+type ListEnvironments404JSONResponse NotFoundError
 
-func (response GetRogerV1ProjectsProjectIdEnvironments404JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response ListEnvironments404JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8837,9 +8832,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironments404JSONResponse) VisitGetR
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironments500JSONResponse ServerError
+type ListEnvironments500JSONResponse ServerError
 
-func (response GetRogerV1ProjectsProjectIdEnvironments500JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response ListEnvironments500JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8851,16 +8846,16 @@ func (response GetRogerV1ProjectsProjectIdEnvironments500JSONResponse) VisitGetR
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsRequestObject struct {
+type CreateEnvironmentRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *PostRogerV1ProjectsProjectIdEnvironmentsJSONRequestBody
+	Body      *CreateEnvironmentJSONRequestBody
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error
+type CreateEnvironmentResponseObject interface {
+	VisitCreateEnvironmentResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
+type CreateEnvironment200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the environment was created
 	CreatedAt time.Time `json:"created_at"`
 
@@ -8877,7 +8872,7 @@ type PostRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
 	// Kind The kind of ressource the environment will manage (whole universe or single place)
 	//
 	// Example: universe
-	Kind PostRogerV1ProjectsProjectIdEnvironments200JSONResponseBodyKind `json:"kind"`
+	Kind CreateEnvironment200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
 	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
@@ -8896,7 +8891,7 @@ type PostRogerV1ProjectsProjectIdEnvironments200JSONResponse struct {
 	UniverseId string `json:"universe_id"`
 }
 
-func (response PostRogerV1ProjectsProjectIdEnvironments200JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment200JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8908,9 +8903,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironments200JSONResponse) VisitPos
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments400JSONResponse ValidationError
+type CreateEnvironment400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdEnvironments400JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment400JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8922,9 +8917,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironments400JSONResponse) VisitPos
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments401JSONResponse AuthError
+type CreateEnvironment401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdEnvironments401JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment401JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8936,9 +8931,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironments401JSONResponse) VisitPos
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments403JSONResponse ForbiddenError
+type CreateEnvironment403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdEnvironments403JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment403JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8950,9 +8945,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironments403JSONResponse) VisitPos
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments404JSONResponse NotFoundError
+type CreateEnvironment404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdEnvironments404JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment404JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8964,9 +8959,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironments404JSONResponse) VisitPos
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironments500JSONResponse ServerError
+type CreateEnvironment500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdEnvironments500JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w http.ResponseWriter) error {
+func (response CreateEnvironment500JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -8978,16 +8973,16 @@ func (response PostRogerV1ProjectsProjectIdEnvironments500JSONResponse) VisitPos
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdRequestObject struct {
+type DeleteEnvironmentRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponseObject interface {
-	VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error
+type DeleteEnvironmentResponseObject interface {
+	VisitDeleteEnvironmentResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponse struct {
+type DeleteEnvironment200JSONResponse struct {
 	// CreatedAt The ISO timestamp at which the environment was created
 	CreatedAt time.Time `json:"created_at"`
 
@@ -9004,7 +8999,7 @@ type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponse stru
 	// Kind The kind of ressource the environment will manage (whole universe or single place)
 	//
 	// Example: universe
-	Kind DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponseBodyKind `json:"kind"`
+	Kind DeleteEnvironment200JSONResponseBodyKind `json:"kind"`
 
 	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
 	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
@@ -9023,7 +9018,7 @@ type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponse stru
 	UniverseId string `json:"universe_id"`
 }
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment200JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9035,9 +9030,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId200JSONRes
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId400JSONResponse ValidationError
+type DeleteEnvironment400JSONResponse ValidationError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId400JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment400JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9049,9 +9044,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId400JSONRes
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId401JSONResponse AuthError
+type DeleteEnvironment401JSONResponse AuthError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId401JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment401JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9063,9 +9058,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId401JSONRes
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId403JSONResponse ForbiddenError
+type DeleteEnvironment403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId403JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment403JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9077,9 +9072,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId403JSONRes
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId404JSONResponse NotFoundError
+type DeleteEnvironment404JSONResponse NotFoundError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId404JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment404JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9091,9 +9086,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId404JSONRes
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId500JSONResponse ServerError
+type DeleteEnvironment500JSONResponse ServerError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId500JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w http.ResponseWriter) error {
+func (response DeleteEnvironment500JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9105,18 +9100,18 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId500JSONRes
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject struct {
+type ListTargetsRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject interface {
-	VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error
+type ListTargetsResponseObject interface {
+	VisitListTargetsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse = GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody
+type ListTargets200JSONResponse = ListTargets200JSONResponseBody
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets200JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9128,9 +9123,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSO
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JSONResponse ValidationError
+type ListTargets400JSONResponse ValidationError
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets400JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9142,9 +9137,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JSO
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JSONResponse AuthError
+type ListTargets401JSONResponse AuthError
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets401JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9156,9 +9151,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JSO
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JSONResponse ForbiddenError
+type ListTargets403JSONResponse ForbiddenError
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets403JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9170,9 +9165,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JSO
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JSONResponse NotFoundError
+type ListTargets404JSONResponse NotFoundError
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets404JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9184,9 +9179,9 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JSO
 	return err
 }
 
-type GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JSONResponse ServerError
+type ListTargets500JSONResponse ServerError
 
-func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JSONResponse) VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response ListTargets500JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9198,19 +9193,19 @@ func (response GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JSO
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject struct {
+type CreateTargetRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
-	Body          *PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONRequestBody
+	Body          *CreateTargetJSONRequestBody
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject interface {
-	VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error
+type CreateTargetResponseObject interface {
+	VisitCreateTargetResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse = PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponseBody
+type CreateTarget200JSONResponse = CreateTarget200JSONResponseBody
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget200JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9222,9 +9217,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets200JS
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JSONResponse ValidationError
+type CreateTarget400JSONResponse ValidationError
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget400JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9236,9 +9231,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets400JS
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JSONResponse AuthError
+type CreateTarget401JSONResponse AuthError
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget401JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9250,9 +9245,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets401JS
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JSONResponse ForbiddenError
+type CreateTarget403JSONResponse ForbiddenError
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget403JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9264,9 +9259,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets403JS
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JSONResponse NotFoundError
+type CreateTarget404JSONResponse NotFoundError
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget404JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9278,9 +9273,9 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets404JS
 	return err
 }
 
-type PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JSONResponse ServerError
+type CreateTarget500JSONResponse ServerError
 
-func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JSONResponse) VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w http.ResponseWriter) error {
+func (response CreateTarget500JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9292,19 +9287,19 @@ func (response PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets500JS
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject struct {
+type DeleteTargetRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
 	Name          string `json:"name"`
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject interface {
-	VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error
+type DeleteTargetResponseObject interface {
+	VisitDeleteTargetResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponse = DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody
+type DeleteTarget200JSONResponse = DeleteTarget200JSONResponseBody
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget200JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9316,9 +9311,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName400JSONResponse ValidationError
+type DeleteTarget400JSONResponse ValidationError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName400JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget400JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9330,9 +9325,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName401JSONResponse AuthError
+type DeleteTarget401JSONResponse AuthError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName401JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget401JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9344,9 +9339,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName403JSONResponse ForbiddenError
+type DeleteTarget403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName403JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget403JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9358,9 +9353,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName404JSONResponse NotFoundError
+type DeleteTarget404JSONResponse NotFoundError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName404JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget404JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9372,9 +9367,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName409JSONResponse TargetError
+type DeleteTarget409JSONResponse TargetError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName409JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget409JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9386,9 +9381,9 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName500JSONResponse ServerError
+type DeleteTarget500JSONResponse ServerError
 
-func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName500JSONResponse) VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response DeleteTarget500JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9400,20 +9395,20 @@ func (response DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNam
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject struct {
+type ChangeTargetRessourceIdRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
 	Name          string `json:"name"`
-	Body          *PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONRequestBody
+	Body          *ChangeTargetRessourceIdJSONRequestBody
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject interface {
-	VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error
+type ChangeTargetRessourceIdResponseObject interface {
+	VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponse = PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponseBody
+type ChangeTargetRessourceId200JSONResponse = ChangeTargetRessourceId200JSONResponseBody
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName200JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId200JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9425,9 +9420,9 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName20
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName400JSONResponse ValidationError
+type ChangeTargetRessourceId400JSONResponse ValidationError
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName400JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId400JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9439,9 +9434,9 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName40
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName401JSONResponse AuthError
+type ChangeTargetRessourceId401JSONResponse AuthError
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName401JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId401JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9453,9 +9448,9 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName40
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName403JSONResponse ForbiddenError
+type ChangeTargetRessourceId403JSONResponse ForbiddenError
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName403JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId403JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9467,9 +9462,9 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName40
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName404JSONResponse NotFoundError
+type ChangeTargetRessourceId404JSONResponse NotFoundError
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName404JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId404JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9481,9 +9476,9 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName40
 	return err
 }
 
-type PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName500JSONResponse ServerError
+type ChangeTargetRessourceId500JSONResponse ServerError
 
-func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName500JSONResponse) VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w http.ResponseWriter) error {
+func (response ChangeTargetRessourceId500JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9495,16 +9490,16 @@ func (response PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName50
 	return err
 }
 
-type GetRogerV1StorageRequestObject struct {
+type ListStorageObjectsRequestObject struct {
 }
 
-type GetRogerV1StorageResponseObject interface {
-	VisitGetRogerV1StorageResponse(w http.ResponseWriter) error
+type ListStorageObjectsResponseObject interface {
+	VisitListStorageObjectsResponse(w http.ResponseWriter) error
 }
 
-type GetRogerV1Storage200JSONResponse []GetRogerV1Storage200JSONResponseBody_Item
+type ListStorageObjects200JSONResponse []ListStorageObjects200JSONResponseBody_Item
 
-func (response GetRogerV1Storage200JSONResponse) VisitGetRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response ListStorageObjects200JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9516,9 +9511,9 @@ func (response GetRogerV1Storage200JSONResponse) VisitGetRogerV1StorageResponse(
 	return err
 }
 
-type GetRogerV1Storage401JSONResponse AuthError
+type ListStorageObjects401JSONResponse AuthError
 
-func (response GetRogerV1Storage401JSONResponse) VisitGetRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response ListStorageObjects401JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9530,9 +9525,9 @@ func (response GetRogerV1Storage401JSONResponse) VisitGetRogerV1StorageResponse(
 	return err
 }
 
-type GetRogerV1Storage403JSONResponse ForbiddenError
+type ListStorageObjects403JSONResponse ForbiddenError
 
-func (response GetRogerV1Storage403JSONResponse) VisitGetRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response ListStorageObjects403JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9544,9 +9539,9 @@ func (response GetRogerV1Storage403JSONResponse) VisitGetRogerV1StorageResponse(
 	return err
 }
 
-type GetRogerV1Storage500JSONResponse ServerError
+type ListStorageObjects500JSONResponse ServerError
 
-func (response GetRogerV1Storage500JSONResponse) VisitGetRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response ListStorageObjects500JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9558,17 +9553,17 @@ func (response GetRogerV1Storage500JSONResponse) VisitGetRogerV1StorageResponse(
 	return err
 }
 
-type PostRogerV1StorageRequestObject struct {
-	Body *PostRogerV1StorageJSONRequestBody
+type CreateStorageObjectRequestObject struct {
+	Body *CreateStorageObjectJSONRequestBody
 }
 
-type PostRogerV1StorageResponseObject interface {
-	VisitPostRogerV1StorageResponse(w http.ResponseWriter) error
+type CreateStorageObjectResponseObject interface {
+	VisitCreateStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1Storage200JSONResponse = PostRogerV1Storage200JSONResponseBody
+type CreateStorageObject200JSONResponse = CreateStorageObject200JSONResponseBody
 
-func (response PostRogerV1Storage200JSONResponse) VisitPostRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response CreateStorageObject200JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9580,9 +9575,9 @@ func (response PostRogerV1Storage200JSONResponse) VisitPostRogerV1StorageRespons
 	return err
 }
 
-type PostRogerV1Storage400JSONResponse = PostRogerV1Storage400JSONResponseBody
+type CreateStorageObject400JSONResponse = CreateStorageObject400JSONResponseBody
 
-func (response PostRogerV1Storage400JSONResponse) VisitPostRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response CreateStorageObject400JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9594,9 +9589,9 @@ func (response PostRogerV1Storage400JSONResponse) VisitPostRogerV1StorageRespons
 	return err
 }
 
-type PostRogerV1Storage401JSONResponse AuthError
+type CreateStorageObject401JSONResponse AuthError
 
-func (response PostRogerV1Storage401JSONResponse) VisitPostRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response CreateStorageObject401JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9608,9 +9603,9 @@ func (response PostRogerV1Storage401JSONResponse) VisitPostRogerV1StorageRespons
 	return err
 }
 
-type PostRogerV1Storage403JSONResponse ForbiddenError
+type CreateStorageObject403JSONResponse ForbiddenError
 
-func (response PostRogerV1Storage403JSONResponse) VisitPostRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response CreateStorageObject403JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9622,9 +9617,9 @@ func (response PostRogerV1Storage403JSONResponse) VisitPostRogerV1StorageRespons
 	return err
 }
 
-type PostRogerV1Storage500JSONResponse ServerError
+type CreateStorageObject500JSONResponse ServerError
 
-func (response PostRogerV1Storage500JSONResponse) VisitPostRogerV1StorageResponse(w http.ResponseWriter) error {
+func (response CreateStorageObject500JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9636,17 +9631,17 @@ func (response PostRogerV1Storage500JSONResponse) VisitPostRogerV1StorageRespons
 	return err
 }
 
-type DeleteRogerV1StorageStorageIdRequestObject struct {
+type DeleteStorageObjectRequestObject struct {
 	StorageId string `json:"storageId"`
 }
 
-type DeleteRogerV1StorageStorageIdResponseObject interface {
-	VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error
+type DeleteStorageObjectResponseObject interface {
+	VisitDeleteStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type DeleteRogerV1StorageStorageId200JSONResponse = DeleteRogerV1StorageStorageId200JSONResponseBody
+type DeleteStorageObject200JSONResponse = DeleteStorageObject200JSONResponseBody
 
-func (response DeleteRogerV1StorageStorageId200JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject200JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9658,9 +9653,9 @@ func (response DeleteRogerV1StorageStorageId200JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId400JSONResponse ValidationError
+type DeleteStorageObject400JSONResponse ValidationError
 
-func (response DeleteRogerV1StorageStorageId400JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject400JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9672,9 +9667,9 @@ func (response DeleteRogerV1StorageStorageId400JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId401JSONResponse AuthError
+type DeleteStorageObject401JSONResponse AuthError
 
-func (response DeleteRogerV1StorageStorageId401JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject401JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9686,9 +9681,9 @@ func (response DeleteRogerV1StorageStorageId401JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId403JSONResponse ForbiddenError
+type DeleteStorageObject403JSONResponse ForbiddenError
 
-func (response DeleteRogerV1StorageStorageId403JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject403JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9700,9 +9695,9 @@ func (response DeleteRogerV1StorageStorageId403JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId404JSONResponse NotFoundError
+type DeleteStorageObject404JSONResponse NotFoundError
 
-func (response DeleteRogerV1StorageStorageId404JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject404JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9714,9 +9709,9 @@ func (response DeleteRogerV1StorageStorageId404JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId409JSONResponse StorageError
+type DeleteStorageObject409JSONResponse StorageError
 
-func (response DeleteRogerV1StorageStorageId409JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject409JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9728,9 +9723,9 @@ func (response DeleteRogerV1StorageStorageId409JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type DeleteRogerV1StorageStorageId500JSONResponse ServerError
+type DeleteStorageObject500JSONResponse ServerError
 
-func (response DeleteRogerV1StorageStorageId500JSONResponse) VisitDeleteRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response DeleteStorageObject500JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9742,18 +9737,18 @@ func (response DeleteRogerV1StorageStorageId500JSONResponse) VisitDeleteRogerV1S
 	return err
 }
 
-type PutRogerV1StorageStorageIdRequestObject struct {
+type RenameStorageObjectRequestObject struct {
 	StorageId string `json:"storageId"`
-	Body      *PutRogerV1StorageStorageIdJSONRequestBody
+	Body      *RenameStorageObjectJSONRequestBody
 }
 
-type PutRogerV1StorageStorageIdResponseObject interface {
-	VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error
+type RenameStorageObjectResponseObject interface {
+	VisitRenameStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type PutRogerV1StorageStorageId200JSONResponse = PutRogerV1StorageStorageId200JSONResponseBody
+type RenameStorageObject200JSONResponse = RenameStorageObject200JSONResponseBody
 
-func (response PutRogerV1StorageStorageId200JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject200JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9765,9 +9760,9 @@ func (response PutRogerV1StorageStorageId200JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PutRogerV1StorageStorageId400JSONResponse ValidationError
+type RenameStorageObject400JSONResponse ValidationError
 
-func (response PutRogerV1StorageStorageId400JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject400JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9779,9 +9774,9 @@ func (response PutRogerV1StorageStorageId400JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PutRogerV1StorageStorageId401JSONResponse AuthError
+type RenameStorageObject401JSONResponse AuthError
 
-func (response PutRogerV1StorageStorageId401JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject401JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9793,9 +9788,9 @@ func (response PutRogerV1StorageStorageId401JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PutRogerV1StorageStorageId403JSONResponse ForbiddenError
+type RenameStorageObject403JSONResponse ForbiddenError
 
-func (response PutRogerV1StorageStorageId403JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject403JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9807,9 +9802,9 @@ func (response PutRogerV1StorageStorageId403JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PutRogerV1StorageStorageId404JSONResponse NotFoundError
+type RenameStorageObject404JSONResponse NotFoundError
 
-func (response PutRogerV1StorageStorageId404JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject404JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9821,9 +9816,9 @@ func (response PutRogerV1StorageStorageId404JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PutRogerV1StorageStorageId500JSONResponse ServerError
+type RenameStorageObject500JSONResponse ServerError
 
-func (response PutRogerV1StorageStorageId500JSONResponse) VisitPutRogerV1StorageStorageIdResponse(w http.ResponseWriter) error {
+func (response RenameStorageObject500JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9835,18 +9830,18 @@ func (response PutRogerV1StorageStorageId500JSONResponse) VisitPutRogerV1Storage
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotateRequestObject struct {
+type RotateStorageObjectRequestObject struct {
 	StorageId string `json:"storageId"`
-	Body      *PostRogerV1StorageStorageIdRotateJSONRequestBody
+	Body      *RotateStorageObjectJSONRequestBody
 }
 
-type PostRogerV1StorageStorageIdRotateResponseObject interface {
-	VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error
+type RotateStorageObjectResponseObject interface {
+	VisitRotateStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type PostRogerV1StorageStorageIdRotate200JSONResponse = PostRogerV1StorageStorageIdRotate200JSONResponseBody
+type RotateStorageObject200JSONResponse = RotateStorageObject200JSONResponseBody
 
-func (response PostRogerV1StorageStorageIdRotate200JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject200JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9858,9 +9853,9 @@ func (response PostRogerV1StorageStorageIdRotate200JSONResponse) VisitPostRogerV
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotate400JSONResponse = PostRogerV1StorageStorageIdRotate400JSONResponseBody
+type RotateStorageObject400JSONResponse = RotateStorageObject400JSONResponseBody
 
-func (response PostRogerV1StorageStorageIdRotate400JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject400JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
@@ -9872,9 +9867,9 @@ func (response PostRogerV1StorageStorageIdRotate400JSONResponse) VisitPostRogerV
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotate401JSONResponse AuthError
+type RotateStorageObject401JSONResponse AuthError
 
-func (response PostRogerV1StorageStorageIdRotate401JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject401JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9886,9 +9881,9 @@ func (response PostRogerV1StorageStorageIdRotate401JSONResponse) VisitPostRogerV
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotate403JSONResponse ForbiddenError
+type RotateStorageObject403JSONResponse ForbiddenError
 
-func (response PostRogerV1StorageStorageIdRotate403JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject403JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9900,9 +9895,9 @@ func (response PostRogerV1StorageStorageIdRotate403JSONResponse) VisitPostRogerV
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotate404JSONResponse NotFoundError
+type RotateStorageObject404JSONResponse NotFoundError
 
-func (response PostRogerV1StorageStorageIdRotate404JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject404JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9914,9 +9909,9 @@ func (response PostRogerV1StorageStorageIdRotate404JSONResponse) VisitPostRogerV
 	return err
 }
 
-type PostRogerV1StorageStorageIdRotate500JSONResponse ServerError
+type RotateStorageObject500JSONResponse ServerError
 
-func (response PostRogerV1StorageStorageIdRotate500JSONResponse) VisitPostRogerV1StorageStorageIdRotateResponse(w http.ResponseWriter) error {
+func (response RotateStorageObject500JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9928,14 +9923,14 @@ func (response PostRogerV1StorageStorageIdRotate500JSONResponse) VisitPostRogerV
 	return err
 }
 
-type GetRogerVersionRequestObject struct {
+type GetVersionRequestObject struct {
 }
 
-type GetRogerVersionResponseObject interface {
-	VisitGetRogerVersionResponse(w http.ResponseWriter) error
+type GetVersionResponseObject interface {
+	VisitGetVersionResponse(w http.ResponseWriter) error
 }
 
-type GetRogerVersion200JSONResponse struct {
+type GetVersion200JSONResponse struct {
 	// Name The node's name
 	//
 	// Example: My Roger Node
@@ -9957,7 +9952,7 @@ type GetRogerVersion200JSONResponse struct {
 	SupportedVersions []string `json:"supported_versions"`
 }
 
-func (response GetRogerVersion200JSONResponse) VisitGetRogerVersionResponse(w http.ResponseWriter) error {
+func (response GetVersion200JSONResponse) VisitGetVersionResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -9971,108 +9966,108 @@ func (response GetRogerVersion200JSONResponse) VisitGetRogerVersionResponse(w ht
 
 // StrictServerInterface represents all server handlers.
 type StrictServerInterface interface {
-	// GetRogerV1AuthOauth Initiate OAuth Login
+	// InitiateOAuthLogin Initiate OAuth Login
 	// (GET /_roger/v1/auth/oauth)
-	GetRogerV1AuthOauth(ctx context.Context, request GetRogerV1AuthOauthRequestObject) (GetRogerV1AuthOauthResponseObject, error)
-	// PostRogerV1AuthRevoke Revoke a Token
+	InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLoginRequestObject) (InitiateOAuthLoginResponseObject, error)
+	// RevokeToken Revoke a Token
 	// (POST /_roger/v1/auth/revoke)
-	PostRogerV1AuthRevoke(ctx context.Context, request PostRogerV1AuthRevokeRequestObject) (PostRogerV1AuthRevokeResponseObject, error)
-	// DeleteRogerV1AuthSessions Revoke Every Other Sessions
+	RevokeToken(ctx context.Context, request RevokeTokenRequestObject) (RevokeTokenResponseObject, error)
+	// RevokeOtherSessions Revoke Every Other Sessions
 	// (DELETE /_roger/v1/auth/sessions)
-	DeleteRogerV1AuthSessions(ctx context.Context, request DeleteRogerV1AuthSessionsRequestObject) (DeleteRogerV1AuthSessionsResponseObject, error)
-	// GetRogerV1AuthSessions List Active Sessions
+	RevokeOtherSessions(ctx context.Context, request RevokeOtherSessionsRequestObject) (RevokeOtherSessionsResponseObject, error)
+	// ListSessions List Active Sessions
 	// (GET /_roger/v1/auth/sessions)
-	GetRogerV1AuthSessions(ctx context.Context, request GetRogerV1AuthSessionsRequestObject) (GetRogerV1AuthSessionsResponseObject, error)
-	// DeleteRogerV1AuthSessionsSessionId Revoke a Session
+	ListSessions(ctx context.Context, request ListSessionsRequestObject) (ListSessionsResponseObject, error)
+	// RevokeSession Revoke a Session
 	// (DELETE /_roger/v1/auth/sessions/{sessionId})
-	DeleteRogerV1AuthSessionsSessionId(ctx context.Context, request DeleteRogerV1AuthSessionsSessionIdRequestObject) (DeleteRogerV1AuthSessionsSessionIdResponseObject, error)
-	// PostRogerV1AuthToken Obtain or Refresh Access Token
+	RevokeSession(ctx context.Context, request RevokeSessionRequestObject) (RevokeSessionResponseObject, error)
+	// ExchangeToken Obtain or Refresh Access Token
 	// (POST /_roger/v1/auth/token)
-	PostRogerV1AuthToken(ctx context.Context, request PostRogerV1AuthTokenRequestObject) (PostRogerV1AuthTokenResponseObject, error)
-	// GetRogerV1Features Get Node Features
+	ExchangeToken(ctx context.Context, request ExchangeTokenRequestObject) (ExchangeTokenResponseObject, error)
+	// GetFeatures Get Node Features
 	// (GET /_roger/v1/features)
-	GetRogerV1Features(ctx context.Context, request GetRogerV1FeaturesRequestObject) (GetRogerV1FeaturesResponseObject, error)
-	// GetRogerV1Projects Get All Projects
+	GetFeatures(ctx context.Context, request GetFeaturesRequestObject) (GetFeaturesResponseObject, error)
+	// ListProjects List Projects
 	// (GET /_roger/v1/projects)
-	GetRogerV1Projects(ctx context.Context, request GetRogerV1ProjectsRequestObject) (GetRogerV1ProjectsResponseObject, error)
-	// PostRogerV1Projects Create A Project
+	ListProjects(ctx context.Context, request ListProjectsRequestObject) (ListProjectsResponseObject, error)
+	// CreateProject Create A Project
 	// (POST /_roger/v1/projects)
-	PostRogerV1Projects(ctx context.Context, request PostRogerV1ProjectsRequestObject) (PostRogerV1ProjectsResponseObject, error)
-	// DeleteRogerV1ProjectsProjectId Delete a Project
+	CreateProject(ctx context.Context, request CreateProjectRequestObject) (CreateProjectResponseObject, error)
+	// DeleteProject Delete a Project
 	// (DELETE /_roger/v1/projects/{projectId})
-	DeleteRogerV1ProjectsProjectId(ctx context.Context, request DeleteRogerV1ProjectsProjectIdRequestObject) (DeleteRogerV1ProjectsProjectIdResponseObject, error)
-	// PutRogerV1ProjectsProjectId Rename a Project
+	DeleteProject(ctx context.Context, request DeleteProjectRequestObject) (DeleteProjectResponseObject, error)
+	// RenameProject Rename a Project
 	// (PUT /_roger/v1/projects/{projectId})
-	PutRogerV1ProjectsProjectId(ctx context.Context, request PutRogerV1ProjectsProjectIdRequestObject) (PutRogerV1ProjectsProjectIdResponseObject, error)
-	// PostRogerV1ProjectsProjectIdArtifactsCheck Check Artifact is Already Stored
+	RenameProject(ctx context.Context, request RenameProjectRequestObject) (RenameProjectResponseObject, error)
+	// CheckArtifacts Check Artifact is Already Stored
 	// (POST /_roger/v1/projects/{projectId}/artifacts/check)
-	PostRogerV1ProjectsProjectIdArtifactsCheck(ctx context.Context, request PostRogerV1ProjectsProjectIdArtifactsCheckRequestObject) (PostRogerV1ProjectsProjectIdArtifactsCheckResponseObject, error)
-	// GetRogerV1ProjectsProjectIdCredentials List every Credentials
+	CheckArtifacts(ctx context.Context, request CheckArtifactsRequestObject) (CheckArtifactsResponseObject, error)
+	// ListCredentials List every Credentials
 	// (GET /_roger/v1/projects/{projectId}/credentials)
-	GetRogerV1ProjectsProjectIdCredentials(ctx context.Context, request GetRogerV1ProjectsProjectIdCredentialsRequestObject) (GetRogerV1ProjectsProjectIdCredentialsResponseObject, error)
-	// PostRogerV1ProjectsProjectIdCredentials Register a Credential
+	ListCredentials(ctx context.Context, request ListCredentialsRequestObject) (ListCredentialsResponseObject, error)
+	// CreateCredential Create a Credential
 	// (POST /_roger/v1/projects/{projectId}/credentials)
-	PostRogerV1ProjectsProjectIdCredentials(ctx context.Context, request PostRogerV1ProjectsProjectIdCredentialsRequestObject) (PostRogerV1ProjectsProjectIdCredentialsResponseObject, error)
-	// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId Delete a Credential
+	CreateCredential(ctx context.Context, request CreateCredentialRequestObject) (CreateCredentialResponseObject, error)
+	// DeleteCredential Delete a Credential
 	// (DELETE /_roger/v1/projects/{projectId}/credentials/{credentialId})
-	DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(ctx context.Context, request DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject) (DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject, error)
-	// PutRogerV1ProjectsProjectIdCredentialsCredentialId Rename a Credential
+	DeleteCredential(ctx context.Context, request DeleteCredentialRequestObject) (DeleteCredentialResponseObject, error)
+	// RenameCredential Rename a Credential
 	// (PUT /_roger/v1/projects/{projectId}/credentials/{credentialId})
-	PutRogerV1ProjectsProjectIdCredentialsCredentialId(ctx context.Context, request PutRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject) (PutRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject, error)
-	// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate Rotate a Credential
+	RenameCredential(ctx context.Context, request RenameCredentialRequestObject) (RenameCredentialResponseObject, error)
+	// RotateCredential Rotate a Credential
 	// (POST /_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate)
-	PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(ctx context.Context, request PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateRequestObject) (PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponseObject, error)
-	// GetRogerV1ProjectsProjectIdDeployments List Deployments
+	RotateCredential(ctx context.Context, request RotateCredentialRequestObject) (RotateCredentialResponseObject, error)
+	// ListDeployments List Deployments
 	// (GET /_roger/v1/projects/{projectId}/deployments)
-	GetRogerV1ProjectsProjectIdDeployments(ctx context.Context, request GetRogerV1ProjectsProjectIdDeploymentsRequestObject) (GetRogerV1ProjectsProjectIdDeploymentsResponseObject, error)
-	// PostRogerV1ProjectsProjectIdDeployments Create a Deployment
+	ListDeployments(ctx context.Context, request ListDeploymentsRequestObject) (ListDeploymentsResponseObject, error)
+	// CreateDeployment Create a Deployment
 	// (POST /_roger/v1/projects/{projectId}/deployments)
-	PostRogerV1ProjectsProjectIdDeployments(ctx context.Context, request PostRogerV1ProjectsProjectIdDeploymentsRequestObject) (PostRogerV1ProjectsProjectIdDeploymentsResponseObject, error)
-	// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId Delete a Deployment
+	CreateDeployment(ctx context.Context, request CreateDeploymentRequestObject) (CreateDeploymentResponseObject, error)
+	// DeleteDeployment Delete a Deployment
 	// (DELETE /_roger/v1/projects/{projectId}/deployments/{deploymentId})
-	DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(ctx context.Context, request DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdRequestObject) (DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponseObject, error)
-	// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy Deploy a Staged Deployment
+	DeleteDeployment(ctx context.Context, request DeleteDeploymentRequestObject) (DeleteDeploymentResponseObject, error)
+	// TriggerDeployment Trigger a Staged Deployment
 	// (POST /_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy)
-	PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(ctx context.Context, request PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployRequestObject) (PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponseObject, error)
-	// GetRogerV1ProjectsProjectIdEnvironments Get All Environments
+	TriggerDeployment(ctx context.Context, request TriggerDeploymentRequestObject) (TriggerDeploymentResponseObject, error)
+	// ListEnvironments List Environments
 	// (GET /_roger/v1/projects/{projectId}/environments)
-	GetRogerV1ProjectsProjectIdEnvironments(ctx context.Context, request GetRogerV1ProjectsProjectIdEnvironmentsRequestObject) (GetRogerV1ProjectsProjectIdEnvironmentsResponseObject, error)
-	// PostRogerV1ProjectsProjectIdEnvironments Create a new Environment
+	ListEnvironments(ctx context.Context, request ListEnvironmentsRequestObject) (ListEnvironmentsResponseObject, error)
+	// CreateEnvironment Create a new Environment
 	// (POST /_roger/v1/projects/{projectId}/environments)
-	PostRogerV1ProjectsProjectIdEnvironments(ctx context.Context, request PostRogerV1ProjectsProjectIdEnvironmentsRequestObject) (PostRogerV1ProjectsProjectIdEnvironmentsResponseObject, error)
-	// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId Delete an Environment
+	CreateEnvironment(ctx context.Context, request CreateEnvironmentRequestObject) (CreateEnvironmentResponseObject, error)
+	// DeleteEnvironment Delete an Environment
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId})
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(ctx context.Context, request DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdRequestObject) (DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponseObject, error)
-	// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Fetch Targets
+	DeleteEnvironment(ctx context.Context, request DeleteEnvironmentRequestObject) (DeleteEnvironmentResponseObject, error)
+	// ListTargets List Targets
 	// (GET /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-	GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(ctx context.Context, request GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject) (GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject, error)
-	// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets Create Target
+	ListTargets(ctx context.Context, request ListTargetsRequestObject) (ListTargetsResponseObject, error)
+	// CreateTarget Create Target
 	// (POST /_roger/v1/projects/{projectId}/environments/{environmentId}/targets)
-	PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(ctx context.Context, request PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject) (PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject, error)
-	// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Delete Target
+	CreateTarget(ctx context.Context, request CreateTargetRequestObject) (CreateTargetResponseObject, error)
+	// DeleteTarget Delete Target
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(ctx context.Context, request DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject) (DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject, error)
-	// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName Edit Target Ressource ID
+	DeleteTarget(ctx context.Context, request DeleteTargetRequestObject) (DeleteTargetResponseObject, error)
+	// ChangeTargetRessourceId Edit Target Ressource ID
 	// (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(ctx context.Context, request PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject) (PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject, error)
-	// GetRogerV1Storage Fetch Storage Objects
+	ChangeTargetRessourceId(ctx context.Context, request ChangeTargetRessourceIdRequestObject) (ChangeTargetRessourceIdResponseObject, error)
+	// ListStorageObjects List Storage Objects
 	// (GET /_roger/v1/storage)
-	GetRogerV1Storage(ctx context.Context, request GetRogerV1StorageRequestObject) (GetRogerV1StorageResponseObject, error)
-	// PostRogerV1Storage Link a Storage Object
+	ListStorageObjects(ctx context.Context, request ListStorageObjectsRequestObject) (ListStorageObjectsResponseObject, error)
+	// CreateStorageObject Create a Storage Object
 	// (POST /_roger/v1/storage)
-	PostRogerV1Storage(ctx context.Context, request PostRogerV1StorageRequestObject) (PostRogerV1StorageResponseObject, error)
-	// DeleteRogerV1StorageStorageId Delete a Storage Object
+	CreateStorageObject(ctx context.Context, request CreateStorageObjectRequestObject) (CreateStorageObjectResponseObject, error)
+	// DeleteStorageObject Delete a Storage Object
 	// (DELETE /_roger/v1/storage/{storageId})
-	DeleteRogerV1StorageStorageId(ctx context.Context, request DeleteRogerV1StorageStorageIdRequestObject) (DeleteRogerV1StorageStorageIdResponseObject, error)
-	// PutRogerV1StorageStorageId Rename a Storage Object
+	DeleteStorageObject(ctx context.Context, request DeleteStorageObjectRequestObject) (DeleteStorageObjectResponseObject, error)
+	// RenameStorageObject Rename a Storage Object
 	// (PUT /_roger/v1/storage/{storageId})
-	PutRogerV1StorageStorageId(ctx context.Context, request PutRogerV1StorageStorageIdRequestObject) (PutRogerV1StorageStorageIdResponseObject, error)
-	// PostRogerV1StorageStorageIdRotate Rotate a Storage Object
+	RenameStorageObject(ctx context.Context, request RenameStorageObjectRequestObject) (RenameStorageObjectResponseObject, error)
+	// RotateStorageObject Rotate a Storage Object
 	// (POST /_roger/v1/storage/{storageId}/rotate)
-	PostRogerV1StorageStorageIdRotate(ctx context.Context, request PostRogerV1StorageStorageIdRotateRequestObject) (PostRogerV1StorageStorageIdRotateResponseObject, error)
-	// GetRogerVersion Get Node Information
+	RotateStorageObject(ctx context.Context, request RotateStorageObjectRequestObject) (RotateStorageObjectResponseObject, error)
+	// GetVersion Get Node Information
 	// (GET /_roger/version)
-	GetRogerVersion(ctx context.Context, request GetRogerVersionRequestObject) (GetRogerVersionResponseObject, error)
+	GetVersion(ctx context.Context, request GetVersionRequestObject) (GetVersionResponseObject, error)
 }
 
 type StrictHandlerFunc func(ctx context.Context, w http.ResponseWriter, r *http.Request, request any) (any, error)
@@ -10114,25 +10109,25 @@ type strictHandler struct {
 	options     StrictHTTPServerOptions
 }
 
-// GetRogerV1AuthOauth operation middleware
-func (sh *strictHandler) GetRogerV1AuthOauth(w http.ResponseWriter, r *http.Request, params GetRogerV1AuthOauthParams) {
-	var request GetRogerV1AuthOauthRequestObject
+// InitiateOAuthLogin operation middleware
+func (sh *strictHandler) InitiateOAuthLogin(w http.ResponseWriter, r *http.Request, params InitiateOAuthLoginParams) {
+	var request InitiateOAuthLoginRequestObject
 
 	request.Params = params
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1AuthOauth(ctx, request.(GetRogerV1AuthOauthRequestObject))
+		return sh.ssi.InitiateOAuthLogin(ctx, request.(InitiateOAuthLoginRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1AuthOauth")
+		handler = middleware(handler, "InitiateOAuthLogin")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1AuthOauthResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1AuthOauthResponse(w); err != nil {
+	} else if validResponse, ok := response.(InitiateOAuthLoginResponseObject); ok {
+		if err := validResponse.VisitInitiateOAuthLoginResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10140,11 +10135,11 @@ func (sh *strictHandler) GetRogerV1AuthOauth(w http.ResponseWriter, r *http.Requ
 	}
 }
 
-// PostRogerV1AuthRevoke operation middleware
-func (sh *strictHandler) PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Request) {
-	var request PostRogerV1AuthRevokeRequestObject
+// RevokeToken operation middleware
+func (sh *strictHandler) RevokeToken(w http.ResponseWriter, r *http.Request) {
+	var request RevokeTokenRequestObject
 
-	var body PostRogerV1AuthRevokeJSONRequestBody
+	var body RevokeTokenJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10155,18 +10150,18 @@ func (sh *strictHandler) PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Re
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1AuthRevoke(ctx, request.(PostRogerV1AuthRevokeRequestObject))
+		return sh.ssi.RevokeToken(ctx, request.(RevokeTokenRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1AuthRevoke")
+		handler = middleware(handler, "RevokeToken")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1AuthRevokeResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1AuthRevokeResponse(w); err != nil {
+	} else if validResponse, ok := response.(RevokeTokenResponseObject); ok {
+		if err := validResponse.VisitRevokeTokenResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10174,23 +10169,23 @@ func (sh *strictHandler) PostRogerV1AuthRevoke(w http.ResponseWriter, r *http.Re
 	}
 }
 
-// DeleteRogerV1AuthSessions operation middleware
-func (sh *strictHandler) DeleteRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
-	var request DeleteRogerV1AuthSessionsRequestObject
+// RevokeOtherSessions operation middleware
+func (sh *strictHandler) RevokeOtherSessions(w http.ResponseWriter, r *http.Request) {
+	var request RevokeOtherSessionsRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1AuthSessions(ctx, request.(DeleteRogerV1AuthSessionsRequestObject))
+		return sh.ssi.RevokeOtherSessions(ctx, request.(RevokeOtherSessionsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1AuthSessions")
+		handler = middleware(handler, "RevokeOtherSessions")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1AuthSessionsResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1AuthSessionsResponse(w); err != nil {
+	} else if validResponse, ok := response.(RevokeOtherSessionsResponseObject); ok {
+		if err := validResponse.VisitRevokeOtherSessionsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10198,23 +10193,23 @@ func (sh *strictHandler) DeleteRogerV1AuthSessions(w http.ResponseWriter, r *htt
 	}
 }
 
-// GetRogerV1AuthSessions operation middleware
-func (sh *strictHandler) GetRogerV1AuthSessions(w http.ResponseWriter, r *http.Request) {
-	var request GetRogerV1AuthSessionsRequestObject
+// ListSessions operation middleware
+func (sh *strictHandler) ListSessions(w http.ResponseWriter, r *http.Request) {
+	var request ListSessionsRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1AuthSessions(ctx, request.(GetRogerV1AuthSessionsRequestObject))
+		return sh.ssi.ListSessions(ctx, request.(ListSessionsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1AuthSessions")
+		handler = middleware(handler, "ListSessions")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1AuthSessionsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1AuthSessionsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListSessionsResponseObject); ok {
+		if err := validResponse.VisitListSessionsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10222,25 +10217,25 @@ func (sh *strictHandler) GetRogerV1AuthSessions(w http.ResponseWriter, r *http.R
 	}
 }
 
-// DeleteRogerV1AuthSessionsSessionId operation middleware
-func (sh *strictHandler) DeleteRogerV1AuthSessionsSessionId(w http.ResponseWriter, r *http.Request, sessionId string) {
-	var request DeleteRogerV1AuthSessionsSessionIdRequestObject
+// RevokeSession operation middleware
+func (sh *strictHandler) RevokeSession(w http.ResponseWriter, r *http.Request, sessionId string) {
+	var request RevokeSessionRequestObject
 
 	request.SessionId = sessionId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1AuthSessionsSessionId(ctx, request.(DeleteRogerV1AuthSessionsSessionIdRequestObject))
+		return sh.ssi.RevokeSession(ctx, request.(RevokeSessionRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1AuthSessionsSessionId")
+		handler = middleware(handler, "RevokeSession")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1AuthSessionsSessionIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1AuthSessionsSessionIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(RevokeSessionResponseObject); ok {
+		if err := validResponse.VisitRevokeSessionResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10248,11 +10243,11 @@ func (sh *strictHandler) DeleteRogerV1AuthSessionsSessionId(w http.ResponseWrite
 	}
 }
 
-// PostRogerV1AuthToken operation middleware
-func (sh *strictHandler) PostRogerV1AuthToken(w http.ResponseWriter, r *http.Request) {
-	var request PostRogerV1AuthTokenRequestObject
+// ExchangeToken operation middleware
+func (sh *strictHandler) ExchangeToken(w http.ResponseWriter, r *http.Request) {
+	var request ExchangeTokenRequestObject
 
-	var body PostRogerV1AuthTokenJSONRequestBody
+	var body ExchangeTokenJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10263,18 +10258,18 @@ func (sh *strictHandler) PostRogerV1AuthToken(w http.ResponseWriter, r *http.Req
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1AuthToken(ctx, request.(PostRogerV1AuthTokenRequestObject))
+		return sh.ssi.ExchangeToken(ctx, request.(ExchangeTokenRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1AuthToken")
+		handler = middleware(handler, "ExchangeToken")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1AuthTokenResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1AuthTokenResponse(w); err != nil {
+	} else if validResponse, ok := response.(ExchangeTokenResponseObject); ok {
+		if err := validResponse.VisitExchangeTokenResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10282,23 +10277,23 @@ func (sh *strictHandler) PostRogerV1AuthToken(w http.ResponseWriter, r *http.Req
 	}
 }
 
-// GetRogerV1Features operation middleware
-func (sh *strictHandler) GetRogerV1Features(w http.ResponseWriter, r *http.Request) {
-	var request GetRogerV1FeaturesRequestObject
+// GetFeatures operation middleware
+func (sh *strictHandler) GetFeatures(w http.ResponseWriter, r *http.Request) {
+	var request GetFeaturesRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1Features(ctx, request.(GetRogerV1FeaturesRequestObject))
+		return sh.ssi.GetFeatures(ctx, request.(GetFeaturesRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1Features")
+		handler = middleware(handler, "GetFeatures")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1FeaturesResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1FeaturesResponse(w); err != nil {
+	} else if validResponse, ok := response.(GetFeaturesResponseObject); ok {
+		if err := validResponse.VisitGetFeaturesResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10306,23 +10301,23 @@ func (sh *strictHandler) GetRogerV1Features(w http.ResponseWriter, r *http.Reque
 	}
 }
 
-// GetRogerV1Projects operation middleware
-func (sh *strictHandler) GetRogerV1Projects(w http.ResponseWriter, r *http.Request) {
-	var request GetRogerV1ProjectsRequestObject
+// ListProjects operation middleware
+func (sh *strictHandler) ListProjects(w http.ResponseWriter, r *http.Request) {
+	var request ListProjectsRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1Projects(ctx, request.(GetRogerV1ProjectsRequestObject))
+		return sh.ssi.ListProjects(ctx, request.(ListProjectsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1Projects")
+		handler = middleware(handler, "ListProjects")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1ProjectsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1ProjectsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListProjectsResponseObject); ok {
+		if err := validResponse.VisitListProjectsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10330,11 +10325,11 @@ func (sh *strictHandler) GetRogerV1Projects(w http.ResponseWriter, r *http.Reque
 	}
 }
 
-// PostRogerV1Projects operation middleware
-func (sh *strictHandler) PostRogerV1Projects(w http.ResponseWriter, r *http.Request) {
-	var request PostRogerV1ProjectsRequestObject
+// CreateProject operation middleware
+func (sh *strictHandler) CreateProject(w http.ResponseWriter, r *http.Request) {
+	var request CreateProjectRequestObject
 
-	var body PostRogerV1ProjectsJSONRequestBody
+	var body CreateProjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10345,18 +10340,18 @@ func (sh *strictHandler) PostRogerV1Projects(w http.ResponseWriter, r *http.Requ
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1Projects(ctx, request.(PostRogerV1ProjectsRequestObject))
+		return sh.ssi.CreateProject(ctx, request.(CreateProjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1Projects")
+		handler = middleware(handler, "CreateProject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateProjectResponseObject); ok {
+		if err := validResponse.VisitCreateProjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10364,25 +10359,25 @@ func (sh *strictHandler) PostRogerV1Projects(w http.ResponseWriter, r *http.Requ
 	}
 }
 
-// DeleteRogerV1ProjectsProjectId operation middleware
-func (sh *strictHandler) DeleteRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request DeleteRogerV1ProjectsProjectIdRequestObject
+// DeleteProject operation middleware
+func (sh *strictHandler) DeleteProject(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request DeleteProjectRequestObject
 
 	request.ProjectId = projectId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1ProjectsProjectId(ctx, request.(DeleteRogerV1ProjectsProjectIdRequestObject))
+		return sh.ssi.DeleteProject(ctx, request.(DeleteProjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1ProjectsProjectId")
+		handler = middleware(handler, "DeleteProject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1ProjectsProjectIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1ProjectsProjectIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteProjectResponseObject); ok {
+		if err := validResponse.VisitDeleteProjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10390,13 +10385,13 @@ func (sh *strictHandler) DeleteRogerV1ProjectsProjectId(w http.ResponseWriter, r
 	}
 }
 
-// PutRogerV1ProjectsProjectId operation middleware
-func (sh *strictHandler) PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request PutRogerV1ProjectsProjectIdRequestObject
+// RenameProject operation middleware
+func (sh *strictHandler) RenameProject(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request RenameProjectRequestObject
 
 	request.ProjectId = projectId
 
-	var body PutRogerV1ProjectsProjectIdJSONRequestBody
+	var body RenameProjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10407,18 +10402,18 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *h
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PutRogerV1ProjectsProjectId(ctx, request.(PutRogerV1ProjectsProjectIdRequestObject))
+		return sh.ssi.RenameProject(ctx, request.(RenameProjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PutRogerV1ProjectsProjectId")
+		handler = middleware(handler, "RenameProject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PutRogerV1ProjectsProjectIdResponseObject); ok {
-		if err := validResponse.VisitPutRogerV1ProjectsProjectIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(RenameProjectResponseObject); ok {
+		if err := validResponse.VisitRenameProjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10426,13 +10421,13 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectId(w http.ResponseWriter, r *h
 	}
 }
 
-// PostRogerV1ProjectsProjectIdArtifactsCheck operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdArtifactsCheck(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request PostRogerV1ProjectsProjectIdArtifactsCheckRequestObject
+// CheckArtifacts operation middleware
+func (sh *strictHandler) CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request CheckArtifactsRequestObject
 
 	request.ProjectId = projectId
 
-	var body PostRogerV1ProjectsProjectIdArtifactsCheckJSONRequestBody
+	var body CheckArtifactsJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10443,18 +10438,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdArtifactsCheck(w http.Respo
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdArtifactsCheck(ctx, request.(PostRogerV1ProjectsProjectIdArtifactsCheckRequestObject))
+		return sh.ssi.CheckArtifacts(ctx, request.(CheckArtifactsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdArtifactsCheck")
+		handler = middleware(handler, "CheckArtifacts")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdArtifactsCheckResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdArtifactsCheckResponse(w); err != nil {
+	} else if validResponse, ok := response.(CheckArtifactsResponseObject); ok {
+		if err := validResponse.VisitCheckArtifactsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10462,25 +10457,25 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdArtifactsCheck(w http.Respo
 	}
 }
 
-// GetRogerV1ProjectsProjectIdCredentials operation middleware
-func (sh *strictHandler) GetRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request GetRogerV1ProjectsProjectIdCredentialsRequestObject
+// ListCredentials operation middleware
+func (sh *strictHandler) ListCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request ListCredentialsRequestObject
 
 	request.ProjectId = projectId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1ProjectsProjectIdCredentials(ctx, request.(GetRogerV1ProjectsProjectIdCredentialsRequestObject))
+		return sh.ssi.ListCredentials(ctx, request.(ListCredentialsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1ProjectsProjectIdCredentials")
+		handler = middleware(handler, "ListCredentials")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1ProjectsProjectIdCredentialsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1ProjectsProjectIdCredentialsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListCredentialsResponseObject); ok {
+		if err := validResponse.VisitListCredentialsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10488,13 +10483,13 @@ func (sh *strictHandler) GetRogerV1ProjectsProjectIdCredentials(w http.ResponseW
 	}
 }
 
-// PostRogerV1ProjectsProjectIdCredentials operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentials(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request PostRogerV1ProjectsProjectIdCredentialsRequestObject
+// CreateCredential operation middleware
+func (sh *strictHandler) CreateCredential(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request CreateCredentialRequestObject
 
 	request.ProjectId = projectId
 
-	var body PostRogerV1ProjectsProjectIdCredentialsJSONRequestBody
+	var body CreateCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10505,18 +10500,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentials(w http.Response
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdCredentials(ctx, request.(PostRogerV1ProjectsProjectIdCredentialsRequestObject))
+		return sh.ssi.CreateCredential(ctx, request.(CreateCredentialRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdCredentials")
+		handler = middleware(handler, "CreateCredential")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdCredentialsResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdCredentialsResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateCredentialResponseObject); ok {
+		if err := validResponse.VisitCreateCredentialResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10524,26 +10519,26 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentials(w http.Response
 	}
 }
 
-// DeleteRogerV1ProjectsProjectIdCredentialsCredentialId operation middleware
-func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
-	var request DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject
+// DeleteCredential operation middleware
+func (sh *strictHandler) DeleteCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+	var request DeleteCredentialRequestObject
 
 	request.ProjectId = projectId
 	request.CredentialId = credentialId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(ctx, request.(DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject))
+		return sh.ssi.DeleteCredential(ctx, request.(DeleteCredentialRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1ProjectsProjectIdCredentialsCredentialId")
+		handler = middleware(handler, "DeleteCredential")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteCredentialResponseObject); ok {
+		if err := validResponse.VisitDeleteCredentialResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10551,14 +10546,14 @@ func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdCredentialsCredentialId(w
 	}
 }
 
-// PutRogerV1ProjectsProjectIdCredentialsCredentialId operation middleware
-func (sh *strictHandler) PutRogerV1ProjectsProjectIdCredentialsCredentialId(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
-	var request PutRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject
+// RenameCredential operation middleware
+func (sh *strictHandler) RenameCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+	var request RenameCredentialRequestObject
 
 	request.ProjectId = projectId
 	request.CredentialId = credentialId
 
-	var body PutRogerV1ProjectsProjectIdCredentialsCredentialIdJSONRequestBody
+	var body RenameCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10569,18 +10564,18 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectIdCredentialsCredentialId(w ht
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PutRogerV1ProjectsProjectIdCredentialsCredentialId(ctx, request.(PutRogerV1ProjectsProjectIdCredentialsCredentialIdRequestObject))
+		return sh.ssi.RenameCredential(ctx, request.(RenameCredentialRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PutRogerV1ProjectsProjectIdCredentialsCredentialId")
+		handler = middleware(handler, "RenameCredential")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PutRogerV1ProjectsProjectIdCredentialsCredentialIdResponseObject); ok {
-		if err := validResponse.VisitPutRogerV1ProjectsProjectIdCredentialsCredentialIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(RenameCredentialResponseObject); ok {
+		if err := validResponse.VisitRenameCredentialResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10588,14 +10583,14 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectIdCredentialsCredentialId(w ht
 	}
 }
 
-// PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
-	var request PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateRequestObject
+// RotateCredential operation middleware
+func (sh *strictHandler) RotateCredential(w http.ResponseWriter, r *http.Request, projectId string, credentialId string) {
+	var request RotateCredentialRequestObject
 
 	request.ProjectId = projectId
 	request.CredentialId = credentialId
 
-	var body PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateJSONRequestBody
+	var body RotateCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10606,18 +10601,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentialsCredentialIdRota
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate(ctx, request.(PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateRequestObject))
+		return sh.ssi.RotateCredential(ctx, request.(RotateCredentialRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotate")
+		handler = middleware(handler, "RotateCredential")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdCredentialsCredentialIdRotateResponse(w); err != nil {
+	} else if validResponse, ok := response.(RotateCredentialResponseObject); ok {
+		if err := validResponse.VisitRotateCredentialResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10625,25 +10620,25 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdCredentialsCredentialIdRota
 	}
 }
 
-// GetRogerV1ProjectsProjectIdDeployments operation middleware
-func (sh *strictHandler) GetRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request GetRogerV1ProjectsProjectIdDeploymentsRequestObject
+// ListDeployments operation middleware
+func (sh *strictHandler) ListDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request ListDeploymentsRequestObject
 
 	request.ProjectId = projectId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1ProjectsProjectIdDeployments(ctx, request.(GetRogerV1ProjectsProjectIdDeploymentsRequestObject))
+		return sh.ssi.ListDeployments(ctx, request.(ListDeploymentsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1ProjectsProjectIdDeployments")
+		handler = middleware(handler, "ListDeployments")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1ProjectsProjectIdDeploymentsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1ProjectsProjectIdDeploymentsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListDeploymentsResponseObject); ok {
+		if err := validResponse.VisitListDeploymentsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10651,9 +10646,9 @@ func (sh *strictHandler) GetRogerV1ProjectsProjectIdDeployments(w http.ResponseW
 	}
 }
 
-// PostRogerV1ProjectsProjectIdDeployments operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdDeployments(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request PostRogerV1ProjectsProjectIdDeploymentsRequestObject
+// CreateDeployment operation middleware
+func (sh *strictHandler) CreateDeployment(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request CreateDeploymentRequestObject
 
 	request.ProjectId = projectId
 
@@ -10665,18 +10660,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdDeployments(w http.Response
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdDeployments(ctx, request.(PostRogerV1ProjectsProjectIdDeploymentsRequestObject))
+		return sh.ssi.CreateDeployment(ctx, request.(CreateDeploymentRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdDeployments")
+		handler = middleware(handler, "CreateDeployment")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdDeploymentsResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdDeploymentsResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateDeploymentResponseObject); ok {
+		if err := validResponse.VisitCreateDeploymentResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10684,26 +10679,26 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdDeployments(w http.Response
 	}
 }
 
-// DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId operation middleware
-func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
-	var request DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdRequestObject
+// DeleteDeployment operation middleware
+func (sh *strictHandler) DeleteDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
+	var request DeleteDeploymentRequestObject
 
 	request.ProjectId = projectId
 	request.DeploymentId = deploymentId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(ctx, request.(DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdRequestObject))
+		return sh.ssi.DeleteDeployment(ctx, request.(DeleteDeploymentRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId")
+		handler = middleware(handler, "DeleteDeployment")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1ProjectsProjectIdDeploymentsDeploymentIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteDeploymentResponseObject); ok {
+		if err := validResponse.VisitDeleteDeploymentResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10711,26 +10706,26 @@ func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdDeploymentsDeploymentId(w
 	}
 }
 
-// PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
-	var request PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployRequestObject
+// TriggerDeployment operation middleware
+func (sh *strictHandler) TriggerDeployment(w http.ResponseWriter, r *http.Request, projectId string, deploymentId string) {
+	var request TriggerDeploymentRequestObject
 
 	request.ProjectId = projectId
 	request.DeploymentId = deploymentId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy(ctx, request.(PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployRequestObject))
+		return sh.ssi.TriggerDeployment(ctx, request.(TriggerDeploymentRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeploy")
+		handler = middleware(handler, "TriggerDeployment")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDeployResponse(w); err != nil {
+	} else if validResponse, ok := response.(TriggerDeploymentResponseObject); ok {
+		if err := validResponse.VisitTriggerDeploymentResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10738,25 +10733,25 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdDeploymentsDeploymentIdDepl
 	}
 }
 
-// GetRogerV1ProjectsProjectIdEnvironments operation middleware
-func (sh *strictHandler) GetRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request GetRogerV1ProjectsProjectIdEnvironmentsRequestObject
+// ListEnvironments operation middleware
+func (sh *strictHandler) ListEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request ListEnvironmentsRequestObject
 
 	request.ProjectId = projectId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1ProjectsProjectIdEnvironments(ctx, request.(GetRogerV1ProjectsProjectIdEnvironmentsRequestObject))
+		return sh.ssi.ListEnvironments(ctx, request.(ListEnvironmentsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1ProjectsProjectIdEnvironments")
+		handler = middleware(handler, "ListEnvironments")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1ProjectsProjectIdEnvironmentsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1ProjectsProjectIdEnvironmentsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListEnvironmentsResponseObject); ok {
+		if err := validResponse.VisitListEnvironmentsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10764,13 +10759,13 @@ func (sh *strictHandler) GetRogerV1ProjectsProjectIdEnvironments(w http.Response
 	}
 }
 
-// PostRogerV1ProjectsProjectIdEnvironments operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironments(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request PostRogerV1ProjectsProjectIdEnvironmentsRequestObject
+// CreateEnvironment operation middleware
+func (sh *strictHandler) CreateEnvironment(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request CreateEnvironmentRequestObject
 
 	request.ProjectId = projectId
 
-	var body PostRogerV1ProjectsProjectIdEnvironmentsJSONRequestBody
+	var body CreateEnvironmentJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10781,18 +10776,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironments(w http.Respons
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdEnvironments(ctx, request.(PostRogerV1ProjectsProjectIdEnvironmentsRequestObject))
+		return sh.ssi.CreateEnvironment(ctx, request.(CreateEnvironmentRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdEnvironments")
+		handler = middleware(handler, "CreateEnvironment")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdEnvironmentsResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdEnvironmentsResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateEnvironmentResponseObject); ok {
+		if err := validResponse.VisitCreateEnvironmentResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10800,26 +10795,26 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironments(w http.Respons
 	}
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId operation middleware
-func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
-	var request DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdRequestObject
+// DeleteEnvironment operation middleware
+func (sh *strictHandler) DeleteEnvironment(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+	var request DeleteEnvironmentRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId(ctx, request.(DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdRequestObject))
+		return sh.ssi.DeleteEnvironment(ctx, request.(DeleteEnvironmentRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId")
+		handler = middleware(handler, "DeleteEnvironment")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteEnvironmentResponseObject); ok {
+		if err := validResponse.VisitDeleteEnvironmentResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10827,26 +10822,26 @@ func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId
 	}
 }
 
-// GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets operation middleware
-func (sh *strictHandler) GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
-	var request GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject
+// ListTargets operation middleware
+func (sh *strictHandler) ListTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+	var request ListTargetsRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(ctx, request.(GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject))
+		return sh.ssi.ListTargets(ctx, request.(ListTargetsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets")
+		handler = middleware(handler, "ListTargets")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListTargetsResponseObject); ok {
+		if err := validResponse.VisitListTargetsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10854,14 +10849,14 @@ func (sh *strictHandler) GetRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTar
 	}
 }
 
-// PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets operation middleware
-func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
-	var request PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject
+// CreateTarget operation middleware
+func (sh *strictHandler) CreateTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string) {
+	var request CreateTargetRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 
-	var body PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsJSONRequestBody
+	var body CreateTargetJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10872,18 +10867,18 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTa
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets(ctx, request.(PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsRequestObject))
+		return sh.ssi.CreateTarget(ctx, request.(CreateTargetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargets")
+		handler = middleware(handler, "CreateTarget")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateTargetResponseObject); ok {
+		if err := validResponse.VisitCreateTargetResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10891,27 +10886,27 @@ func (sh *strictHandler) PostRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTa
 	}
 }
 
-// DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName operation middleware
-func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
-	var request DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject
+// DeleteTarget operation middleware
+func (sh *strictHandler) DeleteTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+	var request DeleteTargetRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 	request.Name = name
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(ctx, request.(DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject))
+		return sh.ssi.DeleteTarget(ctx, request.(DeleteTargetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName")
+		handler = middleware(handler, "DeleteTarget")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteTargetResponseObject); ok {
+		if err := validResponse.VisitDeleteTargetResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10919,15 +10914,15 @@ func (sh *strictHandler) DeleteRogerV1ProjectsProjectIdEnvironmentsEnvironmentId
 	}
 }
 
-// PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName operation middleware
-func (sh *strictHandler) PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
-	var request PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject
+// ChangeTargetRessourceId operation middleware
+func (sh *strictHandler) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+	var request ChangeTargetRessourceIdRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 	request.Name = name
 
-	var body PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameJSONRequestBody
+	var body ChangeTargetRessourceIdJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10938,18 +10933,18 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTar
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName(ctx, request.(PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameRequestObject))
+		return sh.ssi.ChangeTargetRessourceId(ctx, request.(ChangeTargetRessourceIdRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsName")
+		handler = middleware(handler, "ChangeTargetRessourceId")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponseObject); ok {
-		if err := validResponse.VisitPutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTargetsNameResponse(w); err != nil {
+	} else if validResponse, ok := response.(ChangeTargetRessourceIdResponseObject); ok {
+		if err := validResponse.VisitChangeTargetRessourceIdResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10957,23 +10952,23 @@ func (sh *strictHandler) PutRogerV1ProjectsProjectIdEnvironmentsEnvironmentIdTar
 	}
 }
 
-// GetRogerV1Storage operation middleware
-func (sh *strictHandler) GetRogerV1Storage(w http.ResponseWriter, r *http.Request) {
-	var request GetRogerV1StorageRequestObject
+// ListStorageObjects operation middleware
+func (sh *strictHandler) ListStorageObjects(w http.ResponseWriter, r *http.Request) {
+	var request ListStorageObjectsRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerV1Storage(ctx, request.(GetRogerV1StorageRequestObject))
+		return sh.ssi.ListStorageObjects(ctx, request.(ListStorageObjectsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerV1Storage")
+		handler = middleware(handler, "ListStorageObjects")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerV1StorageResponseObject); ok {
-		if err := validResponse.VisitGetRogerV1StorageResponse(w); err != nil {
+	} else if validResponse, ok := response.(ListStorageObjectsResponseObject); ok {
+		if err := validResponse.VisitListStorageObjectsResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -10981,11 +10976,11 @@ func (sh *strictHandler) GetRogerV1Storage(w http.ResponseWriter, r *http.Reques
 	}
 }
 
-// PostRogerV1Storage operation middleware
-func (sh *strictHandler) PostRogerV1Storage(w http.ResponseWriter, r *http.Request) {
-	var request PostRogerV1StorageRequestObject
+// CreateStorageObject operation middleware
+func (sh *strictHandler) CreateStorageObject(w http.ResponseWriter, r *http.Request) {
+	var request CreateStorageObjectRequestObject
 
-	var body PostRogerV1StorageJSONRequestBody
+	var body CreateStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -10996,18 +10991,18 @@ func (sh *strictHandler) PostRogerV1Storage(w http.ResponseWriter, r *http.Reque
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1Storage(ctx, request.(PostRogerV1StorageRequestObject))
+		return sh.ssi.CreateStorageObject(ctx, request.(CreateStorageObjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1Storage")
+		handler = middleware(handler, "CreateStorageObject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1StorageResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1StorageResponse(w); err != nil {
+	} else if validResponse, ok := response.(CreateStorageObjectResponseObject); ok {
+		if err := validResponse.VisitCreateStorageObjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -11015,25 +11010,25 @@ func (sh *strictHandler) PostRogerV1Storage(w http.ResponseWriter, r *http.Reque
 	}
 }
 
-// DeleteRogerV1StorageStorageId operation middleware
-func (sh *strictHandler) DeleteRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string) {
-	var request DeleteRogerV1StorageStorageIdRequestObject
+// DeleteStorageObject operation middleware
+func (sh *strictHandler) DeleteStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
+	var request DeleteStorageObjectRequestObject
 
 	request.StorageId = storageId
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.DeleteRogerV1StorageStorageId(ctx, request.(DeleteRogerV1StorageStorageIdRequestObject))
+		return sh.ssi.DeleteStorageObject(ctx, request.(DeleteStorageObjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "DeleteRogerV1StorageStorageId")
+		handler = middleware(handler, "DeleteStorageObject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(DeleteRogerV1StorageStorageIdResponseObject); ok {
-		if err := validResponse.VisitDeleteRogerV1StorageStorageIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(DeleteStorageObjectResponseObject); ok {
+		if err := validResponse.VisitDeleteStorageObjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -11041,13 +11036,13 @@ func (sh *strictHandler) DeleteRogerV1StorageStorageId(w http.ResponseWriter, r 
 	}
 }
 
-// PutRogerV1StorageStorageId operation middleware
-func (sh *strictHandler) PutRogerV1StorageStorageId(w http.ResponseWriter, r *http.Request, storageId string) {
-	var request PutRogerV1StorageStorageIdRequestObject
+// RenameStorageObject operation middleware
+func (sh *strictHandler) RenameStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
+	var request RenameStorageObjectRequestObject
 
 	request.StorageId = storageId
 
-	var body PutRogerV1StorageStorageIdJSONRequestBody
+	var body RenameStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -11058,18 +11053,18 @@ func (sh *strictHandler) PutRogerV1StorageStorageId(w http.ResponseWriter, r *ht
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PutRogerV1StorageStorageId(ctx, request.(PutRogerV1StorageStorageIdRequestObject))
+		return sh.ssi.RenameStorageObject(ctx, request.(RenameStorageObjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PutRogerV1StorageStorageId")
+		handler = middleware(handler, "RenameStorageObject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PutRogerV1StorageStorageIdResponseObject); ok {
-		if err := validResponse.VisitPutRogerV1StorageStorageIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(RenameStorageObjectResponseObject); ok {
+		if err := validResponse.VisitRenameStorageObjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -11077,13 +11072,13 @@ func (sh *strictHandler) PutRogerV1StorageStorageId(w http.ResponseWriter, r *ht
 	}
 }
 
-// PostRogerV1StorageStorageIdRotate operation middleware
-func (sh *strictHandler) PostRogerV1StorageStorageIdRotate(w http.ResponseWriter, r *http.Request, storageId string) {
-	var request PostRogerV1StorageStorageIdRotateRequestObject
+// RotateStorageObject operation middleware
+func (sh *strictHandler) RotateStorageObject(w http.ResponseWriter, r *http.Request, storageId string) {
+	var request RotateStorageObjectRequestObject
 
 	request.StorageId = storageId
 
-	var body PostRogerV1StorageStorageIdRotateJSONRequestBody
+	var body RotateStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		if !errors.Is(err, io.EOF) {
 			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
@@ -11094,18 +11089,18 @@ func (sh *strictHandler) PostRogerV1StorageStorageIdRotate(w http.ResponseWriter
 	}
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.PostRogerV1StorageStorageIdRotate(ctx, request.(PostRogerV1StorageStorageIdRotateRequestObject))
+		return sh.ssi.RotateStorageObject(ctx, request.(RotateStorageObjectRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "PostRogerV1StorageStorageIdRotate")
+		handler = middleware(handler, "RotateStorageObject")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(PostRogerV1StorageStorageIdRotateResponseObject); ok {
-		if err := validResponse.VisitPostRogerV1StorageStorageIdRotateResponse(w); err != nil {
+	} else if validResponse, ok := response.(RotateStorageObjectResponseObject); ok {
+		if err := validResponse.VisitRotateStorageObjectResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -11113,23 +11108,23 @@ func (sh *strictHandler) PostRogerV1StorageStorageIdRotate(w http.ResponseWriter
 	}
 }
 
-// GetRogerVersion operation middleware
-func (sh *strictHandler) GetRogerVersion(w http.ResponseWriter, r *http.Request) {
-	var request GetRogerVersionRequestObject
+// GetVersion operation middleware
+func (sh *strictHandler) GetVersion(w http.ResponseWriter, r *http.Request) {
+	var request GetVersionRequestObject
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.GetRogerVersion(ctx, request.(GetRogerVersionRequestObject))
+		return sh.ssi.GetVersion(ctx, request.(GetVersionRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "GetRogerVersion")
+		handler = middleware(handler, "GetVersion")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(GetRogerVersionResponseObject); ok {
-		if err := validResponse.VisitGetRogerVersionResponse(w); err != nil {
+	} else if validResponse, ok := response.(GetVersionResponseObject); ok {
+		if err := validResponse.VisitGetVersionResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -11142,160 +11137,159 @@ func (sh *strictHandler) GetRogerVersion(w http.ResponseWriter, r *http.Request)
 // const string: with thousands of chunks the chained `+` fold is several
 // times slower for the Go compiler than parsing a slice literal.
 var swaggerSpec = []string{
-	"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",
-	"iNZxoRg9tdo3QvlVVVxIdXtx+/8GAA==",
+	"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",
 }
 
 // decodeSpec returns the embedded OpenAPI spec as raw JSON bytes,

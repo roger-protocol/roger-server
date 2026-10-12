@@ -2,8 +2,22 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Roger Protocol Specification",
-    "version": "0.1.0"
+    "version": "0.2.1"
   },
+  "servers": [
+    {
+      "url": "https://rogerprotocol.org/"
+    },
+    {
+      "url": "{custom_url}",
+      "description": "Custom server URL",
+      "variables": {
+        "custom_url": {
+          "default": "http://localhost:8080"
+        }
+      }
+    }
+  ],
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -495,6 +509,7 @@
   "paths": {
     "/_roger/version": {
       "get": {
+        "operationId": "getVersion",
         "summary": "Get Node Information",
         "description": "Get node information and identification",
         "tags": [
@@ -551,6 +566,7 @@
     },
     "/_roger/v1/auth/oauth": {
       "get": {
+        "operationId": "initiateOAuthLogin",
         "summary": "Initiate OAuth Login",
         "tags": [
           "Authentication"
@@ -644,6 +660,7 @@
     },
     "/_roger/v1/auth/token": {
       "post": {
+        "operationId": "exchangeToken",
         "summary": "Obtain or Refresh Access Token",
         "tags": [
           "Authentication"
@@ -784,6 +801,7 @@
     },
     "/_roger/v1/auth/revoke": {
       "post": {
+        "operationId": "revokeToken",
         "summary": "Revoke a Token",
         "tags": [
           "Authentication"
@@ -897,6 +915,7 @@
     },
     "/_roger/v1/auth/sessions": {
       "get": {
+        "operationId": "listSessions",
         "summary": "List Active Sessions",
         "description": "Get informations about every sessions associated to the authenticated user",
         "tags": [
@@ -944,6 +963,7 @@
         }
       },
       "delete": {
+        "operationId": "revokeOtherSessions",
         "summary": "Revoke Every Other Sessions",
         "description": "Revoke every active session associated with the authenticated user, excluding the session that made the request",
         "tags": [
@@ -983,6 +1003,7 @@
     },
     "/_roger/v1/auth/sessions/{sessionId}": {
       "delete": {
+        "operationId": "revokeSession",
         "summary": "Revoke a Session",
         "description": "Revoke a session based on it's ID (need to be authenticated)",
         "tags": [
@@ -1065,7 +1086,8 @@
     },
     "/_roger/v1/storage": {
       "get": {
-        "summary": "Fetch Storage Objects",
+        "operationId": "listStorageObjects",
+        "summary": "List Storage Objects",
         "description": "Return a list of every storage objects linked to a user's account",
         "tags": [
           "Storage"
@@ -1325,8 +1347,9 @@
         }
       },
       "post": {
-        "summary": "Link a Storage Object",
-        "description": "Link a new storage object to your account",
+        "operationId": "createStorageObject",
+        "summary": "Create a Storage Object",
+        "description": "Create a new storage object under your account",
         "tags": [
           "Storage"
         ],
@@ -1665,6 +1688,7 @@
     },
     "/_roger/v1/storage/{storageId}": {
       "put": {
+        "operationId": "renameStorageObject",
         "summary": "Rename a Storage Object",
         "description": "Change the name of a storage object",
         "tags": [
@@ -1974,6 +1998,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteStorageObject",
         "summary": "Delete a Storage Object",
         "description": "Delete a storage object from your account. Note: It must not be used by any project before deletion",
         "tags": [
@@ -2276,6 +2301,7 @@
     },
     "/_roger/v1/storage/{storageId}/rotate": {
       "post": {
+        "operationId": "rotateStorageObject",
         "summary": "Rotate a Storage Object",
         "description": "Rotate the credentials of a storage object",
         "tags": [
@@ -2605,8 +2631,9 @@
     },
     "/_roger/v1/projects": {
       "get": {
-        "summary": "Get All Projects",
-        "description": "Returns an array containing all of the project of a user",
+        "operationId": "listProjects",
+        "summary": "List Projects",
+        "description": "Returns an array containing all of the project of an account",
         "tags": [
           "Project"
         ],
@@ -2617,7 +2644,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully returned all of the user's projects",
+            "description": "Successfully returned all of the account's projects",
             "content": {
               "application/json": {
                 "schema": {
@@ -2704,6 +2731,7 @@
         }
       },
       "post": {
+        "operationId": "createProject",
         "summary": "Create A Project",
         "description": "Create a new project under the user's account with the provided name",
         "tags": [
@@ -2857,6 +2885,7 @@
     },
     "/_roger/v1/projects/{projectId}": {
       "put": {
+        "operationId": "renameProject",
         "summary": "Rename a Project",
         "description": "Update the name of a project",
         "tags": [
@@ -3016,6 +3045,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteProject",
         "summary": "Delete a Project",
         "description": "Delete a project permanently",
         "tags": [
@@ -3157,6 +3187,7 @@
     },
     "/_roger/v1/projects/{projectId}/artifacts/check": {
       "post": {
+        "operationId": "checkArtifacts",
         "summary": "Check Artifact is Already Stored",
         "description": "Pass an array of file hashes to check and the node should return whether or not the file is stored or not",
         "tags": [
@@ -3287,6 +3318,7 @@
     },
     "/_roger/v1/projects/{projectId}/credentials": {
       "get": {
+        "operationId": "listCredentials",
         "summary": "List every Credentials",
         "description": "List every credentials linked to one project",
         "tags": [
@@ -3445,7 +3477,8 @@
         }
       },
       "post": {
-        "summary": "Register a Credential",
+        "operationId": "createCredential",
+        "summary": "Create a Credential",
         "description": "Link a new Roblox credential to a project",
         "tags": [
           "Credentials"
@@ -3641,6 +3674,7 @@
     },
     "/_roger/v1/projects/{projectId}/credentials/{credentialId}": {
       "put": {
+        "operationId": "renameCredential",
         "summary": "Rename a Credential",
         "description": "Rename an existing credential",
         "tags": [
@@ -3826,6 +3860,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteCredential",
         "summary": "Delete a Credential",
         "description": "Delete a credential from a project. Note: The credential must not be linked to any active environments before deleting",
         "tags": [
@@ -4004,6 +4039,7 @@
     },
     "/_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate": {
       "post": {
+        "operationId": "rotateCredential",
         "summary": "Rotate a Credential",
         "description": "Rotate an existing credential",
         "tags": [
@@ -4203,8 +4239,9 @@
     },
     "/_roger/v1/projects/{projectId}/environments": {
       "get": {
-        "summary": "Get All Environments",
-        "description": "Fetch every environments in a given project",
+        "operationId": "listEnvironments",
+        "summary": "List Environments",
+        "description": "List every environments in a given project",
         "tags": [
           "Environments"
         ],
@@ -4335,6 +4372,7 @@
         }
       },
       "post": {
+        "operationId": "createEnvironment",
         "summary": "Create a new Environment",
         "description": "Create a new environment under the specified project. You must pass a universe id to link the environment to an exisiting universe for now since Roblox doesn't allow universe creation using API keys yet. Note: The environment name is immutable and must be in lowercase.",
         "tags": [
@@ -4520,6 +4558,7 @@
     },
     "/_roger/v1/projects/{projectId}/environments/{environmentId}": {
       "delete": {
+        "operationId": "deleteEnvironment",
         "summary": "Delete an Environment",
         "description": "Delete an environment with it's environment id. Every deployment including this environment will not be able to promote to it even if re-created.",
         "tags": [
@@ -4675,6 +4714,7 @@
     },
     "/_roger/v1/projects/{projectId}/deployments": {
       "get": {
+        "operationId": "listDeployments",
         "summary": "List Deployments",
         "description": "Return an array of every deployments in a project",
         "tags": [
@@ -4812,6 +4852,7 @@
         }
       },
       "post": {
+        "operationId": "createDeployment",
         "summary": "Create a Deployment",
         "description": "Create a new deployment",
         "tags": [
@@ -5003,7 +5044,8 @@
     },
     "/_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy": {
       "post": {
-        "summary": "Deploy a Staged Deployment",
+        "operationId": "triggerDeployment",
+        "summary": "Trigger a Staged Deployment",
         "description": "Deploy a staged/inactive deployment",
         "tags": [
           "Deployments"
@@ -5160,6 +5202,7 @@
     },
     "/_roger/v1/projects/{projectId}/deployments/{deploymentId}": {
       "delete": {
+        "operationId": "deleteDeployment",
         "summary": "Delete a Deployment",
         "description": "Delete an existing deployment. Note: The deployment must not be active before deletion",
         "tags": [
@@ -5317,6 +5360,7 @@
     },
     "/_roger/v1/features": {
       "get": {
+        "operationId": "getFeatures",
         "summary": "Get Node Features",
         "tags": [
           "Discovery"
@@ -5390,22 +5434,22 @@
                         "core:projects": {
                           "type": "object",
                           "properties": {
-                            "maxUserProjects": {
+                            "maxProjectsPerAccount": {
                               "type": "number",
-                              "description": "The maximum number of projects a user can own",
+                              "description": "The maximum number of projects an account can hold",
                               "example": 10
                             },
-                            "minProjectNameLenght": {
+                            "minProjectNameLength": {
                               "type": "number",
                               "description": "The minimum length of a project name",
                               "example": 3
                             },
-                            "maxProjectNameLenght": {
+                            "maxProjectNameLength": {
                               "type": "number",
                               "description": "The maximum length of a project name",
                               "example": 64
                             },
-                            "supportedProjectTypes": {
+                            "supportedProjectKinds": {
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -5422,16 +5466,16 @@
                             }
                           },
                           "required": [
-                            "maxUserProjects",
-                            "minProjectNameLenght",
-                            "maxProjectNameLenght",
-                            "supportedProjectTypes"
+                            "maxProjectsPerAccount",
+                            "minProjectNameLength",
+                            "maxProjectNameLength",
+                            "supportedProjectKinds"
                           ]
                         },
                         "core:environments": {
                           "type": "object",
                           "properties": {
-                            "maxProjectEnvironments": {
+                            "maxEnvironmentsPerProject": {
                               "type": "integer",
                               "description": "The maximum amount of environments a single project can hold",
                               "example": 5
@@ -5453,7 +5497,7 @@
                             }
                           },
                           "required": [
-                            "maxProjectEnvironments",
+                            "maxEnvironmentsPerProject",
                             "minEnvironmentNameLength",
                             "maxEnvironmentNameLength",
                             "maxPlacesPerUniverse"
@@ -5462,20 +5506,20 @@
                         "core:targets": {
                           "type": "object",
                           "properties": {
-                            "maxTargetNameLength": {
+                            "maxTargetsPerProject": {
                               "type": "integer",
-                              "description": "The maximum length of a target name",
-                              "example": 64
+                              "description": "The maximum amount of targets a project can hold",
+                              "example": 150
                             },
                             "minTargetNameLength": {
                               "type": "integer",
                               "description": "The minimum length of a target name",
                               "example": 1
                             },
-                            "maxTargetsPerProject": {
+                            "maxTargetNameLength": {
                               "type": "integer",
-                              "description": "The maximum amount of targets a project can hold",
-                              "example": 150
+                              "description": "The maximum length of a target name",
+                              "example": 64
                             },
                             "supportedTargetKinds": {
                               "type": "array",
@@ -5492,29 +5536,29 @@
                             }
                           },
                           "required": [
-                            "maxTargetNameLength",
-                            "minTargetNameLength",
                             "maxTargetsPerProject",
+                            "minTargetNameLength",
+                            "maxTargetNameLength",
                             "supportedTargetKinds"
                           ]
                         },
                         "core:credentials": {
                           "type": "object",
                           "properties": {
-                            "maxCredentialNameLength": {
+                            "maxCredentialsPerProject": {
                               "type": "integer",
-                              "description": "The maximum number of characters a credential name can have",
-                              "example": 64
+                              "description": "The maximum amount of credentials a project can hold",
+                              "example": 5
                             },
                             "minCredentialNameLength": {
                               "type": "integer",
                               "description": "The minimum number of characters a credential name must have",
                               "example": 3
                             },
-                            "maxCredentialsPerProject": {
+                            "maxCredentialNameLength": {
                               "type": "integer",
-                              "description": "The maximum amount of credentials a project can hold",
-                              "example": 5
+                              "description": "The maximum number of characters a credential name can have",
+                              "example": 64
                             },
                             "supportedCredentialKinds": {
                               "type": "array",
@@ -5531,31 +5575,31 @@
                             }
                           },
                           "required": [
-                            "maxCredentialNameLength",
-                            "minCredentialNameLength",
                             "maxCredentialsPerProject",
+                            "minCredentialNameLength",
+                            "maxCredentialNameLength",
                             "supportedCredentialKinds"
                           ]
                         },
                         "core:storage": {
                           "type": "object",
                           "properties": {
-                            "maxStorageNameLength": {
+                            "maxStorageObjectsPerAccount": {
                               "type": "integer",
-                              "description": "The maximum number of characters a storage object name can have",
-                              "example": 64
+                              "description": "The maximum amount of storage objects an account can hold",
+                              "example": 3
                             },
                             "minStorageNameLength": {
                               "type": "integer",
                               "description": "The minimum number of characters a storage object name must have",
                               "example": 3
                             },
-                            "maxStorageObjectsPerOwner": {
+                            "maxStorageNameLength": {
                               "type": "integer",
-                              "description": "The maximum amount of storage objects an owner can have",
-                              "example": 3
+                              "description": "The maximum number of characters a storage object name can have",
+                              "example": 64
                             },
-                            "supportedStorageKind": {
+                            "supportedStorageKinds": {
                               "type": "string",
                               "enum": [
                                 "S3",
@@ -5569,10 +5613,10 @@
                             }
                           },
                           "required": [
-                            "maxStorageNameLength",
+                            "maxStorageObjectsPerAccount",
                             "minStorageNameLength",
-                            "maxStorageObjectsPerOwner",
-                            "supportedStorageKind"
+                            "maxStorageNameLength",
+                            "supportedStorageKinds"
                           ]
                         },
                         "core:deployments": {
@@ -5584,23 +5628,17 @@
                               "description": "The maximum number of deployments a single project can hold",
                               "example": 50
                             },
-                            "maxVersionLength": {
-                              "type": "integer",
-                              "minimum": -1,
-                              "description": "The maximum length of a deployment version string",
-                              "example": 64
-                            },
                             "minVersionLength": {
                               "type": "integer",
                               "minimum": 1,
                               "description": "The minimum length of a deployment version string",
                               "example": 1
                             },
-                            "maxPlacesPerDeployment": {
+                            "maxVersionLength": {
                               "type": "integer",
                               "minimum": -1,
-                              "description": "The maximum amount of places a single deployment can manage",
-                              "example": 10
+                              "description": "The maximum length of a deployment version string",
+                              "example": 64
                             },
                             "maxPlaceFileSizeBytes": {
                               "type": "integer",
@@ -5611,9 +5649,8 @@
                           },
                           "required": [
                             "maxDeploymentsPerProject",
-                            "maxVersionLength",
                             "minVersionLength",
-                            "maxPlacesPerDeployment",
+                            "maxVersionLength",
                             "maxPlaceFileSizeBytes"
                           ]
                         }
@@ -5641,7 +5678,8 @@
     },
     "/_roger/v1/projects/{projectId}/environments/{environmentId}/targets": {
       "get": {
-        "summary": "Fetch Targets",
+        "operationId": "listTargets",
+        "summary": "List Targets",
         "description": "Get a list of all targets linked to one environment",
         "tags": [
           "Targets"
@@ -5795,6 +5833,7 @@
         }
       },
       "post": {
+        "operationId": "createTarget",
         "summary": "Create Target",
         "description": "Create a new target under the specified environment",
         "tags": [
@@ -5975,6 +6014,7 @@
     },
     "/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}": {
       "put": {
+        "operationId": "changeTargetRessourceId",
         "summary": "Edit Target Ressource ID",
         "description": "Change the id of the ressource the target is pointing to",
         "tags": [
@@ -6158,6 +6198,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteTarget",
         "summary": "Delete Target",
         "description": "Delete a target from an environment (must delete every deployments associated with the target first)",
         "tags": [

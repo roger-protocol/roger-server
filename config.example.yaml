@@ -25,13 +25,13 @@ features:
         name: Google
         kind: google
   core:projects:
-    maxUserProjects: 10
-    minProjectNameLenght: 3
-    maxProjectNameLenght: 64
-    supportedProjectTypes:
+    maxProjectsPerAccount: 10
+    minProjectNameLength: 3
+    maxProjectNameLength: 64
+    supportedProjectKinds:
       - game
   core:environments:
-    maxProjectEnvironments: 5
+    maxEnvironmentsPerProject: 5
     minEnvironmentNameLength: 3
     maxEnvironmentNameLength: 64
     maxPlacesPerUniverse: 20
@@ -42,10 +42,11 @@ features:
     supportedTargetKinds:
       - place
   core:storage:
-    maxStorageObjectsPerOwner: 3
+    maxStorageObjectsPerAccount: 3
     minStorageNameLength: 3
     maxStorageNameLength: 64
-    supportedStorageKind:
+    supportedStorageKinds:
+      - S3
       - internal
   core:deployments:
     maxDeploymentsPerProject: 50

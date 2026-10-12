@@ -76,17 +76,17 @@ type AuthProvider struct {
 }
 
 type ProjectsFeatureConfig struct {
-	MaxUserProjects       int      `yaml:"maxUserProjects" json:"maxUserProjects" jsonschema:"default=10"`
-	MinProjectNameLenght  int      `yaml:"minProjectNameLenght" json:"minProjectNameLenght" jsonschema:"default=3"`
-	MaxProjectNameLenght  int      `yaml:"maxProjectNameLenght" json:"maxProjectNameLenght" jsonschema:"default=64"`
-	SupportedProjectTypes []string `yaml:"supportedProjectTypes" json:"supportedProjectTypes" jsonschema:"enum=game"`
+	MaxProjectsPerAccount int      `yaml:"maxProjectsPerAccount" json:"maxProjectsPerAccount" jsonschema:"default=10"`
+	MinProjectNameLength  int      `yaml:"minProjectNameLength" json:"minProjectNameLength" jsonschema:"default=3"`
+	MaxProjectNameLength  int      `yaml:"maxProjectNameLength" json:"maxProjectNameLength" jsonschema:"default=64"`
+	SupportedProjectKinds []string `yaml:"supportedProjectKinds" json:"supportedProjectKinds" jsonschema:"enum=game"`
 }
 
 type EnvironmentsFeatureConfig struct {
-	MaxProjectEnvironments   int `yaml:"maxProjectEnvironments" json:"maxProjectEnvironments" jsonschema:"default=5"`
-	MinEnvironmentNameLength int `yaml:"minEnvironmentNameLength" json:"minEnvironmentNameLength" jsonschema:"default=3"`
-	MaxEnvironmentNameLength int `yaml:"maxEnvironmentNameLength" json:"maxEnvironmentNameLength" jsonschema:"default=64"`
-	MaxPlacesPerUniverse     int `yaml:"maxPlacesPerUniverse" json:"maxPlacesPerUniverse" jsonschema:"default=20"`
+	MaxEnvironmentsPerProject int `yaml:"maxEnvironmentsPerProject" json:"maxEnvironmentsPerProject" jsonschema:"default=5"`
+	MinEnvironmentNameLength  int `yaml:"minEnvironmentNameLength" json:"minEnvironmentNameLength" jsonschema:"default=3"`
+	MaxEnvironmentNameLength  int `yaml:"maxEnvironmentNameLength" json:"maxEnvironmentNameLength" jsonschema:"default=64"`
+	MaxPlacesPerUniverse      int `yaml:"maxPlacesPerUniverse" json:"maxPlacesPerUniverse" jsonschema:"default=20"`
 }
 
 type TargetsFeatureConfig struct {
@@ -104,10 +104,10 @@ type CredentialsFeatureConfig struct {
 }
 
 type StorageFeatureConfig struct {
-	MaxStorageObjectsPerOwner int      `yaml:"maxStorageObjectsPerOwner" json:"maxStorageObjectsPerOwner" jsonschema:"default=3"`
-	MinStorageNameLength      int      `yaml:"minStorageNameLength" json:"minStorageNameLength" jsonschema:"default=3"`
-	MaxStorageNameLength      int      `yaml:"maxStorageNameLength" json:"maxStorageNameLength" jsonschema:"default=64"`
-	SupportedStorageKind      []string `yaml:"supportedStorageKind" json:"supportedStorageKind" jsonschema:"enum=S3,enum=internal"`
+	MaxStorageObjectsPerAccount int      `yaml:"maxStorageObjectsPerAccount" json:"maxStorageObjectsPerAccount" jsonschema:"default=3"`
+	MinStorageNameLength        int      `yaml:"minStorageNameLength" json:"minStorageNameLength" jsonschema:"default=3"`
+	MaxStorageNameLength        int      `yaml:"maxStorageNameLength" json:"maxStorageNameLength" jsonschema:"default=64"`
+	SupportedStorageKinds       []string `yaml:"supportedStorageKinds" json:"supportedStorageKinds" jsonschema:"enum=S3,enum=internal"`
 }
 
 type DeploymentsFeatureConfig struct {
