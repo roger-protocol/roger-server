@@ -44,6 +44,12 @@ features:
     maxTargetNameLength: 64
     supportedTargetKinds:
       - place
+  core:credentials:
+    maxCredentialsPerProject: 5
+    minCredentialNameLength: 3
+    maxCredentialNameLength: 64
+    supportedCredentialKinds:
+      - api-key
   core:storage:
     maxStorageObjectsPerAccount: 3
     minStorageNameLength: 3

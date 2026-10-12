@@ -24,5 +24,11 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("parsing yaml config: %w", err)
 	}
 
+	jwt_pk, err := os.ReadFile(config.Auth.JWTPublicKeyPath)
+	if err != nil {
+		return nil, fmt.Errorf("reading jwt public key: %w", err)
+	}
+	config.Features.Auth.JwtPublicKey = string(jwt_pk)
+
 	return config, nil
 }

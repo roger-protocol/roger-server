@@ -66,12 +66,14 @@ type FeaturesConfig struct {
 	Projects     ProjectsFeatureConfig     `yaml:"core:projects" json:"core:projects"`
 	Environments EnvironmentsFeatureConfig `yaml:"core:environments" json:"core:environments"`
 	Targets      TargetsFeatureConfig      `yaml:"core:targets" json:"core:targets"`
+	Credentials  CredentialsFeatureConfig  `yaml:"core:credentials" json:"core:credentials"`
 	Storage      StorageFeatureConfig      `yaml:"core:storage" json:"core:storage"`
 	Deployments  DeploymentsFeatureConfig  `yaml:"core:deployments" json:"core:deployments"`
 }
 
 type AuthFeatureConfig struct {
-	Providers []AuthProvider `yaml:"providers" json:"providers"`
+	JwtPublicKey string         `yaml:"-" json:"jwtPublicKey" jsonschema:"-"`
+	Providers    []AuthProvider `yaml:"providers" json:"providers"`
 }
 
 type AuthProvider struct {
