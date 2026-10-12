@@ -8,6 +8,12 @@ type Config struct {
 }
 
 type ServerConfig struct {
+	// The name of your server displayed to clients
+	Name string `yaml:"name" json:"name"`
+	// An optional description of your server displayed to clients
+	Description *string `yaml:"description,omitempty" json:"description,omitempty"`
+	// The version of the currently supported openapi file
+	Version string `yaml:"version" json:"version"`
 	// The port the HTTP server will listen on
 	Addr string `yaml:"addr" json:"addr"`
 	// The file path of your local sqlite database
@@ -17,10 +23,10 @@ type ServerConfig struct {
 }
 
 type AuthConfig struct {
-	// The secret, PEM encoded, JWT signing key
-	JWTPrivateKey string `yaml:"jwt_private_key" json:"jwt_private_key"`
-	// The public, PEM encoded, JWT signing key
-	JWTPublicKey string `yaml:"jwt_public_key" json:"jwt_public_key"`
+	// The path to the PEM key used to sign JWTs (private key)
+	JWTPrivateKeyPath string `yaml:"jwt_private_key_path" json:"jwt_private_key_path"`
+	// The path to the PEM key used to verify the signature of JWTs (public key)
+	JWTPublicKeyPath string `yaml:"jwt_public_key_path" json:"jwt_public_key_path"`
 	// A map mapping OAuth provider ids and their config
 	Providers map[string]OAuthAppConfig `yaml:"providers" json:"providers"`
 }

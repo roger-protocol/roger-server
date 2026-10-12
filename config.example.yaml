@@ -1,12 +1,15 @@
 # yaml-language-server: $schema=./dist/config.schema.json
 server:
+  name: Official Roger Node
+  description: The official Roger node powered by rogerd
+  version: v0.2.1
   addr: :8080
   db_path: rogerd.db
   db_encryption_key: ${ROGERD_ENCRYPTION_KEY}
 
 auth:
-  jwt_private_key: ${ROGERD_JWT_PRIVATE_KEY}
-  jwt_public_key: ${ROGERD_JWT_PUBLIC_KEY}
+  jwt_private_key_path: ./keys/private.pem
+  jwt_public_key_path: ./keys/public.pem
   providers:
     google:
       client_id: ${GOOGLE_CLIENT_ID}
