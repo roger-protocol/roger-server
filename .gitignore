@@ -1,5 +1,6 @@
 /dist
 /bin
+/db
 *.db
 *.env
 config.yaml

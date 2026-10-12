@@ -33,6 +33,7 @@ require (
 	github.com/elastic/go-sysinfo v1.15.5 // indirect
 	github.com/elastic/go-windows v1.0.2 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
+	github.com/go-chi/cors v1.2.2 // indirect
 	github.com/go-faster/city v1.0.1 // indirect
 	github.com/go-faster/errors v0.8.0 // indirect
 	github.com/go-openapi/jsonpointer v0.23.1 // indirect
