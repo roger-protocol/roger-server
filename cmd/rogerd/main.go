@@ -31,7 +31,11 @@ func main() {
 
 	queries := db.New(database)
 	server := api.NewServer(queries, cfg)
-	router := api.NewRouter(server)
+	router, err := api.NewRouter(server)
+
+	if err != nil {
+		log.Fatalf("failed to setup router: %v", err)
+	}
 
 	log.Printf("Listening on port %s...", cfg.Server.Addr)
 
