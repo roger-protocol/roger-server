@@ -4,6 +4,7 @@ server:
   description: The official Roger node powered by rogerd
   version: v0.2.1
   addr: :8080
+  server_url: http://localhost:8080
   db_path: rogerd.db
   db_encryption_key: ${ROGERD_ENCRYPTION_KEY}
 
@@ -15,6 +16,7 @@ auth:
       client_id: ${GOOGLE_CLIENT_ID}
       client_secret: ${GOOGLE_CLIENT_SECRET}
       auth_url: https://accounts.google.com/o/oauth2/v2/auth
+      callback_path: /auth/callback/google
       token_url: https://oauth2.googleapis.com/token
       scopes:
         - openid

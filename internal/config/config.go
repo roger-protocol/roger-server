@@ -16,6 +16,8 @@ type ServerConfig struct {
 	Version string `yaml:"version" json:"version"`
 	// The port the HTTP server will listen on
 	Addr string `yaml:"addr" json:"addr"`
+	// The URL used to access the server
+	ServerURL string `yaml:"server_url" json:"server_url"`
 	// The file path of your local sqlite database
 	DBPath string `yaml:"db_path" json:"db_path"`
 	// A 32 bytes encryption key used to encrypt sensitive data using AES-GCM (64 hex characters)
@@ -38,6 +40,8 @@ type OAuthAppConfig struct {
 	ClientSecret string `yaml:"client_secret" json:"client_secret"`
 	// The authorization page url of your OAuth provider
 	AuthURL string `yaml:"auth_url" json:"auth_url"`
+	// The path the provider will call to provide the authroization token
+	CallbackPath string `yaml:"callback_path" json:"callback_path"`
 	// The token endpoint of your OAuth provider
 	TokenURL string `yaml:"token_url" json:"token_url"`
 	// The OAuth scopes the user will give access too (must give access to email and username)
