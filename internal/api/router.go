@@ -16,24 +16,29 @@ import (
 	nethttpmiddleware "github.com/oapi-codegen/nethttp-middleware"
 )
 
+func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
+	log.Printf("internal error: %v", err)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusInternalServerError)
+	json.NewEncoder(w).Encode(ServerError{
+		Error: struct {
+			Code    ServerErrorErrorCode `json:"code"`
+			Message string               `json:"message"`
+			Type    ServerErrorErrorType `json:"type"`
+		}{
+			Type:    "ServerError",
+			Code:    "internal_server_error",
+			Message: "An unexpected internal server error occured",
+		},
+	})
+}
+
 func Recoverer(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
 				log.Printf("panic: %v", err)
-				w.Header().Set("Content-Type", "application/json")
-				w.WriteHeader(http.StatusInternalServerError)
-				json.NewEncoder(w).Encode(ServerError{
-					Error: struct {
-						Code    ServerErrorErrorCode `json:"code"`
-						Message string               `json:"message"`
-						Type    ServerErrorErrorType `json:"type"`
-					}{
-						Type:    "ServerError",
-						Code:    "internal_server_error",
-						Message: "An unexpected internal server error occured",
-					},
-				})
+				handleServerError(w, r, nil)
 			}
 		}()
 		next.ServeHTTP(w, r)
@@ -111,6 +116,8 @@ func NewRouter(s *Server) (http.Handler, error) {
 		ErrorHandlerWithOpts: validationErrorHandler,
 	})
 
-	strictHandler := NewStrictHandler(s, nil)
+	strictHandler := NewStrictHandlerWithOptions(s, nil, StrictHTTPServerOptions{
+		ResponseErrorHandlerFunc: handleServerError,
+	})
 	return validator(HandlerFromMux(strictHandler, r)), nil
 }
