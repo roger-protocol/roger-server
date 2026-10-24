@@ -37,6 +37,7 @@ func NewAuthService(db *sql.DB, q *db.Queries, cfg *config.Config) *AuthService 
 	return &AuthService{db: db, config: cfg, queries: q}
 }
 
+// State Encoding / Decoding
 const oauthStateTTL = 5 * time.Minute
 
 type oauthState struct {
@@ -45,25 +46,6 @@ type oauthState struct {
 	CodeChallengeMethod string `json:"ccm"`
 	RedirectURI         string `json:"ru"`
 	IssuedAt            string `json:"iat"`
-}
-
-type tokenClaims struct {
-	Username      string `json:"name,omitempty"`
-	Email         string `json:"email,omitempty"`
-	EmailVerified bool   `json:"email_verified,omitempty"`
-	jwt.RegisteredClaims
-}
-
-func isValidRedirectUri(redirectUri string, allowed []*glob.Pattern) bool {
-	if _, err := url.ParseRequestURI(redirectUri); err != nil {
-		return false
-	}
-	for _, g := range allowed {
-		if g.Match(redirectUri) {
-			return true
-		}
-	}
-	return false
 }
 
 func (s *AuthService) ForgeState(clientState string, codeChallenge string, codeChallengeMethod string, clientRedirectUri string) (string, error) {
@@ -87,7 +69,6 @@ func (s *AuthService) ForgeState(clientState string, codeChallenge string, codeC
 
 	return base64.RawURLEncoding.EncodeToString(encryptedState), nil
 }
-
 func (s *AuthService) DecodeState(encodedState string) (oauthState, error) {
 	stateBytes, err := base64.RawURLEncoding.DecodeString(encodedState)
 	if err != nil {
@@ -117,6 +98,25 @@ func (s *AuthService) DecodeState(encodedState string) (oauthState, error) {
 	return state, nil
 }
 
+// Provider
+type tokenClaims struct {
+	Username      string `json:"name,omitempty"`
+	Email         string `json:"email,omitempty"`
+	EmailVerified bool   `json:"email_verified,omitempty"`
+	jwt.RegisteredClaims
+}
+
+func isValidRedirectUri(redirectUri string, allowed []*glob.Pattern) bool {
+	if _, err := url.ParseRequestURI(redirectUri); err != nil {
+		return false
+	}
+	for _, g := range allowed {
+		if g.Match(redirectUri) {
+			return true
+		}
+	}
+	return false
+}
 func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge string, codeChallengeMethod string, clientState string, clientRedirectUri string) (string, error) {
 	providerCfg, ok := s.config.Auth.Providers[providerID]
 	if !ok {
@@ -148,7 +148,6 @@ func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge st
 
 	return conf.AuthCodeURL(state), nil
 }
-
 func (s *AuthService) ExchangeProviderCode(ctx context.Context, providerID string, code string) (tokenClaims, error) {
 	providerCfg, ok := s.config.Auth.Providers[providerID]
 	if !ok {
@@ -190,25 +189,6 @@ func (s *AuthService) ExchangeProviderCode(ctx context.Context, providerID strin
 
 	return claims, nil
 }
-
-func (s *AuthService) CreateUser(ctx context.Context, q *db.Queries, username string, email string, email_verified bool) (db.User, error) {
-	now := time.Now().UTC().Format(time.RFC3339)
-	newUser, err := q.CreateUser(ctx, db.CreateUserParams{
-		ID:            crypto.GenerateID("rgr_usr"),
-		Username:      username,
-		Email:         convert.ToNullString(email),
-		EmailVerified: convert.BoolToNullInt64(email_verified, email != ""),
-		CreatedAt:     now,
-		UpdatedAt:     now,
-	})
-
-	if err != nil {
-		return db.User{}, fmt.Errorf("create user: %w", err)
-	}
-
-	return newUser, nil
-}
-
 func (s *AuthService) LinkProviderToUser(ctx context.Context, q *db.Queries, userID string, providerID string, subject string, claims *tokenClaims) (db.Provider, error) {
 	// Prepare the raw profile
 	var rawClaims sql.NullString
@@ -236,7 +216,6 @@ func (s *AuthService) LinkProviderToUser(ctx context.Context, q *db.Queries, use
 	}
 	return newProvider, nil
 }
-
 func (s *AuthService) GetUserFromProviderCode(ctx context.Context, providerID string, code string) (db.User, error) {
 	claims, err := s.ExchangeProviderCode(ctx, providerID, code)
 	if err != nil {
@@ -302,6 +281,26 @@ func (s *AuthService) GetUserFromProviderCode(ctx context.Context, providerID st
 	return newUser, nil
 }
 
+// User
+func (s *AuthService) CreateUser(ctx context.Context, q *db.Queries, username string, email string, email_verified bool) (db.User, error) {
+	now := time.Now().UTC().Format(time.RFC3339)
+	newUser, err := q.CreateUser(ctx, db.CreateUserParams{
+		ID:            crypto.GenerateID("rgr_usr"),
+		Username:      username,
+		Email:         convert.ToNullString(email),
+		EmailVerified: convert.BoolToNullInt64(email_verified, email != ""),
+		CreatedAt:     now,
+		UpdatedAt:     now,
+	})
+
+	if err != nil {
+		return db.User{}, fmt.Errorf("create user: %w", err)
+	}
+
+	return newUser, nil
+}
+
+// Authorization Code
 func (s *AuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) (string, db.AuthorizationCode, error) {
 	id := crypto.GenerateID("rgr_ac")
 	idHashBytes := sha256.Sum256([]byte(id))
