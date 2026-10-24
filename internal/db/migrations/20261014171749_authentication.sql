@@ -26,10 +26,13 @@ CREATE TABLE sessions (
     ip_address TEXT,
     country TEXT,
     client_name TEXT,
-    refresh_token_hash TEXT NOT NULL,
+    refresh_token_hash TEXT NOT NULL UNIQUE,
+    access_token_jti TEXT NOT NULL UNIQUE,
+    access_token_expires_at TEXT NOT NULL,
     created_at TEXT NOT NULL,
     last_used_at TEXT NOT NULL
 );
+CREATE INDEX idx_sessions_user_id ON sessions(user_id);
 
 CREATE TABLE authorization_codes (
     id_hash TEXT PRIMARY KEY,

@@ -28,14 +28,16 @@ type Provider struct {
 }
 
 type Session struct {
-	ID               string         `json:"id"`
-	UserID           string         `json:"user_id"`
-	IpAddress        sql.NullString `json:"ip_address"`
-	Country          sql.NullString `json:"country"`
-	ClientName       sql.NullString `json:"client_name"`
-	RefreshTokenHash string         `json:"refresh_token_hash"`
-	CreatedAt        string         `json:"created_at"`
-	LastUsedAt       string         `json:"last_used_at"`
+	ID                   string         `json:"id"`
+	UserID               string         `json:"user_id"`
+	IpAddress            sql.NullString `json:"ip_address"`
+	Country              sql.NullString `json:"country"`
+	ClientName           sql.NullString `json:"client_name"`
+	RefreshTokenHash     string         `json:"refresh_token_hash"`
+	AccessTokenJti       string         `json:"access_token_jti"`
+	AccessTokenExpiresAt string         `json:"access_token_expires_at"`
+	CreatedAt            string         `json:"created_at"`
+	LastUsedAt           string         `json:"last_used_at"`
 }
 
 type User struct {

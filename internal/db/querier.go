@@ -11,6 +11,7 @@ import (
 type Querier interface {
 	CreateAuthorizationCode(ctx context.Context, arg CreateAuthorizationCodeParams) (AuthorizationCode, error)
 	CreateProvider(ctx context.Context, arg CreateProviderParams) (Provider, error)
+	CreateSession(ctx context.Context, arg CreateSessionParams) (Session, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteAuthorizationCode(ctx context.Context, idHash string) (AuthorizationCode, error)
 	DeleteProvider(ctx context.Context, id string) (Provider, error)
@@ -18,12 +19,17 @@ type Querier interface {
 	DeleteUserAuthorizationCodes(ctx context.Context, userID string) ([]AuthorizationCode, error)
 	GetProvider(ctx context.Context, id string) (Provider, error)
 	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
+	GetSession(ctx context.Context, id string) (Session, error)
 	GetUserByID(ctx context.Context, id string) (User, error)
 	GetUserByProvider(ctx context.Context, arg GetUserByProviderParams) (User, error)
 	GetUserProviders(ctx context.Context, userID string) ([]Provider, error)
+	GetUserSessions(ctx context.Context, userID string) ([]Session, error)
+	RevokeAllSessionsExcept(ctx context.Context, arg RevokeAllSessionsExceptParams) ([]Session, error)
+	RevokeSession(ctx context.Context, id string) (Session, error)
 	SetProviderLastUsed(ctx context.Context, arg SetProviderLastUsedParams) (Provider, error)
 	SetProviderRawClaims(ctx context.Context, arg SetProviderRawClaimsParams) (Provider, error)
 	UpdateEmail(ctx context.Context, arg UpdateEmailParams) (User, error)
+	UpdateSessionFromRefreshToken(ctx context.Context, arg UpdateSessionFromRefreshTokenParams) (Session, error)
 	UpdateUsername(ctx context.Context, arg UpdateUsernameParams) (User, error)
 }
 
