@@ -9,7 +9,21 @@ import (
 )
 
 type Querier interface {
-	ILoveRoger(ctx context.Context, hello string) (Test, error)
+	CreateAuthorizationCode(ctx context.Context, arg CreateAuthorizationCodeParams) (AuthorizationCode, error)
+	CreateProvider(ctx context.Context, arg CreateProviderParams) (Provider, error)
+	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	DeleteAuthorizationCode(ctx context.Context, idHash string) (AuthorizationCode, error)
+	DeleteProvider(ctx context.Context, id string) (Provider, error)
+	DeleteUser(ctx context.Context, id string) (User, error)
+	GetProvider(ctx context.Context, id string) (Provider, error)
+	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
+	GetUserByID(ctx context.Context, id string) (User, error)
+	GetUserByProvider(ctx context.Context, arg GetUserByProviderParams) (User, error)
+	GetUserProviders(ctx context.Context, userID string) ([]Provider, error)
+	SetProviderLastUsed(ctx context.Context, arg SetProviderLastUsedParams) (Provider, error)
+	SetProviderRawClaims(ctx context.Context, arg SetProviderRawClaimsParams) (Provider, error)
+	UpdateEmail(ctx context.Context, arg UpdateEmailParams) (User, error)
+	UpdateUsername(ctx context.Context, arg UpdateUsernameParams) (User, error)
 }
 
 var _ Querier = (*Queries)(nil)

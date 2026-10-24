@@ -4,7 +4,45 @@
 
 package db
 
-type Test struct {
-	ID    string `json:"id"`
-	Hello string `json:"hello"`
+import (
+	"database/sql"
+)
+
+type AuthorizationCode struct {
+	IDHash              string `json:"id_hash"`
+	UserID              string `json:"user_id"`
+	CodeChallenge       string `json:"code_challenge"`
+	CodeChallengeMethod string `json:"code_challenge_method"`
+	RedirectUri         string `json:"redirect_uri"`
+	CreatedAt           string `json:"created_at"`
+}
+
+type Provider struct {
+	ID         string         `json:"id"`
+	UserID     string         `json:"user_id"`
+	ProviderID string         `json:"provider_id"`
+	Subject    string         `json:"subject"`
+	RawClaims  sql.NullString `json:"raw_claims"`
+	CreatedAt  string         `json:"created_at"`
+	LastUsed   string         `json:"last_used"`
+}
+
+type Session struct {
+	ID               string         `json:"id"`
+	UserID           string         `json:"user_id"`
+	IpAddress        sql.NullString `json:"ip_address"`
+	Country          sql.NullString `json:"country"`
+	ClientName       sql.NullString `json:"client_name"`
+	RefreshTokenHash string         `json:"refresh_token_hash"`
+	CreatedAt        string         `json:"created_at"`
+	LastUsedAt       string         `json:"last_used_at"`
+}
+
+type User struct {
+	ID            string         `json:"id"`
+	Username      string         `json:"username"`
+	Email         sql.NullString `json:"email"`
+	EmailVerified sql.NullInt64  `json:"email_verified"`
+	CreatedAt     string         `json:"created_at"`
+	UpdatedAt     string         `json:"updated_at"`
 }

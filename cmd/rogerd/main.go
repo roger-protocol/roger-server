@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/joho/godotenv"
 	"github.com/roger-protocol/roger-server/internal/api"
@@ -30,17 +33,28 @@ func main() {
 	defer database.Close()
 
 	queries := db.New(database)
-	server := api.NewServer(queries, cfg)
+	server := api.NewServer(database, queries, cfg)
 	router, err := api.NewRouter(server)
 
 	if err != nil {
 		log.Fatalf("failed to setup router: %v", err)
 	}
 
-	log.Printf("Listening on port %s...", cfg.Server.Addr)
+	go func() {
+		log.Printf("Listening on port %s...", cfg.Server.Addr)
 
-	if err := http.ListenAndServe(cfg.Server.Addr, router); err != nil {
-		log.Fatalf("failed to open http server: %v", err)
+		if err := http.ListenAndServe(cfg.Server.Addr, router); err != nil {
+			log.Fatalf("failed to open http server: %v", err)
+		}
+	}()
+
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	<-c
+	log.Println("OK")
+
+	if err := database.Close(); err != nil {
+		log.Printf("Couldn't close database cleanly. Current WAL checkpoint wasn't commited")
 	}
 
 }
