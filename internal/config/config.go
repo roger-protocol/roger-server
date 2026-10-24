@@ -1,5 +1,7 @@
 package config
 
+import "github.com/gobwas/glob"
+
 type Config struct {
 	Server   ServerConfig   `yaml:"server" json:"server"`
 	Auth     AuthConfig     `yaml:"auth" json:"auth"`
@@ -31,6 +33,10 @@ type AuthConfig struct {
 	JWTPublicKeyPath string `yaml:"jwt_public_key_path" json:"jwt_public_key_path"`
 	// A map mapping OAuth provider ids and their config
 	Providers map[string]OAuthAppConfig `yaml:"providers" json:"providers"`
+	// A list of allowed OAuth redirect URIs
+	AllowedRedirectURIs []string `yaml:"allowed_redirect_uris" json:"allowed_redirect_uris"`
+	// An array of compiled globs used internally to match URLs
+	CompiledRedirectGlobs []*glob.Pattern `yaml:"-" jsonschema:"-"`
 }
 
 type OAuthAppConfig struct {

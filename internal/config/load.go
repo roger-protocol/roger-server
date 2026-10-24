@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/a8m/envsubst"
+	"github.com/gobwas/glob"
 	"gopkg.in/yaml.v3"
 )
 
@@ -29,6 +30,17 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("reading jwt public key: %w", err)
 	}
 	config.Features.Auth.JwtPublicKey = string(jwt_pk)
+
+	// Compile AllowedRedirectURIs patterns
+	compiled := make([]*glob.Pattern, 0, len(config.Auth.AllowedRedirectURIs))
+	for _, pattern := range config.Auth.AllowedRedirectURIs {
+		g, err := glob.Compile(pattern)
+		if err != nil {
+			return nil, fmt.Errorf("compile redirect uri pattern %v: %w", pattern, err)
+		}
+		compiled = append(compiled, g)
+	}
+	config.Auth.CompiledRedirectGlobs = compiled
 
 	return config, nil
 }

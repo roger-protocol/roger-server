@@ -11,6 +11,9 @@ server:
 auth:
   jwt_private_key_path: ./keys/private.pem
   jwt_public_key_path: ./keys/public.pem
+  allowed_redirect_uris:
+    - "http://localhost:*/*"
+    - "http://127.0.0.1:*/*"
   providers:
     google:
       client_id: ${GOOGLE_CLIENT_ID}

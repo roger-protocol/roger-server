@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/gobwas/glob"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/roger-protocol/roger-server/internal/config"
 	"github.com/roger-protocol/roger-server/internal/convert"
@@ -23,6 +24,7 @@ import (
 
 var (
 	ErrUnsupportedProvider = errors.New("unsupported provider")
+	ErrIllegalRedirectUri  = errors.New("illegal redirect uri")
 )
 
 type AuthService struct {
@@ -50,6 +52,18 @@ type tokenClaims struct {
 	Email         string `json:"email,omitempty"`
 	EmailVerified bool   `json:"email_verified,omitempty"`
 	jwt.RegisteredClaims
+}
+
+func isValidRedirectUri(redirectUri string, allowed []*glob.Pattern) bool {
+	if _, err := url.ParseRequestURI(redirectUri); err != nil {
+		return false
+	}
+	for _, g := range allowed {
+		if g.Match(redirectUri) {
+			return true
+		}
+	}
+	return false
 }
 
 func (s *AuthService) ForgeState(clientState string, codeChallenge string, codeChallengeMethod string, clientRedirectUri string) (string, error) {
@@ -107,6 +121,10 @@ func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge st
 	providerCfg, ok := s.config.Auth.Providers[providerID]
 	if !ok {
 		return "", ErrUnsupportedProvider
+	}
+
+	if !isValidRedirectUri(clientRedirectUri, s.config.Auth.CompiledRedirectGlobs) {
+		return "", ErrIllegalRedirectUri
 	}
 
 	redirectUri, err := url.JoinPath(s.config.Server.ServerURL, providerCfg.CallbackPath)

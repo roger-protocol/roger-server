@@ -32,6 +32,8 @@ func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLo
 	if err != nil {
 		if errors.Is(err, services.ErrUnsupportedProvider) {
 			return InitiateOAuthLogin400JSONResponse{Error: err.Error()}, nil
+		} else if errors.Is(err, services.ErrIllegalRedirectUri) {
+			return InitiateOAuthLogin400JSONResponse{Error: err.Error()}, nil
 		} else {
 			return nil, err
 		}
