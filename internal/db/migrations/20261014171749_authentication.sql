@@ -19,6 +19,7 @@ CREATE TABLE providers (
 
     UNIQUE (provider_id, subject)
 );
+CREATE INDEX idx_providers_user_id ON providers(user_id);
 
 CREATE TABLE sessions (
     id TEXT PRIMARY KEY,
@@ -42,7 +43,7 @@ CREATE TABLE authorization_codes (
     redirect_uri TEXT NOT NULL,
     created_at TEXT NOT NULL
 );
-
+CREATE INDEX idx_authorization_codes_user_id ON authorization_codes(user_id);
 
 -- +goose Down
 DROP TABLE IF EXISTS providers;
