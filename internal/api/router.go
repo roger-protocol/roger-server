@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/getkin/kin-openapi/routers"
@@ -114,10 +115,26 @@ func NewRouter(s *Server) (http.Handler, error) {
 
 	validator := nethttpmiddleware.OapiRequestValidatorWithOptions(specs, &nethttpmiddleware.Options{
 		ErrorHandlerWithOpts: validationErrorHandler,
+		Skipper: func(r *http.Request) bool {
+			path := r.URL.Path
+			for _, providerCfg := range s.config.Auth.Providers {
+				if path == providerCfg.CallbackPath || strings.HasPrefix(path, providerCfg.CallbackPath) {
+					return true
+				}
+			}
+			return false
+		},
 	})
 
 	strictHandler := NewStrictHandlerWithOptions(s, nil, StrictHTTPServerOptions{
 		ResponseErrorHandlerFunc: handleServerError,
 	})
+
+	for providerID := range s.config.Auth.Providers {
+		log.Printf("registering %v with %v path", providerID, s.config.Auth.Providers[providerID].CallbackPath)
+		handler := s.newOAuthCallbackHandler(providerID)
+		r.Get(s.config.Auth.Providers[providerID].CallbackPath, handler)
+	}
+
 	return validator(HandlerFromMux(strictHandler, r)), nil
 }

@@ -38,7 +38,9 @@ func AESEncrypt(hexKey string, data []byte) ([]byte, error) {
 	}
 
 	nonce := make([]byte, gcm.NonceSize())
-	io.ReadFull(rand.Reader, nonce)
+	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
+		return nil, err
+	}
 
 	return gcm.Seal(nonce, nonce, data, nil), nil
 }
@@ -62,5 +64,5 @@ func AESDecrypt(hexKey string, data []byte) ([]byte, error) {
 	nonceSize := gcm.NonceSize()
 	nonce, cipher := data[:nonceSize], data[nonceSize:]
 
-	return gcm.Open(nonce, nonce, cipher, nil)
+	return gcm.Open(nil, nonce, cipher, nil)
 }
