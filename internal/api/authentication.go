@@ -101,11 +101,35 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 		}
 		log.Printf("successfully authenticated user: %s (%s)", user.ID, user.Username)
 
-		// Create a short-lived authorization code for the user
-		id, _, err := s.auth.CreateAuthorizationCode(ctx, s.queries, user.ID, oauthState.CodeChallenge, oauthState.CodeChallengeMethod, oauthState.RedirectURI)
+		// Create a transaction
+		tx, err := s.db.BeginTx(ctx, nil)
+		if err != nil {
+			log.Printf("transaction creation failed: %v", err)
+			redirectWithError("server_error", "failed to create database transaction")
+			return
+		}
+		defer tx.Rollback()
+		qtx := s.queries.WithTx(tx)
+
+		// Clean previous user authorization codes
+		_, err = qtx.DeleteUserAuthorizationCodes(ctx, user.ID)
+		if err != nil {
+			log.Printf("authorization codes deletion failed: %v", err)
+			redirectWithError("server_error", "failed to clean authorization codes")
+			return
+		}
+		// Create a new authorization code
+		id, _, err := s.auth.CreateAuthorizationCode(ctx, qtx, user.ID, oauthState.CodeChallenge, oauthState.CodeChallengeMethod, oauthState.RedirectURI)
 		if err != nil {
 			log.Printf("authorization code creation failed: %v", err)
 			redirectWithError("server_error", "failed to create authorization code")
+			return
+		}
+
+		// Commit the transaction
+		if err = tx.Commit(); err != nil {
+			log.Printf("failed to commit transaction: %v", err)
+			redirectWithError("server_error", "failed to commit transaction")
 			return
 		}
 

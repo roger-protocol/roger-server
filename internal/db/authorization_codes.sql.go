@@ -73,3 +73,39 @@ func (q *Queries) DeleteAuthorizationCode(ctx context.Context, idHash string) (A
 	)
 	return i, err
 }
+
+const deleteUserAuthorizationCodes = `-- name: DeleteUserAuthorizationCodes :many
+DELETE FROM authorization_codes
+WHERE user_id = ?
+RETURNING id_hash, user_id, code_challenge, code_challenge_method, redirect_uri, created_at
+`
+
+func (q *Queries) DeleteUserAuthorizationCodes(ctx context.Context, userID string) ([]AuthorizationCode, error) {
+	rows, err := q.db.QueryContext(ctx, deleteUserAuthorizationCodes, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []AuthorizationCode
+	for rows.Next() {
+		var i AuthorizationCode
+		if err := rows.Scan(
+			&i.IDHash,
+			&i.UserID,
+			&i.CodeChallenge,
+			&i.CodeChallengeMethod,
+			&i.RedirectUri,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

@@ -17,6 +17,11 @@ WHERE id_hash = ?
 LIMIT 1
 RETURNING *;
 
+-- name: DeleteUserAuthorizationCodes :many
+DELETE FROM authorization_codes
+WHERE user_id = ?
+RETURNING *;
+
 -- GetAuthorizationCodeDetails :one
 SELECT * FROM authorization_codes
 WHERE id_hash = ?
