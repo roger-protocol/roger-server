@@ -1,6 +1,10 @@
 package config
 
-import "github.com/gobwas/glob"
+import (
+	"crypto/ecdsa"
+
+	"github.com/gobwas/glob"
+)
 
 type Config struct {
 	Server   ServerConfig   `yaml:"server" json:"server"`
@@ -28,9 +32,11 @@ type ServerConfig struct {
 
 type AuthConfig struct {
 	// The path to the PEM key used to sign JWTs (private key)
-	JWTPrivateKeyPath string `yaml:"jwt_private_key_path" json:"jwt_private_key_path"`
+	JWTPrivateKeyPath string            `yaml:"jwt_private_key_path" json:"jwt_private_key_path"`
+	JWTPrivateKey     *ecdsa.PrivateKey `yaml:"-" jsonschema:"-"`
 	// The path to the PEM key used to verify the signature of JWTs (public key)
-	JWTPublicKeyPath string `yaml:"jwt_public_key_path" json:"jwt_public_key_path"`
+	JWTPublicKeyPath string           `yaml:"jwt_public_key_path" json:"jwt_public_key_path"`
+	JWTPublicKey     *ecdsa.PublicKey `yaml:"-" jsonschema:"-"`
 	// A map mapping OAuth provider ids and their config
 	Providers map[string]OAuthAppConfig `yaml:"providers" json:"providers"`
 	// A list of allowed OAuth redirect URIs
