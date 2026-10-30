@@ -61,7 +61,6 @@ func (q *Queries) CreateProvider(ctx context.Context, arg CreateProviderParams) 
 const deleteProvider = `-- name: DeleteProvider :one
 DELETE FROM providers
 WHERE id = ?
-LIMIT 1
 RETURNING id, user_id, provider_id, subject, raw_claims, created_at, last_used
 `
 

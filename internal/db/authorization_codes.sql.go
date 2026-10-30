@@ -56,7 +56,6 @@ func (q *Queries) CreateAuthorizationCode(ctx context.Context, arg CreateAuthori
 const deleteAuthorizationCode = `-- name: DeleteAuthorizationCode :one
 DELETE FROM authorization_codes
 WHERE id_hash = ?
-LIMIT 1
 RETURNING id_hash, user_id, code_challenge, code_challenge_method, redirect_uri, created_at
 `
 
@@ -108,4 +107,24 @@ func (q *Queries) DeleteUserAuthorizationCodes(ctx context.Context, userID strin
 		return nil, err
 	}
 	return items, nil
+}
+
+const getAuthorizationCodeDetails = `-- name: GetAuthorizationCodeDetails :one
+SELECT id_hash, user_id, code_challenge, code_challenge_method, redirect_uri, created_at FROM authorization_codes
+WHERE id_hash = ?
+LIMIT 1
+`
+
+func (q *Queries) GetAuthorizationCodeDetails(ctx context.Context, idHash string) (AuthorizationCode, error) {
+	row := q.db.QueryRowContext(ctx, getAuthorizationCodeDetails, idHash)
+	var i AuthorizationCode
+	err := row.Scan(
+		&i.IDHash,
+		&i.UserID,
+		&i.CodeChallenge,
+		&i.CodeChallengeMethod,
+		&i.RedirectUri,
+		&i.CreatedAt,
+	)
+	return i, err
 }

@@ -15,7 +15,6 @@ WHERE user_id = ?;
 -- name: DeleteProvider :one
 DELETE FROM providers
 WHERE id = ?
-LIMIT 1
 RETURNING *;
 
 -- name: CreateProvider :one

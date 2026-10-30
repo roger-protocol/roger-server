@@ -43,5 +43,4 @@ RETURNING *;
 -- name: DeleteUser :one
 DELETE FROM users
 WHERE id = ?
-LIMIT 1
 RETURNING *;

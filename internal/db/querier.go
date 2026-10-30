@@ -17,6 +17,7 @@ type Querier interface {
 	DeleteProvider(ctx context.Context, id string) (Provider, error)
 	DeleteUser(ctx context.Context, id string) (User, error)
 	DeleteUserAuthorizationCodes(ctx context.Context, userID string) ([]AuthorizationCode, error)
+	GetAuthorizationCodeDetails(ctx context.Context, idHash string) (AuthorizationCode, error)
 	GetProvider(ctx context.Context, id string) (Provider, error)
 	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
 	GetSession(ctx context.Context, id string) (Session, error)

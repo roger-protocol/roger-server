@@ -14,7 +14,6 @@ RETURNING *;
 -- name: DeleteAuthorizationCode :one
 DELETE FROM authorization_codes
 WHERE id_hash = ?
-LIMIT 1
 RETURNING *;
 
 -- name: DeleteUserAuthorizationCodes :many

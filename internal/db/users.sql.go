@@ -57,7 +57,6 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 const deleteUser = `-- name: DeleteUser :one
 DELETE FROM users
 WHERE id = ?
-LIMIT 1
 RETURNING id, username, email, email_verified, created_at, updated_at
 `
 
