@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"crypto/sha256"
+	"crypto/subtle"
 	"database/sql"
 	"encoding/base64"
 	"encoding/hex"
@@ -25,6 +26,14 @@ import (
 var (
 	ErrUnsupportedProvider = errors.New("unsupported provider")
 	ErrIllegalRedirectUri  = errors.New("illegal redirect uri")
+
+	// Authorization Code
+	ErrInvalidGrant               = errors.New("invalid grant")
+	ErrRedirectUriMismatch        = fmt.Errorf("%w: redirect uri mismatch", ErrInvalidGrant)
+	ErrInvalidAuthorizationCode   = fmt.Errorf("%w: invalid authorization code", ErrInvalidGrant)
+	ErrInvalidCodeVerifier        = fmt.Errorf("%w: invalid code verifier", ErrInvalidGrant)
+	ErrAuthorizationCodeExpired   = fmt.Errorf("%w: expired authorization code", ErrInvalidGrant)
+	ErrUnknownCodeChallengeMethod = errors.New("unknown code challenge method")
 )
 
 type AuthService struct {
@@ -301,6 +310,8 @@ func (s *AuthService) CreateUser(ctx context.Context, q *db.Queries, username st
 }
 
 // Authorization Code
+const AuthorizationCodeTTL = 5 * time.Minute
+
 func (s *AuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) (string, db.AuthorizationCode, error) {
 	id := crypto.GenerateID("rgr_ac")
 	idHashBytes := sha256.Sum256([]byte(id))
@@ -319,4 +330,125 @@ func (s *AuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries
 	}
 
 	return id, newAc, nil
+}
+func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Queries, authorizationCode string, redirectUri string, codeVerifier string) (db.AuthorizationCode, error) {
+	// Hash the authorizationCode and get it's details
+	acHash := crypto.Hash256([]byte(authorizationCode), hex.EncodeToString)
+	acDetails, err := q.GetAuthorizationCodeDetails(ctx, acHash)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return db.AuthorizationCode{}, ErrInvalidAuthorizationCode
+		}
+		return db.AuthorizationCode{}, fmt.Errorf("get authorization code details: %w", err)
+	}
+
+	// Check if the authorization code has expired
+	createdAt, err := time.Parse(time.RFC3339Nano, acDetails.CreatedAt)
+	if err != nil {
+		return db.AuthorizationCode{}, fmt.Errorf("parse creation date: %w", err)
+	}
+	if createdAt.Add(AuthorizationCodeTTL).Before(time.Now().UTC()) {
+		return db.AuthorizationCode{}, ErrAuthorizationCodeExpired
+	}
+
+	// Check if the redirect uri matches the previous redirect uri
+	if acDetails.RedirectUri != redirectUri {
+		return db.AuthorizationCode{}, ErrRedirectUriMismatch
+	}
+
+	// Check if the code verifier is valid
+	var codeChallenge string
+	switch acDetails.CodeChallengeMethod {
+	case "S256":
+		codeChallenge = crypto.Hash256([]byte(codeVerifier), base64.RawURLEncoding.EncodeToString)
+	case "plain":
+		codeChallenge = codeVerifier
+	default:
+		return db.AuthorizationCode{}, ErrUnknownCodeChallengeMethod
+	}
+	if subtle.ConstantTimeCompare([]byte(acDetails.CodeChallenge), []byte(codeChallenge)) != 1 { // Use ConstantTimeCompare for security ig
+		return db.AuthorizationCode{}, ErrInvalidCodeVerifier
+	}
+
+	// Revoke the authorization code
+	_, err = q.DeleteAuthorizationCode(ctx, acDetails.IDHash)
+	if err != nil {
+		return db.AuthorizationCode{}, fmt.Errorf("revoke authorization code: %w", err)
+	}
+
+	return acDetails, nil
+}
+
+// JWT
+const JwtTTL = 15 * time.Minute
+
+func (s *AuthService) CreateJWT(userId string) (*jwt.Token, string) {
+	jti := crypto.GenerateID("rgr_jti")
+	now := time.Now().UTC()
+
+	claims := jwt.RegisteredClaims{
+		ID:        jti,
+		Issuer:    s.config.Server.ServerURL,
+		Audience:  jwt.ClaimStrings{s.config.Server.ServerURL},
+		Subject:   userId,
+		IssuedAt:  jwt.NewNumericDate(now),
+		ExpiresAt: jwt.NewNumericDate(now.Add(JwtTTL)),
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
+
+	return token, jti
+}
+
+// Session
+type TokenResponse struct {
+	AccessToken  string
+	TokenType    string
+	ExpiresIn    int
+	RefreshToken string
+}
+
+func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId string, ipAddress string, country string, clientName string) (db.Session, TokenResponse, error) {
+	// Create a JWT for the session
+	jwt, jti := s.CreateJWT(userId)
+	expires_at, err := jwt.Claims.GetExpirationTime()
+	if err != nil {
+		return db.Session{}, TokenResponse{}, fmt.Errorf("couldn't get jwt expiration date: %w", err)
+	}
+
+	// Sign JWT
+	signedJwt, err := jwt.SignedString(s.config.Auth.JWTPrivateKey)
+	if err != nil {
+		return db.Session{}, TokenResponse{}, fmt.Errorf("signing jwt: %w", err)
+	}
+
+	// Create the session
+	refreshToken := crypto.GenerateID("rgr_rt")
+	sessId := crypto.GenerateID("rgr_sess")
+	now := time.Now().UTC().Format(time.RFC3339)
+	session, err := q.CreateSession(ctx, db.CreateSessionParams{
+		ID:                   sessId,
+		UserID:               userId,
+		IpAddress:            convert.ToNullString(ipAddress),
+		Country:              convert.ToNullString(country),
+		ClientName:           convert.ToNullString(country),
+		RefreshTokenHash:     crypto.Hash256([]byte(refreshToken), hex.EncodeToString),
+		AccessTokenJti:       jti,
+		AccessTokenExpiresAt: expires_at.Format(time.RFC3339),
+		CreatedAt:            now,
+		LastUsedAt:           now,
+	})
+	if err != nil {
+		return db.Session{}, TokenResponse{}, fmt.Errorf("database error: %w", err)
+	}
+
+	// Create the token response
+	tokenResponse := TokenResponse{
+		AccessToken:  signedJwt,
+		TokenType:    "Bearer",
+		ExpiresIn:    int(time.Until(expires_at.Time).Seconds()),
+		RefreshToken: refreshToken,
+	}
+
+	return session, tokenResponse, nil
 }
