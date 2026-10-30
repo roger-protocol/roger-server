@@ -15,6 +15,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	nethttpmiddleware "github.com/oapi-codegen/nethttp-middleware"
+	"golang.org/x/text/language"
 )
 
 func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
@@ -34,7 +35,7 @@ func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
 	})
 }
 
-func Recoverer(next http.Handler) http.Handler {
+func recoverer(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
@@ -83,6 +84,30 @@ func validationErrorHandler(ctx context.Context, err error, w http.ResponseWrite
 	json.NewEncoder(w).Encode(resp)
 }
 
+func clientCountryFromHeader(header string) func(http.Handler) http.Handler {
+	safeHeader := http.CanonicalHeaderKey(header)
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			country := r.Header.Get(safeHeader)
+			if country != "XX" && country != "T1" {
+				region, err := language.ParseRegion(country)
+				if err != nil || region.IsCountry() {
+					country = ""
+				}
+			}
+			ctx := context.WithValue(r.Context(), "clientCountry", country)
+			next.ServeHTTP(w, r.WithContext(ctx))
+		})
+	}
+}
+
+func GetClientCountry(ctx context.Context) string {
+	if v, ok := ctx.Value("clientCountry").(string); ok {
+		return v
+	}
+	return ""
+}
+
 func NewRouter(s *Server) (http.Handler, error) {
 	r := chi.NewRouter()
 
@@ -98,14 +123,19 @@ func NewRouter(s *Server) (http.Handler, error) {
 
 	// Tracing
 	r.Use(middleware.RequestID)
-	r.Use(middleware.ClientIPFromHeader("CF-Connecting-IP"))
+	if s.config.Server.IPHeader != "" {
+		r.Use(middleware.ClientIPFromHeader(s.config.Server.IPHeader))
+	}
+	if s.config.Server.GeoHeader != "" {
+		r.Use(clientCountryFromHeader(s.config.Server.GeoHeader))
+	}
 
 	// Logging
 	r.Use(middleware.Logger)
 
 	// Sending
 	r.Use(middleware.Compress(5))
-	r.Use(Recoverer)
+	r.Use(recoverer)
 
 	specs, err := GetSpec()
 	if err != nil {
@@ -116,6 +146,9 @@ func NewRouter(s *Server) (http.Handler, error) {
 	validator := nethttpmiddleware.OapiRequestValidatorWithOptions(specs, &nethttpmiddleware.Options{
 		ErrorHandlerWithOpts: validationErrorHandler,
 		Skipper: func(r *http.Request) bool {
+			if r.Method == http.MethodOptions {
+				return true
+			}
 			path := r.URL.Path
 			for _, providerCfg := range s.config.Auth.Providers {
 				if path == providerCfg.CallbackPath || strings.HasPrefix(path, providerCfg.CallbackPath) {

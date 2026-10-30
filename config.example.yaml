@@ -2,11 +2,13 @@
 server:
   name: Official Roger Node
   description: The official Roger node powered by rogerd
-  version: v0.2.1
+  version: v0.2.2
   addr: :8080
   server_url: http://localhost:8080
   db_path: rogerd.db
   db_encryption_key: ${ROGERD_ENCRYPTION_KEY}
+  ip_header: CF-Connecting-IP
+  geo_header: CF-IPCountry
 
 auth:
   jwt_private_key_path: ./keys/private.pem

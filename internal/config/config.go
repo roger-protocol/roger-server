@@ -28,6 +28,10 @@ type ServerConfig struct {
 	DBPath string `yaml:"db_path" json:"db_path"`
 	// A 32 bytes encryption key used to encrypt sensitive data using AES-GCM (64 hex characters)
 	DBEncryptionKey string `yaml:"db_encryption_key" json:"db_encryption_key"`
+	// The header read by the server to determine the client IP (ex: with cloudflare use CF-Connecting-IP)
+	IPHeader string `yaml:"ip_header,omitempty" json:"ip_header,omitempty"`
+	// The header read by the server to determine the client country. Must follow the ISO 3166-1 alpha-2 standard (ex: with cloudflare use CF-IPCountry)
+	GeoHeader string `yaml:"geo_header,omitempty" json:"geo_header,omitempty"`
 }
 
 type AuthConfig struct {
