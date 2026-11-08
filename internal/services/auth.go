@@ -331,6 +331,14 @@ func (s *AuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries
 
 	return id, newAc, nil
 }
+
+// Possible Error Codes:
+// - ErrInvalidAuthorizationCode
+// - ErrAuthorizationCodeExpired
+// - ErrRedirectUriMismatch
+// - ErrUnknownCodeChallengeMethod
+// - ErrInvalidCodeVerifier
+
 func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Queries, authorizationCode string, redirectUri string, codeVerifier string) (db.AuthorizationCode, error) {
 	// Hash the authorizationCode and get it's details
 	acHash := crypto.Hash256([]byte(authorizationCode), hex.EncodeToString)
@@ -382,12 +390,18 @@ func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Querie
 // JWT
 const JwtTTL = 15 * time.Minute
 
-func (s *AuthService) CreateJWT(userId string) (*jwt.Token, string) {
-	jti := crypto.GenerateID("rgr_jti")
+type CreatedSession struct {
+	Session      db.Session
+	AccessToken  string
+	RefreshToken string
+	Claims       jwt.RegisteredClaims
+}
+
+func (s *AuthService) CreateJWT(userId string) (*jwt.Token, jwt.RegisteredClaims) {
 	now := time.Now().UTC()
 
 	claims := jwt.RegisteredClaims{
-		ID:        jti,
+		ID:        crypto.GenerateID("rgr_jti"),
 		Issuer:    s.config.Server.ServerURL,
 		Audience:  jwt.ClaimStrings{s.config.Server.ServerURL},
 		Subject:   userId,
@@ -397,29 +411,18 @@ func (s *AuthService) CreateJWT(userId string) (*jwt.Token, string) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
 
-	return token, jti
+	return token, claims
 }
 
-// Session
-type TokenResponse struct {
-	AccessToken  string
-	TokenType    string
-	ExpiresIn    int
-	RefreshToken string
-}
-
-func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId string, ipAddress string, country string, clientName string) (db.Session, TokenResponse, error) {
+func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId string, ipAddress string, country string, clientName string) (CreatedSession, error) {
 	// Create a JWT for the session
-	jwt, jti := s.CreateJWT(userId)
-	expires_at, err := jwt.Claims.GetExpirationTime()
-	if err != nil {
-		return db.Session{}, TokenResponse{}, fmt.Errorf("couldn't get jwt expiration date: %w", err)
-	}
+	jwt, claims := s.CreateJWT(userId)
+	expires_at := claims.ExpiresAt
 
 	// Sign JWT
 	signedJwt, err := jwt.SignedString(s.config.Auth.JWTPrivateKey)
 	if err != nil {
-		return db.Session{}, TokenResponse{}, fmt.Errorf("signing jwt: %w", err)
+		return CreatedSession{}, fmt.Errorf("signing jwt: %w", err)
 	}
 
 	// Create the session
@@ -433,22 +436,22 @@ func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId s
 		Country:              convert.ToNullString(country),
 		ClientName:           convert.ToNullString(country),
 		RefreshTokenHash:     crypto.Hash256([]byte(refreshToken), hex.EncodeToString),
-		AccessTokenJti:       jti,
+		AccessTokenJti:       claims.ID,
 		AccessTokenExpiresAt: expires_at.Format(time.RFC3339),
 		CreatedAt:            now,
 		LastUsedAt:           now,
 	})
 	if err != nil {
-		return db.Session{}, TokenResponse{}, fmt.Errorf("database error: %w", err)
+		return CreatedSession{}, fmt.Errorf("database error: %w", err)
 	}
 
 	// Create the token response
-	tokenResponse := TokenResponse{
+	tokenResponse := CreatedSession{
+		Session:      session,
 		AccessToken:  signedJwt,
-		TokenType:    "Bearer",
-		ExpiresIn:    int(time.Until(expires_at.Time).Seconds()),
 		RefreshToken: refreshToken,
+		Claims:       claims,
 	}
 
-	return session, tokenResponse, nil
+	return tokenResponse, nil
 }
