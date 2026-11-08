@@ -22,16 +22,11 @@ func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
 	log.Printf("internal error: %v", err)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusInternalServerError)
-	json.NewEncoder(w).Encode(ServerError{
-		Error: struct {
-			Code    ServerErrorErrorCode `json:"code"`
-			Message string               `json:"message"`
-			Type    ServerErrorErrorType `json:"type"`
-		}{
-			Type:    "ServerError",
-			Code:    "internal_server_error",
-			Message: "An unexpected internal server error occured",
-		},
+
+	description := "There was an unexpected error while handling your request. Please try again later."
+	json.NewEncoder(w).Encode(Error{
+		Error:            "server_error",
+		ErrorDescription: &description,
 	})
 }
 
@@ -48,35 +43,33 @@ func recoverer(next http.Handler) http.Handler {
 }
 
 func validationErrorHandler(ctx context.Context, err error, w http.ResponseWriter, r *http.Request, opts nethttpmiddleware.ErrorHandlerOpts) {
-	var errorCode ValidationErrorErrorCode
 	var errorMessage string
 
-	if routeErr, ok := errors.AsType[*routers.RouteError](err); ok {
-		errorCode = "not_found"
-		errorMessage = routeErr.Error()
+	if _, ok := errors.AsType[*routers.RouteError](err); ok {
+		errorMessage = "Invalid URL"
 	} else if reqErr, ok := errors.AsType[*openapi3filter.RequestError](err); ok {
-		if reqErr.RequestBody != nil {
-			errorCode = "invalid_body"
-		} else if reqErr.Parameter != nil {
-			if reqErr.Parameter.In == "query" {
-				errorCode = "invalid_query"
-			} else {
-				errorCode = "invalid_params"
+		switch {
+		case reqErr.RequestBody != nil:
+			errorMessage = "Invalid request body"
+		case reqErr.Parameter != nil:
+			switch reqErr.Parameter.In {
+			case "query":
+				errorMessage = "Invalid request query"
+			case "path":
+				errorMessage = "Invalid URL params"
+			default:
+				errorMessage = "Invalid request parameters"
 			}
+		default:
+			errorMessage = "Invalid request"
 		}
-		errorMessage = reqErr.Error()
+	} else {
+		errorMessage = "Invalid request"
 	}
 
-	resp := ValidationError{
-		Error: struct {
-			Code    ValidationErrorErrorCode "json:\"code\""
-			Message string                   "json:\"message\""
-			Type    ValidationErrorErrorType "json:\"type\""
-		}{
-			Type:    "ValidationError",
-			Code:    errorCode,
-			Message: errorMessage,
-		},
+	resp := Error{
+		Error:            "invalid_request",
+		ErrorDescription: &errorMessage,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

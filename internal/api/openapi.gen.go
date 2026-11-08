@@ -25,354 +25,237 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
-// Defines values for AuthErrorErrorCode.
+// Defines values for APIKeyCredentialKind.
 const (
-	TokenExpired AuthErrorErrorCode = "token_expired"
-	TokenInvalid AuthErrorErrorCode = "token_invalid"
-	Unauthorized AuthErrorErrorCode = "unauthorized"
+	APIKeyCredentialKindApiKey APIKeyCredentialKind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the AuthErrorErrorCode enum.
-func (e AuthErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the APIKeyCredentialKind enum.
+func (e APIKeyCredentialKind) Valid() bool {
 	switch e {
-	case TokenExpired:
-		return true
-	case TokenInvalid:
-		return true
-	case Unauthorized:
+	case APIKeyCredentialKindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for AuthErrorErrorType.
+// Defines values for APIKeyCredentialStatus.
 const (
-	AuthErrorErrorTypeAuthError AuthErrorErrorType = "AuthError"
+	APIKeyCredentialStatusError   APIKeyCredentialStatus = "error"
+	APIKeyCredentialStatusInfo    APIKeyCredentialStatus = "info"
+	APIKeyCredentialStatusSuccess APIKeyCredentialStatus = "success"
+	APIKeyCredentialStatusWarning APIKeyCredentialStatus = "warning"
 )
 
-// Valid indicates whether the value is a known member of the AuthErrorErrorType enum.
-func (e AuthErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the APIKeyCredentialStatus enum.
+func (e APIKeyCredentialStatus) Valid() bool {
 	switch e {
-	case AuthErrorErrorTypeAuthError:
+	case APIKeyCredentialStatusError:
+		return true
+	case APIKeyCredentialStatusInfo:
+		return true
+	case APIKeyCredentialStatusSuccess:
+		return true
+	case APIKeyCredentialStatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for CredentialsErrorErrorCode.
+// Defines values for APIKeyInfosKind.
 const (
-	CredentialInUse CredentialsErrorErrorCode = "credential_in_use"
-	InvalidSecret   CredentialsErrorErrorCode = "invalid_secret"
+	APIKeyInfosKindApiKey APIKeyInfosKind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the CredentialsErrorErrorCode enum.
-func (e CredentialsErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the APIKeyInfosKind enum.
+func (e APIKeyInfosKind) Valid() bool {
 	switch e {
-	case CredentialInUse:
-		return true
-	case InvalidSecret:
+	case APIKeyInfosKindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for CredentialsErrorErrorType.
+// Defines values for AccessTokenRevokeGrantTokenTypeHint.
 const (
-	CredentialsErrorErrorTypeCredentialsError CredentialsErrorErrorType = "CredentialsError"
+	AccessToken AccessTokenRevokeGrantTokenTypeHint = "access_token"
 )
 
-// Valid indicates whether the value is a known member of the CredentialsErrorErrorType enum.
-func (e CredentialsErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the AccessTokenRevokeGrantTokenTypeHint enum.
+func (e AccessTokenRevokeGrantTokenTypeHint) Valid() bool {
 	switch e {
-	case CredentialsErrorErrorTypeCredentialsError:
+	case AccessToken:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeploymentErrorErrorCode.
+// Defines values for AuthorizationCodeGrantGrantType.
 const (
-	DeploymentActive    DeploymentErrorErrorCode = "deployment_active"
-	DeploymentNotStaged DeploymentErrorErrorCode = "deployment_not_staged"
+	AuthorizationCode AuthorizationCodeGrantGrantType = "authorization_code"
 )
 
-// Valid indicates whether the value is a known member of the DeploymentErrorErrorCode enum.
-func (e DeploymentErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the AuthorizationCodeGrantGrantType enum.
+func (e AuthorizationCodeGrantGrantType) Valid() bool {
 	switch e {
-	case DeploymentActive:
-		return true
-	case DeploymentNotStaged:
+	case AuthorizationCode:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for DeploymentErrorErrorType.
+// Defines values for InternalStorageKind.
 const (
-	DeploymentErrorErrorTypeDeploymentError DeploymentErrorErrorType = "DeploymentError"
+	InternalStorageKindInternal InternalStorageKind = "internal"
 )
 
-// Valid indicates whether the value is a known member of the DeploymentErrorErrorType enum.
-func (e DeploymentErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the InternalStorageKind enum.
+func (e InternalStorageKind) Valid() bool {
 	switch e {
-	case DeploymentErrorErrorTypeDeploymentError:
+	case InternalStorageKindInternal:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ForbiddenErrorErrorCode.
+// Defines values for InternalStorageStatus.
 const (
-	Forbidden               ForbiddenErrorErrorCode = "forbidden"
-	InsufficientPermissions ForbiddenErrorErrorCode = "insufficient_permissions"
+	InternalStorageStatusError   InternalStorageStatus = "error"
+	InternalStorageStatusInfo    InternalStorageStatus = "info"
+	InternalStorageStatusSuccess InternalStorageStatus = "success"
+	InternalStorageStatusWarning InternalStorageStatus = "warning"
 )
 
-// Valid indicates whether the value is a known member of the ForbiddenErrorErrorCode enum.
-func (e ForbiddenErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the InternalStorageStatus enum.
+func (e InternalStorageStatus) Valid() bool {
 	switch e {
-	case Forbidden:
+	case InternalStorageStatusError:
 		return true
-	case InsufficientPermissions:
+	case InternalStorageStatusInfo:
+		return true
+	case InternalStorageStatusSuccess:
+		return true
+	case InternalStorageStatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ForbiddenErrorErrorType.
+// Defines values for PlaceTargetKind.
 const (
-	ForbiddenErrorErrorTypeForbiddenError ForbiddenErrorErrorType = "ForbiddenError"
+	PlaceTargetKindPlace PlaceTargetKind = "place"
 )
 
-// Valid indicates whether the value is a known member of the ForbiddenErrorErrorType enum.
-func (e ForbiddenErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the PlaceTargetKind enum.
+func (e PlaceTargetKind) Valid() bool {
 	switch e {
-	case ForbiddenErrorErrorTypeForbiddenError:
+	case PlaceTargetKindPlace:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for NotFoundErrorErrorCode.
+// Defines values for RefreshTokenGrantGrantType.
 const (
-	ResourceNotFound NotFoundErrorErrorCode = "resource_not_found"
+	RefreshTokenGrantGrantTypeRefreshToken RefreshTokenGrantGrantType = "refresh_token"
 )
 
-// Valid indicates whether the value is a known member of the NotFoundErrorErrorCode enum.
-func (e NotFoundErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the RefreshTokenGrantGrantType enum.
+func (e RefreshTokenGrantGrantType) Valid() bool {
 	switch e {
-	case ResourceNotFound:
+	case RefreshTokenGrantGrantTypeRefreshToken:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for NotFoundErrorErrorType.
+// Defines values for RefreshTokenRevokeGrantTokenTypeHint.
 const (
-	NotFoundErrorErrorTypeNotFoundError NotFoundErrorErrorType = "NotFoundError"
+	RefreshTokenRevokeGrantTokenTypeHintRefreshToken RefreshTokenRevokeGrantTokenTypeHint = "refresh_token"
 )
 
-// Valid indicates whether the value is a known member of the NotFoundErrorErrorType enum.
-func (e NotFoundErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the RefreshTokenRevokeGrantTokenTypeHint enum.
+func (e RefreshTokenRevokeGrantTokenTypeHint) Valid() bool {
 	switch e {
-	case NotFoundErrorErrorTypeNotFoundError:
+	case RefreshTokenRevokeGrantTokenTypeHintRefreshToken:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for OAuthErrorError.
+// Defines values for S3CompatibleStorageKind.
 const (
-	OAuthErrorErrorInvalidGrant         OAuthErrorError = "invalid_grant"
-	OAuthErrorErrorInvalidRequest       OAuthErrorError = "invalid_request"
-	OAuthErrorErrorServerError          OAuthErrorError = "server_error"
-	OAuthErrorErrorUnsupportedGrantType OAuthErrorError = "unsupported_grant_type"
+	S3CompatibleStorageKindS3 S3CompatibleStorageKind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the OAuthErrorError enum.
-func (e OAuthErrorError) Valid() bool {
+// Valid indicates whether the value is a known member of the S3CompatibleStorageKind enum.
+func (e S3CompatibleStorageKind) Valid() bool {
 	switch e {
-	case OAuthErrorErrorInvalidGrant:
-		return true
-	case OAuthErrorErrorInvalidRequest:
-		return true
-	case OAuthErrorErrorServerError:
-		return true
-	case OAuthErrorErrorUnsupportedGrantType:
+	case S3CompatibleStorageKindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ProjectErrorErrorCode.
+// Defines values for S3CompatibleStorageStatus.
 const (
-	MaxProjectsExceeded ProjectErrorErrorCode = "max_projects_exceeded"
+	S3CompatibleStorageStatusError   S3CompatibleStorageStatus = "error"
+	S3CompatibleStorageStatusInfo    S3CompatibleStorageStatus = "info"
+	S3CompatibleStorageStatusSuccess S3CompatibleStorageStatus = "success"
+	S3CompatibleStorageStatusWarning S3CompatibleStorageStatus = "warning"
 )
 
-// Valid indicates whether the value is a known member of the ProjectErrorErrorCode enum.
-func (e ProjectErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the S3CompatibleStorageStatus enum.
+func (e S3CompatibleStorageStatus) Valid() bool {
 	switch e {
-	case MaxProjectsExceeded:
+	case S3CompatibleStorageStatusError:
+		return true
+	case S3CompatibleStorageStatusInfo:
+		return true
+	case S3CompatibleStorageStatusSuccess:
+		return true
+	case S3CompatibleStorageStatusWarning:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ProjectErrorErrorType.
+// Defines values for S3CompatibleStorageInfosKind.
 const (
-	ProjectErrorErrorTypeProjectError ProjectErrorErrorType = "ProjectError"
+	S3CompatibleStorageInfosKindS3 S3CompatibleStorageInfosKind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the ProjectErrorErrorType enum.
-func (e ProjectErrorErrorType) Valid() bool {
+// Valid indicates whether the value is a known member of the S3CompatibleStorageInfosKind enum.
+func (e S3CompatibleStorageInfosKind) Valid() bool {
 	switch e {
-	case ProjectErrorErrorTypeProjectError:
+	case S3CompatibleStorageInfosKindS3:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ServerErrorErrorCode.
+// Defines values for UserStorageOwnerKind.
 const (
-	DatabaseError        ServerErrorErrorCode = "database_error"
-	ExternalServiceError ServerErrorErrorCode = "external_service_error"
-	InternalServerError  ServerErrorErrorCode = "internal_server_error"
+	User UserStorageOwnerKind = "user"
 )
 
-// Valid indicates whether the value is a known member of the ServerErrorErrorCode enum.
-func (e ServerErrorErrorCode) Valid() bool {
+// Valid indicates whether the value is a known member of the UserStorageOwnerKind enum.
+func (e UserStorageOwnerKind) Valid() bool {
 	switch e {
-	case DatabaseError:
-		return true
-	case ExternalServiceError:
-		return true
-	case InternalServerError:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ServerErrorErrorType.
-const (
-	ServerErrorErrorTypeServerError ServerErrorErrorType = "ServerError"
-)
-
-// Valid indicates whether the value is a known member of the ServerErrorErrorType enum.
-func (e ServerErrorErrorType) Valid() bool {
-	switch e {
-	case ServerErrorErrorTypeServerError:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for StorageErrorErrorCode.
-const (
-	InvalidCredentials StorageErrorErrorCode = "invalid_credentials"
-	StorageInUse       StorageErrorErrorCode = "storage_in_use"
-)
-
-// Valid indicates whether the value is a known member of the StorageErrorErrorCode enum.
-func (e StorageErrorErrorCode) Valid() bool {
-	switch e {
-	case InvalidCredentials:
-		return true
-	case StorageInUse:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for StorageErrorErrorType.
-const (
-	StorageErrorErrorTypeStorageError StorageErrorErrorType = "StorageError"
-)
-
-// Valid indicates whether the value is a known member of the StorageErrorErrorType enum.
-func (e StorageErrorErrorType) Valid() bool {
-	switch e {
-	case StorageErrorErrorTypeStorageError:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for TargetErrorErrorCode.
-const (
-	TargetInUse TargetErrorErrorCode = "target_in_use"
-)
-
-// Valid indicates whether the value is a known member of the TargetErrorErrorCode enum.
-func (e TargetErrorErrorCode) Valid() bool {
-	switch e {
-	case TargetInUse:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for TargetErrorErrorType.
-const (
-	TargetErrorErrorTypeTargetError TargetErrorErrorType = "TargetError"
-)
-
-// Valid indicates whether the value is a known member of the TargetErrorErrorType enum.
-func (e TargetErrorErrorType) Valid() bool {
-	switch e {
-	case TargetErrorErrorTypeTargetError:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ValidationErrorErrorCode.
-const (
-	InvalidBody   ValidationErrorErrorCode = "invalid_body"
-	InvalidParams ValidationErrorErrorCode = "invalid_params"
-	InvalidQuery  ValidationErrorErrorCode = "invalid_query"
-)
-
-// Valid indicates whether the value is a known member of the ValidationErrorErrorCode enum.
-func (e ValidationErrorErrorCode) Valid() bool {
-	switch e {
-	case InvalidBody:
-		return true
-	case InvalidParams:
-		return true
-	case InvalidQuery:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ValidationErrorErrorType.
-const (
-	ValidationErrorErrorTypeValidationError ValidationErrorErrorType = "ValidationError"
-)
-
-// Valid indicates whether the value is a known member of the ValidationErrorErrorType enum.
-func (e ValidationErrorErrorType) Valid() bool {
-	switch e {
-	case ValidationErrorErrorTypeValidationError:
+	case User:
 		return true
 	default:
 		return false
@@ -388,81 +271,6 @@ const (
 func (e InitiateOAuthLoginParamsCodeChallengeMethod) Valid() bool {
 	switch e {
 	case S256:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RevokeTokenJSONBody0TokenTypeHint.
-const (
-	AccessToken RevokeTokenJSONBody0TokenTypeHint = "access_token"
-)
-
-// Valid indicates whether the value is a known member of the RevokeTokenJSONBody0TokenTypeHint enum.
-func (e RevokeTokenJSONBody0TokenTypeHint) Valid() bool {
-	switch e {
-	case AccessToken:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RevokeTokenJSONBody1TokenTypeHint.
-const (
-	RevokeTokenJSONBody1TokenTypeHintRefreshToken RevokeTokenJSONBody1TokenTypeHint = "refresh_token"
-)
-
-// Valid indicates whether the value is a known member of the RevokeTokenJSONBody1TokenTypeHint enum.
-func (e RevokeTokenJSONBody1TokenTypeHint) Valid() bool {
-	switch e {
-	case RevokeTokenJSONBody1TokenTypeHintRefreshToken:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RevokeToken400JSONResponseBody1Error.
-const (
-	UnsupportedTokenType RevokeToken400JSONResponseBody1Error = "unsupported_token_type"
-)
-
-// Valid indicates whether the value is a known member of the RevokeToken400JSONResponseBody1Error enum.
-func (e RevokeToken400JSONResponseBody1Error) Valid() bool {
-	switch e {
-	case UnsupportedTokenType:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ExchangeTokenJSONBody0GrantType.
-const (
-	AuthorizationCode ExchangeTokenJSONBody0GrantType = "authorization_code"
-)
-
-// Valid indicates whether the value is a known member of the ExchangeTokenJSONBody0GrantType enum.
-func (e ExchangeTokenJSONBody0GrantType) Valid() bool {
-	switch e {
-	case AuthorizationCode:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ExchangeTokenJSONBody1GrantType.
-const (
-	ExchangeTokenJSONBody1GrantTypeRefreshToken ExchangeTokenJSONBody1GrantType = "refresh_token"
-)
-
-// Valid indicates whether the value is a known member of the ExchangeTokenJSONBody1GrantType enum.
-func (e ExchangeTokenJSONBody1GrantType) Valid() bool {
-	switch e {
-	case ExchangeTokenJSONBody1GrantTypeRefreshToken:
 		return true
 	default:
 		return false
@@ -658,216 +466,6 @@ func (e RenameProject200JSONResponseBodyKind) Valid() bool {
 	}
 }
 
-// Defines values for ListCredentials200JSONResponseBody0Kind.
-const (
-	ListCredentials200JSONResponseBody0KindApiKey ListCredentials200JSONResponseBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the ListCredentials200JSONResponseBody0Kind enum.
-func (e ListCredentials200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case ListCredentials200JSONResponseBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListCredentials200JSONResponseBody0Status.
-const (
-	ListCredentials200JSONResponseBody0StatusError   ListCredentials200JSONResponseBody0Status = "error"
-	ListCredentials200JSONResponseBody0StatusInfo    ListCredentials200JSONResponseBody0Status = "info"
-	ListCredentials200JSONResponseBody0StatusSuccess ListCredentials200JSONResponseBody0Status = "success"
-	ListCredentials200JSONResponseBody0StatusWarning ListCredentials200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the ListCredentials200JSONResponseBody0Status enum.
-func (e ListCredentials200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case ListCredentials200JSONResponseBody0StatusError:
-		return true
-	case ListCredentials200JSONResponseBody0StatusInfo:
-		return true
-	case ListCredentials200JSONResponseBody0StatusSuccess:
-		return true
-	case ListCredentials200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateCredentialJSONBody0Kind.
-const (
-	CreateCredentialJSONBody0KindApiKey CreateCredentialJSONBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the CreateCredentialJSONBody0Kind enum.
-func (e CreateCredentialJSONBody0Kind) Valid() bool {
-	switch e {
-	case CreateCredentialJSONBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateCredential200JSONResponseBody0Kind.
-const (
-	CreateCredential200JSONResponseBody0KindApiKey CreateCredential200JSONResponseBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the CreateCredential200JSONResponseBody0Kind enum.
-func (e CreateCredential200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case CreateCredential200JSONResponseBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateCredential200JSONResponseBody0Status.
-const (
-	CreateCredential200JSONResponseBody0StatusError   CreateCredential200JSONResponseBody0Status = "error"
-	CreateCredential200JSONResponseBody0StatusInfo    CreateCredential200JSONResponseBody0Status = "info"
-	CreateCredential200JSONResponseBody0StatusSuccess CreateCredential200JSONResponseBody0Status = "success"
-	CreateCredential200JSONResponseBody0StatusWarning CreateCredential200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the CreateCredential200JSONResponseBody0Status enum.
-func (e CreateCredential200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case CreateCredential200JSONResponseBody0StatusError:
-		return true
-	case CreateCredential200JSONResponseBody0StatusInfo:
-		return true
-	case CreateCredential200JSONResponseBody0StatusSuccess:
-		return true
-	case CreateCredential200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteCredential200JSONResponseBody0Kind.
-const (
-	DeleteCredential200JSONResponseBody0KindApiKey DeleteCredential200JSONResponseBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the DeleteCredential200JSONResponseBody0Kind enum.
-func (e DeleteCredential200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case DeleteCredential200JSONResponseBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteCredential200JSONResponseBody0Status.
-const (
-	DeleteCredential200JSONResponseBody0StatusError   DeleteCredential200JSONResponseBody0Status = "error"
-	DeleteCredential200JSONResponseBody0StatusInfo    DeleteCredential200JSONResponseBody0Status = "info"
-	DeleteCredential200JSONResponseBody0StatusSuccess DeleteCredential200JSONResponseBody0Status = "success"
-	DeleteCredential200JSONResponseBody0StatusWarning DeleteCredential200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the DeleteCredential200JSONResponseBody0Status enum.
-func (e DeleteCredential200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case DeleteCredential200JSONResponseBody0StatusError:
-		return true
-	case DeleteCredential200JSONResponseBody0StatusInfo:
-		return true
-	case DeleteCredential200JSONResponseBody0StatusSuccess:
-		return true
-	case DeleteCredential200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameCredential200JSONResponseBody0Kind.
-const (
-	RenameCredential200JSONResponseBody0KindApiKey RenameCredential200JSONResponseBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the RenameCredential200JSONResponseBody0Kind enum.
-func (e RenameCredential200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case RenameCredential200JSONResponseBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameCredential200JSONResponseBody0Status.
-const (
-	RenameCredential200JSONResponseBody0StatusError   RenameCredential200JSONResponseBody0Status = "error"
-	RenameCredential200JSONResponseBody0StatusInfo    RenameCredential200JSONResponseBody0Status = "info"
-	RenameCredential200JSONResponseBody0StatusSuccess RenameCredential200JSONResponseBody0Status = "success"
-	RenameCredential200JSONResponseBody0StatusWarning RenameCredential200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RenameCredential200JSONResponseBody0Status enum.
-func (e RenameCredential200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case RenameCredential200JSONResponseBody0StatusError:
-		return true
-	case RenameCredential200JSONResponseBody0StatusInfo:
-		return true
-	case RenameCredential200JSONResponseBody0StatusSuccess:
-		return true
-	case RenameCredential200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateCredential200JSONResponseBody0Kind.
-const (
-	RotateCredential200JSONResponseBody0KindApiKey RotateCredential200JSONResponseBody0Kind = "api-key"
-)
-
-// Valid indicates whether the value is a known member of the RotateCredential200JSONResponseBody0Kind enum.
-func (e RotateCredential200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case RotateCredential200JSONResponseBody0KindApiKey:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateCredential200JSONResponseBody0Status.
-const (
-	RotateCredential200JSONResponseBody0StatusError   RotateCredential200JSONResponseBody0Status = "error"
-	RotateCredential200JSONResponseBody0StatusInfo    RotateCredential200JSONResponseBody0Status = "info"
-	RotateCredential200JSONResponseBody0StatusSuccess RotateCredential200JSONResponseBody0Status = "success"
-	RotateCredential200JSONResponseBody0StatusWarning RotateCredential200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RotateCredential200JSONResponseBody0Status enum.
-func (e RotateCredential200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case RotateCredential200JSONResponseBody0StatusError:
-		return true
-	case RotateCredential200JSONResponseBody0StatusInfo:
-		return true
-	case RotateCredential200JSONResponseBody0StatusSuccess:
-		return true
-	case RotateCredential200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ListDeployments200JSONResponseBodyStatus.
 const (
 	ListDeployments200JSONResponseBodyStatusActive   ListDeployments200JSONResponseBodyStatus = "active"
@@ -1054,908 +652,428 @@ func (e DeleteEnvironment200JSONResponseBodyKind) Valid() bool {
 	}
 }
 
-// Defines values for ListTargets200JSONResponseBody0Kind.
-const (
-	ListTargets200JSONResponseBody0KindPlace ListTargets200JSONResponseBody0Kind = "place"
-)
-
-// Valid indicates whether the value is a known member of the ListTargets200JSONResponseBody0Kind enum.
-func (e ListTargets200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case ListTargets200JSONResponseBody0KindPlace:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateTarget200JSONResponseBody0Kind.
-const (
-	CreateTarget200JSONResponseBody0KindPlace CreateTarget200JSONResponseBody0Kind = "place"
-)
-
-// Valid indicates whether the value is a known member of the CreateTarget200JSONResponseBody0Kind enum.
-func (e CreateTarget200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case CreateTarget200JSONResponseBody0KindPlace:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteTarget200JSONResponseBody0Kind.
-const (
-	DeleteTarget200JSONResponseBody0KindPlace DeleteTarget200JSONResponseBody0Kind = "place"
-)
-
-// Valid indicates whether the value is a known member of the DeleteTarget200JSONResponseBody0Kind enum.
-func (e DeleteTarget200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case DeleteTarget200JSONResponseBody0KindPlace:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ChangeTargetRessourceId200JSONResponseBody0Kind.
-const (
-	ChangeTargetRessourceId200JSONResponseBody0KindPlace ChangeTargetRessourceId200JSONResponseBody0Kind = "place"
-)
-
-// Valid indicates whether the value is a known member of the ChangeTargetRessourceId200JSONResponseBody0Kind enum.
-func (e ChangeTargetRessourceId200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case ChangeTargetRessourceId200JSONResponseBody0KindPlace:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody0Kind.
-const (
-	ListStorageObjects200JSONResponseBody0KindS3 ListStorageObjects200JSONResponseBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Kind enum.
-func (e ListStorageObjects200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody0Owner0Kind.
-const (
-	ListStorageObjects200JSONResponseBody0Owner0KindUser ListStorageObjects200JSONResponseBody0Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Owner0Kind enum.
-func (e ListStorageObjects200JSONResponseBody0Owner0Kind) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody0Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody0Status.
-const (
-	ListStorageObjects200JSONResponseBody0StatusError   ListStorageObjects200JSONResponseBody0Status = "error"
-	ListStorageObjects200JSONResponseBody0StatusInfo    ListStorageObjects200JSONResponseBody0Status = "info"
-	ListStorageObjects200JSONResponseBody0StatusSuccess ListStorageObjects200JSONResponseBody0Status = "success"
-	ListStorageObjects200JSONResponseBody0StatusWarning ListStorageObjects200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody0Status enum.
-func (e ListStorageObjects200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody0StatusError:
-		return true
-	case ListStorageObjects200JSONResponseBody0StatusInfo:
-		return true
-	case ListStorageObjects200JSONResponseBody0StatusSuccess:
-		return true
-	case ListStorageObjects200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody1Kind.
-const (
-	ListStorageObjects200JSONResponseBody1KindInternal ListStorageObjects200JSONResponseBody1Kind = "internal"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Kind enum.
-func (e ListStorageObjects200JSONResponseBody1Kind) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody1KindInternal:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody1Owner0Kind.
-const (
-	ListStorageObjects200JSONResponseBody1Owner0KindUser ListStorageObjects200JSONResponseBody1Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Owner0Kind enum.
-func (e ListStorageObjects200JSONResponseBody1Owner0Kind) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody1Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListStorageObjects200JSONResponseBody1Status.
-const (
-	ListStorageObjects200JSONResponseBody1StatusError   ListStorageObjects200JSONResponseBody1Status = "error"
-	ListStorageObjects200JSONResponseBody1StatusInfo    ListStorageObjects200JSONResponseBody1Status = "info"
-	ListStorageObjects200JSONResponseBody1StatusSuccess ListStorageObjects200JSONResponseBody1Status = "success"
-	ListStorageObjects200JSONResponseBody1StatusWarning ListStorageObjects200JSONResponseBody1Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the ListStorageObjects200JSONResponseBody1Status enum.
-func (e ListStorageObjects200JSONResponseBody1Status) Valid() bool {
-	switch e {
-	case ListStorageObjects200JSONResponseBody1StatusError:
-		return true
-	case ListStorageObjects200JSONResponseBody1StatusInfo:
-		return true
-	case ListStorageObjects200JSONResponseBody1StatusSuccess:
-		return true
-	case ListStorageObjects200JSONResponseBody1StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObjectJSONBody0Kind.
-const (
-	CreateStorageObjectJSONBody0KindS3 CreateStorageObjectJSONBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObjectJSONBody0Kind enum.
-func (e CreateStorageObjectJSONBody0Kind) Valid() bool {
-	switch e {
-	case CreateStorageObjectJSONBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody0Kind.
-const (
-	CreateStorageObject200JSONResponseBody0KindS3 CreateStorageObject200JSONResponseBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Kind enum.
-func (e CreateStorageObject200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody0Owner0Kind.
-const (
-	CreateStorageObject200JSONResponseBody0Owner0KindUser CreateStorageObject200JSONResponseBody0Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Owner0Kind enum.
-func (e CreateStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody0Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody0Status.
-const (
-	CreateStorageObject200JSONResponseBody0StatusError   CreateStorageObject200JSONResponseBody0Status = "error"
-	CreateStorageObject200JSONResponseBody0StatusInfo    CreateStorageObject200JSONResponseBody0Status = "info"
-	CreateStorageObject200JSONResponseBody0StatusSuccess CreateStorageObject200JSONResponseBody0Status = "success"
-	CreateStorageObject200JSONResponseBody0StatusWarning CreateStorageObject200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody0Status enum.
-func (e CreateStorageObject200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody0StatusError:
-		return true
-	case CreateStorageObject200JSONResponseBody0StatusInfo:
-		return true
-	case CreateStorageObject200JSONResponseBody0StatusSuccess:
-		return true
-	case CreateStorageObject200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody1Kind.
-const (
-	CreateStorageObject200JSONResponseBody1KindInternal CreateStorageObject200JSONResponseBody1Kind = "internal"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Kind enum.
-func (e CreateStorageObject200JSONResponseBody1Kind) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody1KindInternal:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody1Owner0Kind.
-const (
-	CreateStorageObject200JSONResponseBody1Owner0KindUser CreateStorageObject200JSONResponseBody1Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Owner0Kind enum.
-func (e CreateStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody1Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateStorageObject200JSONResponseBody1Status.
-const (
-	CreateStorageObject200JSONResponseBody1StatusError   CreateStorageObject200JSONResponseBody1Status = "error"
-	CreateStorageObject200JSONResponseBody1StatusInfo    CreateStorageObject200JSONResponseBody1Status = "info"
-	CreateStorageObject200JSONResponseBody1StatusSuccess CreateStorageObject200JSONResponseBody1Status = "success"
-	CreateStorageObject200JSONResponseBody1StatusWarning CreateStorageObject200JSONResponseBody1Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the CreateStorageObject200JSONResponseBody1Status enum.
-func (e CreateStorageObject200JSONResponseBody1Status) Valid() bool {
-	switch e {
-	case CreateStorageObject200JSONResponseBody1StatusError:
-		return true
-	case CreateStorageObject200JSONResponseBody1StatusInfo:
-		return true
-	case CreateStorageObject200JSONResponseBody1StatusSuccess:
-		return true
-	case CreateStorageObject200JSONResponseBody1StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody0Kind.
-const (
-	DeleteStorageObject200JSONResponseBody0KindS3 DeleteStorageObject200JSONResponseBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Kind enum.
-func (e DeleteStorageObject200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody0Owner0Kind.
-const (
-	DeleteStorageObject200JSONResponseBody0Owner0KindUser DeleteStorageObject200JSONResponseBody0Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Owner0Kind enum.
-func (e DeleteStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody0Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody0Status.
-const (
-	DeleteStorageObject200JSONResponseBody0StatusError   DeleteStorageObject200JSONResponseBody0Status = "error"
-	DeleteStorageObject200JSONResponseBody0StatusInfo    DeleteStorageObject200JSONResponseBody0Status = "info"
-	DeleteStorageObject200JSONResponseBody0StatusSuccess DeleteStorageObject200JSONResponseBody0Status = "success"
-	DeleteStorageObject200JSONResponseBody0StatusWarning DeleteStorageObject200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody0Status enum.
-func (e DeleteStorageObject200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody0StatusError:
-		return true
-	case DeleteStorageObject200JSONResponseBody0StatusInfo:
-		return true
-	case DeleteStorageObject200JSONResponseBody0StatusSuccess:
-		return true
-	case DeleteStorageObject200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody1Kind.
-const (
-	DeleteStorageObject200JSONResponseBody1KindInternal DeleteStorageObject200JSONResponseBody1Kind = "internal"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Kind enum.
-func (e DeleteStorageObject200JSONResponseBody1Kind) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody1KindInternal:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody1Owner0Kind.
-const (
-	DeleteStorageObject200JSONResponseBody1Owner0KindUser DeleteStorageObject200JSONResponseBody1Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Owner0Kind enum.
-func (e DeleteStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody1Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteStorageObject200JSONResponseBody1Status.
-const (
-	DeleteStorageObject200JSONResponseBody1StatusError   DeleteStorageObject200JSONResponseBody1Status = "error"
-	DeleteStorageObject200JSONResponseBody1StatusInfo    DeleteStorageObject200JSONResponseBody1Status = "info"
-	DeleteStorageObject200JSONResponseBody1StatusSuccess DeleteStorageObject200JSONResponseBody1Status = "success"
-	DeleteStorageObject200JSONResponseBody1StatusWarning DeleteStorageObject200JSONResponseBody1Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the DeleteStorageObject200JSONResponseBody1Status enum.
-func (e DeleteStorageObject200JSONResponseBody1Status) Valid() bool {
-	switch e {
-	case DeleteStorageObject200JSONResponseBody1StatusError:
-		return true
-	case DeleteStorageObject200JSONResponseBody1StatusInfo:
-		return true
-	case DeleteStorageObject200JSONResponseBody1StatusSuccess:
-		return true
-	case DeleteStorageObject200JSONResponseBody1StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody0Kind.
-const (
-	RenameStorageObject200JSONResponseBody0KindS3 RenameStorageObject200JSONResponseBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Kind enum.
-func (e RenameStorageObject200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody0Owner0Kind.
-const (
-	RenameStorageObject200JSONResponseBody0Owner0KindUser RenameStorageObject200JSONResponseBody0Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Owner0Kind enum.
-func (e RenameStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody0Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody0Status.
-const (
-	RenameStorageObject200JSONResponseBody0StatusError   RenameStorageObject200JSONResponseBody0Status = "error"
-	RenameStorageObject200JSONResponseBody0StatusInfo    RenameStorageObject200JSONResponseBody0Status = "info"
-	RenameStorageObject200JSONResponseBody0StatusSuccess RenameStorageObject200JSONResponseBody0Status = "success"
-	RenameStorageObject200JSONResponseBody0StatusWarning RenameStorageObject200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody0Status enum.
-func (e RenameStorageObject200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody0StatusError:
-		return true
-	case RenameStorageObject200JSONResponseBody0StatusInfo:
-		return true
-	case RenameStorageObject200JSONResponseBody0StatusSuccess:
-		return true
-	case RenameStorageObject200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody1Kind.
-const (
-	RenameStorageObject200JSONResponseBody1KindInternal RenameStorageObject200JSONResponseBody1Kind = "internal"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Kind enum.
-func (e RenameStorageObject200JSONResponseBody1Kind) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody1KindInternal:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody1Owner0Kind.
-const (
-	RenameStorageObject200JSONResponseBody1Owner0KindUser RenameStorageObject200JSONResponseBody1Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Owner0Kind enum.
-func (e RenameStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody1Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameStorageObject200JSONResponseBody1Status.
-const (
-	RenameStorageObject200JSONResponseBody1StatusError   RenameStorageObject200JSONResponseBody1Status = "error"
-	RenameStorageObject200JSONResponseBody1StatusInfo    RenameStorageObject200JSONResponseBody1Status = "info"
-	RenameStorageObject200JSONResponseBody1StatusSuccess RenameStorageObject200JSONResponseBody1Status = "success"
-	RenameStorageObject200JSONResponseBody1StatusWarning RenameStorageObject200JSONResponseBody1Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RenameStorageObject200JSONResponseBody1Status enum.
-func (e RenameStorageObject200JSONResponseBody1Status) Valid() bool {
-	switch e {
-	case RenameStorageObject200JSONResponseBody1StatusError:
-		return true
-	case RenameStorageObject200JSONResponseBody1StatusInfo:
-		return true
-	case RenameStorageObject200JSONResponseBody1StatusSuccess:
-		return true
-	case RenameStorageObject200JSONResponseBody1StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody0Kind.
-const (
-	RotateStorageObject200JSONResponseBody0KindS3 RotateStorageObject200JSONResponseBody0Kind = "S3"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Kind enum.
-func (e RotateStorageObject200JSONResponseBody0Kind) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody0KindS3:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody0Owner0Kind.
-const (
-	RotateStorageObject200JSONResponseBody0Owner0KindUser RotateStorageObject200JSONResponseBody0Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Owner0Kind enum.
-func (e RotateStorageObject200JSONResponseBody0Owner0Kind) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody0Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody0Status.
-const (
-	RotateStorageObject200JSONResponseBody0StatusError   RotateStorageObject200JSONResponseBody0Status = "error"
-	RotateStorageObject200JSONResponseBody0StatusInfo    RotateStorageObject200JSONResponseBody0Status = "info"
-	RotateStorageObject200JSONResponseBody0StatusSuccess RotateStorageObject200JSONResponseBody0Status = "success"
-	RotateStorageObject200JSONResponseBody0StatusWarning RotateStorageObject200JSONResponseBody0Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody0Status enum.
-func (e RotateStorageObject200JSONResponseBody0Status) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody0StatusError:
-		return true
-	case RotateStorageObject200JSONResponseBody0StatusInfo:
-		return true
-	case RotateStorageObject200JSONResponseBody0StatusSuccess:
-		return true
-	case RotateStorageObject200JSONResponseBody0StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody1Kind.
-const (
-	RotateStorageObject200JSONResponseBody1KindInternal RotateStorageObject200JSONResponseBody1Kind = "internal"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Kind enum.
-func (e RotateStorageObject200JSONResponseBody1Kind) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody1KindInternal:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody1Owner0Kind.
-const (
-	RotateStorageObject200JSONResponseBody1Owner0KindUser RotateStorageObject200JSONResponseBody1Owner0Kind = "user"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Owner0Kind enum.
-func (e RotateStorageObject200JSONResponseBody1Owner0Kind) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody1Owner0KindUser:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RotateStorageObject200JSONResponseBody1Status.
-const (
-	RotateStorageObject200JSONResponseBody1StatusError   RotateStorageObject200JSONResponseBody1Status = "error"
-	RotateStorageObject200JSONResponseBody1StatusInfo    RotateStorageObject200JSONResponseBody1Status = "info"
-	RotateStorageObject200JSONResponseBody1StatusSuccess RotateStorageObject200JSONResponseBody1Status = "success"
-	RotateStorageObject200JSONResponseBody1StatusWarning RotateStorageObject200JSONResponseBody1Status = "warning"
-)
-
-// Valid indicates whether the value is a known member of the RotateStorageObject200JSONResponseBody1Status enum.
-func (e RotateStorageObject200JSONResponseBody1Status) Valid() bool {
-	switch e {
-	case RotateStorageObject200JSONResponseBody1StatusError:
-		return true
-	case RotateStorageObject200JSONResponseBody1StatusInfo:
-		return true
-	case RotateStorageObject200JSONResponseBody1StatusSuccess:
-		return true
-	case RotateStorageObject200JSONResponseBody1StatusWarning:
-		return true
-	default:
-		return false
-	}
-}
-
-// AuthError defines model for AuthError.
-type AuthError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: unauthorized
-		Code AuthErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the AuthError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: AuthError
-		Type AuthErrorErrorType `json:"type"`
-	} `json:"error"`
-}
-
-// AuthErrorErrorCode All application-level error codes
-//
-// Example: unauthorized
-type AuthErrorErrorCode string
-
-// AuthErrorErrorType The error type that owns the returned error code
-//
-// Example: AuthError
-type AuthErrorErrorType string
-
-// CredentialsError defines model for CredentialsError.
-type CredentialsError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: credential_in_use
-		Code CredentialsErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the CredentialsError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: CredentialsError
-		Type CredentialsErrorErrorType `json:"type"`
-	} `json:"error"`
-}
-
-// CredentialsErrorErrorCode All application-level error codes
-//
-// Example: credential_in_use
-type CredentialsErrorErrorCode string
-
-// CredentialsErrorErrorType The error type that owns the returned error code
-//
-// Example: CredentialsError
-type CredentialsErrorErrorType string
-
-// DeploymentError defines model for DeploymentError.
-type DeploymentError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: deployment_not_staged
-		Code DeploymentErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the DeploymentError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: DeploymentError
-		Type DeploymentErrorErrorType `json:"type"`
-	} `json:"error"`
-}
-
-// DeploymentErrorErrorCode All application-level error codes
-//
-// Example: deployment_not_staged
-type DeploymentErrorErrorCode string
-
-// DeploymentErrorErrorType The error type that owns the returned error code
-//
-// Example: DeploymentError
-type DeploymentErrorErrorType string
-
-// ForbiddenError defines model for ForbiddenError.
-type ForbiddenError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: forbidden
-		Code ForbiddenErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the ForbiddenError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: ForbiddenError
-		Type ForbiddenErrorErrorType `json:"type"`
-	} `json:"error"`
-}
-
-// ForbiddenErrorErrorCode All application-level error codes
-//
-// Example: forbidden
-type ForbiddenErrorErrorCode string
-
-// ForbiddenErrorErrorType The error type that owns the returned error code
-//
-// Example: ForbiddenError
-type ForbiddenErrorErrorType string
-
-// NotFoundError defines model for NotFoundError.
-type NotFoundError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: resource_not_found
-		Code NotFoundErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the NotFoundError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: NotFoundError
-		Type NotFoundErrorErrorType `json:"type"`
-	} `json:"error"`
-}
-
-// NotFoundErrorErrorCode All application-level error codes
-//
-// Example: resource_not_found
-type NotFoundErrorErrorCode string
-
-// NotFoundErrorErrorType The error type that owns the returned error code
-//
-// Example: NotFoundError
-type NotFoundErrorErrorType string
-
-// OAuthError defines model for OAuthError.
-type OAuthError struct {
-	// Error Standard OAuth 2.1 error code
+// APIKeyCredential defines model for APIKeyCredential.
+type APIKeyCredential struct {
+	// AccountId The ID of the Roblox account that owns the API Key
 	//
-	// Example: invalid_grant
-	Error OAuthErrorError `json:"error"`
+	// Example: 1501705133
+	AccountId string `json:"account_id"`
 
-	// ErrorDescription A human-readable error description
+	// CreatedAt The ISO timestamp at which the API Key was registered on the node
 	//
-	// Example: The provided authorization code is invalid
-	ErrorDescription string `json:"error_description"`
+	// Example: 2026-09-06T14:47:42.239Z
+	CreatedAt time.Time `json:"created_at"`
+
+	// ExpiresAt The ISO timestamp at which the API Key expires
+	//
+	// Example: 2026-09-06T14:47:42.239Z
+	ExpiresAt time.Time `json:"expires_at"`
+
+	// Kind The kind of the credential
+	//
+	// Example: api-key
+	Kind APIKeyCredentialKind `json:"kind"`
+
+	// Name The human-friendly name of the API Key
+	//
+	// Example: Test Key
+	Name string `json:"name"`
+
+	// Status The current status of the API Key
+	//
+	// Example: error
+	Status APIKeyCredentialStatus `json:"status"`
+
+	// StatusMessage An optional status message attached to the key
+	//
+	// Example: This API Key has expired, please regenerate a new one
+	StatusMessage *string `json:"status_message,omitempty"`
+
+	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
+	//
+	// Example: 2026-09-06T16:31:52.845Z
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// OAuthErrorError Standard OAuth 2.1 error code
+// APIKeyCredentialKind The kind of the credential
 //
-// Example: invalid_grant
-type OAuthErrorError string
+// Example: api-key
+type APIKeyCredentialKind string
 
-// ProjectError defines model for ProjectError.
-type ProjectError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: max_projects_exceeded
-		Code ProjectErrorErrorCode `json:"code"`
+// APIKeyCredentialStatus The current status of the API Key
+//
+// Example: error
+type APIKeyCredentialStatus string
 
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the ProjectError domain
-		Message string `json:"message"`
+// APIKeyInfos defines model for APIKeyInfos.
+type APIKeyInfos struct {
+	// Kind The kind of the credential
+	//
+	// Example: api-key
+	Kind APIKeyInfosKind `json:"kind"`
 
-		// Type The error type that owns the returned error code
-		//
-		// Example: ProjectError
-		Type ProjectErrorErrorType `json:"type"`
-	} `json:"error"`
+	// Name The human-friendly name of the API Key
+	//
+	// Example: Test Key
+	Name string `json:"name"`
+
+	// SecretKey The API Key secret key
+	//
+	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
+	SecretKey string `json:"secret_key"`
 }
 
-// ProjectErrorErrorCode All application-level error codes
+// APIKeyInfosKind The kind of the credential
 //
-// Example: max_projects_exceeded
-type ProjectErrorErrorCode string
+// Example: api-key
+type APIKeyInfosKind string
 
-// ProjectErrorErrorType The error type that owns the returned error code
-//
-// Example: ProjectError
-type ProjectErrorErrorType string
-
-// ServerError defines model for ServerError.
-type ServerError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: internal_server_error
-		Code ServerErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the ServerError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: ServerError
-		Type ServerErrorErrorType `json:"type"`
-	} `json:"error"`
+// APIKeySecret defines model for APIKeySecret.
+type APIKeySecret struct {
+	// SecretKey The API Key secret key
+	//
+	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
+	SecretKey string `json:"secret_key"`
 }
 
-// ServerErrorErrorCode All application-level error codes
-//
-// Example: internal_server_error
-type ServerErrorErrorCode string
+// AccessTokenRevokeGrant defines model for AccessTokenRevokeGrant.
+type AccessTokenRevokeGrant struct {
+	// Token A valid short-lived access token (JWT)
+	//
+	// Example: eyJhbGciOiJSUzI1NiIs...
+	Token string `json:"token"`
 
-// ServerErrorErrorType The error type that owns the returned error code
-//
-// Example: ServerError
-type ServerErrorErrorType string
-
-// StorageError defines model for StorageError.
-type StorageError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: invalid_credentials
-		Code StorageErrorErrorCode `json:"code"`
-
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the StorageError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: StorageError
-		Type StorageErrorErrorType `json:"type"`
-	} `json:"error"`
+	// TokenTypeHint Hint to optimize node lookup
+	TokenTypeHint AccessTokenRevokeGrantTokenTypeHint `json:"token_type_hint"`
 }
 
-// StorageErrorErrorCode All application-level error codes
-//
-// Example: invalid_credentials
-type StorageErrorErrorCode string
+// AccessTokenRevokeGrantTokenTypeHint Hint to optimize node lookup
+type AccessTokenRevokeGrantTokenTypeHint string
 
-// StorageErrorErrorType The error type that owns the returned error code
-//
-// Example: StorageError
-type StorageErrorErrorType string
+// AuthorizationCodeGrant defines model for AuthorizationCodeGrant.
+type AuthorizationCodeGrant struct {
+	// ClientName A user-friendly client name bound to the user's session
+	//
+	// Example: Roger CLI (Windows 11)
+	ClientName *string `json:"client_name,omitempty"`
 
-// TargetError defines model for TargetError.
-type TargetError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: target_in_use
-		Code TargetErrorErrorCode `json:"code"`
+	// Code The single-use authorization code recieved from the loopback callback
+	//
+	// Example: rgr_ac_abc123
+	Code string `json:"code"`
 
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the TargetError domain
-		Message string `json:"message"`
+	// CodeVerifier The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))
+	CodeVerifier string `json:"code_verifier"`
 
-		// Type The error type that owns the returned error code
-		//
-		// Example: TargetError
-		Type TargetErrorErrorType `json:"type"`
-	} `json:"error"`
+	// GrantType OAuth 2.1 grant type
+	GrantType AuthorizationCodeGrantGrantType `json:"grant_type"`
+
+	// RedirectUri The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))
+	RedirectUri string `json:"redirect_uri"`
 }
 
-// TargetErrorErrorCode All application-level error codes
-//
-// Example: target_in_use
-type TargetErrorErrorCode string
+// AuthorizationCodeGrantGrantType OAuth 2.1 grant type
+type AuthorizationCodeGrantGrantType string
 
-// TargetErrorErrorType The error type that owns the returned error code
+// CreateCredentialRequestBody defines model for CreateCredentialRequestBody.
+type CreateCredentialRequestBody struct {
+	union json.RawMessage
+}
+
+// Credential defines model for Credential.
+type Credential struct {
+	union json.RawMessage
+}
+
+// Error defines model for Error.
+type Error struct {
+	// Error A machine-readable error code
+	Error string `json:"error"`
+
+	// ErrorDescription An optional human-readable error description
+	ErrorDescription *string `json:"error_description,omitempty"`
+}
+
+// InternalStorage defines model for InternalStorage.
+type InternalStorage struct {
+	// Id A unique storage identifier
+	//
+	// Example: rgr_strg_abc123
+	Id string `json:"id"`
+
+	// Kind The kind of storage referenced by this object
+	//
+	// Example: internal
+	Kind InternalStorageKind `json:"kind"`
+
+	// Name The human-friendly display name of the storage object
+	//
+	// Example: Main Storage
+	Name string `json:"name"`
+
+	// Owner An object representing the ressource that owns the storage object
+	Owner StorageOwner `json:"owner"`
+
+	// Status The current status of the storage object
+	//
+	// Example: warning
+	Status InternalStorageStatus `json:"status"`
+
+	// StatusMessage An optional message attached to the storage object status
+	//
+	// Example: Storage almost full (85% used)
+	StatusMessage *string `json:"status_message,omitempty"`
+
+	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
+	//
+	// Example: 5368709120
+	StorageCapacity int `json:"storage_capacity"`
+
+	// StorageUsed The number of bytes used in the internal storage object (base-2)
+	//
+	// Example: 1073741824
+	StorageUsed int `json:"storage_used"`
+
+	// UpdatedAt The ISO timestamp when the internal storage object was last updated
+	//
+	// Example: 2026-09-06T16:31:52.845Z
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+// InternalStorageKind The kind of storage referenced by this object
 //
-// Example: TargetError
-type TargetErrorErrorType string
+// Example: internal
+type InternalStorageKind string
+
+// InternalStorageStatus The current status of the storage object
+//
+// Example: warning
+type InternalStorageStatus string
+
+// LinkStorageObjectRequestBody defines model for LinkStorageObjectRequestBody.
+type LinkStorageObjectRequestBody struct {
+	union json.RawMessage
+}
+
+// PlaceTarget defines model for PlaceTarget.
+type PlaceTarget struct {
+	// CreatedAt The ISO timestamp at which the place was registered
+	CreatedAt time.Time `json:"created_at"`
+
+	// EnvironmentId A unique environment identifier
+	//
+	// Example: rgr_env_abc123
+	EnvironmentId string `json:"environment_id"`
+
+	// Kind The type of the target
+	//
+	// Example: place
+	Kind PlaceTargetKind `json:"kind"`
+
+	// LastUpdatedAt The ISO timestamp at which the place was last updated
+	LastUpdatedAt time.Time `json:"last_updated_at"`
+
+	// Name The name used in the config file to reference this place
+	//
+	// Example: arena
+	Name string `json:"name"`
+
+	// PlaceId The linked Roblox place's ID
+	PlaceId string `json:"place_id"`
+
+	// UsedIn The ID of every deployment that currently uses this target
+	UsedIn []string `json:"used_in"`
+}
+
+// PlaceTargetKind The type of the target
+//
+// Example: place
+type PlaceTargetKind string
+
+// RefreshTokenGrant defines model for RefreshTokenGrant.
+type RefreshTokenGrant struct {
+	// GrantType OAuth 2.1 grant type
+	GrantType RefreshTokenGrantGrantType `json:"grant_type"`
+
+	// RefreshToken The long-lived refresh token issued by the node on last refresh
+	//
+	// Example: rgr_rt_abc123
+	RefreshToken string `json:"refresh_token"`
+}
+
+// RefreshTokenGrantGrantType OAuth 2.1 grant type
+type RefreshTokenGrantGrantType string
+
+// RefreshTokenRevokeGrant defines model for RefreshTokenRevokeGrant.
+type RefreshTokenRevokeGrant struct {
+	// Token A long-lived token used to request new short-lived JWTs
+	//
+	// Example: rgr_rt_abc123
+	Token string `json:"token"`
+
+	// TokenTypeHint Hint to optimize node lookup
+	TokenTypeHint RefreshTokenRevokeGrantTokenTypeHint `json:"token_type_hint"`
+}
+
+// RefreshTokenRevokeGrantTokenTypeHint Hint to optimize node lookup
+type RefreshTokenRevokeGrantTokenTypeHint string
+
+// RevokeRequestBody defines model for RevokeRequestBody.
+type RevokeRequestBody struct {
+	union json.RawMessage
+}
+
+// RotateCredentialRequestBody defines model for RotateCredentialRequestBody.
+type RotateCredentialRequestBody struct {
+	union json.RawMessage
+}
+
+// RotateStorageObjectRequestBody defines model for RotateStorageObjectRequestBody.
+type RotateStorageObjectRequestBody struct {
+	union json.RawMessage
+}
+
+// S3CompatibleStorage defines model for S3CompatibleStorage.
+type S3CompatibleStorage struct {
+	// BucketName The name of the target S3 storage bucket
+	//
+	// Example: roger-bucket
+	BucketName string `json:"bucket_name"`
+
+	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
+	//
+	// Example: 2026-09-06T14:47:42.239Z
+	CreatedAt time.Time `json:"created_at"`
+
+	// Id A unique storage identifier
+	//
+	// Example: rgr_strg_abc123
+	Id string `json:"id"`
+
+	// Kind The kind of storage referenced by this object
+	//
+	// Example: S3
+	Kind S3CompatibleStorageKind `json:"kind"`
+
+	// Name The human-friendly display name of the storage object
+	//
+	// Example: Main Storage
+	Name string `json:"name"`
+
+	// Owner An object representing the ressource that owns the storage object
+	Owner StorageOwner `json:"owner"`
+
+	// Region The region of your S3 bucket
+	//
+	// Example: eu-central
+	Region string `json:"region"`
+
+	// Status The current status of the storage object
+	//
+	// Example: warning
+	Status S3CompatibleStorageStatus `json:"status"`
+
+	// StatusMessage An optional message attached to the storage object status
+	//
+	// Example: Storage almost full (85% used)
+	StatusMessage *string `json:"status_message,omitempty"`
+
+	// StorageEndpoint The S3 URL of the storage bucket
+	//
+	// Example: https://s3.eu-central-003.backblazeb2.com
+	StorageEndpoint string `json:"storage_endpoint"`
+
+	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
+	//
+	// Example: 2026-09-06T16:31:52.845Z
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+// S3CompatibleStorageKind The kind of storage referenced by this object
+//
+// Example: S3
+type S3CompatibleStorageKind string
+
+// S3CompatibleStorageStatus The current status of the storage object
+//
+// Example: warning
+type S3CompatibleStorageStatus string
+
+// S3CompatibleStorageInfos defines model for S3CompatibleStorageInfos.
+type S3CompatibleStorageInfos struct {
+	// AccessKeyId The S3 access key id
+	//
+	// Example: SomeAccessKeyId
+	AccessKeyId string `json:"access_key_id"`
+
+	// BucketName The name of the target S3 storage bucket
+	//
+	// Example: roger-bucket
+	BucketName string `json:"bucket_name"`
+
+	// Kind The kind of storage referenced by this object
+	//
+	// Example: S3
+	Kind S3CompatibleStorageInfosKind `json:"kind"`
+
+	// Name The human-friendly display name of the storage object
+	//
+	// Example: Main Storage
+	Name string `json:"name"`
+
+	// Region The region of your S3 bucket
+	//
+	// Example: eu-central
+	Region string `json:"region"`
+
+	// SecretAccessKey The secret key associated with the Access Key ID
+	//
+	// Example: SuperSecretKey
+	SecretAccessKey string `json:"secret_access_key"`
+
+	// StorageEndpoint The S3 URL of the storage bucket
+	//
+	// Example: https://s3.eu-central-003.backblazeb2.com
+	StorageEndpoint string `json:"storage_endpoint"`
+}
+
+// S3CompatibleStorageInfosKind The kind of storage referenced by this object
+//
+// Example: S3
+type S3CompatibleStorageInfosKind string
+
+// S3Credentials defines model for S3Credentials.
+type S3Credentials struct {
+	// AccessKeyId The S3 access key id
+	//
+	// Example: SomeAccessKeyId
+	AccessKeyId string `json:"access_key_id"`
+
+	// SecretAccessKey The secret key associated with the Access Key ID
+	//
+	// Example: SuperSecretKey
+	SecretAccessKey string `json:"secret_access_key"`
+}
+
+// StorageObject defines model for StorageObject.
+type StorageObject struct {
+	union json.RawMessage
+}
+
+// StorageOwner An object representing the ressource that owns the storage object
+type StorageOwner struct {
+	union json.RawMessage
+}
+
+// Target defines model for Target.
+type Target struct {
+	union json.RawMessage
+}
+
+// TokenRequestBody defines model for TokenRequestBody.
+type TokenRequestBody struct {
+	union json.RawMessage
+}
 
 // UserSession defines model for UserSession.
 type UserSession struct {
@@ -1993,35 +1111,23 @@ type UserSession struct {
 	LastUsedAt time.Time `json:"last_used_at"`
 }
 
-// ValidationError defines model for ValidationError.
-type ValidationError struct {
-	Error struct {
-		// Code All application-level error codes
-		//
-		// Example: invalid_body
-		Code ValidationErrorErrorCode `json:"code"`
+// UserStorageOwner defines model for UserStorageOwner.
+type UserStorageOwner struct {
+	// Id A unique prefixed user identifier
+	//
+	// Example: rgr_usr_abc123
+	Id string `json:"id"`
 
-		// Message A human readable string explaining why this error happened
-		//
-		// Example: An error happened within the ValidationError domain
-		Message string `json:"message"`
-
-		// Type The error type that owns the returned error code
-		//
-		// Example: ValidationError
-		Type ValidationErrorErrorType `json:"type"`
-	} `json:"error"`
+	// Kind The type of owner that owns the storage object
+	//
+	// Example: user
+	Kind UserStorageOwnerKind `json:"kind"`
 }
 
-// ValidationErrorErrorCode All application-level error codes
+// UserStorageOwnerKind The type of owner that owns the storage object
 //
-// Example: invalid_body
-type ValidationErrorErrorCode string
-
-// ValidationErrorErrorType The error type that owns the returned error code
-//
-// Example: ValidationError
-type ValidationErrorErrorType string
+// Example: user
+type UserStorageOwnerKind string
 
 // InitiateOAuthLoginParams defines parameters for InitiateOAuthLogin.
 type InitiateOAuthLoginParams struct {
@@ -2043,104 +1149,6 @@ type InitiateOAuthLoginParams struct {
 
 // InitiateOAuthLoginParamsCodeChallengeMethod defines parameters for InitiateOAuthLogin.
 type InitiateOAuthLoginParamsCodeChallengeMethod string
-
-// RevokeTokenJSONBody defines parameters for RevokeToken.
-type RevokeTokenJSONBody struct {
-	union json.RawMessage
-}
-
-// RevokeTokenJSONBody0 defines parameters for RevokeToken.
-type RevokeTokenJSONBody0 struct {
-	// Token A valid short-lived access token (JWT)
-	//
-	// Example: eyJhbGciOiJSUzI1NiIs...
-	Token string `json:"token"`
-
-	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint *RevokeTokenJSONBody0TokenTypeHint `json:"token_type_hint,omitempty"`
-}
-
-// RevokeTokenJSONBody0TokenTypeHint defines parameters for RevokeToken.
-type RevokeTokenJSONBody0TokenTypeHint string
-
-// RevokeTokenJSONBody1 defines parameters for RevokeToken.
-type RevokeTokenJSONBody1 struct {
-	// Token A long-lived token used to request new short-lived JWTs
-	//
-	// Example: rgr_rt_abc123
-	Token string `json:"token"`
-
-	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint *RevokeTokenJSONBody1TokenTypeHint `json:"token_type_hint,omitempty"`
-}
-
-// RevokeTokenJSONBody1TokenTypeHint defines parameters for RevokeToken.
-type RevokeTokenJSONBody1TokenTypeHint string
-
-// RevokeToken400JSONResponseBody1 defines parameters for RevokeToken.
-type RevokeToken400JSONResponseBody1 struct {
-	// Error RFC 7009 token revocation error code
-	//
-	// Example: unsupported_token_type
-	Error RevokeToken400JSONResponseBody1Error `json:"error"`
-
-	// ErrorDescription A human-readable error description
-	//
-	// Example: The token type is not supported for this operation
-	ErrorDescription string `json:"error_description"`
-}
-
-// RevokeToken400JSONResponseBody1Error defines parameters for RevokeToken.
-type RevokeToken400JSONResponseBody1Error string
-
-// RevokeToken400JSONResponseBody defines parameters for RevokeToken.
-type RevokeToken400JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// ExchangeTokenJSONBody defines parameters for ExchangeToken.
-type ExchangeTokenJSONBody struct {
-	union json.RawMessage
-}
-
-// ExchangeTokenJSONBody0 defines parameters for ExchangeToken.
-type ExchangeTokenJSONBody0 struct {
-	// ClientName A user-friendly client name bound to the user's session
-	//
-	// Example: Roger CLI (Windows 11)
-	ClientName *string `json:"client_name,omitempty"`
-
-	// Code The single-use authorization code recieved from the loopback callback
-	//
-	// Example: rgr_ac_abc123
-	Code string `json:"code"`
-
-	// CodeVerifier The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))
-	CodeVerifier string `json:"code_verifier"`
-
-	// GrantType OAuth 2.1 grant type
-	GrantType ExchangeTokenJSONBody0GrantType `json:"grant_type"`
-
-	// RedirectUri The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))
-	RedirectUri string `json:"redirect_uri"`
-}
-
-// ExchangeTokenJSONBody0GrantType defines parameters for ExchangeToken.
-type ExchangeTokenJSONBody0GrantType string
-
-// ExchangeTokenJSONBody1 defines parameters for ExchangeToken.
-type ExchangeTokenJSONBody1 struct {
-	// GrantType OAuth 2.1 grant type
-	GrantType ExchangeTokenJSONBody1GrantType `json:"grant_type"`
-
-	// RefreshToken The long-lived refresh token issued by the node on last refresh
-	//
-	// Example: rgr_rt_abc123
-	RefreshToken string `json:"refresh_token"`
-}
-
-// ExchangeTokenJSONBody1GrantType defines parameters for ExchangeToken.
-type ExchangeTokenJSONBody1GrantType string
 
 // ExchangeToken200JSONResponseBodyTokenType defines parameters for ExchangeToken.
 type ExchangeToken200JSONResponseBodyTokenType string
@@ -2209,326 +1217,12 @@ type CheckArtifactsJSONBody struct {
 	Hashes []string `json:"hashes"`
 }
 
-// ListCredentials200JSONResponseBody0 defines parameters for ListCredentials.
-type ListCredentials200JSONResponseBody0 struct {
-	// AccountId The ID of the Roblox account that owns the API Key
-	//
-	// Example: 1501705133
-	AccountId string `json:"account_id"`
-
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// ExpiresAt The ISO timestamp at which the API Key expires
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
-
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind ListCredentials200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// Status The current status of the API Key
-	//
-	// Example: error
-	Status ListCredentials200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional status message attached to the key
-	//
-	// Example: This API Key has expired, please regenerate a new one
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// ListCredentials200JSONResponseBody0Kind defines parameters for ListCredentials.
-type ListCredentials200JSONResponseBody0Kind string
-
-// ListCredentials200JSONResponseBody0Status defines parameters for ListCredentials.
-type ListCredentials200JSONResponseBody0Status string
-
-// ListCredentials200JSONResponseBody_Item defines parameters for ListCredentials.
-type ListCredentials200JSONResponseBody_Item struct {
-	union json.RawMessage
-}
-
-// CreateCredentialJSONBody defines parameters for CreateCredential.
-type CreateCredentialJSONBody struct {
-	union json.RawMessage
-}
-
-// CreateCredentialJSONBody0 defines parameters for CreateCredential.
-type CreateCredentialJSONBody0 struct {
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind CreateCredentialJSONBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// SecretKey The API Key secret key
-	//
-	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
-	SecretKey string `json:"secret_key"`
-}
-
-// CreateCredentialJSONBody0Kind defines parameters for CreateCredential.
-type CreateCredentialJSONBody0Kind string
-
-// CreateCredential200JSONResponseBody0 defines parameters for CreateCredential.
-type CreateCredential200JSONResponseBody0 struct {
-	// AccountId The ID of the Roblox account that owns the API Key
-	//
-	// Example: 1501705133
-	AccountId string `json:"account_id"`
-
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// ExpiresAt The ISO timestamp at which the API Key expires
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
-
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind CreateCredential200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// Status The current status of the API Key
-	//
-	// Example: error
-	Status CreateCredential200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional status message attached to the key
-	//
-	// Example: This API Key has expired, please regenerate a new one
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// CreateCredential200JSONResponseBody0Kind defines parameters for CreateCredential.
-type CreateCredential200JSONResponseBody0Kind string
-
-// CreateCredential200JSONResponseBody0Status defines parameters for CreateCredential.
-type CreateCredential200JSONResponseBody0Status string
-
-// CreateCredential200JSONResponseBody defines parameters for CreateCredential.
-type CreateCredential200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// DeleteCredential200JSONResponseBody0 defines parameters for DeleteCredential.
-type DeleteCredential200JSONResponseBody0 struct {
-	// AccountId The ID of the Roblox account that owns the API Key
-	//
-	// Example: 1501705133
-	AccountId string `json:"account_id"`
-
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// ExpiresAt The ISO timestamp at which the API Key expires
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
-
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind DeleteCredential200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// Status The current status of the API Key
-	//
-	// Example: error
-	Status DeleteCredential200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional status message attached to the key
-	//
-	// Example: This API Key has expired, please regenerate a new one
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// DeleteCredential200JSONResponseBody0Kind defines parameters for DeleteCredential.
-type DeleteCredential200JSONResponseBody0Kind string
-
-// DeleteCredential200JSONResponseBody0Status defines parameters for DeleteCredential.
-type DeleteCredential200JSONResponseBody0Status string
-
-// DeleteCredential200JSONResponseBody defines parameters for DeleteCredential.
-type DeleteCredential200JSONResponseBody struct {
-	union json.RawMessage
-}
-
 // RenameCredentialJSONBody defines parameters for RenameCredential.
 type RenameCredentialJSONBody struct {
 	// Name The human-friendly name of the API Key
 	//
 	// Example: Test Key
 	Name string `json:"name"`
-}
-
-// RenameCredential200JSONResponseBody0 defines parameters for RenameCredential.
-type RenameCredential200JSONResponseBody0 struct {
-	// AccountId The ID of the Roblox account that owns the API Key
-	//
-	// Example: 1501705133
-	AccountId string `json:"account_id"`
-
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// ExpiresAt The ISO timestamp at which the API Key expires
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
-
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind RenameCredential200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// Status The current status of the API Key
-	//
-	// Example: error
-	Status RenameCredential200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional status message attached to the key
-	//
-	// Example: This API Key has expired, please regenerate a new one
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RenameCredential200JSONResponseBody0Kind defines parameters for RenameCredential.
-type RenameCredential200JSONResponseBody0Kind string
-
-// RenameCredential200JSONResponseBody0Status defines parameters for RenameCredential.
-type RenameCredential200JSONResponseBody0Status string
-
-// RenameCredential200JSONResponseBody defines parameters for RenameCredential.
-type RenameCredential200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// RotateCredentialJSONBody defines parameters for RotateCredential.
-type RotateCredentialJSONBody struct {
-	union json.RawMessage
-}
-
-// RotateCredentialJSONBody0 defines parameters for RotateCredential.
-type RotateCredentialJSONBody0 struct {
-	// SecretKey The API Key secret key
-	//
-	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
-	SecretKey string `json:"secret_key"`
-}
-
-// RotateCredential200JSONResponseBody0 defines parameters for RotateCredential.
-type RotateCredential200JSONResponseBody0 struct {
-	// AccountId The ID of the Roblox account that owns the API Key
-	//
-	// Example: 1501705133
-	AccountId string `json:"account_id"`
-
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// ExpiresAt The ISO timestamp at which the API Key expires
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
-
-	// Kind The kind of the credential
-	//
-	// Example: api-key
-	Kind RotateCredential200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly name of the API Key
-	//
-	// Example: Test Key
-	Name string `json:"name"`
-
-	// Status The current status of the API Key
-	//
-	// Example: error
-	Status RotateCredential200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional status message attached to the key
-	//
-	// Example: This API Key has expired, please regenerate a new one
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RotateCredential200JSONResponseBody0Kind defines parameters for RotateCredential.
-type RotateCredential200JSONResponseBody0Kind string
-
-// RotateCredential200JSONResponseBody0Status defines parameters for RotateCredential.
-type RotateCredential200JSONResponseBody0Status string
-
-// RotateCredential200JSONResponseBody defines parameters for RotateCredential.
-type RotateCredential200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// RotateCredential400JSONResponseBody defines parameters for RotateCredential.
-type RotateCredential400JSONResponseBody struct {
-	union json.RawMessage
 }
 
 // ListDeployments200JSONResponseBodyStatus defines parameters for ListDeployments.
@@ -2610,42 +1304,6 @@ type CreateEnvironment200JSONResponseBodyKind string
 // DeleteEnvironment200JSONResponseBodyKind defines parameters for DeleteEnvironment.
 type DeleteEnvironment200JSONResponseBodyKind string
 
-// ListTargets200JSONResponseBody0 defines parameters for ListTargets.
-type ListTargets200JSONResponseBody0 struct {
-	// CreatedAt The ISO timestamp at which the place was registered
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environment_id"`
-
-	// Kind The type of ressource the target points to
-	Kind ListTargets200JSONResponseBody0Kind `json:"kind"`
-
-	// LastUpdatedAt The ISO timestamp at which the place was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name used in the config file to reference this place
-	//
-	// Example: arena
-	Name string `json:"name"`
-
-	// PlaceId The linked Roblox place's ID
-	PlaceId string `json:"place_id"`
-
-	// UsedIn The ID of every deployment that currently uses this target
-	UsedIn []string `json:"used_in"`
-}
-
-// ListTargets200JSONResponseBody0Kind defines parameters for ListTargets.
-type ListTargets200JSONResponseBody0Kind string
-
-// ListTargets200JSONResponseBody defines parameters for ListTargets.
-type ListTargets200JSONResponseBody struct {
-	union json.RawMessage
-}
-
 // CreateTargetJSONBody defines parameters for CreateTarget.
 type CreateTargetJSONBody struct {
 	// Name The name used in the config file to reference this place
@@ -2657,652 +1315,10 @@ type CreateTargetJSONBody struct {
 	PlaceId string `json:"place_id"`
 }
 
-// CreateTarget200JSONResponseBody0 defines parameters for CreateTarget.
-type CreateTarget200JSONResponseBody0 struct {
-	// CreatedAt The ISO timestamp at which the place was registered
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environment_id"`
-
-	// Kind The type of ressource the target points to
-	Kind CreateTarget200JSONResponseBody0Kind `json:"kind"`
-
-	// LastUpdatedAt The ISO timestamp at which the place was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name used in the config file to reference this place
-	//
-	// Example: arena
-	Name string `json:"name"`
-
-	// PlaceId The linked Roblox place's ID
-	PlaceId string `json:"place_id"`
-
-	// UsedIn The ID of every deployment that currently uses this target
-	UsedIn []string `json:"used_in"`
-}
-
-// CreateTarget200JSONResponseBody0Kind defines parameters for CreateTarget.
-type CreateTarget200JSONResponseBody0Kind string
-
-// CreateTarget200JSONResponseBody defines parameters for CreateTarget.
-type CreateTarget200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// DeleteTarget200JSONResponseBody0 defines parameters for DeleteTarget.
-type DeleteTarget200JSONResponseBody0 struct {
-	// CreatedAt The ISO timestamp at which the place was registered
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environment_id"`
-
-	// Kind The type of ressource the target points to
-	Kind DeleteTarget200JSONResponseBody0Kind `json:"kind"`
-
-	// LastUpdatedAt The ISO timestamp at which the place was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name used in the config file to reference this place
-	//
-	// Example: arena
-	Name string `json:"name"`
-
-	// PlaceId The linked Roblox place's ID
-	PlaceId string `json:"place_id"`
-
-	// UsedIn The ID of every deployment that currently uses this target
-	UsedIn []string `json:"used_in"`
-}
-
-// DeleteTarget200JSONResponseBody0Kind defines parameters for DeleteTarget.
-type DeleteTarget200JSONResponseBody0Kind string
-
-// DeleteTarget200JSONResponseBody defines parameters for DeleteTarget.
-type DeleteTarget200JSONResponseBody struct {
-	union json.RawMessage
-}
-
 // ChangeTargetRessourceIdJSONBody defines parameters for ChangeTargetRessourceId.
 type ChangeTargetRessourceIdJSONBody struct {
 	// PlaceId The linked Roblox place's ID
 	PlaceId string `json:"place_id"`
-}
-
-// ChangeTargetRessourceId200JSONResponseBody0 defines parameters for ChangeTargetRessourceId.
-type ChangeTargetRessourceId200JSONResponseBody0 struct {
-	// CreatedAt The ISO timestamp at which the place was registered
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environment_id"`
-
-	// Kind The type of ressource the target points to
-	Kind ChangeTargetRessourceId200JSONResponseBody0Kind `json:"kind"`
-
-	// LastUpdatedAt The ISO timestamp at which the place was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name used in the config file to reference this place
-	//
-	// Example: arena
-	Name string `json:"name"`
-
-	// PlaceId The linked Roblox place's ID
-	PlaceId string `json:"place_id"`
-
-	// UsedIn The ID of every deployment that currently uses this target
-	UsedIn []string `json:"used_in"`
-}
-
-// ChangeTargetRessourceId200JSONResponseBody0Kind defines parameters for ChangeTargetRessourceId.
-type ChangeTargetRessourceId200JSONResponseBody0Kind string
-
-// ChangeTargetRessourceId200JSONResponseBody defines parameters for ChangeTargetRessourceId.
-type ChangeTargetRessourceId200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// ListStorageObjects200JSONResponseBody0 defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody0 struct {
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind ListStorageObjects200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner ListStorageObjects200JSONResponseBody_0_Owner `json:"owner"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status ListStorageObjects200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-
-	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// ListStorageObjects200JSONResponseBody0Kind defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody0Kind string
-
-// ListStorageObjects200JSONResponseBody0Owner0 defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody0Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind ListStorageObjects200JSONResponseBody0Owner0Kind `json:"kind"`
-}
-
-// ListStorageObjects200JSONResponseBody0Owner0Kind defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody0Owner0Kind string
-
-// ListStorageObjects200JSONResponseBody_0_Owner defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody_0_Owner struct {
-	union json.RawMessage
-}
-
-// ListStorageObjects200JSONResponseBody0Status defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody0Status string
-
-// ListStorageObjects200JSONResponseBody1 defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody1 struct {
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: internal
-	Kind ListStorageObjects200JSONResponseBody1Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner ListStorageObjects200JSONResponseBody_1_Owner `json:"owner"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status ListStorageObjects200JSONResponseBody1Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
-	//
-	// Example: 5368709120
-	StorageCapacity int `json:"storage_capacity"`
-
-	// StorageUsed The number of bytes used in the internal storage object (base-2)
-	//
-	// Example: 1073741824
-	StorageUsed int `json:"storage_used"`
-
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// ListStorageObjects200JSONResponseBody1Kind defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody1Kind string
-
-// ListStorageObjects200JSONResponseBody1Owner0 defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody1Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind ListStorageObjects200JSONResponseBody1Owner0Kind `json:"kind"`
-}
-
-// ListStorageObjects200JSONResponseBody1Owner0Kind defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody1Owner0Kind string
-
-// ListStorageObjects200JSONResponseBody_1_Owner defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody_1_Owner struct {
-	union json.RawMessage
-}
-
-// ListStorageObjects200JSONResponseBody1Status defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody1Status string
-
-// ListStorageObjects200JSONResponseBody_Item defines parameters for ListStorageObjects.
-type ListStorageObjects200JSONResponseBody_Item struct {
-	union json.RawMessage
-}
-
-// CreateStorageObjectJSONBody defines parameters for CreateStorageObject.
-type CreateStorageObjectJSONBody struct {
-	union json.RawMessage
-}
-
-// CreateStorageObjectJSONBody0 defines parameters for CreateStorageObject.
-type CreateStorageObjectJSONBody0 struct {
-	// AccessKeyId The S3 access key id
-	//
-	// Example: SomeAccessKeyId
-	AccessKeyId string `json:"access_key_id"`
-
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind CreateStorageObjectJSONBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// SecretAccessKey The secret key associated with the Access Key ID
-	//
-	// Example: SuperSecretKey
-	SecretAccessKey string `json:"secret_access_key"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-}
-
-// CreateStorageObjectJSONBody0Kind defines parameters for CreateStorageObject.
-type CreateStorageObjectJSONBody0Kind string
-
-// CreateStorageObject200JSONResponseBody0 defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody0 struct {
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind CreateStorageObject200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner CreateStorageObject200JSONResponseBody_0_Owner `json:"owner"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status CreateStorageObject200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-
-	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// CreateStorageObject200JSONResponseBody0Kind defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody0Kind string
-
-// CreateStorageObject200JSONResponseBody0Owner0 defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody0Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind CreateStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
-}
-
-// CreateStorageObject200JSONResponseBody0Owner0Kind defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody0Owner0Kind string
-
-// CreateStorageObject200JSONResponseBody_0_Owner defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody_0_Owner struct {
-	union json.RawMessage
-}
-
-// CreateStorageObject200JSONResponseBody0Status defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody0Status string
-
-// CreateStorageObject200JSONResponseBody1 defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody1 struct {
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: internal
-	Kind CreateStorageObject200JSONResponseBody1Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner CreateStorageObject200JSONResponseBody_1_Owner `json:"owner"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status CreateStorageObject200JSONResponseBody1Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
-	//
-	// Example: 5368709120
-	StorageCapacity int `json:"storage_capacity"`
-
-	// StorageUsed The number of bytes used in the internal storage object (base-2)
-	//
-	// Example: 1073741824
-	StorageUsed int `json:"storage_used"`
-
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// CreateStorageObject200JSONResponseBody1Kind defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody1Kind string
-
-// CreateStorageObject200JSONResponseBody1Owner0 defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody1Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind CreateStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
-}
-
-// CreateStorageObject200JSONResponseBody1Owner0Kind defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody1Owner0Kind string
-
-// CreateStorageObject200JSONResponseBody_1_Owner defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody_1_Owner struct {
-	union json.RawMessage
-}
-
-// CreateStorageObject200JSONResponseBody1Status defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody1Status string
-
-// CreateStorageObject200JSONResponseBody defines parameters for CreateStorageObject.
-type CreateStorageObject200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// CreateStorageObject400JSONResponseBody defines parameters for CreateStorageObject.
-type CreateStorageObject400JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// DeleteStorageObject200JSONResponseBody0 defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody0 struct {
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind DeleteStorageObject200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner DeleteStorageObject200JSONResponseBody_0_Owner `json:"owner"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status DeleteStorageObject200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-
-	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// DeleteStorageObject200JSONResponseBody0Kind defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody0Kind string
-
-// DeleteStorageObject200JSONResponseBody0Owner0 defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody0Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind DeleteStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
-}
-
-// DeleteStorageObject200JSONResponseBody0Owner0Kind defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody0Owner0Kind string
-
-// DeleteStorageObject200JSONResponseBody_0_Owner defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody_0_Owner struct {
-	union json.RawMessage
-}
-
-// DeleteStorageObject200JSONResponseBody0Status defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody0Status string
-
-// DeleteStorageObject200JSONResponseBody1 defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody1 struct {
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: internal
-	Kind DeleteStorageObject200JSONResponseBody1Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner DeleteStorageObject200JSONResponseBody_1_Owner `json:"owner"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status DeleteStorageObject200JSONResponseBody1Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
-	//
-	// Example: 5368709120
-	StorageCapacity int `json:"storage_capacity"`
-
-	// StorageUsed The number of bytes used in the internal storage object (base-2)
-	//
-	// Example: 1073741824
-	StorageUsed int `json:"storage_used"`
-
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// DeleteStorageObject200JSONResponseBody1Kind defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody1Kind string
-
-// DeleteStorageObject200JSONResponseBody1Owner0 defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody1Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind DeleteStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
-}
-
-// DeleteStorageObject200JSONResponseBody1Owner0Kind defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody1Owner0Kind string
-
-// DeleteStorageObject200JSONResponseBody_1_Owner defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody_1_Owner struct {
-	union json.RawMessage
-}
-
-// DeleteStorageObject200JSONResponseBody1Status defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody1Status string
-
-// DeleteStorageObject200JSONResponseBody defines parameters for DeleteStorageObject.
-type DeleteStorageObject200JSONResponseBody struct {
-	union json.RawMessage
 }
 
 // RenameStorageObjectJSONBody defines parameters for RenameStorageObject.
@@ -3313,356 +1329,11 @@ type RenameStorageObjectJSONBody struct {
 	Name string `json:"name"`
 }
 
-// RenameStorageObject200JSONResponseBody0 defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody0 struct {
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind RenameStorageObject200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner RenameStorageObject200JSONResponseBody_0_Owner `json:"owner"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status RenameStorageObject200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-
-	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RenameStorageObject200JSONResponseBody0Kind defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody0Kind string
-
-// RenameStorageObject200JSONResponseBody0Owner0 defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody0Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind RenameStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
-}
-
-// RenameStorageObject200JSONResponseBody0Owner0Kind defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody0Owner0Kind string
-
-// RenameStorageObject200JSONResponseBody_0_Owner defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody_0_Owner struct {
-	union json.RawMessage
-}
-
-// RenameStorageObject200JSONResponseBody0Status defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody0Status string
-
-// RenameStorageObject200JSONResponseBody1 defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody1 struct {
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: internal
-	Kind RenameStorageObject200JSONResponseBody1Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner RenameStorageObject200JSONResponseBody_1_Owner `json:"owner"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status RenameStorageObject200JSONResponseBody1Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
-	//
-	// Example: 5368709120
-	StorageCapacity int `json:"storage_capacity"`
-
-	// StorageUsed The number of bytes used in the internal storage object (base-2)
-	//
-	// Example: 1073741824
-	StorageUsed int `json:"storage_used"`
-
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RenameStorageObject200JSONResponseBody1Kind defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody1Kind string
-
-// RenameStorageObject200JSONResponseBody1Owner0 defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody1Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind RenameStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
-}
-
-// RenameStorageObject200JSONResponseBody1Owner0Kind defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody1Owner0Kind string
-
-// RenameStorageObject200JSONResponseBody_1_Owner defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody_1_Owner struct {
-	union json.RawMessage
-}
-
-// RenameStorageObject200JSONResponseBody1Status defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody1Status string
-
-// RenameStorageObject200JSONResponseBody defines parameters for RenameStorageObject.
-type RenameStorageObject200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// RotateStorageObjectJSONBody defines parameters for RotateStorageObject.
-type RotateStorageObjectJSONBody struct {
-	union json.RawMessage
-}
-
-// RotateStorageObjectJSONBody0 defines parameters for RotateStorageObject.
-type RotateStorageObjectJSONBody0 struct {
-	// AccessKeyId The S3 access key id
-	//
-	// Example: SomeAccessKeyId
-	AccessKeyId string `json:"access_key_id"`
-
-	// SecretAccessKey The secret key associated with the Access Key ID
-	//
-	// Example: SuperSecretKey
-	SecretAccessKey string `json:"secret_access_key"`
-}
-
-// RotateStorageObject200JSONResponseBody0 defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody0 struct {
-	// BucketName The name of the target S3 storage bucket
-	//
-	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind RotateStorageObject200JSONResponseBody0Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner RotateStorageObject200JSONResponseBody_0_Owner `json:"owner"`
-
-	// Region The region of your S3 bucket
-	//
-	// Example: eu-central
-	Region string `json:"region"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status RotateStorageObject200JSONResponseBody0Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageEndpoint The S3 URL of the storage bucket
-	//
-	// Example: https://s3.eu-central-003.backblazeb2.com
-	StorageEndpoint string `json:"storage_endpoint"`
-
-	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RotateStorageObject200JSONResponseBody0Kind defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody0Kind string
-
-// RotateStorageObject200JSONResponseBody0Owner0 defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody0Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind RotateStorageObject200JSONResponseBody0Owner0Kind `json:"kind"`
-}
-
-// RotateStorageObject200JSONResponseBody0Owner0Kind defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody0Owner0Kind string
-
-// RotateStorageObject200JSONResponseBody_0_Owner defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody_0_Owner struct {
-	union json.RawMessage
-}
-
-// RotateStorageObject200JSONResponseBody0Status defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody0Status string
-
-// RotateStorageObject200JSONResponseBody1 defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody1 struct {
-	// Id A unique storage identifier
-	//
-	// Example: rgr_strg_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: internal
-	Kind RotateStorageObject200JSONResponseBody1Kind `json:"kind"`
-
-	// Name The human-friendly display name of the storage object
-	//
-	// Example: Main Storage
-	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner RotateStorageObject200JSONResponseBody_1_Owner `json:"owner"`
-
-	// Status The current status of the storage object
-	//
-	// Example: warning
-	Status RotateStorageObject200JSONResponseBody1Status `json:"status"`
-
-	// StatusMessage An optional message attached to the storage object status
-	//
-	// Example: Storage almost full (85% used)
-	StatusMessage *string `json:"status_message,omitempty"`
-
-	// StorageCapacity The capacity of the internal storage object in bytes (base-2)
-	//
-	// Example: 5368709120
-	StorageCapacity int `json:"storage_capacity"`
-
-	// StorageUsed The number of bytes used in the internal storage object (base-2)
-	//
-	// Example: 1073741824
-	StorageUsed int `json:"storage_used"`
-
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-// RotateStorageObject200JSONResponseBody1Kind defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody1Kind string
-
-// RotateStorageObject200JSONResponseBody1Owner0 defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody1Owner0 struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind RotateStorageObject200JSONResponseBody1Owner0Kind `json:"kind"`
-}
-
-// RotateStorageObject200JSONResponseBody1Owner0Kind defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody1Owner0Kind string
-
-// RotateStorageObject200JSONResponseBody_1_Owner defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody_1_Owner struct {
-	union json.RawMessage
-}
-
-// RotateStorageObject200JSONResponseBody1Status defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody1Status string
-
-// RotateStorageObject200JSONResponseBody defines parameters for RotateStorageObject.
-type RotateStorageObject200JSONResponseBody struct {
-	union json.RawMessage
-}
-
-// RotateStorageObject400JSONResponseBody defines parameters for RotateStorageObject.
-type RotateStorageObject400JSONResponseBody struct {
-	union json.RawMessage
-}
-
 // RevokeTokenJSONRequestBody defines body for RevokeToken for application/json ContentType.
-type RevokeTokenJSONRequestBody RevokeTokenJSONBody
+type RevokeTokenJSONRequestBody = RevokeRequestBody
 
 // ExchangeTokenJSONRequestBody defines body for ExchangeToken for application/json ContentType.
-type ExchangeTokenJSONRequestBody ExchangeTokenJSONBody
+type ExchangeTokenJSONRequestBody = TokenRequestBody
 
 // CreateProjectJSONRequestBody defines body for CreateProject for application/json ContentType.
 type CreateProjectJSONRequestBody CreateProjectJSONBody
@@ -3674,13 +1345,13 @@ type RenameProjectJSONRequestBody RenameProjectJSONBody
 type CheckArtifactsJSONRequestBody CheckArtifactsJSONBody
 
 // CreateCredentialJSONRequestBody defines body for CreateCredential for application/json ContentType.
-type CreateCredentialJSONRequestBody CreateCredentialJSONBody
+type CreateCredentialJSONRequestBody = CreateCredentialRequestBody
 
 // RenameCredentialJSONRequestBody defines body for RenameCredential for application/json ContentType.
 type RenameCredentialJSONRequestBody RenameCredentialJSONBody
 
 // RotateCredentialJSONRequestBody defines body for RotateCredential for application/json ContentType.
-type RotateCredentialJSONRequestBody RotateCredentialJSONBody
+type RotateCredentialJSONRequestBody = RotateCredentialRequestBody
 
 // CreateDeploymentMultipartRequestBody defines body for CreateDeployment for multipart/form-data ContentType.
 type CreateDeploymentMultipartRequestBody CreateDeploymentMultipartBody
@@ -3695,31 +1366,39 @@ type CreateTargetJSONRequestBody CreateTargetJSONBody
 type ChangeTargetRessourceIdJSONRequestBody ChangeTargetRessourceIdJSONBody
 
 // CreateStorageObjectJSONRequestBody defines body for CreateStorageObject for application/json ContentType.
-type CreateStorageObjectJSONRequestBody CreateStorageObjectJSONBody
+type CreateStorageObjectJSONRequestBody = LinkStorageObjectRequestBody
 
 // RenameStorageObjectJSONRequestBody defines body for RenameStorageObject for application/json ContentType.
 type RenameStorageObjectJSONRequestBody RenameStorageObjectJSONBody
 
 // RotateStorageObjectJSONRequestBody defines body for RotateStorageObject for application/json ContentType.
-type RotateStorageObjectJSONRequestBody RotateStorageObjectJSONBody
+type RotateStorageObjectJSONRequestBody = RotateStorageObjectRequestBody
 
-// AsRevokeTokenJSONBody0 returns the union data inside the RevokeTokenJSONBody as a RevokeTokenJSONBody0
-func (t RevokeTokenJSONBody) AsRevokeTokenJSONBody0() (RevokeTokenJSONBody0, error) {
-	var body RevokeTokenJSONBody0
+// AsAPIKeyInfos returns the union data inside the CreateCredentialRequestBody as a APIKeyInfos
+func (t CreateCredentialRequestBody) AsAPIKeyInfos() (APIKeyInfos, error) {
+	var body APIKeyInfos
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromRevokeTokenJSONBody0 overwrites any union data inside the RevokeTokenJSONBody as the provided RevokeTokenJSONBody0
-func (t *RevokeTokenJSONBody) FromRevokeTokenJSONBody0(v RevokeTokenJSONBody0) error {
+// FromAPIKeyInfos overwrites any union data inside the CreateCredentialRequestBody as the provided APIKeyInfos
+func (t *CreateCredentialRequestBody) FromAPIKeyInfos(v APIKeyInfos) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
 	t.union = b
 	return err
 }
 
-// MergeRevokeTokenJSONBody0 performs a merge with any union data inside the RevokeTokenJSONBody, using the provided RevokeTokenJSONBody0
-func (t *RevokeTokenJSONBody) MergeRevokeTokenJSONBody0(v RevokeTokenJSONBody0) error {
+// MergeAPIKeyInfos performs a merge with any union data inside the CreateCredentialRequestBody, using the provided APIKeyInfos
+func (t *CreateCredentialRequestBody) MergeAPIKeyInfos(v APIKeyInfos) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
 	if err != nil {
 		return err
 	}
@@ -3729,59 +1408,62 @@ func (t *RevokeTokenJSONBody) MergeRevokeTokenJSONBody0(v RevokeTokenJSONBody0) 
 	return err
 }
 
-// AsRevokeTokenJSONBody1 returns the union data inside the RevokeTokenJSONBody as a RevokeTokenJSONBody1
-func (t RevokeTokenJSONBody) AsRevokeTokenJSONBody1() (RevokeTokenJSONBody1, error) {
-	var body RevokeTokenJSONBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRevokeTokenJSONBody1 overwrites any union data inside the RevokeTokenJSONBody as the provided RevokeTokenJSONBody1
-func (t *RevokeTokenJSONBody) FromRevokeTokenJSONBody1(v RevokeTokenJSONBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRevokeTokenJSONBody1 performs a merge with any union data inside the RevokeTokenJSONBody, using the provided RevokeTokenJSONBody1
-func (t *RevokeTokenJSONBody) MergeRevokeTokenJSONBody1(v RevokeTokenJSONBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
+func (t CreateCredentialRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
 	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
 }
 
-func (t RevokeTokenJSONBody) MarshalJSON() ([]byte, error) {
+func (t CreateCredentialRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "api-key":
+		return t.AsAPIKeyInfos()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t CreateCredentialRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RevokeTokenJSONBody) UnmarshalJSON(b []byte) error {
+func (t *CreateCredentialRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsOAuthError returns the union data inside the RevokeToken400JSONResponseBody as a OAuthError
-func (t RevokeToken400JSONResponseBody) AsOAuthError() (OAuthError, error) {
-	var body OAuthError
+// AsAPIKeyCredential returns the union data inside the Credential as a APIKeyCredential
+func (t Credential) AsAPIKeyCredential() (APIKeyCredential, error) {
+	var body APIKeyCredential
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOAuthError overwrites any union data inside the RevokeToken400JSONResponseBody as the provided OAuthError
-func (t *RevokeToken400JSONResponseBody) FromOAuthError(v OAuthError) error {
+// FromAPIKeyCredential overwrites any union data inside the Credential as the provided APIKeyCredential
+func (t *Credential) FromAPIKeyCredential(v APIKeyCredential) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
 	t.union = b
 	return err
 }
 
-// MergeOAuthError performs a merge with any union data inside the RevokeToken400JSONResponseBody, using the provided OAuthError
-func (t *RevokeToken400JSONResponseBody) MergeOAuthError(v OAuthError) error {
+// MergeAPIKeyCredential performs a merge with any union data inside the Credential, using the provided APIKeyCredential
+func (t *Credential) MergeAPIKeyCredential(v APIKeyCredential) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
 	if err != nil {
 		return err
 	}
@@ -3791,59 +1473,62 @@ func (t *RevokeToken400JSONResponseBody) MergeOAuthError(v OAuthError) error {
 	return err
 }
 
-// AsRevokeToken400JSONResponseBody1 returns the union data inside the RevokeToken400JSONResponseBody as a RevokeToken400JSONResponseBody1
-func (t RevokeToken400JSONResponseBody) AsRevokeToken400JSONResponseBody1() (RevokeToken400JSONResponseBody1, error) {
-	var body RevokeToken400JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRevokeToken400JSONResponseBody1 overwrites any union data inside the RevokeToken400JSONResponseBody as the provided RevokeToken400JSONResponseBody1
-func (t *RevokeToken400JSONResponseBody) FromRevokeToken400JSONResponseBody1(v RevokeToken400JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRevokeToken400JSONResponseBody1 performs a merge with any union data inside the RevokeToken400JSONResponseBody, using the provided RevokeToken400JSONResponseBody1
-func (t *RevokeToken400JSONResponseBody) MergeRevokeToken400JSONResponseBody1(v RevokeToken400JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
+func (t Credential) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
 	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
 }
 
-func (t RevokeToken400JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t Credential) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "api-key":
+		return t.AsAPIKeyCredential()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t Credential) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RevokeToken400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *Credential) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsExchangeTokenJSONBody0 returns the union data inside the ExchangeTokenJSONBody as a ExchangeTokenJSONBody0
-func (t ExchangeTokenJSONBody) AsExchangeTokenJSONBody0() (ExchangeTokenJSONBody0, error) {
-	var body ExchangeTokenJSONBody0
+// AsS3CompatibleStorageInfos returns the union data inside the LinkStorageObjectRequestBody as a S3CompatibleStorageInfos
+func (t LinkStorageObjectRequestBody) AsS3CompatibleStorageInfos() (S3CompatibleStorageInfos, error) {
+	var body S3CompatibleStorageInfos
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromExchangeTokenJSONBody0 overwrites any union data inside the ExchangeTokenJSONBody as the provided ExchangeTokenJSONBody0
-func (t *ExchangeTokenJSONBody) FromExchangeTokenJSONBody0(v ExchangeTokenJSONBody0) error {
+// FromS3CompatibleStorageInfos overwrites any union data inside the LinkStorageObjectRequestBody as the provided S3CompatibleStorageInfos
+func (t *LinkStorageObjectRequestBody) FromS3CompatibleStorageInfos(v S3CompatibleStorageInfos) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
 	t.union = b
 	return err
 }
 
-// MergeExchangeTokenJSONBody0 performs a merge with any union data inside the ExchangeTokenJSONBody, using the provided ExchangeTokenJSONBody0
-func (t *ExchangeTokenJSONBody) MergeExchangeTokenJSONBody0(v ExchangeTokenJSONBody0) error {
+// MergeS3CompatibleStorageInfos performs a merge with any union data inside the LinkStorageObjectRequestBody, using the provided S3CompatibleStorageInfos
+func (t *LinkStorageObjectRequestBody) MergeS3CompatibleStorageInfos(v S3CompatibleStorageInfos) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
 	if err != nil {
 		return err
 	}
@@ -3853,59 +1538,62 @@ func (t *ExchangeTokenJSONBody) MergeExchangeTokenJSONBody0(v ExchangeTokenJSONB
 	return err
 }
 
-// AsExchangeTokenJSONBody1 returns the union data inside the ExchangeTokenJSONBody as a ExchangeTokenJSONBody1
-func (t ExchangeTokenJSONBody) AsExchangeTokenJSONBody1() (ExchangeTokenJSONBody1, error) {
-	var body ExchangeTokenJSONBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExchangeTokenJSONBody1 overwrites any union data inside the ExchangeTokenJSONBody as the provided ExchangeTokenJSONBody1
-func (t *ExchangeTokenJSONBody) FromExchangeTokenJSONBody1(v ExchangeTokenJSONBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExchangeTokenJSONBody1 performs a merge with any union data inside the ExchangeTokenJSONBody, using the provided ExchangeTokenJSONBody1
-func (t *ExchangeTokenJSONBody) MergeExchangeTokenJSONBody1(v ExchangeTokenJSONBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
+func (t LinkStorageObjectRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
 	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
 }
 
-func (t ExchangeTokenJSONBody) MarshalJSON() ([]byte, error) {
+func (t LinkStorageObjectRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "S3":
+		return t.AsS3CompatibleStorageInfos()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t LinkStorageObjectRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *ExchangeTokenJSONBody) UnmarshalJSON(b []byte) error {
+func (t *LinkStorageObjectRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsListCredentials200JSONResponseBody0 returns the union data inside the ListCredentials200JSONResponseBody_Item as a ListCredentials200JSONResponseBody0
-func (t ListCredentials200JSONResponseBody_Item) AsListCredentials200JSONResponseBody0() (ListCredentials200JSONResponseBody0, error) {
-	var body ListCredentials200JSONResponseBody0
+// AsAccessTokenRevokeGrant returns the union data inside the RevokeRequestBody as a AccessTokenRevokeGrant
+func (t RevokeRequestBody) AsAccessTokenRevokeGrant() (AccessTokenRevokeGrant, error) {
+	var body AccessTokenRevokeGrant
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromListCredentials200JSONResponseBody0 overwrites any union data inside the ListCredentials200JSONResponseBody_Item as the provided ListCredentials200JSONResponseBody0
-func (t *ListCredentials200JSONResponseBody_Item) FromListCredentials200JSONResponseBody0(v ListCredentials200JSONResponseBody0) error {
+// FromAccessTokenRevokeGrant overwrites any union data inside the RevokeRequestBody as the provided AccessTokenRevokeGrant
+func (t *RevokeRequestBody) FromAccessTokenRevokeGrant(v AccessTokenRevokeGrant) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"access_token"}`))
 	t.union = b
 	return err
 }
 
-// MergeListCredentials200JSONResponseBody0 performs a merge with any union data inside the ListCredentials200JSONResponseBody_Item, using the provided ListCredentials200JSONResponseBody0
-func (t *ListCredentials200JSONResponseBody_Item) MergeListCredentials200JSONResponseBody0(v ListCredentials200JSONResponseBody0) error {
+// MergeAccessTokenRevokeGrant performs a merge with any union data inside the RevokeRequestBody, using the provided AccessTokenRevokeGrant
+func (t *RevokeRequestBody) MergeAccessTokenRevokeGrant(v AccessTokenRevokeGrant) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"access_token"}`))
 	if err != nil {
 		return err
 	}
@@ -3915,32 +1603,89 @@ func (t *ListCredentials200JSONResponseBody_Item) MergeListCredentials200JSONRes
 	return err
 }
 
-func (t ListCredentials200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
+// AsRefreshTokenRevokeGrant returns the union data inside the RevokeRequestBody as a RefreshTokenRevokeGrant
+func (t RevokeRequestBody) AsRefreshTokenRevokeGrant() (RefreshTokenRevokeGrant, error) {
+	var body RefreshTokenRevokeGrant
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRefreshTokenRevokeGrant overwrites any union data inside the RevokeRequestBody as the provided RefreshTokenRevokeGrant
+func (t *RevokeRequestBody) FromRefreshTokenRevokeGrant(v RefreshTokenRevokeGrant) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"refresh_token"}`))
+	t.union = b
+	return err
+}
+
+// MergeRefreshTokenRevokeGrant performs a merge with any union data inside the RevokeRequestBody, using the provided RefreshTokenRevokeGrant
+func (t *RevokeRequestBody) MergeRefreshTokenRevokeGrant(v RefreshTokenRevokeGrant) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"refresh_token"}`))
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RevokeRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"token_type_hint"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t RevokeRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "access_token":
+		return t.AsAccessTokenRevokeGrant()
+	case "refresh_token":
+		return t.AsRefreshTokenRevokeGrant()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t RevokeRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *ListCredentials200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
+func (t *RevokeRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsCreateCredentialJSONBody0 returns the union data inside the CreateCredentialJSONBody as a CreateCredentialJSONBody0
-func (t CreateCredentialJSONBody) AsCreateCredentialJSONBody0() (CreateCredentialJSONBody0, error) {
-	var body CreateCredentialJSONBody0
+// AsAPIKeySecret returns the union data inside the RotateCredentialRequestBody as a APIKeySecret
+func (t RotateCredentialRequestBody) AsAPIKeySecret() (APIKeySecret, error) {
+	var body APIKeySecret
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromCreateCredentialJSONBody0 overwrites any union data inside the CreateCredentialJSONBody as the provided CreateCredentialJSONBody0
-func (t *CreateCredentialJSONBody) FromCreateCredentialJSONBody0(v CreateCredentialJSONBody0) error {
+// FromAPIKeySecret overwrites any union data inside the RotateCredentialRequestBody as the provided APIKeySecret
+func (t *RotateCredentialRequestBody) FromAPIKeySecret(v APIKeySecret) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeCreateCredentialJSONBody0 performs a merge with any union data inside the CreateCredentialJSONBody, using the provided CreateCredentialJSONBody0
-func (t *CreateCredentialJSONBody) MergeCreateCredentialJSONBody0(v CreateCredentialJSONBody0) error {
+// MergeAPIKeySecret performs a merge with any union data inside the RotateCredentialRequestBody, using the provided APIKeySecret
+func (t *RotateCredentialRequestBody) MergeAPIKeySecret(v APIKeySecret) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3951,32 +1696,32 @@ func (t *CreateCredentialJSONBody) MergeCreateCredentialJSONBody0(v CreateCreden
 	return err
 }
 
-func (t CreateCredentialJSONBody) MarshalJSON() ([]byte, error) {
+func (t RotateCredentialRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *CreateCredentialJSONBody) UnmarshalJSON(b []byte) error {
+func (t *RotateCredentialRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsCreateCredential200JSONResponseBody0 returns the union data inside the CreateCredential200JSONResponseBody as a CreateCredential200JSONResponseBody0
-func (t CreateCredential200JSONResponseBody) AsCreateCredential200JSONResponseBody0() (CreateCredential200JSONResponseBody0, error) {
-	var body CreateCredential200JSONResponseBody0
+// AsS3Credentials returns the union data inside the RotateStorageObjectRequestBody as a S3Credentials
+func (t RotateStorageObjectRequestBody) AsS3Credentials() (S3Credentials, error) {
+	var body S3Credentials
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromCreateCredential200JSONResponseBody0 overwrites any union data inside the CreateCredential200JSONResponseBody as the provided CreateCredential200JSONResponseBody0
-func (t *CreateCredential200JSONResponseBody) FromCreateCredential200JSONResponseBody0(v CreateCredential200JSONResponseBody0) error {
+// FromS3Credentials overwrites any union data inside the RotateStorageObjectRequestBody as the provided S3Credentials
+func (t *RotateStorageObjectRequestBody) FromS3Credentials(v S3Credentials) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeCreateCredential200JSONResponseBody0 performs a merge with any union data inside the CreateCredential200JSONResponseBody, using the provided CreateCredential200JSONResponseBody0
-func (t *CreateCredential200JSONResponseBody) MergeCreateCredential200JSONResponseBody0(v CreateCredential200JSONResponseBody0) error {
+// MergeS3Credentials performs a merge with any union data inside the RotateStorageObjectRequestBody, using the provided S3Credentials
+func (t *RotateStorageObjectRequestBody) MergeS3Credentials(v S3Credentials) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3987,33 +1732,41 @@ func (t *CreateCredential200JSONResponseBody) MergeCreateCredential200JSONRespon
 	return err
 }
 
-func (t CreateCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t RotateStorageObjectRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *CreateCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *RotateStorageObjectRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsDeleteCredential200JSONResponseBody0 returns the union data inside the DeleteCredential200JSONResponseBody as a DeleteCredential200JSONResponseBody0
-func (t DeleteCredential200JSONResponseBody) AsDeleteCredential200JSONResponseBody0() (DeleteCredential200JSONResponseBody0, error) {
-	var body DeleteCredential200JSONResponseBody0
+// AsS3CompatibleStorage returns the union data inside the StorageObject as a S3CompatibleStorage
+func (t StorageObject) AsS3CompatibleStorage() (S3CompatibleStorage, error) {
+	var body S3CompatibleStorage
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromDeleteCredential200JSONResponseBody0 overwrites any union data inside the DeleteCredential200JSONResponseBody as the provided DeleteCredential200JSONResponseBody0
-func (t *DeleteCredential200JSONResponseBody) FromDeleteCredential200JSONResponseBody0(v DeleteCredential200JSONResponseBody0) error {
+// FromS3CompatibleStorage overwrites any union data inside the StorageObject as the provided S3CompatibleStorage
+func (t *StorageObject) FromS3CompatibleStorage(v S3CompatibleStorage) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
 	t.union = b
 	return err
 }
 
-// MergeDeleteCredential200JSONResponseBody0 performs a merge with any union data inside the DeleteCredential200JSONResponseBody, using the provided DeleteCredential200JSONResponseBody0
-func (t *DeleteCredential200JSONResponseBody) MergeDeleteCredential200JSONResponseBody0(v DeleteCredential200JSONResponseBody0) error {
+// MergeS3CompatibleStorage performs a merge with any union data inside the StorageObject, using the provided S3CompatibleStorage
+func (t *StorageObject) MergeS3CompatibleStorage(v S3CompatibleStorage) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
 	if err != nil {
 		return err
 	}
@@ -4023,33 +1776,98 @@ func (t *DeleteCredential200JSONResponseBody) MergeDeleteCredential200JSONRespon
 	return err
 }
 
-func (t DeleteCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
+// AsInternalStorage returns the union data inside the StorageObject as a InternalStorage
+func (t StorageObject) AsInternalStorage() (InternalStorage, error) {
+	var body InternalStorage
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromInternalStorage overwrites any union data inside the StorageObject as the provided InternalStorage
+func (t *StorageObject) FromInternalStorage(v InternalStorage) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"internal"}`))
+	t.union = b
+	return err
+}
+
+// MergeInternalStorage performs a merge with any union data inside the StorageObject, using the provided InternalStorage
+func (t *StorageObject) MergeInternalStorage(v InternalStorage) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"internal"}`))
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t StorageObject) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t StorageObject) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "S3":
+		return t.AsS3CompatibleStorage()
+	case "internal":
+		return t.AsInternalStorage()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t StorageObject) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *DeleteCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *StorageObject) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsRenameCredential200JSONResponseBody0 returns the union data inside the RenameCredential200JSONResponseBody as a RenameCredential200JSONResponseBody0
-func (t RenameCredential200JSONResponseBody) AsRenameCredential200JSONResponseBody0() (RenameCredential200JSONResponseBody0, error) {
-	var body RenameCredential200JSONResponseBody0
+// AsUserStorageOwner returns the union data inside the StorageOwner as a UserStorageOwner
+func (t StorageOwner) AsUserStorageOwner() (UserStorageOwner, error) {
+	var body UserStorageOwner
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromRenameCredential200JSONResponseBody0 overwrites any union data inside the RenameCredential200JSONResponseBody as the provided RenameCredential200JSONResponseBody0
-func (t *RenameCredential200JSONResponseBody) FromRenameCredential200JSONResponseBody0(v RenameCredential200JSONResponseBody0) error {
+// FromUserStorageOwner overwrites any union data inside the StorageOwner as the provided UserStorageOwner
+func (t *StorageOwner) FromUserStorageOwner(v UserStorageOwner) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"user"}`))
 	t.union = b
 	return err
 }
 
-// MergeRenameCredential200JSONResponseBody0 performs a merge with any union data inside the RenameCredential200JSONResponseBody, using the provided RenameCredential200JSONResponseBody0
-func (t *RenameCredential200JSONResponseBody) MergeRenameCredential200JSONResponseBody0(v RenameCredential200JSONResponseBody0) error {
+// MergeUserStorageOwner performs a merge with any union data inside the StorageOwner, using the provided UserStorageOwner
+func (t *StorageOwner) MergeUserStorageOwner(v UserStorageOwner) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"user"}`))
 	if err != nil {
 		return err
 	}
@@ -4059,33 +1877,62 @@ func (t *RenameCredential200JSONResponseBody) MergeRenameCredential200JSONRespon
 	return err
 }
 
-func (t RenameCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
+func (t StorageOwner) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t StorageOwner) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "user":
+		return t.AsUserStorageOwner()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t StorageOwner) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RenameCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *StorageOwner) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsRotateCredentialJSONBody0 returns the union data inside the RotateCredentialJSONBody as a RotateCredentialJSONBody0
-func (t RotateCredentialJSONBody) AsRotateCredentialJSONBody0() (RotateCredentialJSONBody0, error) {
-	var body RotateCredentialJSONBody0
+// AsPlaceTarget returns the union data inside the Target as a PlaceTarget
+func (t Target) AsPlaceTarget() (PlaceTarget, error) {
+	var body PlaceTarget
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromRotateCredentialJSONBody0 overwrites any union data inside the RotateCredentialJSONBody as the provided RotateCredentialJSONBody0
-func (t *RotateCredentialJSONBody) FromRotateCredentialJSONBody0(v RotateCredentialJSONBody0) error {
+// FromPlaceTarget overwrites any union data inside the Target as the provided PlaceTarget
+func (t *Target) FromPlaceTarget(v PlaceTarget) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"place"}`))
 	t.union = b
 	return err
 }
 
-// MergeRotateCredentialJSONBody0 performs a merge with any union data inside the RotateCredentialJSONBody, using the provided RotateCredentialJSONBody0
-func (t *RotateCredentialJSONBody) MergeRotateCredentialJSONBody0(v RotateCredentialJSONBody0) error {
+// MergePlaceTarget performs a merge with any union data inside the Target, using the provided PlaceTarget
+func (t *Target) MergePlaceTarget(v PlaceTarget) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"place"}`))
 	if err != nil {
 		return err
 	}
@@ -4095,33 +1942,62 @@ func (t *RotateCredentialJSONBody) MergeRotateCredentialJSONBody0(v RotateCreden
 	return err
 }
 
-func (t RotateCredentialJSONBody) MarshalJSON() ([]byte, error) {
+func (t Target) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t Target) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "place":
+		return t.AsPlaceTarget()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t Target) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RotateCredentialJSONBody) UnmarshalJSON(b []byte) error {
+func (t *Target) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
 
-// AsRotateCredential200JSONResponseBody0 returns the union data inside the RotateCredential200JSONResponseBody as a RotateCredential200JSONResponseBody0
-func (t RotateCredential200JSONResponseBody) AsRotateCredential200JSONResponseBody0() (RotateCredential200JSONResponseBody0, error) {
-	var body RotateCredential200JSONResponseBody0
+// AsAuthorizationCodeGrant returns the union data inside the TokenRequestBody as a AuthorizationCodeGrant
+func (t TokenRequestBody) AsAuthorizationCodeGrant() (AuthorizationCodeGrant, error) {
+	var body AuthorizationCodeGrant
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromRotateCredential200JSONResponseBody0 overwrites any union data inside the RotateCredential200JSONResponseBody as the provided RotateCredential200JSONResponseBody0
-func (t *RotateCredential200JSONResponseBody) FromRotateCredential200JSONResponseBody0(v RotateCredential200JSONResponseBody0) error {
+// FromAuthorizationCodeGrant overwrites any union data inside the TokenRequestBody as the provided AuthorizationCodeGrant
+func (t *TokenRequestBody) FromAuthorizationCodeGrant(v AuthorizationCodeGrant) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"authorization_code"}`))
 	t.union = b
 	return err
 }
 
-// MergeRotateCredential200JSONResponseBody0 performs a merge with any union data inside the RotateCredential200JSONResponseBody, using the provided RotateCredential200JSONResponseBody0
-func (t *RotateCredential200JSONResponseBody) MergeRotateCredential200JSONResponseBody0(v RotateCredential200JSONResponseBody0) error {
+// MergeAuthorizationCodeGrant performs a merge with any union data inside the TokenRequestBody, using the provided AuthorizationCodeGrant
+func (t *TokenRequestBody) MergeAuthorizationCodeGrant(v AuthorizationCodeGrant) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"authorization_code"}`))
 	if err != nil {
 		return err
 	}
@@ -4131,1084 +2007,69 @@ func (t *RotateCredential200JSONResponseBody) MergeRotateCredential200JSONRespon
 	return err
 }
 
-func (t RotateCredential200JSONResponseBody) MarshalJSON() ([]byte, error) {
+// AsRefreshTokenGrant returns the union data inside the TokenRequestBody as a RefreshTokenGrant
+func (t TokenRequestBody) AsRefreshTokenGrant() (RefreshTokenGrant, error) {
+	var body RefreshTokenGrant
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRefreshTokenGrant overwrites any union data inside the TokenRequestBody as the provided RefreshTokenGrant
+func (t *TokenRequestBody) FromRefreshTokenGrant(v RefreshTokenGrant) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"refresh_token"}`))
+	t.union = b
+	return err
+}
+
+// MergeRefreshTokenGrant performs a merge with any union data inside the TokenRequestBody, using the provided RefreshTokenGrant
+func (t *TokenRequestBody) MergeRefreshTokenGrant(v RefreshTokenGrant) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"refresh_token"}`))
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t TokenRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"grant_type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t TokenRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "authorization_code":
+		return t.AsAuthorizationCodeGrant()
+	case "refresh_token":
+		return t.AsRefreshTokenGrant()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t TokenRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RotateCredential200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsValidationError returns the union data inside the RotateCredential400JSONResponseBody as a ValidationError
-func (t RotateCredential400JSONResponseBody) AsValidationError() (ValidationError, error) {
-	var body ValidationError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromValidationError overwrites any union data inside the RotateCredential400JSONResponseBody as the provided ValidationError
-func (t *RotateCredential400JSONResponseBody) FromValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeValidationError performs a merge with any union data inside the RotateCredential400JSONResponseBody, using the provided ValidationError
-func (t *RotateCredential400JSONResponseBody) MergeValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsCredentialsError returns the union data inside the RotateCredential400JSONResponseBody as a CredentialsError
-func (t RotateCredential400JSONResponseBody) AsCredentialsError() (CredentialsError, error) {
-	var body CredentialsError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCredentialsError overwrites any union data inside the RotateCredential400JSONResponseBody as the provided CredentialsError
-func (t *RotateCredential400JSONResponseBody) FromCredentialsError(v CredentialsError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCredentialsError performs a merge with any union data inside the RotateCredential400JSONResponseBody, using the provided CredentialsError
-func (t *RotateCredential400JSONResponseBody) MergeCredentialsError(v CredentialsError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateCredential400JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateCredential400JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsListTargets200JSONResponseBody0 returns the union data inside the ListTargets200JSONResponseBody as a ListTargets200JSONResponseBody0
-func (t ListTargets200JSONResponseBody) AsListTargets200JSONResponseBody0() (ListTargets200JSONResponseBody0, error) {
-	var body ListTargets200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromListTargets200JSONResponseBody0 overwrites any union data inside the ListTargets200JSONResponseBody as the provided ListTargets200JSONResponseBody0
-func (t *ListTargets200JSONResponseBody) FromListTargets200JSONResponseBody0(v ListTargets200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeListTargets200JSONResponseBody0 performs a merge with any union data inside the ListTargets200JSONResponseBody, using the provided ListTargets200JSONResponseBody0
-func (t *ListTargets200JSONResponseBody) MergeListTargets200JSONResponseBody0(v ListTargets200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ListTargets200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ListTargets200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCreateTarget200JSONResponseBody0 returns the union data inside the CreateTarget200JSONResponseBody as a CreateTarget200JSONResponseBody0
-func (t CreateTarget200JSONResponseBody) AsCreateTarget200JSONResponseBody0() (CreateTarget200JSONResponseBody0, error) {
-	var body CreateTarget200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateTarget200JSONResponseBody0 overwrites any union data inside the CreateTarget200JSONResponseBody as the provided CreateTarget200JSONResponseBody0
-func (t *CreateTarget200JSONResponseBody) FromCreateTarget200JSONResponseBody0(v CreateTarget200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateTarget200JSONResponseBody0 performs a merge with any union data inside the CreateTarget200JSONResponseBody, using the provided CreateTarget200JSONResponseBody0
-func (t *CreateTarget200JSONResponseBody) MergeCreateTarget200JSONResponseBody0(v CreateTarget200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateTarget200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateTarget200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDeleteTarget200JSONResponseBody0 returns the union data inside the DeleteTarget200JSONResponseBody as a DeleteTarget200JSONResponseBody0
-func (t DeleteTarget200JSONResponseBody) AsDeleteTarget200JSONResponseBody0() (DeleteTarget200JSONResponseBody0, error) {
-	var body DeleteTarget200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDeleteTarget200JSONResponseBody0 overwrites any union data inside the DeleteTarget200JSONResponseBody as the provided DeleteTarget200JSONResponseBody0
-func (t *DeleteTarget200JSONResponseBody) FromDeleteTarget200JSONResponseBody0(v DeleteTarget200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDeleteTarget200JSONResponseBody0 performs a merge with any union data inside the DeleteTarget200JSONResponseBody, using the provided DeleteTarget200JSONResponseBody0
-func (t *DeleteTarget200JSONResponseBody) MergeDeleteTarget200JSONResponseBody0(v DeleteTarget200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DeleteTarget200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DeleteTarget200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsChangeTargetRessourceId200JSONResponseBody0 returns the union data inside the ChangeTargetRessourceId200JSONResponseBody as a ChangeTargetRessourceId200JSONResponseBody0
-func (t ChangeTargetRessourceId200JSONResponseBody) AsChangeTargetRessourceId200JSONResponseBody0() (ChangeTargetRessourceId200JSONResponseBody0, error) {
-	var body ChangeTargetRessourceId200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromChangeTargetRessourceId200JSONResponseBody0 overwrites any union data inside the ChangeTargetRessourceId200JSONResponseBody as the provided ChangeTargetRessourceId200JSONResponseBody0
-func (t *ChangeTargetRessourceId200JSONResponseBody) FromChangeTargetRessourceId200JSONResponseBody0(v ChangeTargetRessourceId200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeChangeTargetRessourceId200JSONResponseBody0 performs a merge with any union data inside the ChangeTargetRessourceId200JSONResponseBody, using the provided ChangeTargetRessourceId200JSONResponseBody0
-func (t *ChangeTargetRessourceId200JSONResponseBody) MergeChangeTargetRessourceId200JSONResponseBody0(v ChangeTargetRessourceId200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ChangeTargetRessourceId200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ChangeTargetRessourceId200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsListStorageObjects200JSONResponseBody0Owner0 returns the union data inside the ListStorageObjects200JSONResponseBody_0_Owner as a ListStorageObjects200JSONResponseBody0Owner0
-func (t ListStorageObjects200JSONResponseBody_0_Owner) AsListStorageObjects200JSONResponseBody0Owner0() (ListStorageObjects200JSONResponseBody0Owner0, error) {
-	var body ListStorageObjects200JSONResponseBody0Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromListStorageObjects200JSONResponseBody0Owner0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_0_Owner as the provided ListStorageObjects200JSONResponseBody0Owner0
-func (t *ListStorageObjects200JSONResponseBody_0_Owner) FromListStorageObjects200JSONResponseBody0Owner0(v ListStorageObjects200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeListStorageObjects200JSONResponseBody0Owner0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_0_Owner, using the provided ListStorageObjects200JSONResponseBody0Owner0
-func (t *ListStorageObjects200JSONResponseBody_0_Owner) MergeListStorageObjects200JSONResponseBody0Owner0(v ListStorageObjects200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ListStorageObjects200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ListStorageObjects200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsListStorageObjects200JSONResponseBody1Owner0 returns the union data inside the ListStorageObjects200JSONResponseBody_1_Owner as a ListStorageObjects200JSONResponseBody1Owner0
-func (t ListStorageObjects200JSONResponseBody_1_Owner) AsListStorageObjects200JSONResponseBody1Owner0() (ListStorageObjects200JSONResponseBody1Owner0, error) {
-	var body ListStorageObjects200JSONResponseBody1Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromListStorageObjects200JSONResponseBody1Owner0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_1_Owner as the provided ListStorageObjects200JSONResponseBody1Owner0
-func (t *ListStorageObjects200JSONResponseBody_1_Owner) FromListStorageObjects200JSONResponseBody1Owner0(v ListStorageObjects200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeListStorageObjects200JSONResponseBody1Owner0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_1_Owner, using the provided ListStorageObjects200JSONResponseBody1Owner0
-func (t *ListStorageObjects200JSONResponseBody_1_Owner) MergeListStorageObjects200JSONResponseBody1Owner0(v ListStorageObjects200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ListStorageObjects200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ListStorageObjects200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsListStorageObjects200JSONResponseBody0 returns the union data inside the ListStorageObjects200JSONResponseBody_Item as a ListStorageObjects200JSONResponseBody0
-func (t ListStorageObjects200JSONResponseBody_Item) AsListStorageObjects200JSONResponseBody0() (ListStorageObjects200JSONResponseBody0, error) {
-	var body ListStorageObjects200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromListStorageObjects200JSONResponseBody0 overwrites any union data inside the ListStorageObjects200JSONResponseBody_Item as the provided ListStorageObjects200JSONResponseBody0
-func (t *ListStorageObjects200JSONResponseBody_Item) FromListStorageObjects200JSONResponseBody0(v ListStorageObjects200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeListStorageObjects200JSONResponseBody0 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_Item, using the provided ListStorageObjects200JSONResponseBody0
-func (t *ListStorageObjects200JSONResponseBody_Item) MergeListStorageObjects200JSONResponseBody0(v ListStorageObjects200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsListStorageObjects200JSONResponseBody1 returns the union data inside the ListStorageObjects200JSONResponseBody_Item as a ListStorageObjects200JSONResponseBody1
-func (t ListStorageObjects200JSONResponseBody_Item) AsListStorageObjects200JSONResponseBody1() (ListStorageObjects200JSONResponseBody1, error) {
-	var body ListStorageObjects200JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromListStorageObjects200JSONResponseBody1 overwrites any union data inside the ListStorageObjects200JSONResponseBody_Item as the provided ListStorageObjects200JSONResponseBody1
-func (t *ListStorageObjects200JSONResponseBody_Item) FromListStorageObjects200JSONResponseBody1(v ListStorageObjects200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeListStorageObjects200JSONResponseBody1 performs a merge with any union data inside the ListStorageObjects200JSONResponseBody_Item, using the provided ListStorageObjects200JSONResponseBody1
-func (t *ListStorageObjects200JSONResponseBody_Item) MergeListStorageObjects200JSONResponseBody1(v ListStorageObjects200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ListStorageObjects200JSONResponseBody_Item) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ListStorageObjects200JSONResponseBody_Item) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCreateStorageObjectJSONBody0 returns the union data inside the CreateStorageObjectJSONBody as a CreateStorageObjectJSONBody0
-func (t CreateStorageObjectJSONBody) AsCreateStorageObjectJSONBody0() (CreateStorageObjectJSONBody0, error) {
-	var body CreateStorageObjectJSONBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateStorageObjectJSONBody0 overwrites any union data inside the CreateStorageObjectJSONBody as the provided CreateStorageObjectJSONBody0
-func (t *CreateStorageObjectJSONBody) FromCreateStorageObjectJSONBody0(v CreateStorageObjectJSONBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateStorageObjectJSONBody0 performs a merge with any union data inside the CreateStorageObjectJSONBody, using the provided CreateStorageObjectJSONBody0
-func (t *CreateStorageObjectJSONBody) MergeCreateStorageObjectJSONBody0(v CreateStorageObjectJSONBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateStorageObjectJSONBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateStorageObjectJSONBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCreateStorageObject200JSONResponseBody0Owner0 returns the union data inside the CreateStorageObject200JSONResponseBody_0_Owner as a CreateStorageObject200JSONResponseBody0Owner0
-func (t CreateStorageObject200JSONResponseBody_0_Owner) AsCreateStorageObject200JSONResponseBody0Owner0() (CreateStorageObject200JSONResponseBody0Owner0, error) {
-	var body CreateStorageObject200JSONResponseBody0Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the CreateStorageObject200JSONResponseBody_0_Owner as the provided CreateStorageObject200JSONResponseBody0Owner0
-func (t *CreateStorageObject200JSONResponseBody_0_Owner) FromCreateStorageObject200JSONResponseBody0Owner0(v CreateStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody_0_Owner, using the provided CreateStorageObject200JSONResponseBody0Owner0
-func (t *CreateStorageObject200JSONResponseBody_0_Owner) MergeCreateStorageObject200JSONResponseBody0Owner0(v CreateStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCreateStorageObject200JSONResponseBody1Owner0 returns the union data inside the CreateStorageObject200JSONResponseBody_1_Owner as a CreateStorageObject200JSONResponseBody1Owner0
-func (t CreateStorageObject200JSONResponseBody_1_Owner) AsCreateStorageObject200JSONResponseBody1Owner0() (CreateStorageObject200JSONResponseBody1Owner0, error) {
-	var body CreateStorageObject200JSONResponseBody1Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the CreateStorageObject200JSONResponseBody_1_Owner as the provided CreateStorageObject200JSONResponseBody1Owner0
-func (t *CreateStorageObject200JSONResponseBody_1_Owner) FromCreateStorageObject200JSONResponseBody1Owner0(v CreateStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody_1_Owner, using the provided CreateStorageObject200JSONResponseBody1Owner0
-func (t *CreateStorageObject200JSONResponseBody_1_Owner) MergeCreateStorageObject200JSONResponseBody1Owner0(v CreateStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCreateStorageObject200JSONResponseBody0 returns the union data inside the CreateStorageObject200JSONResponseBody as a CreateStorageObject200JSONResponseBody0
-func (t CreateStorageObject200JSONResponseBody) AsCreateStorageObject200JSONResponseBody0() (CreateStorageObject200JSONResponseBody0, error) {
-	var body CreateStorageObject200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateStorageObject200JSONResponseBody0 overwrites any union data inside the CreateStorageObject200JSONResponseBody as the provided CreateStorageObject200JSONResponseBody0
-func (t *CreateStorageObject200JSONResponseBody) FromCreateStorageObject200JSONResponseBody0(v CreateStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateStorageObject200JSONResponseBody0 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody, using the provided CreateStorageObject200JSONResponseBody0
-func (t *CreateStorageObject200JSONResponseBody) MergeCreateStorageObject200JSONResponseBody0(v CreateStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsCreateStorageObject200JSONResponseBody1 returns the union data inside the CreateStorageObject200JSONResponseBody as a CreateStorageObject200JSONResponseBody1
-func (t CreateStorageObject200JSONResponseBody) AsCreateStorageObject200JSONResponseBody1() (CreateStorageObject200JSONResponseBody1, error) {
-	var body CreateStorageObject200JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCreateStorageObject200JSONResponseBody1 overwrites any union data inside the CreateStorageObject200JSONResponseBody as the provided CreateStorageObject200JSONResponseBody1
-func (t *CreateStorageObject200JSONResponseBody) FromCreateStorageObject200JSONResponseBody1(v CreateStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCreateStorageObject200JSONResponseBody1 performs a merge with any union data inside the CreateStorageObject200JSONResponseBody, using the provided CreateStorageObject200JSONResponseBody1
-func (t *CreateStorageObject200JSONResponseBody) MergeCreateStorageObject200JSONResponseBody1(v CreateStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsValidationError returns the union data inside the CreateStorageObject400JSONResponseBody as a ValidationError
-func (t CreateStorageObject400JSONResponseBody) AsValidationError() (ValidationError, error) {
-	var body ValidationError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromValidationError overwrites any union data inside the CreateStorageObject400JSONResponseBody as the provided ValidationError
-func (t *CreateStorageObject400JSONResponseBody) FromValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeValidationError performs a merge with any union data inside the CreateStorageObject400JSONResponseBody, using the provided ValidationError
-func (t *CreateStorageObject400JSONResponseBody) MergeValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsStorageError returns the union data inside the CreateStorageObject400JSONResponseBody as a StorageError
-func (t CreateStorageObject400JSONResponseBody) AsStorageError() (StorageError, error) {
-	var body StorageError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromStorageError overwrites any union data inside the CreateStorageObject400JSONResponseBody as the provided StorageError
-func (t *CreateStorageObject400JSONResponseBody) FromStorageError(v StorageError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeStorageError performs a merge with any union data inside the CreateStorageObject400JSONResponseBody, using the provided StorageError
-func (t *CreateStorageObject400JSONResponseBody) MergeStorageError(v StorageError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CreateStorageObject400JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CreateStorageObject400JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDeleteStorageObject200JSONResponseBody0Owner0 returns the union data inside the DeleteStorageObject200JSONResponseBody_0_Owner as a DeleteStorageObject200JSONResponseBody0Owner0
-func (t DeleteStorageObject200JSONResponseBody_0_Owner) AsDeleteStorageObject200JSONResponseBody0Owner0() (DeleteStorageObject200JSONResponseBody0Owner0, error) {
-	var body DeleteStorageObject200JSONResponseBody0Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDeleteStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody_0_Owner as the provided DeleteStorageObject200JSONResponseBody0Owner0
-func (t *DeleteStorageObject200JSONResponseBody_0_Owner) FromDeleteStorageObject200JSONResponseBody0Owner0(v DeleteStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDeleteStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody_0_Owner, using the provided DeleteStorageObject200JSONResponseBody0Owner0
-func (t *DeleteStorageObject200JSONResponseBody_0_Owner) MergeDeleteStorageObject200JSONResponseBody0Owner0(v DeleteStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DeleteStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DeleteStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDeleteStorageObject200JSONResponseBody1Owner0 returns the union data inside the DeleteStorageObject200JSONResponseBody_1_Owner as a DeleteStorageObject200JSONResponseBody1Owner0
-func (t DeleteStorageObject200JSONResponseBody_1_Owner) AsDeleteStorageObject200JSONResponseBody1Owner0() (DeleteStorageObject200JSONResponseBody1Owner0, error) {
-	var body DeleteStorageObject200JSONResponseBody1Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDeleteStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody_1_Owner as the provided DeleteStorageObject200JSONResponseBody1Owner0
-func (t *DeleteStorageObject200JSONResponseBody_1_Owner) FromDeleteStorageObject200JSONResponseBody1Owner0(v DeleteStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDeleteStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody_1_Owner, using the provided DeleteStorageObject200JSONResponseBody1Owner0
-func (t *DeleteStorageObject200JSONResponseBody_1_Owner) MergeDeleteStorageObject200JSONResponseBody1Owner0(v DeleteStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DeleteStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DeleteStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDeleteStorageObject200JSONResponseBody0 returns the union data inside the DeleteStorageObject200JSONResponseBody as a DeleteStorageObject200JSONResponseBody0
-func (t DeleteStorageObject200JSONResponseBody) AsDeleteStorageObject200JSONResponseBody0() (DeleteStorageObject200JSONResponseBody0, error) {
-	var body DeleteStorageObject200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDeleteStorageObject200JSONResponseBody0 overwrites any union data inside the DeleteStorageObject200JSONResponseBody as the provided DeleteStorageObject200JSONResponseBody0
-func (t *DeleteStorageObject200JSONResponseBody) FromDeleteStorageObject200JSONResponseBody0(v DeleteStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDeleteStorageObject200JSONResponseBody0 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody, using the provided DeleteStorageObject200JSONResponseBody0
-func (t *DeleteStorageObject200JSONResponseBody) MergeDeleteStorageObject200JSONResponseBody0(v DeleteStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsDeleteStorageObject200JSONResponseBody1 returns the union data inside the DeleteStorageObject200JSONResponseBody as a DeleteStorageObject200JSONResponseBody1
-func (t DeleteStorageObject200JSONResponseBody) AsDeleteStorageObject200JSONResponseBody1() (DeleteStorageObject200JSONResponseBody1, error) {
-	var body DeleteStorageObject200JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDeleteStorageObject200JSONResponseBody1 overwrites any union data inside the DeleteStorageObject200JSONResponseBody as the provided DeleteStorageObject200JSONResponseBody1
-func (t *DeleteStorageObject200JSONResponseBody) FromDeleteStorageObject200JSONResponseBody1(v DeleteStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDeleteStorageObject200JSONResponseBody1 performs a merge with any union data inside the DeleteStorageObject200JSONResponseBody, using the provided DeleteStorageObject200JSONResponseBody1
-func (t *DeleteStorageObject200JSONResponseBody) MergeDeleteStorageObject200JSONResponseBody1(v DeleteStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DeleteStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DeleteStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRenameStorageObject200JSONResponseBody0Owner0 returns the union data inside the RenameStorageObject200JSONResponseBody_0_Owner as a RenameStorageObject200JSONResponseBody0Owner0
-func (t RenameStorageObject200JSONResponseBody_0_Owner) AsRenameStorageObject200JSONResponseBody0Owner0() (RenameStorageObject200JSONResponseBody0Owner0, error) {
-	var body RenameStorageObject200JSONResponseBody0Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRenameStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the RenameStorageObject200JSONResponseBody_0_Owner as the provided RenameStorageObject200JSONResponseBody0Owner0
-func (t *RenameStorageObject200JSONResponseBody_0_Owner) FromRenameStorageObject200JSONResponseBody0Owner0(v RenameStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRenameStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody_0_Owner, using the provided RenameStorageObject200JSONResponseBody0Owner0
-func (t *RenameStorageObject200JSONResponseBody_0_Owner) MergeRenameStorageObject200JSONResponseBody0Owner0(v RenameStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RenameStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RenameStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRenameStorageObject200JSONResponseBody1Owner0 returns the union data inside the RenameStorageObject200JSONResponseBody_1_Owner as a RenameStorageObject200JSONResponseBody1Owner0
-func (t RenameStorageObject200JSONResponseBody_1_Owner) AsRenameStorageObject200JSONResponseBody1Owner0() (RenameStorageObject200JSONResponseBody1Owner0, error) {
-	var body RenameStorageObject200JSONResponseBody1Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRenameStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the RenameStorageObject200JSONResponseBody_1_Owner as the provided RenameStorageObject200JSONResponseBody1Owner0
-func (t *RenameStorageObject200JSONResponseBody_1_Owner) FromRenameStorageObject200JSONResponseBody1Owner0(v RenameStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRenameStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody_1_Owner, using the provided RenameStorageObject200JSONResponseBody1Owner0
-func (t *RenameStorageObject200JSONResponseBody_1_Owner) MergeRenameStorageObject200JSONResponseBody1Owner0(v RenameStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RenameStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RenameStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRenameStorageObject200JSONResponseBody0 returns the union data inside the RenameStorageObject200JSONResponseBody as a RenameStorageObject200JSONResponseBody0
-func (t RenameStorageObject200JSONResponseBody) AsRenameStorageObject200JSONResponseBody0() (RenameStorageObject200JSONResponseBody0, error) {
-	var body RenameStorageObject200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRenameStorageObject200JSONResponseBody0 overwrites any union data inside the RenameStorageObject200JSONResponseBody as the provided RenameStorageObject200JSONResponseBody0
-func (t *RenameStorageObject200JSONResponseBody) FromRenameStorageObject200JSONResponseBody0(v RenameStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRenameStorageObject200JSONResponseBody0 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody, using the provided RenameStorageObject200JSONResponseBody0
-func (t *RenameStorageObject200JSONResponseBody) MergeRenameStorageObject200JSONResponseBody0(v RenameStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRenameStorageObject200JSONResponseBody1 returns the union data inside the RenameStorageObject200JSONResponseBody as a RenameStorageObject200JSONResponseBody1
-func (t RenameStorageObject200JSONResponseBody) AsRenameStorageObject200JSONResponseBody1() (RenameStorageObject200JSONResponseBody1, error) {
-	var body RenameStorageObject200JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRenameStorageObject200JSONResponseBody1 overwrites any union data inside the RenameStorageObject200JSONResponseBody as the provided RenameStorageObject200JSONResponseBody1
-func (t *RenameStorageObject200JSONResponseBody) FromRenameStorageObject200JSONResponseBody1(v RenameStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRenameStorageObject200JSONResponseBody1 performs a merge with any union data inside the RenameStorageObject200JSONResponseBody, using the provided RenameStorageObject200JSONResponseBody1
-func (t *RenameStorageObject200JSONResponseBody) MergeRenameStorageObject200JSONResponseBody1(v RenameStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RenameStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RenameStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRotateStorageObjectJSONBody0 returns the union data inside the RotateStorageObjectJSONBody as a RotateStorageObjectJSONBody0
-func (t RotateStorageObjectJSONBody) AsRotateStorageObjectJSONBody0() (RotateStorageObjectJSONBody0, error) {
-	var body RotateStorageObjectJSONBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRotateStorageObjectJSONBody0 overwrites any union data inside the RotateStorageObjectJSONBody as the provided RotateStorageObjectJSONBody0
-func (t *RotateStorageObjectJSONBody) FromRotateStorageObjectJSONBody0(v RotateStorageObjectJSONBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRotateStorageObjectJSONBody0 performs a merge with any union data inside the RotateStorageObjectJSONBody, using the provided RotateStorageObjectJSONBody0
-func (t *RotateStorageObjectJSONBody) MergeRotateStorageObjectJSONBody0(v RotateStorageObjectJSONBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateStorageObjectJSONBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateStorageObjectJSONBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRotateStorageObject200JSONResponseBody0Owner0 returns the union data inside the RotateStorageObject200JSONResponseBody_0_Owner as a RotateStorageObject200JSONResponseBody0Owner0
-func (t RotateStorageObject200JSONResponseBody_0_Owner) AsRotateStorageObject200JSONResponseBody0Owner0() (RotateStorageObject200JSONResponseBody0Owner0, error) {
-	var body RotateStorageObject200JSONResponseBody0Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRotateStorageObject200JSONResponseBody0Owner0 overwrites any union data inside the RotateStorageObject200JSONResponseBody_0_Owner as the provided RotateStorageObject200JSONResponseBody0Owner0
-func (t *RotateStorageObject200JSONResponseBody_0_Owner) FromRotateStorageObject200JSONResponseBody0Owner0(v RotateStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRotateStorageObject200JSONResponseBody0Owner0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody_0_Owner, using the provided RotateStorageObject200JSONResponseBody0Owner0
-func (t *RotateStorageObject200JSONResponseBody_0_Owner) MergeRotateStorageObject200JSONResponseBody0Owner0(v RotateStorageObject200JSONResponseBody0Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateStorageObject200JSONResponseBody_0_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateStorageObject200JSONResponseBody_0_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRotateStorageObject200JSONResponseBody1Owner0 returns the union data inside the RotateStorageObject200JSONResponseBody_1_Owner as a RotateStorageObject200JSONResponseBody1Owner0
-func (t RotateStorageObject200JSONResponseBody_1_Owner) AsRotateStorageObject200JSONResponseBody1Owner0() (RotateStorageObject200JSONResponseBody1Owner0, error) {
-	var body RotateStorageObject200JSONResponseBody1Owner0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRotateStorageObject200JSONResponseBody1Owner0 overwrites any union data inside the RotateStorageObject200JSONResponseBody_1_Owner as the provided RotateStorageObject200JSONResponseBody1Owner0
-func (t *RotateStorageObject200JSONResponseBody_1_Owner) FromRotateStorageObject200JSONResponseBody1Owner0(v RotateStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRotateStorageObject200JSONResponseBody1Owner0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody_1_Owner, using the provided RotateStorageObject200JSONResponseBody1Owner0
-func (t *RotateStorageObject200JSONResponseBody_1_Owner) MergeRotateStorageObject200JSONResponseBody1Owner0(v RotateStorageObject200JSONResponseBody1Owner0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateStorageObject200JSONResponseBody_1_Owner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateStorageObject200JSONResponseBody_1_Owner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRotateStorageObject200JSONResponseBody0 returns the union data inside the RotateStorageObject200JSONResponseBody as a RotateStorageObject200JSONResponseBody0
-func (t RotateStorageObject200JSONResponseBody) AsRotateStorageObject200JSONResponseBody0() (RotateStorageObject200JSONResponseBody0, error) {
-	var body RotateStorageObject200JSONResponseBody0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRotateStorageObject200JSONResponseBody0 overwrites any union data inside the RotateStorageObject200JSONResponseBody as the provided RotateStorageObject200JSONResponseBody0
-func (t *RotateStorageObject200JSONResponseBody) FromRotateStorageObject200JSONResponseBody0(v RotateStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRotateStorageObject200JSONResponseBody0 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody, using the provided RotateStorageObject200JSONResponseBody0
-func (t *RotateStorageObject200JSONResponseBody) MergeRotateStorageObject200JSONResponseBody0(v RotateStorageObject200JSONResponseBody0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRotateStorageObject200JSONResponseBody1 returns the union data inside the RotateStorageObject200JSONResponseBody as a RotateStorageObject200JSONResponseBody1
-func (t RotateStorageObject200JSONResponseBody) AsRotateStorageObject200JSONResponseBody1() (RotateStorageObject200JSONResponseBody1, error) {
-	var body RotateStorageObject200JSONResponseBody1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRotateStorageObject200JSONResponseBody1 overwrites any union data inside the RotateStorageObject200JSONResponseBody as the provided RotateStorageObject200JSONResponseBody1
-func (t *RotateStorageObject200JSONResponseBody) FromRotateStorageObject200JSONResponseBody1(v RotateStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRotateStorageObject200JSONResponseBody1 performs a merge with any union data inside the RotateStorageObject200JSONResponseBody, using the provided RotateStorageObject200JSONResponseBody1
-func (t *RotateStorageObject200JSONResponseBody) MergeRotateStorageObject200JSONResponseBody1(v RotateStorageObject200JSONResponseBody1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateStorageObject200JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateStorageObject200JSONResponseBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsValidationError returns the union data inside the RotateStorageObject400JSONResponseBody as a ValidationError
-func (t RotateStorageObject400JSONResponseBody) AsValidationError() (ValidationError, error) {
-	var body ValidationError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromValidationError overwrites any union data inside the RotateStorageObject400JSONResponseBody as the provided ValidationError
-func (t *RotateStorageObject400JSONResponseBody) FromValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeValidationError performs a merge with any union data inside the RotateStorageObject400JSONResponseBody, using the provided ValidationError
-func (t *RotateStorageObject400JSONResponseBody) MergeValidationError(v ValidationError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsStorageError returns the union data inside the RotateStorageObject400JSONResponseBody as a StorageError
-func (t RotateStorageObject400JSONResponseBody) AsStorageError() (StorageError, error) {
-	var body StorageError
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromStorageError overwrites any union data inside the RotateStorageObject400JSONResponseBody as the provided StorageError
-func (t *RotateStorageObject400JSONResponseBody) FromStorageError(v StorageError) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeStorageError performs a merge with any union data inside the RotateStorageObject400JSONResponseBody, using the provided StorageError
-func (t *RotateStorageObject400JSONResponseBody) MergeStorageError(v StorageError) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RotateStorageObject400JSONResponseBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RotateStorageObject400JSONResponseBody) UnmarshalJSON(b []byte) error {
+func (t *TokenRequestBody) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -6702,12 +3563,7 @@ func (response InitiateOAuthLogin302Response) VisitInitiateOAuthLoginResponse(w 
 	return nil
 }
 
-type InitiateOAuthLogin400JSONResponse struct {
-	// Error Error message
-	//
-	// Example: Unsupported provider
-	Error string `json:"error"`
-}
+type InitiateOAuthLogin400JSONResponse Error
 
 func (response InitiateOAuthLogin400JSONResponse) VisitInitiateOAuthLoginResponse(w http.ResponseWriter) error {
 
@@ -6737,12 +3593,12 @@ func (response RevokeToken200Response) VisitRevokeTokenResponse(w http.ResponseW
 	return nil
 }
 
-type RevokeToken400JSONResponse = RevokeToken400JSONResponseBody
+type RevokeToken400JSONResponse Error
 
 func (response RevokeToken400JSONResponse) VisitRevokeTokenResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -6751,7 +3607,7 @@ func (response RevokeToken400JSONResponse) VisitRevokeTokenResponse(w http.Respo
 	return err
 }
 
-type RevokeToken500JSONResponse OAuthError
+type RevokeToken500JSONResponse Error
 
 func (response RevokeToken500JSONResponse) VisitRevokeTokenResponse(w http.ResponseWriter) error {
 
@@ -6780,7 +3636,7 @@ func (response RevokeOtherSessions204Response) VisitRevokeOtherSessionsResponse(
 	return nil
 }
 
-type RevokeOtherSessions401JSONResponse AuthError
+type RevokeOtherSessions401JSONResponse Error
 
 func (response RevokeOtherSessions401JSONResponse) VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error {
 
@@ -6794,7 +3650,7 @@ func (response RevokeOtherSessions401JSONResponse) VisitRevokeOtherSessionsRespo
 	return err
 }
 
-type RevokeOtherSessions500JSONResponse ServerError
+type RevokeOtherSessions500JSONResponse Error
 
 func (response RevokeOtherSessions500JSONResponse) VisitRevokeOtherSessionsResponse(w http.ResponseWriter) error {
 
@@ -6829,7 +3685,7 @@ func (response ListSessions200JSONResponse) VisitListSessionsResponse(w http.Res
 	return err
 }
 
-type ListSessions401JSONResponse AuthError
+type ListSessions401JSONResponse Error
 
 func (response ListSessions401JSONResponse) VisitListSessionsResponse(w http.ResponseWriter) error {
 
@@ -6843,7 +3699,7 @@ func (response ListSessions401JSONResponse) VisitListSessionsResponse(w http.Res
 	return err
 }
 
-type ListSessions500JSONResponse ServerError
+type ListSessions500JSONResponse Error
 
 func (response ListSessions500JSONResponse) VisitListSessionsResponse(w http.ResponseWriter) error {
 
@@ -6873,7 +3729,7 @@ func (response RevokeSession204Response) VisitRevokeSessionResponse(w http.Respo
 	return nil
 }
 
-type RevokeSession400JSONResponse ValidationError
+type RevokeSession400JSONResponse Error
 
 func (response RevokeSession400JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
@@ -6887,7 +3743,7 @@ func (response RevokeSession400JSONResponse) VisitRevokeSessionResponse(w http.R
 	return err
 }
 
-type RevokeSession401JSONResponse AuthError
+type RevokeSession401JSONResponse Error
 
 func (response RevokeSession401JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
@@ -6901,7 +3757,7 @@ func (response RevokeSession401JSONResponse) VisitRevokeSessionResponse(w http.R
 	return err
 }
 
-type RevokeSession403JSONResponse ForbiddenError
+type RevokeSession403JSONResponse Error
 
 func (response RevokeSession403JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
@@ -6915,7 +3771,7 @@ func (response RevokeSession403JSONResponse) VisitRevokeSessionResponse(w http.R
 	return err
 }
 
-type RevokeSession404JSONResponse NotFoundError
+type RevokeSession404JSONResponse Error
 
 func (response RevokeSession404JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
@@ -6929,7 +3785,7 @@ func (response RevokeSession404JSONResponse) VisitRevokeSessionResponse(w http.R
 	return err
 }
 
-type RevokeSession500JSONResponse ServerError
+type RevokeSession500JSONResponse Error
 
 func (response RevokeSession500JSONResponse) VisitRevokeSessionResponse(w http.ResponseWriter) error {
 
@@ -6983,7 +3839,7 @@ func (response ExchangeToken200JSONResponse) VisitExchangeTokenResponse(w http.R
 	return err
 }
 
-type ExchangeToken400JSONResponse OAuthError
+type ExchangeToken400JSONResponse Error
 
 func (response ExchangeToken400JSONResponse) VisitExchangeTokenResponse(w http.ResponseWriter) error {
 
@@ -6997,7 +3853,7 @@ func (response ExchangeToken400JSONResponse) VisitExchangeTokenResponse(w http.R
 	return err
 }
 
-type ExchangeToken500JSONResponse OAuthError
+type ExchangeToken500JSONResponse Error
 
 func (response ExchangeToken500JSONResponse) VisitExchangeTokenResponse(w http.ResponseWriter) error {
 
@@ -7241,7 +4097,7 @@ func (response ListProjects200JSONResponse) VisitListProjectsResponse(w http.Res
 	return err
 }
 
-type ListProjects401JSONResponse AuthError
+type ListProjects401JSONResponse Error
 
 func (response ListProjects401JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
@@ -7255,7 +4111,7 @@ func (response ListProjects401JSONResponse) VisitListProjectsResponse(w http.Res
 	return err
 }
 
-type ListProjects500JSONResponse ServerError
+type ListProjects500JSONResponse Error
 
 func (response ListProjects500JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
@@ -7326,7 +4182,7 @@ func (response CreateProject200JSONResponse) VisitCreateProjectResponse(w http.R
 	return err
 }
 
-type CreateProject400JSONResponse ValidationError
+type CreateProject400JSONResponse Error
 
 func (response CreateProject400JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
@@ -7340,7 +4196,7 @@ func (response CreateProject400JSONResponse) VisitCreateProjectResponse(w http.R
 	return err
 }
 
-type CreateProject401JSONResponse AuthError
+type CreateProject401JSONResponse Error
 
 func (response CreateProject401JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
@@ -7354,7 +4210,7 @@ func (response CreateProject401JSONResponse) VisitCreateProjectResponse(w http.R
 	return err
 }
 
-type CreateProject422JSONResponse ProjectError
+type CreateProject422JSONResponse Error
 
 func (response CreateProject422JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
@@ -7368,7 +4224,7 @@ func (response CreateProject422JSONResponse) VisitCreateProjectResponse(w http.R
 	return err
 }
 
-type CreateProject500JSONResponse ServerError
+type CreateProject500JSONResponse Error
 
 func (response CreateProject500JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
@@ -7439,7 +4295,7 @@ func (response DeleteProject200JSONResponse) VisitDeleteProjectResponse(w http.R
 	return err
 }
 
-type DeleteProject400JSONResponse ValidationError
+type DeleteProject400JSONResponse Error
 
 func (response DeleteProject400JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -7453,7 +4309,7 @@ func (response DeleteProject400JSONResponse) VisitDeleteProjectResponse(w http.R
 	return err
 }
 
-type DeleteProject401JSONResponse AuthError
+type DeleteProject401JSONResponse Error
 
 func (response DeleteProject401JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -7467,7 +4323,7 @@ func (response DeleteProject401JSONResponse) VisitDeleteProjectResponse(w http.R
 	return err
 }
 
-type DeleteProject403JSONResponse ForbiddenError
+type DeleteProject403JSONResponse Error
 
 func (response DeleteProject403JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -7481,7 +4337,7 @@ func (response DeleteProject403JSONResponse) VisitDeleteProjectResponse(w http.R
 	return err
 }
 
-type DeleteProject404JSONResponse NotFoundError
+type DeleteProject404JSONResponse Error
 
 func (response DeleteProject404JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -7495,7 +4351,7 @@ func (response DeleteProject404JSONResponse) VisitDeleteProjectResponse(w http.R
 	return err
 }
 
-type DeleteProject500JSONResponse ServerError
+type DeleteProject500JSONResponse Error
 
 func (response DeleteProject500JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -7567,7 +4423,7 @@ func (response RenameProject200JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type RenameProject400JSONResponse ValidationError
+type RenameProject400JSONResponse Error
 
 func (response RenameProject400JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -7581,7 +4437,7 @@ func (response RenameProject400JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type RenameProject401JSONResponse AuthError
+type RenameProject401JSONResponse Error
 
 func (response RenameProject401JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -7595,7 +4451,7 @@ func (response RenameProject401JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type RenameProject403JSONResponse ForbiddenError
+type RenameProject403JSONResponse Error
 
 func (response RenameProject403JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -7609,7 +4465,7 @@ func (response RenameProject403JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type RenameProject404JSONResponse NotFoundError
+type RenameProject404JSONResponse Error
 
 func (response RenameProject404JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -7623,7 +4479,7 @@ func (response RenameProject404JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type RenameProject500JSONResponse ServerError
+type RenameProject500JSONResponse Error
 
 func (response RenameProject500JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -7665,7 +4521,7 @@ func (response CheckArtifacts200JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts400JSONResponse ValidationError
+type CheckArtifacts400JSONResponse Error
 
 func (response CheckArtifacts400JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
@@ -7679,7 +4535,7 @@ func (response CheckArtifacts400JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts401JSONResponse AuthError
+type CheckArtifacts401JSONResponse Error
 
 func (response CheckArtifacts401JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
@@ -7693,7 +4549,7 @@ func (response CheckArtifacts401JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts403JSONResponse ForbiddenError
+type CheckArtifacts403JSONResponse Error
 
 func (response CheckArtifacts403JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
@@ -7707,7 +4563,7 @@ func (response CheckArtifacts403JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts404JSONResponse NotFoundError
+type CheckArtifacts404JSONResponse Error
 
 func (response CheckArtifacts404JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
@@ -7721,7 +4577,7 @@ func (response CheckArtifacts404JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts500JSONResponse ServerError
+type CheckArtifacts500JSONResponse Error
 
 func (response CheckArtifacts500JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
 
@@ -7743,7 +4599,7 @@ type ListCredentialsResponseObject interface {
 	VisitListCredentialsResponse(w http.ResponseWriter) error
 }
 
-type ListCredentials200JSONResponse []ListCredentials200JSONResponseBody_Item
+type ListCredentials200JSONResponse []Credential
 
 func (response ListCredentials200JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7757,7 +4613,7 @@ func (response ListCredentials200JSONResponse) VisitListCredentialsResponse(w ht
 	return err
 }
 
-type ListCredentials400JSONResponse ValidationError
+type ListCredentials400JSONResponse Error
 
 func (response ListCredentials400JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7771,7 +4627,7 @@ func (response ListCredentials400JSONResponse) VisitListCredentialsResponse(w ht
 	return err
 }
 
-type ListCredentials401JSONResponse AuthError
+type ListCredentials401JSONResponse Error
 
 func (response ListCredentials401JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7785,7 +4641,7 @@ func (response ListCredentials401JSONResponse) VisitListCredentialsResponse(w ht
 	return err
 }
 
-type ListCredentials403JSONResponse ForbiddenError
+type ListCredentials403JSONResponse Error
 
 func (response ListCredentials403JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7799,7 +4655,7 @@ func (response ListCredentials403JSONResponse) VisitListCredentialsResponse(w ht
 	return err
 }
 
-type ListCredentials404JSONResponse NotFoundError
+type ListCredentials404JSONResponse Error
 
 func (response ListCredentials404JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7813,7 +4669,7 @@ func (response ListCredentials404JSONResponse) VisitListCredentialsResponse(w ht
 	return err
 }
 
-type ListCredentials500JSONResponse ServerError
+type ListCredentials500JSONResponse Error
 
 func (response ListCredentials500JSONResponse) VisitListCredentialsResponse(w http.ResponseWriter) error {
 
@@ -7836,12 +4692,20 @@ type CreateCredentialResponseObject interface {
 	VisitCreateCredentialResponse(w http.ResponseWriter) error
 }
 
-type CreateCredential200JSONResponse = CreateCredential200JSONResponseBody
+type CreateCredential200JSONResponse Credential
+
+func (t CreateCredential200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Credential(t).MarshalJSON()
+}
+
+func (t *CreateCredential200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Credential)(t).UnmarshalJSON(b)
+}
 
 func (response CreateCredential200JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -7850,7 +4714,7 @@ func (response CreateCredential200JSONResponse) VisitCreateCredentialResponse(w 
 	return err
 }
 
-type CreateCredential400JSONResponse ValidationError
+type CreateCredential400JSONResponse Error
 
 func (response CreateCredential400JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
@@ -7864,7 +4728,7 @@ func (response CreateCredential400JSONResponse) VisitCreateCredentialResponse(w 
 	return err
 }
 
-type CreateCredential401JSONResponse AuthError
+type CreateCredential401JSONResponse Error
 
 func (response CreateCredential401JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
@@ -7878,7 +4742,7 @@ func (response CreateCredential401JSONResponse) VisitCreateCredentialResponse(w 
 	return err
 }
 
-type CreateCredential403JSONResponse ForbiddenError
+type CreateCredential403JSONResponse Error
 
 func (response CreateCredential403JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
@@ -7892,7 +4756,7 @@ func (response CreateCredential403JSONResponse) VisitCreateCredentialResponse(w 
 	return err
 }
 
-type CreateCredential404JSONResponse NotFoundError
+type CreateCredential404JSONResponse Error
 
 func (response CreateCredential404JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
@@ -7906,7 +4770,7 @@ func (response CreateCredential404JSONResponse) VisitCreateCredentialResponse(w 
 	return err
 }
 
-type CreateCredential500JSONResponse ServerError
+type CreateCredential500JSONResponse Error
 
 func (response CreateCredential500JSONResponse) VisitCreateCredentialResponse(w http.ResponseWriter) error {
 
@@ -7929,12 +4793,20 @@ type DeleteCredentialResponseObject interface {
 	VisitDeleteCredentialResponse(w http.ResponseWriter) error
 }
 
-type DeleteCredential200JSONResponse = DeleteCredential200JSONResponseBody
+type DeleteCredential200JSONResponse Credential
+
+func (t DeleteCredential200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Credential(t).MarshalJSON()
+}
+
+func (t *DeleteCredential200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Credential)(t).UnmarshalJSON(b)
+}
 
 func (response DeleteCredential200JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -7943,7 +4815,7 @@ func (response DeleteCredential200JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential400JSONResponse ValidationError
+type DeleteCredential400JSONResponse Error
 
 func (response DeleteCredential400JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -7957,7 +4829,7 @@ func (response DeleteCredential400JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential401JSONResponse AuthError
+type DeleteCredential401JSONResponse Error
 
 func (response DeleteCredential401JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -7971,7 +4843,7 @@ func (response DeleteCredential401JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential403JSONResponse ForbiddenError
+type DeleteCredential403JSONResponse Error
 
 func (response DeleteCredential403JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -7985,7 +4857,7 @@ func (response DeleteCredential403JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential404JSONResponse NotFoundError
+type DeleteCredential404JSONResponse Error
 
 func (response DeleteCredential404JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -7999,7 +4871,7 @@ func (response DeleteCredential404JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential409JSONResponse CredentialsError
+type DeleteCredential409JSONResponse Error
 
 func (response DeleteCredential409JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -8013,7 +4885,7 @@ func (response DeleteCredential409JSONResponse) VisitDeleteCredentialResponse(w 
 	return err
 }
 
-type DeleteCredential500JSONResponse ServerError
+type DeleteCredential500JSONResponse Error
 
 func (response DeleteCredential500JSONResponse) VisitDeleteCredentialResponse(w http.ResponseWriter) error {
 
@@ -8037,12 +4909,20 @@ type RenameCredentialResponseObject interface {
 	VisitRenameCredentialResponse(w http.ResponseWriter) error
 }
 
-type RenameCredential200JSONResponse = RenameCredential200JSONResponseBody
+type RenameCredential200JSONResponse Credential
+
+func (t RenameCredential200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Credential(t).MarshalJSON()
+}
+
+func (t *RenameCredential200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Credential)(t).UnmarshalJSON(b)
+}
 
 func (response RenameCredential200JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -8051,7 +4931,7 @@ func (response RenameCredential200JSONResponse) VisitRenameCredentialResponse(w 
 	return err
 }
 
-type RenameCredential400JSONResponse ValidationError
+type RenameCredential400JSONResponse Error
 
 func (response RenameCredential400JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
@@ -8065,7 +4945,7 @@ func (response RenameCredential400JSONResponse) VisitRenameCredentialResponse(w 
 	return err
 }
 
-type RenameCredential401JSONResponse AuthError
+type RenameCredential401JSONResponse Error
 
 func (response RenameCredential401JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
@@ -8079,7 +4959,7 @@ func (response RenameCredential401JSONResponse) VisitRenameCredentialResponse(w 
 	return err
 }
 
-type RenameCredential403JSONResponse ForbiddenError
+type RenameCredential403JSONResponse Error
 
 func (response RenameCredential403JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
@@ -8093,7 +4973,7 @@ func (response RenameCredential403JSONResponse) VisitRenameCredentialResponse(w 
 	return err
 }
 
-type RenameCredential404JSONResponse NotFoundError
+type RenameCredential404JSONResponse Error
 
 func (response RenameCredential404JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
@@ -8107,7 +4987,7 @@ func (response RenameCredential404JSONResponse) VisitRenameCredentialResponse(w 
 	return err
 }
 
-type RenameCredential500JSONResponse ServerError
+type RenameCredential500JSONResponse Error
 
 func (response RenameCredential500JSONResponse) VisitRenameCredentialResponse(w http.ResponseWriter) error {
 
@@ -8131,12 +5011,20 @@ type RotateCredentialResponseObject interface {
 	VisitRotateCredentialResponse(w http.ResponseWriter) error
 }
 
-type RotateCredential200JSONResponse = RotateCredential200JSONResponseBody
+type RotateCredential200JSONResponse Credential
+
+func (t RotateCredential200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Credential(t).MarshalJSON()
+}
+
+func (t *RotateCredential200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Credential)(t).UnmarshalJSON(b)
+}
 
 func (response RotateCredential200JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -8145,12 +5033,12 @@ func (response RotateCredential200JSONResponse) VisitRotateCredentialResponse(w 
 	return err
 }
 
-type RotateCredential400JSONResponse = RotateCredential400JSONResponseBody
+type RotateCredential400JSONResponse Error
 
 func (response RotateCredential400JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -8159,7 +5047,7 @@ func (response RotateCredential400JSONResponse) VisitRotateCredentialResponse(w 
 	return err
 }
 
-type RotateCredential401JSONResponse AuthError
+type RotateCredential401JSONResponse Error
 
 func (response RotateCredential401JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
@@ -8173,7 +5061,7 @@ func (response RotateCredential401JSONResponse) VisitRotateCredentialResponse(w 
 	return err
 }
 
-type RotateCredential403JSONResponse ForbiddenError
+type RotateCredential403JSONResponse Error
 
 func (response RotateCredential403JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
@@ -8187,7 +5075,7 @@ func (response RotateCredential403JSONResponse) VisitRotateCredentialResponse(w 
 	return err
 }
 
-type RotateCredential404JSONResponse NotFoundError
+type RotateCredential404JSONResponse Error
 
 func (response RotateCredential404JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
@@ -8201,7 +5089,7 @@ func (response RotateCredential404JSONResponse) VisitRotateCredentialResponse(w 
 	return err
 }
 
-type RotateCredential500JSONResponse ServerError
+type RotateCredential500JSONResponse Error
 
 func (response RotateCredential500JSONResponse) VisitRotateCredentialResponse(w http.ResponseWriter) error {
 
@@ -8267,7 +5155,7 @@ func (response ListDeployments200JSONResponse) VisitListDeploymentsResponse(w ht
 	return err
 }
 
-type ListDeployments400JSONResponse ValidationError
+type ListDeployments400JSONResponse Error
 
 func (response ListDeployments400JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -8281,7 +5169,7 @@ func (response ListDeployments400JSONResponse) VisitListDeploymentsResponse(w ht
 	return err
 }
 
-type ListDeployments401JSONResponse AuthError
+type ListDeployments401JSONResponse Error
 
 func (response ListDeployments401JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -8295,7 +5183,7 @@ func (response ListDeployments401JSONResponse) VisitListDeploymentsResponse(w ht
 	return err
 }
 
-type ListDeployments403JSONResponse ForbiddenError
+type ListDeployments403JSONResponse Error
 
 func (response ListDeployments403JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -8309,7 +5197,7 @@ func (response ListDeployments403JSONResponse) VisitListDeploymentsResponse(w ht
 	return err
 }
 
-type ListDeployments404JSONResponse NotFoundError
+type ListDeployments404JSONResponse Error
 
 func (response ListDeployments404JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -8323,7 +5211,7 @@ func (response ListDeployments404JSONResponse) VisitListDeploymentsResponse(w ht
 	return err
 }
 
-type ListDeployments500JSONResponse ServerError
+type ListDeployments500JSONResponse Error
 
 func (response ListDeployments500JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -8390,7 +5278,7 @@ func (response CreateDeployment200JSONResponse) VisitCreateDeploymentResponse(w 
 	return err
 }
 
-type CreateDeployment400JSONResponse ValidationError
+type CreateDeployment400JSONResponse Error
 
 func (response CreateDeployment400JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8404,7 +5292,7 @@ func (response CreateDeployment400JSONResponse) VisitCreateDeploymentResponse(w 
 	return err
 }
 
-type CreateDeployment401JSONResponse AuthError
+type CreateDeployment401JSONResponse Error
 
 func (response CreateDeployment401JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8418,7 +5306,7 @@ func (response CreateDeployment401JSONResponse) VisitCreateDeploymentResponse(w 
 	return err
 }
 
-type CreateDeployment403JSONResponse ForbiddenError
+type CreateDeployment403JSONResponse Error
 
 func (response CreateDeployment403JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8432,7 +5320,7 @@ func (response CreateDeployment403JSONResponse) VisitCreateDeploymentResponse(w 
 	return err
 }
 
-type CreateDeployment404JSONResponse NotFoundError
+type CreateDeployment404JSONResponse Error
 
 func (response CreateDeployment404JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8446,7 +5334,7 @@ func (response CreateDeployment404JSONResponse) VisitCreateDeploymentResponse(w 
 	return err
 }
 
-type CreateDeployment500JSONResponse ServerError
+type CreateDeployment500JSONResponse Error
 
 func (response CreateDeployment500JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8513,7 +5401,7 @@ func (response DeleteDeployment200JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment400JSONResponse ValidationError
+type DeleteDeployment400JSONResponse Error
 
 func (response DeleteDeployment400JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8527,7 +5415,7 @@ func (response DeleteDeployment400JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment401JSONResponse AuthError
+type DeleteDeployment401JSONResponse Error
 
 func (response DeleteDeployment401JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8541,7 +5429,7 @@ func (response DeleteDeployment401JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment403JSONResponse ForbiddenError
+type DeleteDeployment403JSONResponse Error
 
 func (response DeleteDeployment403JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8555,7 +5443,7 @@ func (response DeleteDeployment403JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment404JSONResponse NotFoundError
+type DeleteDeployment404JSONResponse Error
 
 func (response DeleteDeployment404JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8569,7 +5457,7 @@ func (response DeleteDeployment404JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment409JSONResponse DeploymentError
+type DeleteDeployment409JSONResponse Error
 
 func (response DeleteDeployment409JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8583,7 +5471,7 @@ func (response DeleteDeployment409JSONResponse) VisitDeleteDeploymentResponse(w 
 	return err
 }
 
-type DeleteDeployment500JSONResponse ServerError
+type DeleteDeployment500JSONResponse Error
 
 func (response DeleteDeployment500JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8650,7 +5538,7 @@ func (response TriggerDeployment200JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment400JSONResponse ValidationError
+type TriggerDeployment400JSONResponse Error
 
 func (response TriggerDeployment400JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8664,7 +5552,7 @@ func (response TriggerDeployment400JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment401JSONResponse AuthError
+type TriggerDeployment401JSONResponse Error
 
 func (response TriggerDeployment401JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8678,7 +5566,7 @@ func (response TriggerDeployment401JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment403JSONResponse ForbiddenError
+type TriggerDeployment403JSONResponse Error
 
 func (response TriggerDeployment403JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8692,7 +5580,7 @@ func (response TriggerDeployment403JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment404JSONResponse NotFoundError
+type TriggerDeployment404JSONResponse Error
 
 func (response TriggerDeployment404JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8706,7 +5594,7 @@ func (response TriggerDeployment404JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment409JSONResponse DeploymentError
+type TriggerDeployment409JSONResponse Error
 
 func (response TriggerDeployment409JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8720,7 +5608,7 @@ func (response TriggerDeployment409JSONResponse) VisitTriggerDeploymentResponse(
 	return err
 }
 
-type TriggerDeployment500JSONResponse ServerError
+type TriggerDeployment500JSONResponse Error
 
 func (response TriggerDeployment500JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -8790,7 +5678,7 @@ func (response ListEnvironments200JSONResponse) VisitListEnvironmentsResponse(w 
 	return err
 }
 
-type ListEnvironments401JSONResponse AuthError
+type ListEnvironments401JSONResponse Error
 
 func (response ListEnvironments401JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
@@ -8804,7 +5692,7 @@ func (response ListEnvironments401JSONResponse) VisitListEnvironmentsResponse(w 
 	return err
 }
 
-type ListEnvironments403JSONResponse ForbiddenError
+type ListEnvironments403JSONResponse Error
 
 func (response ListEnvironments403JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
@@ -8818,7 +5706,7 @@ func (response ListEnvironments403JSONResponse) VisitListEnvironmentsResponse(w 
 	return err
 }
 
-type ListEnvironments404JSONResponse NotFoundError
+type ListEnvironments404JSONResponse Error
 
 func (response ListEnvironments404JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
@@ -8832,7 +5720,7 @@ func (response ListEnvironments404JSONResponse) VisitListEnvironmentsResponse(w 
 	return err
 }
 
-type ListEnvironments500JSONResponse ServerError
+type ListEnvironments500JSONResponse Error
 
 func (response ListEnvironments500JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
@@ -8903,7 +5791,7 @@ func (response CreateEnvironment200JSONResponse) VisitCreateEnvironmentResponse(
 	return err
 }
 
-type CreateEnvironment400JSONResponse ValidationError
+type CreateEnvironment400JSONResponse Error
 
 func (response CreateEnvironment400JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -8917,7 +5805,7 @@ func (response CreateEnvironment400JSONResponse) VisitCreateEnvironmentResponse(
 	return err
 }
 
-type CreateEnvironment401JSONResponse AuthError
+type CreateEnvironment401JSONResponse Error
 
 func (response CreateEnvironment401JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -8931,7 +5819,7 @@ func (response CreateEnvironment401JSONResponse) VisitCreateEnvironmentResponse(
 	return err
 }
 
-type CreateEnvironment403JSONResponse ForbiddenError
+type CreateEnvironment403JSONResponse Error
 
 func (response CreateEnvironment403JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -8945,7 +5833,7 @@ func (response CreateEnvironment403JSONResponse) VisitCreateEnvironmentResponse(
 	return err
 }
 
-type CreateEnvironment404JSONResponse NotFoundError
+type CreateEnvironment404JSONResponse Error
 
 func (response CreateEnvironment404JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -8959,7 +5847,7 @@ func (response CreateEnvironment404JSONResponse) VisitCreateEnvironmentResponse(
 	return err
 }
 
-type CreateEnvironment500JSONResponse ServerError
+type CreateEnvironment500JSONResponse Error
 
 func (response CreateEnvironment500JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9030,7 +5918,7 @@ func (response DeleteEnvironment200JSONResponse) VisitDeleteEnvironmentResponse(
 	return err
 }
 
-type DeleteEnvironment400JSONResponse ValidationError
+type DeleteEnvironment400JSONResponse Error
 
 func (response DeleteEnvironment400JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9044,7 +5932,7 @@ func (response DeleteEnvironment400JSONResponse) VisitDeleteEnvironmentResponse(
 	return err
 }
 
-type DeleteEnvironment401JSONResponse AuthError
+type DeleteEnvironment401JSONResponse Error
 
 func (response DeleteEnvironment401JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9058,7 +5946,7 @@ func (response DeleteEnvironment401JSONResponse) VisitDeleteEnvironmentResponse(
 	return err
 }
 
-type DeleteEnvironment403JSONResponse ForbiddenError
+type DeleteEnvironment403JSONResponse Error
 
 func (response DeleteEnvironment403JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9072,7 +5960,7 @@ func (response DeleteEnvironment403JSONResponse) VisitDeleteEnvironmentResponse(
 	return err
 }
 
-type DeleteEnvironment404JSONResponse NotFoundError
+type DeleteEnvironment404JSONResponse Error
 
 func (response DeleteEnvironment404JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9086,7 +5974,7 @@ func (response DeleteEnvironment404JSONResponse) VisitDeleteEnvironmentResponse(
 	return err
 }
 
-type DeleteEnvironment500JSONResponse ServerError
+type DeleteEnvironment500JSONResponse Error
 
 func (response DeleteEnvironment500JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -9109,12 +5997,20 @@ type ListTargetsResponseObject interface {
 	VisitListTargetsResponse(w http.ResponseWriter) error
 }
 
-type ListTargets200JSONResponse = ListTargets200JSONResponseBody
+type ListTargets200JSONResponse Target
+
+func (t ListTargets200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Target(t).MarshalJSON()
+}
+
+func (t *ListTargets200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Target)(t).UnmarshalJSON(b)
+}
 
 func (response ListTargets200JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9123,7 +6019,7 @@ func (response ListTargets200JSONResponse) VisitListTargetsResponse(w http.Respo
 	return err
 }
 
-type ListTargets400JSONResponse ValidationError
+type ListTargets400JSONResponse Error
 
 func (response ListTargets400JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -9137,7 +6033,7 @@ func (response ListTargets400JSONResponse) VisitListTargetsResponse(w http.Respo
 	return err
 }
 
-type ListTargets401JSONResponse AuthError
+type ListTargets401JSONResponse Error
 
 func (response ListTargets401JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -9151,7 +6047,7 @@ func (response ListTargets401JSONResponse) VisitListTargetsResponse(w http.Respo
 	return err
 }
 
-type ListTargets403JSONResponse ForbiddenError
+type ListTargets403JSONResponse Error
 
 func (response ListTargets403JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -9165,7 +6061,7 @@ func (response ListTargets403JSONResponse) VisitListTargetsResponse(w http.Respo
 	return err
 }
 
-type ListTargets404JSONResponse NotFoundError
+type ListTargets404JSONResponse Error
 
 func (response ListTargets404JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -9179,7 +6075,7 @@ func (response ListTargets404JSONResponse) VisitListTargetsResponse(w http.Respo
 	return err
 }
 
-type ListTargets500JSONResponse ServerError
+type ListTargets500JSONResponse Error
 
 func (response ListTargets500JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -9203,12 +6099,20 @@ type CreateTargetResponseObject interface {
 	VisitCreateTargetResponse(w http.ResponseWriter) error
 }
 
-type CreateTarget200JSONResponse = CreateTarget200JSONResponseBody
+type CreateTarget200JSONResponse Target
+
+func (t CreateTarget200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Target(t).MarshalJSON()
+}
+
+func (t *CreateTarget200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Target)(t).UnmarshalJSON(b)
+}
 
 func (response CreateTarget200JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9217,7 +6121,7 @@ func (response CreateTarget200JSONResponse) VisitCreateTargetResponse(w http.Res
 	return err
 }
 
-type CreateTarget400JSONResponse ValidationError
+type CreateTarget400JSONResponse Error
 
 func (response CreateTarget400JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
@@ -9231,7 +6135,7 @@ func (response CreateTarget400JSONResponse) VisitCreateTargetResponse(w http.Res
 	return err
 }
 
-type CreateTarget401JSONResponse AuthError
+type CreateTarget401JSONResponse Error
 
 func (response CreateTarget401JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
@@ -9245,7 +6149,7 @@ func (response CreateTarget401JSONResponse) VisitCreateTargetResponse(w http.Res
 	return err
 }
 
-type CreateTarget403JSONResponse ForbiddenError
+type CreateTarget403JSONResponse Error
 
 func (response CreateTarget403JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
@@ -9259,7 +6163,7 @@ func (response CreateTarget403JSONResponse) VisitCreateTargetResponse(w http.Res
 	return err
 }
 
-type CreateTarget404JSONResponse NotFoundError
+type CreateTarget404JSONResponse Error
 
 func (response CreateTarget404JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
@@ -9273,7 +6177,7 @@ func (response CreateTarget404JSONResponse) VisitCreateTargetResponse(w http.Res
 	return err
 }
 
-type CreateTarget500JSONResponse ServerError
+type CreateTarget500JSONResponse Error
 
 func (response CreateTarget500JSONResponse) VisitCreateTargetResponse(w http.ResponseWriter) error {
 
@@ -9297,12 +6201,20 @@ type DeleteTargetResponseObject interface {
 	VisitDeleteTargetResponse(w http.ResponseWriter) error
 }
 
-type DeleteTarget200JSONResponse = DeleteTarget200JSONResponseBody
+type DeleteTarget200JSONResponse Target
+
+func (t DeleteTarget200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Target(t).MarshalJSON()
+}
+
+func (t *DeleteTarget200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Target)(t).UnmarshalJSON(b)
+}
 
 func (response DeleteTarget200JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9311,7 +6223,7 @@ func (response DeleteTarget200JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget400JSONResponse ValidationError
+type DeleteTarget400JSONResponse Error
 
 func (response DeleteTarget400JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9325,7 +6237,7 @@ func (response DeleteTarget400JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget401JSONResponse AuthError
+type DeleteTarget401JSONResponse Error
 
 func (response DeleteTarget401JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9339,7 +6251,7 @@ func (response DeleteTarget401JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget403JSONResponse ForbiddenError
+type DeleteTarget403JSONResponse Error
 
 func (response DeleteTarget403JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9353,7 +6265,7 @@ func (response DeleteTarget403JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget404JSONResponse NotFoundError
+type DeleteTarget404JSONResponse Error
 
 func (response DeleteTarget404JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9367,7 +6279,7 @@ func (response DeleteTarget404JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget409JSONResponse TargetError
+type DeleteTarget409JSONResponse Error
 
 func (response DeleteTarget409JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9381,7 +6293,7 @@ func (response DeleteTarget409JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type DeleteTarget500JSONResponse ServerError
+type DeleteTarget500JSONResponse Error
 
 func (response DeleteTarget500JSONResponse) VisitDeleteTargetResponse(w http.ResponseWriter) error {
 
@@ -9406,12 +6318,20 @@ type ChangeTargetRessourceIdResponseObject interface {
 	VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error
 }
 
-type ChangeTargetRessourceId200JSONResponse = ChangeTargetRessourceId200JSONResponseBody
+type ChangeTargetRessourceId200JSONResponse Target
+
+func (t ChangeTargetRessourceId200JSONResponse) MarshalJSON() ([]byte, error) {
+	return Target(t).MarshalJSON()
+}
+
+func (t *ChangeTargetRessourceId200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*Target)(t).UnmarshalJSON(b)
+}
 
 func (response ChangeTargetRessourceId200JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9420,7 +6340,7 @@ func (response ChangeTargetRessourceId200JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId400JSONResponse ValidationError
+type ChangeTargetRessourceId400JSONResponse Error
 
 func (response ChangeTargetRessourceId400JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
@@ -9434,7 +6354,7 @@ func (response ChangeTargetRessourceId400JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId401JSONResponse AuthError
+type ChangeTargetRessourceId401JSONResponse Error
 
 func (response ChangeTargetRessourceId401JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
@@ -9448,7 +6368,7 @@ func (response ChangeTargetRessourceId401JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId403JSONResponse ForbiddenError
+type ChangeTargetRessourceId403JSONResponse Error
 
 func (response ChangeTargetRessourceId403JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
@@ -9462,7 +6382,7 @@ func (response ChangeTargetRessourceId403JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId404JSONResponse NotFoundError
+type ChangeTargetRessourceId404JSONResponse Error
 
 func (response ChangeTargetRessourceId404JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
@@ -9476,7 +6396,7 @@ func (response ChangeTargetRessourceId404JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId500JSONResponse ServerError
+type ChangeTargetRessourceId500JSONResponse Error
 
 func (response ChangeTargetRessourceId500JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
 
@@ -9497,7 +6417,7 @@ type ListStorageObjectsResponseObject interface {
 	VisitListStorageObjectsResponse(w http.ResponseWriter) error
 }
 
-type ListStorageObjects200JSONResponse []ListStorageObjects200JSONResponseBody_Item
+type ListStorageObjects200JSONResponse []StorageObject
 
 func (response ListStorageObjects200JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
@@ -9511,7 +6431,7 @@ func (response ListStorageObjects200JSONResponse) VisitListStorageObjectsRespons
 	return err
 }
 
-type ListStorageObjects401JSONResponse AuthError
+type ListStorageObjects401JSONResponse Error
 
 func (response ListStorageObjects401JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
@@ -9525,7 +6445,7 @@ func (response ListStorageObjects401JSONResponse) VisitListStorageObjectsRespons
 	return err
 }
 
-type ListStorageObjects403JSONResponse ForbiddenError
+type ListStorageObjects403JSONResponse Error
 
 func (response ListStorageObjects403JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
@@ -9539,7 +6459,7 @@ func (response ListStorageObjects403JSONResponse) VisitListStorageObjectsRespons
 	return err
 }
 
-type ListStorageObjects500JSONResponse ServerError
+type ListStorageObjects500JSONResponse Error
 
 func (response ListStorageObjects500JSONResponse) VisitListStorageObjectsResponse(w http.ResponseWriter) error {
 
@@ -9561,12 +6481,20 @@ type CreateStorageObjectResponseObject interface {
 	VisitCreateStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type CreateStorageObject200JSONResponse = CreateStorageObject200JSONResponseBody
+type CreateStorageObject200JSONResponse StorageObject
+
+func (t CreateStorageObject200JSONResponse) MarshalJSON() ([]byte, error) {
+	return StorageObject(t).MarshalJSON()
+}
+
+func (t *CreateStorageObject200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*StorageObject)(t).UnmarshalJSON(b)
+}
 
 func (response CreateStorageObject200JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9575,12 +6503,12 @@ func (response CreateStorageObject200JSONResponse) VisitCreateStorageObjectRespo
 	return err
 }
 
-type CreateStorageObject400JSONResponse = CreateStorageObject400JSONResponseBody
+type CreateStorageObject400JSONResponse Error
 
 func (response CreateStorageObject400JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9589,7 +6517,7 @@ func (response CreateStorageObject400JSONResponse) VisitCreateStorageObjectRespo
 	return err
 }
 
-type CreateStorageObject401JSONResponse AuthError
+type CreateStorageObject401JSONResponse Error
 
 func (response CreateStorageObject401JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9603,7 +6531,7 @@ func (response CreateStorageObject401JSONResponse) VisitCreateStorageObjectRespo
 	return err
 }
 
-type CreateStorageObject403JSONResponse ForbiddenError
+type CreateStorageObject403JSONResponse Error
 
 func (response CreateStorageObject403JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9617,7 +6545,7 @@ func (response CreateStorageObject403JSONResponse) VisitCreateStorageObjectRespo
 	return err
 }
 
-type CreateStorageObject500JSONResponse ServerError
+type CreateStorageObject500JSONResponse Error
 
 func (response CreateStorageObject500JSONResponse) VisitCreateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9639,12 +6567,20 @@ type DeleteStorageObjectResponseObject interface {
 	VisitDeleteStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type DeleteStorageObject200JSONResponse = DeleteStorageObject200JSONResponseBody
+type DeleteStorageObject200JSONResponse StorageObject
+
+func (t DeleteStorageObject200JSONResponse) MarshalJSON() ([]byte, error) {
+	return StorageObject(t).MarshalJSON()
+}
+
+func (t *DeleteStorageObject200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*StorageObject)(t).UnmarshalJSON(b)
+}
 
 func (response DeleteStorageObject200JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9653,7 +6589,7 @@ func (response DeleteStorageObject200JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject400JSONResponse ValidationError
+type DeleteStorageObject400JSONResponse Error
 
 func (response DeleteStorageObject400JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9667,7 +6603,7 @@ func (response DeleteStorageObject400JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject401JSONResponse AuthError
+type DeleteStorageObject401JSONResponse Error
 
 func (response DeleteStorageObject401JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9681,7 +6617,7 @@ func (response DeleteStorageObject401JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject403JSONResponse ForbiddenError
+type DeleteStorageObject403JSONResponse Error
 
 func (response DeleteStorageObject403JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9695,7 +6631,7 @@ func (response DeleteStorageObject403JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject404JSONResponse NotFoundError
+type DeleteStorageObject404JSONResponse Error
 
 func (response DeleteStorageObject404JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9709,7 +6645,7 @@ func (response DeleteStorageObject404JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject409JSONResponse StorageError
+type DeleteStorageObject409JSONResponse Error
 
 func (response DeleteStorageObject409JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9723,7 +6659,7 @@ func (response DeleteStorageObject409JSONResponse) VisitDeleteStorageObjectRespo
 	return err
 }
 
-type DeleteStorageObject500JSONResponse ServerError
+type DeleteStorageObject500JSONResponse Error
 
 func (response DeleteStorageObject500JSONResponse) VisitDeleteStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9746,12 +6682,20 @@ type RenameStorageObjectResponseObject interface {
 	VisitRenameStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type RenameStorageObject200JSONResponse = RenameStorageObject200JSONResponseBody
+type RenameStorageObject200JSONResponse StorageObject
+
+func (t RenameStorageObject200JSONResponse) MarshalJSON() ([]byte, error) {
+	return StorageObject(t).MarshalJSON()
+}
+
+func (t *RenameStorageObject200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*StorageObject)(t).UnmarshalJSON(b)
+}
 
 func (response RenameStorageObject200JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9760,7 +6704,7 @@ func (response RenameStorageObject200JSONResponse) VisitRenameStorageObjectRespo
 	return err
 }
 
-type RenameStorageObject400JSONResponse ValidationError
+type RenameStorageObject400JSONResponse Error
 
 func (response RenameStorageObject400JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9774,7 +6718,7 @@ func (response RenameStorageObject400JSONResponse) VisitRenameStorageObjectRespo
 	return err
 }
 
-type RenameStorageObject401JSONResponse AuthError
+type RenameStorageObject401JSONResponse Error
 
 func (response RenameStorageObject401JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9788,7 +6732,7 @@ func (response RenameStorageObject401JSONResponse) VisitRenameStorageObjectRespo
 	return err
 }
 
-type RenameStorageObject403JSONResponse ForbiddenError
+type RenameStorageObject403JSONResponse Error
 
 func (response RenameStorageObject403JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9802,7 +6746,7 @@ func (response RenameStorageObject403JSONResponse) VisitRenameStorageObjectRespo
 	return err
 }
 
-type RenameStorageObject404JSONResponse NotFoundError
+type RenameStorageObject404JSONResponse Error
 
 func (response RenameStorageObject404JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9816,7 +6760,7 @@ func (response RenameStorageObject404JSONResponse) VisitRenameStorageObjectRespo
 	return err
 }
 
-type RenameStorageObject500JSONResponse ServerError
+type RenameStorageObject500JSONResponse Error
 
 func (response RenameStorageObject500JSONResponse) VisitRenameStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9839,12 +6783,20 @@ type RotateStorageObjectResponseObject interface {
 	VisitRotateStorageObjectResponse(w http.ResponseWriter) error
 }
 
-type RotateStorageObject200JSONResponse = RotateStorageObject200JSONResponseBody
+type RotateStorageObject200JSONResponse StorageObject
+
+func (t RotateStorageObject200JSONResponse) MarshalJSON() ([]byte, error) {
+	return StorageObject(t).MarshalJSON()
+}
+
+func (t *RotateStorageObject200JSONResponse) UnmarshalJSON(b []byte) error {
+	return (*StorageObject)(t).UnmarshalJSON(b)
+}
 
 func (response RotateStorageObject200JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9853,12 +6805,12 @@ func (response RotateStorageObject200JSONResponse) VisitRotateStorageObjectRespo
 	return err
 }
 
-type RotateStorageObject400JSONResponse = RotateStorageObject400JSONResponseBody
+type RotateStorageObject400JSONResponse Error
 
 func (response RotateStorageObject400JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
-	if err := json.NewEncoder(&buf).Encode(response.union); err != nil {
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -9867,7 +6819,7 @@ func (response RotateStorageObject400JSONResponse) VisitRotateStorageObjectRespo
 	return err
 }
 
-type RotateStorageObject401JSONResponse AuthError
+type RotateStorageObject401JSONResponse Error
 
 func (response RotateStorageObject401JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9881,7 +6833,7 @@ func (response RotateStorageObject401JSONResponse) VisitRotateStorageObjectRespo
 	return err
 }
 
-type RotateStorageObject403JSONResponse ForbiddenError
+type RotateStorageObject403JSONResponse Error
 
 func (response RotateStorageObject403JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9895,7 +6847,7 @@ func (response RotateStorageObject403JSONResponse) VisitRotateStorageObjectRespo
 	return err
 }
 
-type RotateStorageObject404JSONResponse NotFoundError
+type RotateStorageObject404JSONResponse Error
 
 func (response RotateStorageObject404JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -9909,7 +6861,7 @@ func (response RotateStorageObject404JSONResponse) VisitRotateStorageObjectRespo
 	return err
 }
 
-type RotateStorageObject500JSONResponse ServerError
+type RotateStorageObject500JSONResponse Error
 
 func (response RotateStorageObject500JSONResponse) VisitRotateStorageObjectResponse(w http.ResponseWriter) error {
 
@@ -11137,159 +8089,152 @@ func (sh *strictHandler) GetVersion(w http.ResponseWriter, r *http.Request) {
 // const string: with thousands of chunks the chained `+` fold is several
 // times slower for the Go compiler than parsing a slice literal.
 var swaggerSpec = []string{
-	"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",
+	"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",
+	"bvw9PCtOKek2qM5GAUeInYe357f/fwA=",
 }
 
 // decodeSpec returns the embedded OpenAPI spec as raw JSON bytes,

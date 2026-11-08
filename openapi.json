@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Roger Protocol Specification",
-    "version": "0.2.2"
+    "version": "0.3.0-beta.0"
   },
   "servers": [
     {
@@ -28,30 +28,158 @@
       }
     },
     "schemas": {
-      "OAuthError": {
+      "Error": {
         "type": "object",
         "properties": {
           "error": {
             "type": "string",
-            "enum": [
-              "invalid_request",
-              "invalid_grant",
-              "unsupported_grant_type",
-              "server_error"
-            ],
-            "description": "Standard OAuth 2.1 error code",
-            "example": "invalid_grant"
+            "description": "A machine-readable error code"
           },
           "error_description": {
             "type": "string",
-            "description": "A human-readable error description",
-            "example": "The provided authorization code is invalid"
+            "description": "An optional human-readable error description"
           }
         },
         "required": [
-          "error",
-          "error_description"
+          "error"
         ]
+      },
+      "TokenRequestBody": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AuthorizationCodeGrant"
+          },
+          {
+            "$ref": "#/components/schemas/RefreshTokenGrant"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "grant_type",
+          "mapping": {
+            "authorization_code": "#/components/schemas/AuthorizationCodeGrant",
+            "refresh_token": "#/components/schemas/RefreshTokenGrant"
+          }
+        }
+      },
+      "AuthorizationCodeGrant": {
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "type": "string",
+            "enum": [
+              "authorization_code"
+            ],
+            "description": "OAuth 2.1 grant type"
+          },
+          "code": {
+            "type": "string",
+            "description": "The single-use authorization code recieved from the loopback callback",
+            "example": "rgr_ac_abc123"
+          },
+          "code_verifier": {
+            "type": "string",
+            "description": "The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))"
+          },
+          "redirect_uri": {
+            "type": "string",
+            "description": "The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))"
+          },
+          "client_name": {
+            "type": "string",
+            "description": "A user-friendly client name bound to the user's session",
+            "example": "Roger CLI (Windows 11)"
+          }
+        },
+        "required": [
+          "grant_type",
+          "code",
+          "code_verifier",
+          "redirect_uri"
+        ],
+        "title": "Authorization Code"
+      },
+      "RefreshTokenGrant": {
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "type": "string",
+            "enum": [
+              "refresh_token"
+            ],
+            "description": "OAuth 2.1 grant type"
+          },
+          "refresh_token": {
+            "type": "string",
+            "description": "The long-lived refresh token issued by the node on last refresh",
+            "example": "rgr_rt_abc123"
+          }
+        },
+        "required": [
+          "grant_type",
+          "refresh_token"
+        ],
+        "title": "Refresh Token"
+      },
+      "RevokeRequestBody": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AccessTokenRevokeGrant"
+          },
+          {
+            "$ref": "#/components/schemas/RefreshTokenRevokeGrant"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "token_type_hint",
+          "mapping": {
+            "access_token": "#/components/schemas/AccessTokenRevokeGrant",
+            "refresh_token": "#/components/schemas/RefreshTokenRevokeGrant"
+          }
+        }
+      },
+      "AccessTokenRevokeGrant": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "A valid short-lived access token (JWT)",
+            "example": "eyJhbGciOiJSUzI1NiIs..."
+          },
+          "token_type_hint": {
+            "type": "string",
+            "enum": [
+              "access_token"
+            ],
+            "description": "Hint to optimize node lookup"
+          }
+        },
+        "required": [
+          "token",
+          "token_type_hint"
+        ],
+        "title": "Access Token"
+      },
+      "RefreshTokenRevokeGrant": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "A long-lived token used to request new short-lived JWTs",
+            "example": "rgr_rt_abc123"
+          },
+          "token_type_hint": {
+            "type": "string",
+            "enum": [
+              "refresh_token"
+            ],
+            "description": "Hint to optimize node lookup"
+          }
+        },
+        "required": [
+          "token",
+          "token_type_hint"
+        ],
+        "title": "Refresh Token"
       },
       "UserSession": {
         "type": "object",
@@ -103,405 +231,519 @@
           "last_used_at"
         ]
       },
-      "AuthError": {
+      "StorageObject": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/S3CompatibleStorage"
+          },
+          {
+            "$ref": "#/components/schemas/InternalStorage"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "S3": "#/components/schemas/S3CompatibleStorage",
+            "internal": "#/components/schemas/InternalStorage"
+          }
+        }
+      },
+      "S3CompatibleStorage": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "AuthError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "AuthError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "unauthorized",
-                  "token_invalid",
-                  "token_expired"
-                ],
-                "description": "All application-level error codes",
-                "example": "unauthorized"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the AuthError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
+          "id": {
+            "type": "string",
+            "description": "A unique storage identifier",
+            "example": "rgr_strg_abc123"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/StorageOwner"
+          },
+          "name": {
+            "type": "string",
+            "description": "The human-friendly display name of the storage object",
+            "example": "Main Storage"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "info",
+              "warning",
+              "error"
+            ],
+            "description": "The current status of the storage object",
+            "example": "warning"
+          },
+          "status_message": {
+            "type": "string",
+            "description": "An optional message attached to the storage object status",
+            "example": "Storage almost full (85% used)"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "S3"
+            ],
+            "description": "The kind of storage referenced by this object",
+            "example": "S3"
+          },
+          "bucket_name": {
+            "type": "string",
+            "description": "The name of the target S3 storage bucket",
+            "example": "roger-bucket"
+          },
+          "storage_endpoint": {
+            "type": "string",
+            "format": "uri",
+            "description": "The S3 URL of the storage bucket",
+            "example": "https://s3.eu-central-003.backblazeb2.com"
+          },
+          "region": {
+            "type": "string",
+            "description": "The region of your S3 bucket",
+            "example": "eu-central"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
+            "example": "2026-09-06T16:31:52.845Z"
           }
         },
         "required": [
-          "error"
+          "id",
+          "owner",
+          "name",
+          "status",
+          "kind",
+          "bucket_name",
+          "storage_endpoint",
+          "region",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "S3 Compatible"
+      },
+      "StorageOwner": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserStorageOwner"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "user": "#/components/schemas/UserStorageOwner"
+          }
+        },
+        "description": "An object representing the ressource that owns the storage object"
+      },
+      "UserStorageOwner": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "user"
+            ],
+            "description": "The type of owner that owns the storage object",
+            "example": "user"
+          },
+          "id": {
+            "type": "string",
+            "description": "A unique prefixed user identifier",
+            "example": "rgr_usr_abc123"
+          }
+        },
+        "required": [
+          "kind",
+          "id"
+        ],
+        "title": "User"
+      },
+      "InternalStorage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique storage identifier",
+            "example": "rgr_strg_abc123"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/StorageOwner"
+          },
+          "name": {
+            "type": "string",
+            "description": "The human-friendly display name of the storage object",
+            "example": "Main Storage"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "info",
+              "warning",
+              "error"
+            ],
+            "description": "The current status of the storage object",
+            "example": "warning"
+          },
+          "status_message": {
+            "type": "string",
+            "description": "An optional message attached to the storage object status",
+            "example": "Storage almost full (85% used)"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "internal"
+            ],
+            "description": "The kind of storage referenced by this object",
+            "example": "internal"
+          },
+          "storage_capacity": {
+            "type": "integer",
+            "minimum": -1,
+            "description": "The capacity of the internal storage object in bytes (base-2)",
+            "example": 5368709120
+          },
+          "storage_used": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The number of bytes used in the internal storage object (base-2)",
+            "example": 1073741824
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the internal storage object was last updated",
+            "example": "2026-09-06T16:31:52.845Z"
+          }
+        },
+        "required": [
+          "id",
+          "owner",
+          "name",
+          "status",
+          "kind",
+          "storage_capacity",
+          "storage_used",
+          "updated_at"
+        ],
+        "title": "Internal"
+      },
+      "LinkStorageObjectRequestBody": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/S3CompatibleStorageInfos"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "S3": "#/components/schemas/S3CompatibleStorageInfos"
+          }
+        }
+      },
+      "S3CompatibleStorageInfos": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The human-friendly display name of the storage object",
+            "example": "Main Storage"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "S3"
+            ],
+            "description": "The kind of storage referenced by this object",
+            "example": "S3"
+          },
+          "bucket_name": {
+            "type": "string",
+            "description": "The name of the target S3 storage bucket",
+            "example": "roger-bucket"
+          },
+          "region": {
+            "type": "string",
+            "description": "The region of your S3 bucket",
+            "example": "eu-central"
+          },
+          "storage_endpoint": {
+            "type": "string",
+            "format": "uri",
+            "description": "The S3 URL of the storage bucket",
+            "example": "https://s3.eu-central-003.backblazeb2.com"
+          },
+          "access_key_id": {
+            "type": "string",
+            "description": "The S3 access key id",
+            "example": "SomeAccessKeyId"
+          },
+          "secret_access_key": {
+            "type": "string",
+            "description": "The secret key associated with the Access Key ID",
+            "example": "SuperSecretKey"
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "bucket_name",
+          "region",
+          "storage_endpoint",
+          "access_key_id",
+          "secret_access_key"
+        ],
+        "title": "S3 Compatible"
+      },
+      "RotateStorageObjectRequestBody": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/S3Credentials"
+          }
         ]
       },
-      "ServerError": {
+      "S3Credentials": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "ServerError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "ServerError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "internal_server_error",
-                  "database_error",
-                  "external_service_error"
-                ],
-                "description": "All application-level error codes",
-                "example": "internal_server_error"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the ServerError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
+          "access_key_id": {
+            "type": "string",
+            "description": "The S3 access key id",
+            "example": "SomeAccessKeyId"
+          },
+          "secret_access_key": {
+            "type": "string",
+            "description": "The secret key associated with the Access Key ID",
+            "example": "SuperSecretKey"
           }
         },
         "required": [
-          "error"
+          "access_key_id",
+          "secret_access_key"
+        ],
+        "title": "S3 Credentials"
+      },
+      "Credential": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/APIKeyCredential"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "api-key": "#/components/schemas/APIKeyCredential"
+          }
+        }
+      },
+      "APIKeyCredential": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "api-key"
+            ],
+            "description": "The kind of the credential",
+            "example": "api-key"
+          },
+          "name": {
+            "type": "string",
+            "description": "The human-friendly name of the API Key",
+            "example": "Test Key"
+          },
+          "account_id": {
+            "type": "string",
+            "description": "The ID of the Roblox account that owns the API Key",
+            "example": "1501705133"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "info",
+              "warning",
+              "error"
+            ],
+            "description": "The current status of the API Key",
+            "example": "error"
+          },
+          "status_message": {
+            "type": "string",
+            "description": "An optional status message attached to the key",
+            "example": "This API Key has expired, please regenerate a new one"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the API Key was registered on the node",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the API Key expires",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the API Key was last updated on the node",
+            "example": "2026-09-06T16:31:52.845Z"
+          }
+        },
+        "required": [
+          "kind",
+          "name",
+          "account_id",
+          "status",
+          "created_at",
+          "expires_at",
+          "updated_at"
+        ],
+        "title": "API Key"
+      },
+      "CreateCredentialRequestBody": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/APIKeyInfos"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "api-key": "#/components/schemas/APIKeyInfos"
+          }
+        }
+      },
+      "APIKeyInfos": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The human-friendly name of the API Key",
+            "example": "Test Key"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "api-key"
+            ],
+            "description": "The kind of the credential",
+            "example": "api-key"
+          },
+          "secret_key": {
+            "type": "string",
+            "description": "The API Key secret key",
+            "example": "ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY..."
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "secret_key"
+        ],
+        "title": "API Key"
+      },
+      "RotateCredentialRequestBody": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/APIKeySecret"
+          }
         ]
       },
-      "ValidationError": {
+      "APIKeySecret": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "ValidationError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "ValidationError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "invalid_body",
-                  "invalid_params",
-                  "invalid_query"
-                ],
-                "description": "All application-level error codes",
-                "example": "invalid_body"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the ValidationError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
+          "secret_key": {
+            "type": "string",
+            "description": "The API Key secret key",
+            "example": "ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY..."
           }
         },
         "required": [
-          "error"
-        ]
+          "secret_key"
+        ],
+        "title": "API Key"
       },
-      "ForbiddenError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "ForbiddenError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "ForbiddenError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "forbidden",
-                  "insufficient_permissions"
-                ],
-                "description": "All application-level error codes",
-                "example": "forbidden"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the ForbiddenError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
+      "Target": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PlaceTarget"
           }
-        },
-        "required": [
-          "error"
-        ]
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "place": "#/components/schemas/PlaceTarget"
+          }
+        }
       },
-      "NotFoundError": {
+      "PlaceTarget": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "NotFoundError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "NotFoundError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "resource_not_found"
-                ],
-                "description": "All application-level error codes",
-                "example": "resource_not_found"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the NotFoundError domain"
-              }
+          "kind": {
+            "type": "string",
+            "enum": [
+              "place"
+            ],
+            "description": "The type of the target",
+            "example": "place"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name used in the config file to reference this place",
+            "example": "arena"
+          },
+          "environment_id": {
+            "type": "string",
+            "description": "A unique environment identifier",
+            "example": "rgr_env_abc123"
+          },
+          "place_id": {
+            "type": "string",
+            "description": "The linked Roblox place's ID"
+          },
+          "used_in": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "A unique deployment identifier",
+              "example": "rgr_dply_abc123"
             },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
+            "description": "The ID of every deployment that currently uses this target"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the place was registered"
+          },
+          "last_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the place was last updated"
           }
         },
         "required": [
-          "error"
-        ]
-      },
-      "StorageError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "StorageError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "StorageError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "invalid_credentials",
-                  "storage_in_use"
-                ],
-                "description": "All application-level error codes",
-                "example": "invalid_credentials"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the StorageError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "ProjectError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "ProjectError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "ProjectError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "max_projects_exceeded"
-                ],
-                "description": "All application-level error codes",
-                "example": "max_projects_exceeded"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the ProjectError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "CredentialsError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "CredentialsError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "CredentialsError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "credential_in_use",
-                  "invalid_secret"
-                ],
-                "description": "All application-level error codes",
-                "example": "credential_in_use"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the CredentialsError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "DeploymentError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "DeploymentError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "DeploymentError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "deployment_not_staged",
-                  "deployment_active"
-                ],
-                "description": "All application-level error codes",
-                "example": "deployment_not_staged"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the DeploymentError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "TargetError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "TargetError"
-                ],
-                "description": "The error type that owns the returned error code",
-                "example": "TargetError"
-              },
-              "code": {
-                "type": "string",
-                "enum": [
-                  "target_in_use"
-                ],
-                "description": "All application-level error codes",
-                "example": "target_in_use"
-              },
-              "message": {
-                "type": "string",
-                "description": "A human readable string explaining why this error happened",
-                "example": "An error happened within the TargetError domain"
-              }
-            },
-            "required": [
-              "type",
-              "code",
-              "message"
-            ]
-          }
-        },
-        "required": [
-          "error"
-        ]
+          "kind",
+          "name",
+          "environment_id",
+          "place_id",
+          "used_in",
+          "created_at",
+          "last_updated_at"
+        ],
+        "title": "Place"
       }
     },
     "parameters": {}
@@ -613,7 +855,7 @@
               "type": "string",
               "format": "uri",
               "description": "The client callback URL the user will be redirected to with a server-issued authorization code",
-              "example": "localhost:8080/oauth/callback/{provider}"
+              "example": "http://localhost:3000/oauth/callback/{provider}"
             },
             "required": true,
             "description": "The client callback URL the user will be redirected to with a server-issued authorization code",
@@ -640,17 +882,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Error message",
-                      "example": "Unsupported provider"
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -670,67 +902,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "grant_type": {
-                        "type": "string",
-                        "enum": [
-                          "authorization_code"
-                        ],
-                        "description": "OAuth 2.1 grant type"
-                      },
-                      "code": {
-                        "type": "string",
-                        "description": "The single-use authorization code recieved from the loopback callback",
-                        "example": "rgr_ac_abc123"
-                      },
-                      "code_verifier": {
-                        "type": "string",
-                        "description": "The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))"
-                      },
-                      "redirect_uri": {
-                        "type": "string",
-                        "description": "The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))"
-                      },
-                      "client_name": {
-                        "type": "string",
-                        "description": "A user-friendly client name bound to the user's session",
-                        "example": "Roger CLI (Windows 11)"
-                      }
-                    },
-                    "required": [
-                      "grant_type",
-                      "code",
-                      "code_verifier",
-                      "redirect_uri"
-                    ],
-                    "title": "Authorization Code"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "grant_type": {
-                        "type": "string",
-                        "enum": [
-                          "refresh_token"
-                        ],
-                        "description": "OAuth 2.1 grant type"
-                      },
-                      "refresh_token": {
-                        "type": "string",
-                        "description": "The long-lived refresh token issued by the node on last refresh",
-                        "example": "rgr_rt_abc123"
-                      }
-                    },
-                    "required": [
-                      "grant_type",
-                      "refresh_token"
-                    ],
-                    "title": "Refresh Token"
-                  }
-                ]
+                "$ref": "#/components/schemas/TokenRequestBody"
               }
             }
           }
@@ -777,21 +949,21 @@
             }
           },
           "400": {
-            "description": "Invalid request, expired authorization code / refresh token, unsupported grant type or PKCE verifier mismatch.",
+            "description": "Invalid request, expired authorization code / refresh token, unsupported grant type or PKCE verifier mismatch. Possible error codes: `invalid_request`, `invalid_grant`, `unsupported_grant_type`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OAuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "Internal node error during JWT creation or database operations",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OAuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -811,50 +983,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "token": {
-                        "type": "string",
-                        "description": "A valid short-lived access token (JWT)",
-                        "example": "eyJhbGciOiJSUzI1NiIs..."
-                      },
-                      "token_type_hint": {
-                        "type": "string",
-                        "enum": [
-                          "access_token"
-                        ],
-                        "description": "Hint to optimize node lookup"
-                      }
-                    },
-                    "required": [
-                      "token"
-                    ],
-                    "title": "Access Token"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "token": {
-                        "type": "string",
-                        "description": "A long-lived token used to request new short-lived JWTs",
-                        "example": "rgr_rt_abc123"
-                      },
-                      "token_type_hint": {
-                        "type": "string",
-                        "enum": [
-                          "refresh_token"
-                        ],
-                        "description": "Hint to optimize node lookup"
-                      }
-                    },
-                    "required": [
-                      "token"
-                    ],
-                    "title": "Refresh Token"
-                  }
-                ]
+                "$ref": "#/components/schemas/RevokeRequestBody"
               }
             }
           }
@@ -864,48 +993,21 @@
             "description": "The session was successfully revoked OR the token was invalid/expired"
           },
           "400": {
-            "description": "Malformed request body or missing required token parameter.",
+            "description": "Malformed request body or missing required token parameter. Possible error codes: `invalid_request`, `unsupported_token_type`",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/OAuthError"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "error": {
-                          "type": "string",
-                          "enum": [
-                            "unsupported_token_type"
-                          ],
-                          "description": "RFC 7009 token revocation error code",
-                          "example": "unsupported_token_type"
-                        },
-                        "error_description": {
-                          "type": "string",
-                          "description": "A human-readable error description",
-                          "example": "The token type is not supported for this operation"
-                        }
-                      },
-                      "required": [
-                        "error",
-                        "error_description"
-                      ],
-                      "title": "RevocationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "Internal node error during session revocation",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OAuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -941,21 +1043,21 @@
             }
           },
           "401": {
-            "description": "The server was unable to authenticate the user",
+            "description": "The server was unable to authenticate the user. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle the request. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -979,21 +1081,21 @@
             "description": "Successfully revoked sessions"
           },
           "401": {
-            "description": "The server was unable to authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1032,51 +1134,51 @@
             "description": "Successfully revoked session"
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server was unable to authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target session doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1105,241 +1207,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "oneOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "A unique storage identifier",
-                            "example": "rgr_strg_abc123"
-                          },
-                          "owner": {
-                            "oneOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "kind": {
-                                    "type": "string",
-                                    "enum": [
-                                      "user"
-                                    ],
-                                    "description": "The type of owner that owns the storage object",
-                                    "example": "user"
-                                  },
-                                  "id": {
-                                    "type": "string",
-                                    "description": "A unique prefixed user identifier",
-                                    "example": "rgr_usr_abc123"
-                                  }
-                                },
-                                "required": [
-                                  "kind",
-                                  "id"
-                                ]
-                              }
-                            ],
-                            "description": "An object representing the ressource that owns the storage object"
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "The human-friendly display name of the storage object",
-                            "example": "Main Storage"
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "success",
-                              "info",
-                              "warning",
-                              "error"
-                            ],
-                            "description": "The current status of the storage object",
-                            "example": "warning"
-                          },
-                          "status_message": {
-                            "type": "string",
-                            "description": "An optional message attached to the storage object status",
-                            "example": "Storage almost full (85% used)"
-                          },
-                          "kind": {
-                            "type": "string",
-                            "enum": [
-                              "S3"
-                            ],
-                            "description": "The kind of storage referenced by this object",
-                            "example": "S3"
-                          },
-                          "bucket_name": {
-                            "type": "string",
-                            "description": "The name of the target S3 storage bucket",
-                            "example": "roger-bucket"
-                          },
-                          "storage_endpoint": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The S3 URL of the storage bucket",
-                            "example": "https://s3.eu-central-003.backblazeb2.com"
-                          },
-                          "region": {
-                            "type": "string",
-                            "description": "The region of your S3 bucket",
-                            "example": "eu-central"
-                          },
-                          "created_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-                            "example": "2026-09-06T14:47:42.239Z"
-                          },
-                          "updated_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-                            "example": "2026-09-06T16:31:52.845Z"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "owner",
-                          "name",
-                          "status",
-                          "kind",
-                          "bucket_name",
-                          "storage_endpoint",
-                          "region",
-                          "created_at",
-                          "updated_at"
-                        ],
-                        "title": "S3 Compatible"
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "A unique storage identifier",
-                            "example": "rgr_strg_abc123"
-                          },
-                          "owner": {
-                            "oneOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "kind": {
-                                    "type": "string",
-                                    "enum": [
-                                      "user"
-                                    ],
-                                    "description": "The type of owner that owns the storage object",
-                                    "example": "user"
-                                  },
-                                  "id": {
-                                    "type": "string",
-                                    "description": "A unique prefixed user identifier",
-                                    "example": "rgr_usr_abc123"
-                                  }
-                                },
-                                "required": [
-                                  "kind",
-                                  "id"
-                                ]
-                              }
-                            ],
-                            "description": "An object representing the ressource that owns the storage object"
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "The human-friendly display name of the storage object",
-                            "example": "Main Storage"
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "success",
-                              "info",
-                              "warning",
-                              "error"
-                            ],
-                            "description": "The current status of the storage object",
-                            "example": "warning"
-                          },
-                          "status_message": {
-                            "type": "string",
-                            "description": "An optional message attached to the storage object status",
-                            "example": "Storage almost full (85% used)"
-                          },
-                          "kind": {
-                            "type": "string",
-                            "enum": [
-                              "internal"
-                            ],
-                            "description": "The kind of storage referenced by this object",
-                            "example": "internal"
-                          },
-                          "storage_capacity": {
-                            "type": "integer",
-                            "minimum": -1,
-                            "description": "The capacity of the internal storage object in bytes (base-2)",
-                            "example": 5368709120
-                          },
-                          "storage_used": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "description": "The number of bytes used in the internal storage object (base-2)",
-                            "example": 1073741824
-                          },
-                          "updated_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp when the internal storage object was last updated",
-                            "example": "2026-09-06T16:31:52.845Z"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "owner",
-                          "name",
-                          "status",
-                          "kind",
-                          "storage_capacity",
-                          "storage_used",
-                          "updated_at"
-                        ],
-                        "title": "Internal Storage"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/StorageObject"
                   }
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1362,62 +1261,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The human-friendly display name of the storage object",
-                        "example": "Main Storage"
-                      },
-                      "kind": {
-                        "type": "string",
-                        "enum": [
-                          "S3"
-                        ],
-                        "description": "The kind of storage referenced by this object",
-                        "example": "S3"
-                      },
-                      "bucket_name": {
-                        "type": "string",
-                        "description": "The name of the target S3 storage bucket",
-                        "example": "roger-bucket"
-                      },
-                      "region": {
-                        "type": "string",
-                        "description": "The region of your S3 bucket",
-                        "example": "eu-central"
-                      },
-                      "storage_endpoint": {
-                        "type": "string",
-                        "format": "uri",
-                        "description": "The S3 URL of the storage bucket",
-                        "example": "https://s3.eu-central-003.backblazeb2.com"
-                      },
-                      "access_key_id": {
-                        "type": "string",
-                        "description": "The S3 access key id",
-                        "example": "SomeAccessKeyId"
-                      },
-                      "secret_access_key": {
-                        "type": "string",
-                        "description": "The secret key associated with the Access Key ID",
-                        "example": "SuperSecretKey"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "kind",
-                      "bucket_name",
-                      "region",
-                      "storage_endpoint",
-                      "access_key_id",
-                      "secret_access_key"
-                    ],
-                    "title": "S3 Compatible"
-                  }
-                ]
+                "$ref": "#/components/schemas/LinkStorageObjectRequestBody"
               }
             }
           }
@@ -1428,257 +1272,47 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "S3"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "S3"
-                        },
-                        "bucket_name": {
-                          "type": "string",
-                          "description": "The name of the target S3 storage bucket",
-                          "example": "roger-bucket"
-                        },
-                        "storage_endpoint": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "The S3 URL of the storage bucket",
-                          "example": "https://s3.eu-central-003.backblazeb2.com"
-                        },
-                        "region": {
-                          "type": "string",
-                          "description": "The region of your S3 bucket",
-                          "example": "eu-central"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "bucket_name",
-                        "storage_endpoint",
-                        "region",
-                        "created_at",
-                        "updated_at"
-                      ],
-                      "title": "S3 Compatible"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "internal"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "internal"
-                        },
-                        "storage_capacity": {
-                          "type": "integer",
-                          "minimum": -1,
-                          "description": "The capacity of the internal storage object in bytes (base-2)",
-                          "example": 5368709120
-                        },
-                        "storage_used": {
-                          "type": "integer",
-                          "minimum": 0,
-                          "description": "The number of bytes used in the internal storage object (base-2)",
-                          "example": 1073741824
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the internal storage object was last updated",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "storage_capacity",
-                        "storage_used",
-                        "updated_at"
-                      ],
-                      "title": "Internal Storage"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/StorageObject"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request or invalid credentials",
+            "description": "Invalid request or invalid credentials. Possible error codes: `invalid_request`, `invalid_credentials`",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/StorageError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1737,260 +1371,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "S3"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "S3"
-                        },
-                        "bucket_name": {
-                          "type": "string",
-                          "description": "The name of the target S3 storage bucket",
-                          "example": "roger-bucket"
-                        },
-                        "storage_endpoint": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "The S3 URL of the storage bucket",
-                          "example": "https://s3.eu-central-003.backblazeb2.com"
-                        },
-                        "region": {
-                          "type": "string",
-                          "description": "The region of your S3 bucket",
-                          "example": "eu-central"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "bucket_name",
-                        "storage_endpoint",
-                        "region",
-                        "created_at",
-                        "updated_at"
-                      ],
-                      "title": "S3 Compatible"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "internal"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "internal"
-                        },
-                        "storage_capacity": {
-                          "type": "integer",
-                          "minimum": -1,
-                          "description": "The capacity of the internal storage object in bytes (base-2)",
-                          "example": 5368709120
-                        },
-                        "storage_used": {
-                          "type": "integer",
-                          "minimum": 0,
-                          "description": "The number of bytes used in the internal storage object (base-2)",
-                          "example": 1073741824
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the internal storage object was last updated",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "storage_capacity",
-                        "storage_used",
-                        "updated_at"
-                      ],
-                      "title": "Internal Storage"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/StorageObject"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target storage object doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -2028,270 +1459,67 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "S3"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "S3"
-                        },
-                        "bucket_name": {
-                          "type": "string",
-                          "description": "The name of the target S3 storage bucket",
-                          "example": "roger-bucket"
-                        },
-                        "storage_endpoint": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "The S3 URL of the storage bucket",
-                          "example": "https://s3.eu-central-003.backblazeb2.com"
-                        },
-                        "region": {
-                          "type": "string",
-                          "description": "The region of your S3 bucket",
-                          "example": "eu-central"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "bucket_name",
-                        "storage_endpoint",
-                        "region",
-                        "created_at",
-                        "updated_at"
-                      ],
-                      "title": "S3 Compatible"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "internal"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "internal"
-                        },
-                        "storage_capacity": {
-                          "type": "integer",
-                          "minimum": -1,
-                          "description": "The capacity of the internal storage object in bytes (base-2)",
-                          "example": 5368709120
-                        },
-                        "storage_used": {
-                          "type": "integer",
-                          "minimum": 0,
-                          "description": "The number of bytes used in the internal storage object (base-2)",
-                          "example": 1073741824
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the internal storage object was last updated",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "storage_capacity",
-                        "storage_used",
-                        "updated_at"
-                      ],
-                      "title": "Internal Storage"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/StorageObject"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target storage object doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "409": {
-            "description": "The target storage object is still used in one or more project",
+            "description": "The target storage object is still used in one or more project. Possible error codes: `storage_in_use`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StorageError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -2329,28 +1557,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "access_key_id": {
-                        "type": "string",
-                        "description": "The S3 access key id",
-                        "example": "SomeAccessKeyId"
-                      },
-                      "secret_access_key": {
-                        "type": "string",
-                        "description": "The secret key associated with the Access Key ID",
-                        "example": "SuperSecretKey"
-                      }
-                    },
-                    "required": [
-                      "access_key_id",
-                      "secret_access_key"
-                    ],
-                    "title": "S3 Credentials"
-                  }
-                ]
+                "$ref": "#/components/schemas/RotateStorageObjectRequestBody"
               }
             }
           }
@@ -2361,267 +1568,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "S3"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "S3"
-                        },
-                        "bucket_name": {
-                          "type": "string",
-                          "description": "The name of the target S3 storage bucket",
-                          "example": "roger-bucket"
-                        },
-                        "storage_endpoint": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "The S3 URL of the storage bucket",
-                          "example": "https://s3.eu-central-003.backblazeb2.com"
-                        },
-                        "region": {
-                          "type": "string",
-                          "description": "The region of your S3 bucket",
-                          "example": "eu-central"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "bucket_name",
-                        "storage_endpoint",
-                        "region",
-                        "created_at",
-                        "updated_at"
-                      ],
-                      "title": "S3 Compatible"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "A unique storage identifier",
-                          "example": "rgr_strg_abc123"
-                        },
-                        "owner": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "kind": {
-                                  "type": "string",
-                                  "enum": [
-                                    "user"
-                                  ],
-                                  "description": "The type of owner that owns the storage object",
-                                  "example": "user"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "description": "A unique prefixed user identifier",
-                                  "example": "rgr_usr_abc123"
-                                }
-                              },
-                              "required": [
-                                "kind",
-                                "id"
-                              ]
-                            }
-                          ],
-                          "description": "An object representing the ressource that owns the storage object"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly display name of the storage object",
-                          "example": "Main Storage"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the storage object",
-                          "example": "warning"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional message attached to the storage object status",
-                          "example": "Storage almost full (85% used)"
-                        },
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "internal"
-                          ],
-                          "description": "The kind of storage referenced by this object",
-                          "example": "internal"
-                        },
-                        "storage_capacity": {
-                          "type": "integer",
-                          "minimum": -1,
-                          "description": "The capacity of the internal storage object in bytes (base-2)",
-                          "example": 5368709120
-                        },
-                        "storage_used": {
-                          "type": "integer",
-                          "minimum": 0,
-                          "description": "The number of bytes used in the internal storage object (base-2)",
-                          "example": 1073741824
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the internal storage object was last updated",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "owner",
-                        "name",
-                        "status",
-                        "kind",
-                        "storage_capacity",
-                        "storage_used",
-                        "updated_at"
-                      ],
-                      "title": "Internal Storage"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/StorageObject"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request or invalid credentials",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/StorageError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target storage object doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -2709,21 +1706,21 @@
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server experienced an error while handling the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -2841,41 +1838,41 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "422": {
-            "description": "The user has hit the max project limit",
+            "description": "The user has hit the max project limit. Possible error codes: `max_projects_exceeded`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProjectError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server experienced an error while handling the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -2993,51 +1990,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3133,51 +2130,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3264,51 +2261,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3350,126 +2347,58 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "oneOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "kind": {
-                            "type": "string",
-                            "enum": [
-                              "api-key"
-                            ],
-                            "description": "The kind of the credential",
-                            "example": "api-key"
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "The human-friendly name of the API Key",
-                            "example": "Test Key"
-                          },
-                          "account_id": {
-                            "type": "string",
-                            "description": "The ID of the Roblox account that owns the API Key",
-                            "example": "1501705133"
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "success",
-                              "info",
-                              "warning",
-                              "error"
-                            ],
-                            "description": "The current status of the API Key",
-                            "example": "error"
-                          },
-                          "status_message": {
-                            "type": "string",
-                            "description": "An optional status message attached to the key",
-                            "example": "This API Key has expired, please regenerate a new one"
-                          },
-                          "created_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp at which the API Key was registered on the node",
-                            "example": "2026-09-06T14:47:42.239Z"
-                          },
-                          "expires_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp at which the API Key expires",
-                            "example": "2026-09-06T14:47:42.239Z"
-                          },
-                          "updated_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "The ISO timestamp when the API Key was last updated on the node",
-                            "example": "2026-09-06T16:31:52.845Z"
-                          }
-                        },
-                        "required": [
-                          "kind",
-                          "name",
-                          "account_id",
-                          "status",
-                          "created_at",
-                          "expires_at",
-                          "updated_at"
-                        ],
-                        "title": "API Key"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/Credential"
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3505,37 +2434,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The human-friendly name of the API Key",
-                        "example": "Test Key"
-                      },
-                      "kind": {
-                        "type": "string",
-                        "enum": [
-                          "api-key"
-                        ],
-                        "description": "The kind of the credential",
-                        "example": "api-key"
-                      },
-                      "secret_key": {
-                        "type": "string",
-                        "description": "The API Key secret key",
-                        "example": "ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY..."
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "kind",
-                      "secret_key"
-                    ],
-                    "title": "API Key"
-                  }
-                ]
+                "$ref": "#/components/schemas/CreateCredentialRequestBody"
               }
             }
           }
@@ -3546,125 +2445,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "api-key"
-                          ],
-                          "description": "The kind of the credential",
-                          "example": "api-key"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly name of the API Key",
-                          "example": "Test Key"
-                        },
-                        "account_id": {
-                          "type": "string",
-                          "description": "The ID of the Roblox account that owns the API Key",
-                          "example": "1501705133"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the API Key",
-                          "example": "error"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional status message attached to the key",
-                          "example": "This API Key has expired, please regenerate a new one"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "expires_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key expires",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the API Key was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "account_id",
-                        "status",
-                        "created_at",
-                        "expires_at",
-                        "updated_at"
-                      ],
-                      "title": "API Key"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Credential"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3734,125 +2565,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "api-key"
-                          ],
-                          "description": "The kind of the credential",
-                          "example": "api-key"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly name of the API Key",
-                          "example": "Test Key"
-                        },
-                        "account_id": {
-                          "type": "string",
-                          "description": "The ID of the Roblox account that owns the API Key",
-                          "example": "1501705133"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the API Key",
-                          "example": "error"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional status message attached to the key",
-                          "example": "This API Key has expired, please regenerate a new one"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "expires_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key expires",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the API Key was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "account_id",
-                        "status",
-                        "created_at",
-                        "expires_at",
-                        "updated_at"
-                      ],
-                      "title": "API Key"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Credential"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/credential doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -3901,135 +2664,67 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "api-key"
-                          ],
-                          "description": "The kind of the credential",
-                          "example": "api-key"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly name of the API Key",
-                          "example": "Test Key"
-                        },
-                        "account_id": {
-                          "type": "string",
-                          "description": "The ID of the Roblox account that owns the API Key",
-                          "example": "1501705133"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the API Key",
-                          "example": "error"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional status message attached to the key",
-                          "example": "This API Key has expired, please regenerate a new one"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "expires_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key expires",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the API Key was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "account_id",
-                        "status",
-                        "created_at",
-                        "expires_at",
-                        "updated_at"
-                      ],
-                      "title": "API Key"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Credential"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/credential doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "409": {
-            "description": "The target credential is still linked to one or more environments",
+            "description": "The target credential is still linked to one or more environments. Possible error codes: `credential_in_use`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CredentialsError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4078,22 +2773,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "secret_key": {
-                        "type": "string",
-                        "description": "The API Key secret key",
-                        "example": "ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY..."
-                      }
-                    },
-                    "required": [
-                      "secret_key"
-                    ],
-                    "title": "API Key"
-                  }
-                ]
+                "$ref": "#/components/schemas/RotateCredentialRequestBody"
               }
             }
           }
@@ -4104,132 +2784,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "api-key"
-                          ],
-                          "description": "The kind of the credential",
-                          "example": "api-key"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The human-friendly name of the API Key",
-                          "example": "Test Key"
-                        },
-                        "account_id": {
-                          "type": "string",
-                          "description": "The ID of the Roblox account that owns the API Key",
-                          "example": "1501705133"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "success",
-                            "info",
-                            "warning",
-                            "error"
-                          ],
-                          "description": "The current status of the API Key",
-                          "example": "error"
-                        },
-                        "status_message": {
-                          "type": "string",
-                          "description": "An optional status message attached to the key",
-                          "example": "This API Key has expired, please regenerate a new one"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key was registered on the node",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "expires_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the API Key expires",
-                          "example": "2026-09-06T14:47:42.239Z"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp when the API Key was last updated on the node",
-                          "example": "2026-09-06T16:31:52.845Z"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "account_id",
-                        "status",
-                        "created_at",
-                        "expires_at",
-                        "updated_at"
-                      ],
-                      "title": "API Key"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Credential"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request or invalid credential secret",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/CredentialsError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/credential doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4330,41 +2935,41 @@
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4504,51 +3109,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/universe doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4660,51 +3265,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/environment doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4800,51 +3405,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -4990,51 +3595,51 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -5138,61 +3743,61 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/deployment doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "409": {
-            "description": "The target deployment isn't staged or inactive and cannot be deployed",
+            "description": "The target deployment isn't staged or inactive and cannot be deployed. Possible error codes: `deployment_not_staged`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeploymentError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -5296,61 +3901,61 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/deployment doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "409": {
-            "description": "The target deployment is active and cannot be deleted",
+            "description": "The target deployment is active and cannot be deleted. Possible error codes: `deployment_active`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeploymentError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -5722,113 +4327,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "place"
-                          ],
-                          "description": "The type of ressource the target points to"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The name used in the config file to reference this place",
-                          "example": "arena"
-                        },
-                        "environment_id": {
-                          "type": "string",
-                          "description": "A unique environment identifier",
-                          "example": "rgr_env_abc123"
-                        },
-                        "place_id": {
-                          "type": "string",
-                          "description": "The linked Roblox place's ID"
-                        },
-                        "used_in": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "A unique deployment identifier",
-                            "example": "rgr_dply_abc123"
-                          },
-                          "description": "The ID of every deployment that currently uses this target"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was registered"
-                        },
-                        "last_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was last updated"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "environment_id",
-                        "place_id",
-                        "used_in",
-                        "created_at",
-                        "last_updated_at"
-                      ],
-                      "title": "Place"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Target"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/environment doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -5901,113 +4450,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "place"
-                          ],
-                          "description": "The type of ressource the target points to"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The name used in the config file to reference this place",
-                          "example": "arena"
-                        },
-                        "environment_id": {
-                          "type": "string",
-                          "description": "A unique environment identifier",
-                          "example": "rgr_env_abc123"
-                        },
-                        "place_id": {
-                          "type": "string",
-                          "description": "The linked Roblox place's ID"
-                        },
-                        "used_in": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "A unique deployment identifier",
-                            "example": "rgr_dply_abc123"
-                          },
-                          "description": "The ID of every deployment that currently uses this target"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was registered"
-                        },
-                        "last_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was last updated"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "environment_id",
-                        "place_id",
-                        "used_in",
-                        "created_at",
-                        "last_updated_at"
-                      ],
-                      "title": "Place"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Target"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/environment doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -6087,113 +4580,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "place"
-                          ],
-                          "description": "The type of ressource the target points to"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The name used in the config file to reference this place",
-                          "example": "arena"
-                        },
-                        "environment_id": {
-                          "type": "string",
-                          "description": "A unique environment identifier",
-                          "example": "rgr_env_abc123"
-                        },
-                        "place_id": {
-                          "type": "string",
-                          "description": "The linked Roblox place's ID"
-                        },
-                        "used_in": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "A unique deployment identifier",
-                            "example": "rgr_dply_abc123"
-                          },
-                          "description": "The ID of every deployment that currently uses this target"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was registered"
-                        },
-                        "last_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was last updated"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "environment_id",
-                        "place_id",
-                        "used_in",
-                        "created_at",
-                        "last_updated_at"
-                      ],
-                      "title": "Place"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Target"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/environment/target doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -6253,123 +4690,67 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "kind": {
-                          "type": "string",
-                          "enum": [
-                            "place"
-                          ],
-                          "description": "The type of ressource the target points to"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The name used in the config file to reference this place",
-                          "example": "arena"
-                        },
-                        "environment_id": {
-                          "type": "string",
-                          "description": "A unique environment identifier",
-                          "example": "rgr_env_abc123"
-                        },
-                        "place_id": {
-                          "type": "string",
-                          "description": "The linked Roblox place's ID"
-                        },
-                        "used_in": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "A unique deployment identifier",
-                            "example": "rgr_dply_abc123"
-                          },
-                          "description": "The ID of every deployment that currently uses this target"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was registered"
-                        },
-                        "last_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The ISO timestamp at which the place was last updated"
-                        }
-                      },
-                      "required": [
-                        "kind",
-                        "name",
-                        "environment_id",
-                        "place_id",
-                        "used_in",
-                        "created_at",
-                        "last_updated_at"
-                      ],
-                      "title": "Place"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Target"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "401": {
-            "description": "The server couldn't authenticate the user",
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "403": {
-            "description": "The user doesn't have the permission to perform this action",
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "404": {
-            "description": "The target project/environment/target doesn't exist",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NotFoundError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "409": {
-            "description": "The target is still referenced in one or more deployments and cannot be deleted",
+            "description": "The target is still referenced in one or more deployments and cannot be deleted. Possible error codes: `target_in_use`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TargetError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           },
           "500": {
-            "description": "The server couldn't handle the request",
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -6408,12 +4789,12 @@
       "description": "Routes related to creating/fetching/editing/deleting/rotating credentials"
     },
     {
-      "name": "Deployments",
-      "description": "All routes related to deployments"
-    },
-    {
       "name": "Targets",
       "description": "Routes used to fetch/create/update/delete targets linked to environments"
+    },
+    {
+      "name": "Deployments",
+      "description": "All routes related to deployments"
     }
   ]
 }
