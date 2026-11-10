@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Roger Protocol Specification",
-    "version": "0.3.0-beta.0"
+    "version": "0.3.0-beta.1"
   },
   "servers": [
     {
@@ -878,7 +878,17 @@
             "description": "Redirect to the OAuth provider's authorization endpoint"
           },
           "400": {
-            "description": "Invalid parameters",
+            "description": "Invalid request / Unsupported provider / Illegal redirect uri. Possible error codes: `invalid_request`, `invalid_redirect_uri`, `unsupported_provider`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
             "content": {
               "application/json": {
                 "schema": {
@@ -925,7 +935,6 @@
                       "enum": [
                         "Bearer"
                       ],
-                      "default": "Bearer",
                       "description": "The type of the issued token (standard OAuth 2.1 token type)"
                     },
                     "expires_in": {
@@ -942,14 +951,17 @@
                     }
                   },
                   "required": [
-                    "access_token"
+                    "access_token",
+                    "token_type",
+                    "expires_in",
+                    "refresh_token"
                   ]
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request, expired authorization code / refresh token, unsupported grant type or PKCE verifier mismatch. Possible error codes: `invalid_request`, `invalid_grant`, `unsupported_grant_type`",
+            "description": "Invalid request, expired authorization code / refresh token, or PKCE verifier mismatch. Possible error codes: `invalid_request`, `invalid_grant`, `unsupported_grant_type`",
             "content": {
               "application/json": {
                 "schema": {
