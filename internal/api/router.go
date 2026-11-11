@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3filter"
@@ -31,10 +34,43 @@ func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
 }
 
 func recoverer(next http.Handler) http.Handler {
+	workDir, _ := os.Getwd()
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
-				log.Printf("panic: %v", err)
+				if err == http.ErrAbortHandler {
+					panic(err)
+				}
+
+				// Print a clean trace
+				pcs := make([]uintptr, 32)               // allocate 32 PCs for up to 32 traces
+				n := runtime.Callers(4, pcs)             // Fill the slice with the 32 latest PC traces
+				frames := runtime.CallersFrames(pcs[:n]) // Retrieve info about each PC into a "frame"
+
+				var trace strings.Builder
+				fmt.Fprintf(&trace, "PanicError: %v\n", err)
+
+				for {
+					// Iterate over each frame
+					frame, more := frames.Next()
+
+					// Filter frames that are from libraries
+					if strings.HasPrefix(frame.Function, "github.com/roger-protocol/roger-server") {
+						// Get the relative path of the file path
+						relPath, err := filepath.Rel(workDir, frame.File)
+						if err != nil || strings.HasPrefix(relPath, "..") {
+							relPath = frame.File
+						}
+
+						fmt.Fprintf(&trace, "    at %s (%s:%d)\n", frame.Function, relPath, frame.Line)
+					}
+
+					if !more {
+						break
+					}
+				}
+
+				log.Print(trace.String())
 				handleServerError(w, r, nil)
 			}
 		}()
