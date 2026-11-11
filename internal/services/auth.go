@@ -24,16 +24,16 @@ import (
 )
 
 var (
-	ErrUnsupportedProvider = errors.New("unsupported provider")
-	ErrIllegalRedirectUri  = errors.New("illegal redirect uri")
-
-	// Authorization Code
-	ErrInvalidGrant               = errors.New("invalid grant")
-	ErrRedirectUriMismatch        = fmt.Errorf("%w: redirect uri mismatch", ErrInvalidGrant)
-	ErrInvalidAuthorizationCode   = fmt.Errorf("%w: invalid authorization code", ErrInvalidGrant)
-	ErrInvalidCodeVerifier        = fmt.Errorf("%w: invalid code verifier", ErrInvalidGrant)
-	ErrAuthorizationCodeExpired   = fmt.Errorf("%w: expired authorization code", ErrInvalidGrant)
+	ErrUnsupportedProvider        = errors.New("unsupported provider")
+	ErrIllegalRedirectUri         = errors.New("illegal redirect uri")
 	ErrUnknownCodeChallengeMethod = errors.New("unknown code challenge method")
+
+	ErrInvalidGrant             = errors.New("invalid grant")
+	ErrRedirectUriMismatch      = fmt.Errorf("%w: redirect uri mismatch", ErrInvalidGrant)
+	ErrInvalidAuthorizationCode = fmt.Errorf("%w: invalid authorization code", ErrInvalidGrant)
+	ErrInvalidRefreshToken      = fmt.Errorf("%w: invalid refresh token", ErrInvalidGrant)
+	ErrInvalidCodeVerifier      = fmt.Errorf("%w: invalid code verifier", ErrInvalidGrant)
+	ErrAuthorizationCodeExpired = fmt.Errorf("%w: expired authorization code", ErrInvalidGrant)
 )
 
 type AuthService struct {
@@ -134,6 +134,10 @@ func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge st
 
 	if !isValidRedirectUri(clientRedirectUri, s.config.Auth.CompiledRedirectGlobs) {
 		return "", ErrIllegalRedirectUri
+	}
+
+	if codeChallengeMethod != "S256" && codeChallengeMethod != "plain" {
+		return "", ErrUnknownCodeChallengeMethod
 	}
 
 	redirectUri, err := url.JoinPath(s.config.Server.ServerURL, providerCfg.CallbackPath)
@@ -336,32 +340,31 @@ func (s *AuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries
 // - ErrInvalidAuthorizationCode
 // - ErrAuthorizationCodeExpired
 // - ErrRedirectUriMismatch
-// - ErrUnknownCodeChallengeMethod
 // - ErrInvalidCodeVerifier
 
-func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Queries, authorizationCode string, redirectUri string, codeVerifier string) (db.AuthorizationCode, error) {
+func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Queries, authorizationCode string, redirectUri string, codeVerifier string) (db.User, error) {
 	// Hash the authorizationCode and get it's details
 	acHash := crypto.Hash256([]byte(authorizationCode), hex.EncodeToString)
-	acDetails, err := q.GetAuthorizationCodeDetails(ctx, acHash)
+	acDetails, err := q.DeleteAuthorizationCode(ctx, acHash)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return db.AuthorizationCode{}, ErrInvalidAuthorizationCode
+			return db.User{}, ErrInvalidAuthorizationCode
 		}
-		return db.AuthorizationCode{}, fmt.Errorf("get authorization code details: %w", err)
+		return db.User{}, fmt.Errorf("delete authorization code: %w", err)
 	}
 
 	// Check if the authorization code has expired
 	createdAt, err := time.Parse(time.RFC3339Nano, acDetails.CreatedAt)
 	if err != nil {
-		return db.AuthorizationCode{}, fmt.Errorf("parse creation date: %w", err)
+		return db.User{}, fmt.Errorf("parse creation date: %w", err)
 	}
 	if createdAt.Add(AuthorizationCodeTTL).Before(time.Now().UTC()) {
-		return db.AuthorizationCode{}, ErrAuthorizationCodeExpired
+		return db.User{}, ErrAuthorizationCodeExpired
 	}
 
 	// Check if the redirect uri matches the previous redirect uri
 	if acDetails.RedirectUri != redirectUri {
-		return db.AuthorizationCode{}, ErrRedirectUriMismatch
+		return db.User{}, ErrRedirectUriMismatch
 	}
 
 	// Check if the code verifier is valid
@@ -372,19 +375,18 @@ func (s *AuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Querie
 	case "plain":
 		codeChallenge = codeVerifier
 	default:
-		return db.AuthorizationCode{}, ErrUnknownCodeChallengeMethod
+		return db.User{}, fmt.Errorf("invalid code challenge method: %w", err)
 	}
 	if subtle.ConstantTimeCompare([]byte(acDetails.CodeChallenge), []byte(codeChallenge)) != 1 { // Use ConstantTimeCompare for security ig
-		return db.AuthorizationCode{}, ErrInvalidCodeVerifier
+		return db.User{}, ErrInvalidCodeVerifier
 	}
 
-	// Revoke the authorization code
-	_, err = q.DeleteAuthorizationCode(ctx, acDetails.IDHash)
+	user, err := q.GetUserByID(ctx, acDetails.UserID)
 	if err != nil {
-		return db.AuthorizationCode{}, fmt.Errorf("revoke authorization code: %w", err)
+		return db.User{}, fmt.Errorf("fetch user profile: %w", err)
 	}
 
-	return acDetails, nil
+	return user, nil
 }
 
 // JWT
@@ -394,19 +396,39 @@ type CreatedSession struct {
 	Session      db.Session
 	AccessToken  string
 	RefreshToken string
-	Claims       jwt.RegisteredClaims
+	Claims       JWTClaims
+}
+type JWTClaims struct {
+	jwt.RegisteredClaims
+	Username      string  `json:"username"`
+	Email         *string `json:"email,omitempty"`
+	EmailVerified *bool   `json:"email_verified,omitempty"`
 }
 
-func (s *AuthService) CreateJWT(userId string) (*jwt.Token, jwt.RegisteredClaims) {
+func (s *AuthService) CreateJWT(user db.User) (*jwt.Token, JWTClaims) {
 	now := time.Now().UTC()
 
-	claims := jwt.RegisteredClaims{
-		ID:        crypto.GenerateID("rgr_jti"),
-		Issuer:    s.config.Server.ServerURL,
-		Audience:  jwt.ClaimStrings{s.config.Server.ServerURL},
-		Subject:   userId,
-		IssuedAt:  jwt.NewNumericDate(now),
-		ExpiresAt: jwt.NewNumericDate(now.Add(JwtTTL)),
+	var emailPtr *string
+	var emailVerifiedPtr *bool
+	if user.Email.Valid {
+		emailPtr = &user.Email.String
+		if user.EmailVerified.Valid {
+			isVerified := user.EmailVerified.Int64 == 1
+			emailVerifiedPtr = &isVerified
+		}
+	}
+
+	claims := JWTClaims{
+		RegisteredClaims: jwt.RegisteredClaims{
+			ID:        crypto.GenerateID("rgr_jti"),
+			Issuer:    s.config.Server.ServerURL,
+			Subject:   user.ID,
+			IssuedAt:  jwt.NewNumericDate(now),
+			ExpiresAt: jwt.NewNumericDate(now.Add(JwtTTL)),
+		},
+		Username:      user.Username,
+		Email:         emailPtr,
+		EmailVerified: emailVerifiedPtr,
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
@@ -414,9 +436,9 @@ func (s *AuthService) CreateJWT(userId string) (*jwt.Token, jwt.RegisteredClaims
 	return token, claims
 }
 
-func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId string, ipAddress string, country string, clientName string) (CreatedSession, error) {
+func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, user db.User, ipAddress string, country string, clientName string) (CreatedSession, error) {
 	// Create a JWT for the session
-	jwt, claims := s.CreateJWT(userId)
+	jwt, claims := s.CreateJWT(user)
 	expires_at := claims.ExpiresAt
 
 	// Sign JWT
@@ -431,10 +453,10 @@ func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId s
 	now := time.Now().UTC().Format(time.RFC3339)
 	session, err := q.CreateSession(ctx, db.CreateSessionParams{
 		ID:                   sessId,
-		UserID:               userId,
+		UserID:               user.ID,
 		IpAddress:            convert.ToNullString(ipAddress),
 		Country:              convert.ToNullString(country),
-		ClientName:           convert.ToNullString(country),
+		ClientName:           convert.ToNullString(clientName),
 		RefreshTokenHash:     crypto.Hash256([]byte(refreshToken), hex.EncodeToString),
 		AccessTokenJti:       claims.ID,
 		AccessTokenExpiresAt: expires_at.Format(time.RFC3339),
@@ -454,4 +476,50 @@ func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, userId s
 	}
 
 	return tokenResponse, nil
+}
+
+// Possible errors:
+// - ErrInvalidRefreshToken
+func (s *AuthService) RefreshSession(ctx context.Context, q *db.Queries, refreshToken string, ipAddress string, country string) (CreatedSession, error) {
+	rtHash := crypto.Hash256([]byte(refreshToken), hex.EncodeToString)
+	oldSession, err := q.GetSessionFromRefreshToken(ctx, rtHash)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return CreatedSession{}, ErrInvalidRefreshToken
+		}
+		return CreatedSession{}, fmt.Errorf("database error: %w", err)
+	}
+
+	user, err := q.GetUserByID(ctx, oldSession.UserID)
+	if err != nil {
+		return CreatedSession{}, fmt.Errorf("fetch user profile: %w", err)
+	}
+
+	jwt, claims := s.CreateJWT(user)
+	expires_at := claims.ExpiresAt
+	signedJwt, err := jwt.SignedString(s.config.Auth.JWTPrivateKey)
+	if err != nil {
+		return CreatedSession{}, fmt.Errorf("signing jwt: %w", err)
+	}
+
+	if ipAddress == "" {
+		ipAddress = oldSession.IpAddress.String
+		country = oldSession.Country.String
+	} else if country == "" {
+		country = oldSession.Country.String
+	}
+
+	newSession, err := q.RefreshSession(ctx, db.RefreshSessionParams{
+		ID:                   oldSession.ID,
+		IpAddress:            convert.ToNullString(ipAddress),
+		Country:              convert.ToNullString(country),
+		AccessTokenJti:       claims.ID,
+		AccessTokenExpiresAt: expires_at.Format(time.RFC3339),
+		LastUsedAt:           time.Now().UTC().Format(time.RFC3339),
+	})
+	if err != nil {
+		return CreatedSession{}, fmt.Errorf("database error: %w", err)
+	}
+
+	return CreatedSession{Session: newSession, AccessToken: signedJwt, RefreshToken: refreshToken, Claims: claims}, nil
 }

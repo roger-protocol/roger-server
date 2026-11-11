@@ -94,6 +94,30 @@ func (q *Queries) GetSession(ctx context.Context, id string) (Session, error) {
 	return i, err
 }
 
+const getSessionFromRefreshToken = `-- name: GetSessionFromRefreshToken :one
+SELECT id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at FROM sessions
+WHERE refresh_token_hash = ?
+LIMIT 1
+`
+
+func (q *Queries) GetSessionFromRefreshToken(ctx context.Context, refreshTokenHash string) (Session, error) {
+	row := q.db.QueryRowContext(ctx, getSessionFromRefreshToken, refreshTokenHash)
+	var i Session
+	err := row.Scan(
+		&i.ID,
+		&i.UserID,
+		&i.IpAddress,
+		&i.Country,
+		&i.ClientName,
+		&i.RefreshTokenHash,
+		&i.AccessTokenJti,
+		&i.AccessTokenExpiresAt,
+		&i.CreatedAt,
+		&i.LastUsedAt,
+	)
+	return i, err
+}
+
 const getUserSessions = `-- name: GetUserSessions :many
 SELECT id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at FROM sessions
 WHERE user_id = ?
@@ -131,6 +155,52 @@ func (q *Queries) GetUserSessions(ctx context.Context, userID string) ([]Session
 		return nil, err
 	}
 	return items, nil
+}
+
+const refreshSession = `-- name: RefreshSession :one
+UPDATE sessions
+SET
+    access_token_jti = ?,
+    access_token_expires_at = ?,
+    ip_address = ?,
+    country = ?,
+    last_used_at = ?
+WHERE id = ?
+RETURNING id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at
+`
+
+type RefreshSessionParams struct {
+	AccessTokenJti       string         `json:"access_token_jti"`
+	AccessTokenExpiresAt string         `json:"access_token_expires_at"`
+	IpAddress            sql.NullString `json:"ip_address"`
+	Country              sql.NullString `json:"country"`
+	LastUsedAt           string         `json:"last_used_at"`
+	ID                   string         `json:"id"`
+}
+
+func (q *Queries) RefreshSession(ctx context.Context, arg RefreshSessionParams) (Session, error) {
+	row := q.db.QueryRowContext(ctx, refreshSession,
+		arg.AccessTokenJti,
+		arg.AccessTokenExpiresAt,
+		arg.IpAddress,
+		arg.Country,
+		arg.LastUsedAt,
+		arg.ID,
+	)
+	var i Session
+	err := row.Scan(
+		&i.ID,
+		&i.UserID,
+		&i.IpAddress,
+		&i.Country,
+		&i.ClientName,
+		&i.RefreshTokenHash,
+		&i.AccessTokenJti,
+		&i.AccessTokenExpiresAt,
+		&i.CreatedAt,
+		&i.LastUsedAt,
+	)
+	return i, err
 }
 
 const revokeAllSessionsExcept = `-- name: RevokeAllSessionsExcept :many
@@ -186,46 +256,6 @@ RETURNING id, user_id, ip_address, country, client_name, refresh_token_hash, acc
 
 func (q *Queries) RevokeSession(ctx context.Context, id string) (Session, error) {
 	row := q.db.QueryRowContext(ctx, revokeSession, id)
-	var i Session
-	err := row.Scan(
-		&i.ID,
-		&i.UserID,
-		&i.IpAddress,
-		&i.Country,
-		&i.ClientName,
-		&i.RefreshTokenHash,
-		&i.AccessTokenJti,
-		&i.AccessTokenExpiresAt,
-		&i.CreatedAt,
-		&i.LastUsedAt,
-	)
-	return i, err
-}
-
-const updateSessionFromRefreshToken = `-- name: UpdateSessionFromRefreshToken :one
-UPDATE sessions
-SET
-    access_token_jti = ?,
-    access_token_expires_at = ?,
-    last_used_at = ?
-WHERE refresh_token_hash = ?
-RETURNING id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at
-`
-
-type UpdateSessionFromRefreshTokenParams struct {
-	AccessTokenJti       string `json:"access_token_jti"`
-	AccessTokenExpiresAt string `json:"access_token_expires_at"`
-	LastUsedAt           string `json:"last_used_at"`
-	RefreshTokenHash     string `json:"refresh_token_hash"`
-}
-
-func (q *Queries) UpdateSessionFromRefreshToken(ctx context.Context, arg UpdateSessionFromRefreshTokenParams) (Session, error) {
-	row := q.db.QueryRowContext(ctx, updateSessionFromRefreshToken,
-		arg.AccessTokenJti,
-		arg.AccessTokenExpiresAt,
-		arg.LastUsedAt,
-		arg.RefreshTokenHash,
-	)
 	var i Session
 	err := row.Scan(
 		&i.ID,

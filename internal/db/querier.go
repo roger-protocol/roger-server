@@ -21,16 +21,17 @@ type Querier interface {
 	GetProvider(ctx context.Context, id string) (Provider, error)
 	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
 	GetSession(ctx context.Context, id string) (Session, error)
+	GetSessionFromRefreshToken(ctx context.Context, refreshTokenHash string) (Session, error)
 	GetUserByID(ctx context.Context, id string) (User, error)
 	GetUserByProvider(ctx context.Context, arg GetUserByProviderParams) (User, error)
 	GetUserProviders(ctx context.Context, userID string) ([]Provider, error)
 	GetUserSessions(ctx context.Context, userID string) ([]Session, error)
+	RefreshSession(ctx context.Context, arg RefreshSessionParams) (Session, error)
 	RevokeAllSessionsExcept(ctx context.Context, arg RevokeAllSessionsExceptParams) ([]Session, error)
 	RevokeSession(ctx context.Context, id string) (Session, error)
 	SetProviderLastUsed(ctx context.Context, arg SetProviderLastUsedParams) (Provider, error)
 	SetProviderRawClaims(ctx context.Context, arg SetProviderRawClaimsParams) (Provider, error)
 	UpdateEmail(ctx context.Context, arg UpdateEmailParams) (User, error)
-	UpdateSessionFromRefreshToken(ctx context.Context, arg UpdateSessionFromRefreshTokenParams) (Session, error)
 	UpdateUsername(ctx context.Context, arg UpdateUsernameParams) (User, error)
 }
 

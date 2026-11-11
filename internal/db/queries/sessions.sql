@@ -20,17 +20,24 @@ SELECT * FROM sessions
 WHERE id = ?
 LIMIT 1;
 
+-- name: GetSessionFromRefreshToken :one
+SELECT * FROM sessions
+WHERE refresh_token_hash = ?
+LIMIT 1;
+
 -- name: GetUserSessions :many
 SELECT * FROM sessions
 WHERE user_id = ?;
 
--- name: UpdateSessionFromRefreshToken :one
+-- name: RefreshSession :one
 UPDATE sessions
 SET
     access_token_jti = ?,
     access_token_expires_at = ?,
+    ip_address = ?,
+    country = ?,
     last_used_at = ?
-WHERE refresh_token_hash = ?
+WHERE id = ?
 RETURNING *;
 
 -- name: RevokeSession :one

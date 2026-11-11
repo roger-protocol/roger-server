@@ -3,10 +3,12 @@ package api
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"net/url"
 
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/roger-protocol/roger-server/internal/services"
 )
 
@@ -30,10 +32,13 @@ func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLo
 		params.RedirectUri,
 	)
 	if err != nil {
+		message := err.Error()
 		if errors.Is(err, services.ErrUnsupportedProvider) {
-			return InitiateOAuthLogin400JSONResponse{Error: err.Error()}, nil
+			return InitiateOAuthLogin400JSONResponse{Error: "unsupported_provider", ErrorDescription: &message}, nil
 		} else if errors.Is(err, services.ErrIllegalRedirectUri) {
-			return InitiateOAuthLogin400JSONResponse{Error: err.Error()}, nil
+			return InitiateOAuthLogin400JSONResponse{Error: "invalid_redirect_uri", ErrorDescription: &message}, nil
+		} else if errors.Is(err, services.ErrUnknownCodeChallengeMethod) {
+			return InitiateOAuthLogin400JSONResponse{Error: "invalid_request", ErrorDescription: &message}, nil
 		} else {
 			return nil, err
 		}
@@ -99,7 +104,6 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 			redirectWithError("server_error", "failed to authenticate with provider")
 			return
 		}
-		log.Printf("successfully authenticated user: %s (%s)", user.ID, user.Username)
 
 		// Create a transaction
 		tx, err := s.db.BeginTx(ctx, nil)
@@ -143,7 +147,66 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 }
 
 func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequestObject) (ExchangeTokenResponseObject, error) {
-	panic("unimplemented")
+	body := request.Body
+
+	if authorizationCodeGrant, err := body.AsAuthorizationCodeGrant(); err == nil && authorizationCodeGrant.GrantType == "authorization_code" {
+		authorizationCode := authorizationCodeGrant.Code
+		codeVerifier := authorizationCodeGrant.CodeVerifier
+		redirectUri := authorizationCodeGrant.RedirectUri
+		var clientName string
+		if authorizationCodeGrant.ClientName != nil {
+			clientName = *authorizationCodeGrant.ClientName
+		}
+
+		user, err := s.auth.ConsumeAuthorizationCode(ctx, s.queries, authorizationCode, redirectUri, codeVerifier)
+		if err != nil {
+			if errors.Is(err, services.ErrInvalidGrant) {
+				message := err.Error()
+				return ExchangeToken400JSONResponse{Error: "invalid_grant", ErrorDescription: &message}, nil
+			}
+			return nil, fmt.Errorf("consume authorization code: %w", err)
+		}
+
+		ipAddress := middleware.GetClientIP(ctx)
+		country := GetClientCountry(ctx)
+
+		createdSession, err := s.auth.CreateSession(ctx, s.queries, user, ipAddress, country, clientName)
+		if err != nil {
+			return nil, err
+		}
+
+		return ExchangeToken200JSONResponse{
+			AccessToken:  createdSession.AccessToken,
+			ExpiresIn:    int(services.JwtTTL.Seconds()),
+			RefreshToken: createdSession.RefreshToken,
+			TokenType:    "Bearer",
+		}, nil
+	}
+
+	if refreshTokenGrant, err := body.AsRefreshTokenGrant(); err == nil && refreshTokenGrant.GrantType == "refresh_token" {
+		refreshToken := refreshTokenGrant.RefreshToken
+		ipAddress := middleware.GetClientIP(ctx)
+		country := GetClientCountry(ctx)
+
+		newSession, err := s.auth.RefreshSession(ctx, s.queries, refreshToken, ipAddress, country)
+		if err != nil {
+			if errors.Is(err, services.ErrInvalidGrant) {
+				message := err.Error()
+				return ExchangeToken400JSONResponse{Error: "invalid_grant", ErrorDescription: &message}, nil
+			}
+			return nil, fmt.Errorf("refresh session: %w", err)
+		}
+
+		return ExchangeToken200JSONResponse{
+			AccessToken:  newSession.AccessToken,
+			ExpiresIn:    int(services.JwtTTL.Seconds()),
+			RefreshToken: newSession.RefreshToken,
+			TokenType:    "Bearer",
+		}, nil
+	}
+
+	message := "The given grant type is invalid"
+	return ExchangeToken400JSONResponse{Error: "unsupported_grant_type", ErrorDescription: &message}, nil
 }
 
 func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObject) (RevokeTokenResponseObject, error) {
