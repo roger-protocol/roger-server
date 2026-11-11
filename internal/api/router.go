@@ -79,7 +79,7 @@ func recoverer(next http.Handler) http.Handler {
 }
 
 func validationErrorHandler(ctx context.Context, err error, w http.ResponseWriter, r *http.Request, opts nethttpmiddleware.ErrorHandlerOpts) {
-	var errorMessage string
+	errorMessage := "Invalid request"
 
 	if _, ok := errors.AsType[*routers.RouteError](err); ok {
 		errorMessage = "Invalid URL"
@@ -96,11 +96,7 @@ func validationErrorHandler(ctx context.Context, err error, w http.ResponseWrite
 			default:
 				errorMessage = "Invalid request parameters"
 			}
-		default:
-			errorMessage = "Invalid request"
 		}
-	} else {
-		errorMessage = "Invalid request"
 	}
 
 	resp := Error{
@@ -141,13 +137,13 @@ func NewRouter(s *Server) (http.Handler, error) {
 	r := chi.NewRouter()
 
 	// Filtering
-	r.Use(cors.Handler(cors.Options{
+	corsMiddleware := cors.Handler(cors.Options{
 		AllowedOrigins:   []string{"*"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"*"},
 		AllowCredentials: false,
 		MaxAge:           1200,
-	}))
+	})
 	r.Use(middleware.AllowContentEncoding("identity"))
 
 	// Tracing
@@ -198,5 +194,5 @@ func NewRouter(s *Server) (http.Handler, error) {
 		r.Get(s.config.Auth.Providers[providerID].CallbackPath, handler)
 	}
 
-	return validator(HandlerFromMux(strictHandler, r)), nil
+	return corsMiddleware(validator(HandlerFromMux(strictHandler, r))), nil
 }
