@@ -17,3 +17,7 @@ func (s *Server) ListDeployments(ctx context.Context, request ListDeploymentsReq
 func (s *Server) TriggerDeployment(ctx context.Context, request TriggerDeploymentRequestObject) (TriggerDeploymentResponseObject, error) {
 	panic("unimplemented")
 }
+
+func (s *Server) UploadArtifact(ctx context.Context, request UploadArtifactRequestObject) (UploadArtifactResponseObject, error) {
+	panic("unimplemented")
+}

@@ -12,7 +12,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"mime/multipart"
 	"net/http"
 	"net/url"
 	"path"
@@ -22,7 +21,6 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/go-chi/chi/v5"
 	"github.com/oapi-codegen/runtime"
-	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 // Defines values for APIKeyCredentialKind.
@@ -79,30 +77,57 @@ func (e APIKeyInfosKind) Valid() bool {
 	}
 }
 
-// Defines values for AccessTokenRevokeGrantTokenTypeHint.
+// Defines values for APIKeySecretKind.
 const (
-	AccessToken AccessTokenRevokeGrantTokenTypeHint = "access_token"
+	APIKeySecretKindApiKey APIKeySecretKind = "api-key"
 )
 
-// Valid indicates whether the value is a known member of the AccessTokenRevokeGrantTokenTypeHint enum.
-func (e AccessTokenRevokeGrantTokenTypeHint) Valid() bool {
+// Valid indicates whether the value is a known member of the APIKeySecretKind enum.
+func (e APIKeySecretKind) Valid() bool {
 	switch e {
-	case AccessToken:
+	case APIKeySecretKindApiKey:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for AuthorizationCodeGrantGrantType.
+// Defines values for DeploymentStatus.
 const (
-	AuthorizationCode AuthorizationCodeGrantGrantType = "authorization_code"
+	DeploymentStatusActive   DeploymentStatus = "active"
+	DeploymentStatusError    DeploymentStatus = "error"
+	DeploymentStatusInactive DeploymentStatus = "inactive"
+	DeploymentStatusStaged   DeploymentStatus = "staged"
 )
 
-// Valid indicates whether the value is a known member of the AuthorizationCodeGrantGrantType enum.
-func (e AuthorizationCodeGrantGrantType) Valid() bool {
+// Valid indicates whether the value is a known member of the DeploymentStatus enum.
+func (e DeploymentStatus) Valid() bool {
 	switch e {
-	case AuthorizationCode:
+	case DeploymentStatusActive:
+		return true
+	case DeploymentStatusError:
+		return true
+	case DeploymentStatusInactive:
+		return true
+	case DeploymentStatusStaged:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for EnvironmentKind.
+const (
+	EnvironmentKindPlace    EnvironmentKind = "place"
+	EnvironmentKindUniverse EnvironmentKind = "universe"
+)
+
+// Valid indicates whether the value is a known member of the EnvironmentKind enum.
+func (e EnvironmentKind) Valid() bool {
+	switch e {
+	case EnvironmentKindPlace:
+		return true
+	case EnvironmentKindUniverse:
 		return true
 	default:
 		return false
@@ -148,6 +173,138 @@ func (e InternalStorageStatus) Valid() bool {
 	}
 }
 
+// Defines values for ManifestEnvironmentConfigurationAllowedDevices.
+const (
+	Console ManifestEnvironmentConfigurationAllowedDevices = "console"
+	Desktop ManifestEnvironmentConfigurationAllowedDevices = "desktop"
+	Mobile  ManifestEnvironmentConfigurationAllowedDevices = "mobile"
+	Tablet  ManifestEnvironmentConfigurationAllowedDevices = "tablet"
+	Vr      ManifestEnvironmentConfigurationAllowedDevices = "vr"
+)
+
+// Valid indicates whether the value is a known member of the ManifestEnvironmentConfigurationAllowedDevices enum.
+func (e ManifestEnvironmentConfigurationAllowedDevices) Valid() bool {
+	switch e {
+	case Console:
+		return true
+	case Desktop:
+		return true
+	case Mobile:
+		return true
+	case Tablet:
+		return true
+	case Vr:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ManifestPlaceEnvironmentKind.
+const (
+	ManifestPlaceEnvironmentKindPlace ManifestPlaceEnvironmentKind = "place"
+)
+
+// Valid indicates whether the value is a known member of the ManifestPlaceEnvironmentKind enum.
+func (e ManifestPlaceEnvironmentKind) Valid() bool {
+	switch e {
+	case ManifestPlaceEnvironmentKindPlace:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ManifestPlaceEnvironmentVersioning.
+const (
+	ManifestPlaceEnvironmentVersioningCustom      ManifestPlaceEnvironmentVersioning = "custom"
+	ManifestPlaceEnvironmentVersioningIncremental ManifestPlaceEnvironmentVersioning = "incremental"
+	ManifestPlaceEnvironmentVersioningSemver      ManifestPlaceEnvironmentVersioning = "semver"
+)
+
+// Valid indicates whether the value is a known member of the ManifestPlaceEnvironmentVersioning enum.
+func (e ManifestPlaceEnvironmentVersioning) Valid() bool {
+	switch e {
+	case ManifestPlaceEnvironmentVersioningCustom:
+		return true
+	case ManifestPlaceEnvironmentVersioningIncremental:
+		return true
+	case ManifestPlaceEnvironmentVersioningSemver:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ManifestSocialLinkType.
+const (
+	ManifestSocialLinkTypeDiscord  ManifestSocialLinkType = "discord"
+	ManifestSocialLinkTypeFacebook ManifestSocialLinkType = "facebook"
+	ManifestSocialLinkTypeGroup    ManifestSocialLinkType = "group"
+	ManifestSocialLinkTypeGuilded  ManifestSocialLinkType = "guilded"
+	ManifestSocialLinkTypeTwitch   ManifestSocialLinkType = "twitch"
+	ManifestSocialLinkTypeTwitter  ManifestSocialLinkType = "twitter"
+	ManifestSocialLinkTypeYoutube  ManifestSocialLinkType = "youtube"
+)
+
+// Valid indicates whether the value is a known member of the ManifestSocialLinkType enum.
+func (e ManifestSocialLinkType) Valid() bool {
+	switch e {
+	case ManifestSocialLinkTypeDiscord:
+		return true
+	case ManifestSocialLinkTypeFacebook:
+		return true
+	case ManifestSocialLinkTypeGroup:
+		return true
+	case ManifestSocialLinkTypeGuilded:
+		return true
+	case ManifestSocialLinkTypeTwitch:
+		return true
+	case ManifestSocialLinkTypeTwitter:
+		return true
+	case ManifestSocialLinkTypeYoutube:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ManifestUniverseEnvironmentKind.
+const (
+	ManifestUniverseEnvironmentKindUniverse ManifestUniverseEnvironmentKind = "universe"
+)
+
+// Valid indicates whether the value is a known member of the ManifestUniverseEnvironmentKind enum.
+func (e ManifestUniverseEnvironmentKind) Valid() bool {
+	switch e {
+	case ManifestUniverseEnvironmentKindUniverse:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ManifestUniverseEnvironmentVersioning.
+const (
+	ManifestUniverseEnvironmentVersioningCustom      ManifestUniverseEnvironmentVersioning = "custom"
+	ManifestUniverseEnvironmentVersioningIncremental ManifestUniverseEnvironmentVersioning = "incremental"
+	ManifestUniverseEnvironmentVersioningSemver      ManifestUniverseEnvironmentVersioning = "semver"
+)
+
+// Valid indicates whether the value is a known member of the ManifestUniverseEnvironmentVersioning enum.
+func (e ManifestUniverseEnvironmentVersioning) Valid() bool {
+	switch e {
+	case ManifestUniverseEnvironmentVersioningCustom:
+		return true
+	case ManifestUniverseEnvironmentVersioningIncremental:
+		return true
+	case ManifestUniverseEnvironmentVersioningSemver:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PlaceTargetKind.
 const (
 	PlaceTargetKindPlace PlaceTargetKind = "place"
@@ -163,30 +320,15 @@ func (e PlaceTargetKind) Valid() bool {
 	}
 }
 
-// Defines values for RefreshTokenGrantGrantType.
+// Defines values for ProjectKind.
 const (
-	RefreshTokenGrantGrantTypeRefreshToken RefreshTokenGrantGrantType = "refresh_token"
+	ProjectKindGame ProjectKind = "game"
 )
 
-// Valid indicates whether the value is a known member of the RefreshTokenGrantGrantType enum.
-func (e RefreshTokenGrantGrantType) Valid() bool {
+// Valid indicates whether the value is a known member of the ProjectKind enum.
+func (e ProjectKind) Valid() bool {
 	switch e {
-	case RefreshTokenGrantGrantTypeRefreshToken:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RefreshTokenRevokeGrantTokenTypeHint.
-const (
-	RefreshTokenRevokeGrantTokenTypeHintRefreshToken RefreshTokenRevokeGrantTokenTypeHint = "refresh_token"
-)
-
-// Valid indicates whether the value is a known member of the RefreshTokenRevokeGrantTokenTypeHint enum.
-func (e RefreshTokenRevokeGrantTokenTypeHint) Valid() bool {
-	switch e {
-	case RefreshTokenRevokeGrantTokenTypeHintRefreshToken:
+	case ProjectKindGame:
 		return true
 	default:
 		return false
@@ -247,15 +389,30 @@ func (e S3CompatibleStorageInfosKind) Valid() bool {
 	}
 }
 
-// Defines values for UserStorageOwnerKind.
+// Defines values for S3CredentialsKind.
 const (
-	User UserStorageOwnerKind = "user"
+	S3CredentialsKindS3 S3CredentialsKind = "S3"
 )
 
-// Valid indicates whether the value is a known member of the UserStorageOwnerKind enum.
-func (e UserStorageOwnerKind) Valid() bool {
+// Valid indicates whether the value is a known member of the S3CredentialsKind enum.
+func (e S3CredentialsKind) Valid() bool {
 	switch e {
-	case User:
+	case S3CredentialsKindS3:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for InitiateOAuthLoginParamsResponseType.
+const (
+	Code InitiateOAuthLoginParamsResponseType = "code"
+)
+
+// Valid indicates whether the value is a known member of the InitiateOAuthLoginParamsResponseType enum.
+func (e InitiateOAuthLoginParamsResponseType) Valid() bool {
+	switch e {
+	case Code:
 		return true
 	default:
 		return false
@@ -271,6 +428,42 @@ const (
 func (e InitiateOAuthLoginParamsCodeChallengeMethod) Valid() bool {
 	switch e {
 	case S256:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RevokeTokenFormdataBodyTokenTypeHint.
+const (
+	RevokeTokenFormdataBodyTokenTypeHintAccessToken  RevokeTokenFormdataBodyTokenTypeHint = "access_token"
+	RevokeTokenFormdataBodyTokenTypeHintRefreshToken RevokeTokenFormdataBodyTokenTypeHint = "refresh_token"
+)
+
+// Valid indicates whether the value is a known member of the RevokeTokenFormdataBodyTokenTypeHint enum.
+func (e RevokeTokenFormdataBodyTokenTypeHint) Valid() bool {
+	switch e {
+	case RevokeTokenFormdataBodyTokenTypeHintAccessToken:
+		return true
+	case RevokeTokenFormdataBodyTokenTypeHintRefreshToken:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ExchangeTokenFormdataBodyGrantType.
+const (
+	ExchangeTokenFormdataBodyGrantTypeAuthorizationCode ExchangeTokenFormdataBodyGrantType = "authorization_code"
+	ExchangeTokenFormdataBodyGrantTypeRefreshToken      ExchangeTokenFormdataBodyGrantType = "refresh_token"
+)
+
+// Valid indicates whether the value is a known member of the ExchangeTokenFormdataBodyGrantType enum.
+func (e ExchangeTokenFormdataBodyGrantType) Valid() bool {
+	switch e {
+	case ExchangeTokenFormdataBodyGrantTypeAuthorizationCode:
+		return true
+	case ExchangeTokenFormdataBodyGrantTypeRefreshToken:
 		return true
 	default:
 		return false
@@ -294,34 +487,34 @@ func (e ExchangeToken200JSONResponseBodyTokenType) Valid() bool {
 
 // Defines values for GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind.
 const (
-	Apple     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "apple"
-	Discord   GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "discord"
-	Github    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "github"
-	Google    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "google"
-	Microsoft GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "microsoft"
-	Other     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "other"
-	Password  GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "password"
-	Roblox    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "roblox"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindApple     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "apple"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindDiscord   GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "discord"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindGithub    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "github"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindGoogle    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "google"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindMicrosoft GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "microsoft"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindOther     GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "other"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindPassword  GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "password"
+	GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindRoblox    GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind = "roblox"
 )
 
 // Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind enum.
 func (e GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind) Valid() bool {
 	switch e {
-	case Apple:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindApple:
 		return true
-	case Discord:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindDiscord:
 		return true
-	case Github:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindGithub:
 		return true
-	case Google:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindGoogle:
 		return true
-	case Microsoft:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindMicrosoft:
 		return true
-	case Other:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindOther:
 		return true
-	case Password:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindPassword:
 		return true
-	case Roblox:
+	case GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKindRoblox:
 		return true
 	default:
 		return false
@@ -337,6 +530,24 @@ const (
 func (e GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds) Valid() bool {
 	switch e {
 	case GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKindsApiKey:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm.
+const (
+	Blake3 GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm = "blake3"
+	Sha256 GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm = "sha256"
+)
+
+// Valid indicates whether the value is a known member of the GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm enum.
+func (e GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm) Valid() bool {
+	switch e {
+	case Blake3:
+		return true
+	case Sha256:
 		return true
 	default:
 		return false
@@ -391,21 +602,6 @@ func (e GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds) V
 	}
 }
 
-// Defines values for ListProjects200JSONResponseBodyKind.
-const (
-	ListProjects200JSONResponseBodyKindGame ListProjects200JSONResponseBodyKind = "game"
-)
-
-// Valid indicates whether the value is a known member of the ListProjects200JSONResponseBodyKind enum.
-func (e ListProjects200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case ListProjects200JSONResponseBodyKindGame:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for CreateProjectJSONBodyKind.
 const (
 	CreateProjectJSONBodyKindGame CreateProjectJSONBodyKind = "game"
@@ -421,177 +617,18 @@ func (e CreateProjectJSONBodyKind) Valid() bool {
 	}
 }
 
-// Defines values for CreateProject200JSONResponseBodyKind.
+// Defines values for CreateDeploymentJSONBodyAction.
 const (
-	CreateProject200JSONResponseBodyKindGame CreateProject200JSONResponseBodyKind = "game"
+	Deploy CreateDeploymentJSONBodyAction = "deploy"
+	Stage  CreateDeploymentJSONBodyAction = "stage"
 )
 
-// Valid indicates whether the value is a known member of the CreateProject200JSONResponseBodyKind enum.
-func (e CreateProject200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case CreateProject200JSONResponseBodyKindGame:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteProject200JSONResponseBodyKind.
-const (
-	DeleteProject200JSONResponseBodyKindGame DeleteProject200JSONResponseBodyKind = "game"
-)
-
-// Valid indicates whether the value is a known member of the DeleteProject200JSONResponseBodyKind enum.
-func (e DeleteProject200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case DeleteProject200JSONResponseBodyKindGame:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for RenameProject200JSONResponseBodyKind.
-const (
-	RenameProject200JSONResponseBodyKindGame RenameProject200JSONResponseBodyKind = "game"
-)
-
-// Valid indicates whether the value is a known member of the RenameProject200JSONResponseBodyKind enum.
-func (e RenameProject200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case RenameProject200JSONResponseBodyKindGame:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListDeployments200JSONResponseBodyStatus.
-const (
-	ListDeployments200JSONResponseBodyStatusActive   ListDeployments200JSONResponseBodyStatus = "active"
-	ListDeployments200JSONResponseBodyStatusError    ListDeployments200JSONResponseBodyStatus = "error"
-	ListDeployments200JSONResponseBodyStatusInactive ListDeployments200JSONResponseBodyStatus = "inactive"
-	ListDeployments200JSONResponseBodyStatusStaged   ListDeployments200JSONResponseBodyStatus = "staged"
-)
-
-// Valid indicates whether the value is a known member of the ListDeployments200JSONResponseBodyStatus enum.
-func (e ListDeployments200JSONResponseBodyStatus) Valid() bool {
-	switch e {
-	case ListDeployments200JSONResponseBodyStatusActive:
-		return true
-	case ListDeployments200JSONResponseBodyStatusError:
-		return true
-	case ListDeployments200JSONResponseBodyStatusInactive:
-		return true
-	case ListDeployments200JSONResponseBodyStatusStaged:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateDeploymentMultipartBodyAction.
-const (
-	Deploy CreateDeploymentMultipartBodyAction = "deploy"
-	Stage  CreateDeploymentMultipartBodyAction = "stage"
-)
-
-// Valid indicates whether the value is a known member of the CreateDeploymentMultipartBodyAction enum.
-func (e CreateDeploymentMultipartBodyAction) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateDeploymentJSONBodyAction enum.
+func (e CreateDeploymentJSONBodyAction) Valid() bool {
 	switch e {
 	case Deploy:
 		return true
 	case Stage:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreateDeployment200JSONResponseBodyStatus.
-const (
-	CreateDeployment200JSONResponseBodyStatusActive   CreateDeployment200JSONResponseBodyStatus = "active"
-	CreateDeployment200JSONResponseBodyStatusError    CreateDeployment200JSONResponseBodyStatus = "error"
-	CreateDeployment200JSONResponseBodyStatusInactive CreateDeployment200JSONResponseBodyStatus = "inactive"
-	CreateDeployment200JSONResponseBodyStatusStaged   CreateDeployment200JSONResponseBodyStatus = "staged"
-)
-
-// Valid indicates whether the value is a known member of the CreateDeployment200JSONResponseBodyStatus enum.
-func (e CreateDeployment200JSONResponseBodyStatus) Valid() bool {
-	switch e {
-	case CreateDeployment200JSONResponseBodyStatusActive:
-		return true
-	case CreateDeployment200JSONResponseBodyStatusError:
-		return true
-	case CreateDeployment200JSONResponseBodyStatusInactive:
-		return true
-	case CreateDeployment200JSONResponseBodyStatusStaged:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteDeployment200JSONResponseBodyStatus.
-const (
-	DeleteDeployment200JSONResponseBodyStatusActive   DeleteDeployment200JSONResponseBodyStatus = "active"
-	DeleteDeployment200JSONResponseBodyStatusError    DeleteDeployment200JSONResponseBodyStatus = "error"
-	DeleteDeployment200JSONResponseBodyStatusInactive DeleteDeployment200JSONResponseBodyStatus = "inactive"
-	DeleteDeployment200JSONResponseBodyStatusStaged   DeleteDeployment200JSONResponseBodyStatus = "staged"
-)
-
-// Valid indicates whether the value is a known member of the DeleteDeployment200JSONResponseBodyStatus enum.
-func (e DeleteDeployment200JSONResponseBodyStatus) Valid() bool {
-	switch e {
-	case DeleteDeployment200JSONResponseBodyStatusActive:
-		return true
-	case DeleteDeployment200JSONResponseBodyStatusError:
-		return true
-	case DeleteDeployment200JSONResponseBodyStatusInactive:
-		return true
-	case DeleteDeployment200JSONResponseBodyStatusStaged:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for TriggerDeployment200JSONResponseBodyStatus.
-const (
-	TriggerDeployment200JSONResponseBodyStatusActive   TriggerDeployment200JSONResponseBodyStatus = "active"
-	TriggerDeployment200JSONResponseBodyStatusError    TriggerDeployment200JSONResponseBodyStatus = "error"
-	TriggerDeployment200JSONResponseBodyStatusInactive TriggerDeployment200JSONResponseBodyStatus = "inactive"
-	TriggerDeployment200JSONResponseBodyStatusStaged   TriggerDeployment200JSONResponseBodyStatus = "staged"
-)
-
-// Valid indicates whether the value is a known member of the TriggerDeployment200JSONResponseBodyStatus enum.
-func (e TriggerDeployment200JSONResponseBodyStatus) Valid() bool {
-	switch e {
-	case TriggerDeployment200JSONResponseBodyStatusActive:
-		return true
-	case TriggerDeployment200JSONResponseBodyStatusError:
-		return true
-	case TriggerDeployment200JSONResponseBodyStatusInactive:
-		return true
-	case TriggerDeployment200JSONResponseBodyStatusStaged:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ListEnvironments200JSONResponseBodyKind.
-const (
-	ListEnvironments200JSONResponseBodyKindPlace    ListEnvironments200JSONResponseBodyKind = "place"
-	ListEnvironments200JSONResponseBodyKindUniverse ListEnvironments200JSONResponseBodyKind = "universe"
-)
-
-// Valid indicates whether the value is a known member of the ListEnvironments200JSONResponseBodyKind enum.
-func (e ListEnvironments200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case ListEnvironments200JSONResponseBodyKindPlace:
-		return true
-	case ListEnvironments200JSONResponseBodyKindUniverse:
 		return true
 	default:
 		return false
@@ -616,36 +653,15 @@ func (e CreateEnvironmentJSONBodyKind) Valid() bool {
 	}
 }
 
-// Defines values for CreateEnvironment200JSONResponseBodyKind.
+// Defines values for CreateTargetJSONBodyKind.
 const (
-	CreateEnvironment200JSONResponseBodyKindPlace    CreateEnvironment200JSONResponseBodyKind = "place"
-	CreateEnvironment200JSONResponseBodyKindUniverse CreateEnvironment200JSONResponseBodyKind = "universe"
+	CreateTargetJSONBodyKindPlace CreateTargetJSONBodyKind = "place"
 )
 
-// Valid indicates whether the value is a known member of the CreateEnvironment200JSONResponseBodyKind enum.
-func (e CreateEnvironment200JSONResponseBodyKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CreateTargetJSONBodyKind enum.
+func (e CreateTargetJSONBodyKind) Valid() bool {
 	switch e {
-	case CreateEnvironment200JSONResponseBodyKindPlace:
-		return true
-	case CreateEnvironment200JSONResponseBodyKindUniverse:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DeleteEnvironment200JSONResponseBodyKind.
-const (
-	DeleteEnvironment200JSONResponseBodyKindPlace    DeleteEnvironment200JSONResponseBodyKind = "place"
-	DeleteEnvironment200JSONResponseBodyKindUniverse DeleteEnvironment200JSONResponseBodyKind = "universe"
-)
-
-// Valid indicates whether the value is a known member of the DeleteEnvironment200JSONResponseBodyKind enum.
-func (e DeleteEnvironment200JSONResponseBodyKind) Valid() bool {
-	switch e {
-	case DeleteEnvironment200JSONResponseBodyKindPlace:
-		return true
-	case DeleteEnvironment200JSONResponseBodyKindUniverse:
+	case CreateTargetJSONBodyKindPlace:
 		return true
 	default:
 		return false
@@ -659,7 +675,7 @@ type APIKeyCredential struct {
 	// Example: 1501705133
 	AccountId string `json:"account_id"`
 
-	// CreatedAt The ISO timestamp at which the API Key was registered on the node
+	// CreatedAt The ISO timestamp at which the credential was created
 	//
 	// Example: 2026-09-06T14:47:42.239Z
 	CreatedAt time.Time `json:"created_at"`
@@ -667,54 +683,50 @@ type APIKeyCredential struct {
 	// ExpiresAt The ISO timestamp at which the API Key expires
 	//
 	// Example: 2026-09-06T14:47:42.239Z
-	ExpiresAt time.Time `json:"expires_at"`
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 
-	// Kind The kind of the credential
+	// Id A credential unique identifier
 	//
-	// Example: api-key
+	// Example: rgr_cred_abc123
+	Id   string               `json:"id"`
 	Kind APIKeyCredentialKind `json:"kind"`
 
-	// Name The human-friendly name of the API Key
+	// Name The human-friendly name of the credential
 	//
-	// Example: Test Key
+	// Example: Test Credential
 	Name string `json:"name"`
 
-	// Status The current status of the API Key
+	// Status The current status of the credential
 	//
 	// Example: error
 	Status APIKeyCredentialStatus `json:"status"`
 
-	// StatusMessage An optional status message attached to the key
+	// StatusMessage An optional status message
 	//
-	// Example: This API Key has expired, please regenerate a new one
+	// Example: This credential has expired, please rotate the secret
 	StatusMessage *string `json:"status_message,omitempty"`
 
-	// UpdatedAt The ISO timestamp when the API Key was last updated on the node
+	// UpdatedAt The ISO timestamp when the credential was last updated
 	//
 	// Example: 2026-09-06T16:31:52.845Z
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// APIKeyCredentialKind The kind of the credential
-//
-// Example: api-key
+// APIKeyCredentialKind defines model for APIKeyCredential.Kind.
 type APIKeyCredentialKind string
 
-// APIKeyCredentialStatus The current status of the API Key
+// APIKeyCredentialStatus The current status of the credential
 //
 // Example: error
 type APIKeyCredentialStatus string
 
 // APIKeyInfos defines model for APIKeyInfos.
 type APIKeyInfos struct {
-	// Kind The kind of the credential
-	//
-	// Example: api-key
 	Kind APIKeyInfosKind `json:"kind"`
 
-	// Name The human-friendly name of the API Key
+	// Name The human-friendly name of the credential
 	//
-	// Example: Test Key
+	// Example: Test Credential
 	Name string `json:"name"`
 
 	// SecretKey The API Key secret key
@@ -723,57 +735,21 @@ type APIKeyInfos struct {
 	SecretKey string `json:"secret_key"`
 }
 
-// APIKeyInfosKind The kind of the credential
-//
-// Example: api-key
+// APIKeyInfosKind defines model for APIKeyInfos.Kind.
 type APIKeyInfosKind string
 
 // APIKeySecret defines model for APIKeySecret.
 type APIKeySecret struct {
+	Kind APIKeySecretKind `json:"kind"`
+
 	// SecretKey The API Key secret key
 	//
 	// Example: ai3ypnLUgkuOqm9uG978X+xetx9rDowo9G4DtQQIlKY...
 	SecretKey string `json:"secret_key"`
 }
 
-// AccessTokenRevokeGrant defines model for AccessTokenRevokeGrant.
-type AccessTokenRevokeGrant struct {
-	// Token A valid short-lived access token (JWT)
-	//
-	// Example: eyJhbGciOiJSUzI1NiIs...
-	Token string `json:"token"`
-
-	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint AccessTokenRevokeGrantTokenTypeHint `json:"token_type_hint"`
-}
-
-// AccessTokenRevokeGrantTokenTypeHint Hint to optimize node lookup
-type AccessTokenRevokeGrantTokenTypeHint string
-
-// AuthorizationCodeGrant defines model for AuthorizationCodeGrant.
-type AuthorizationCodeGrant struct {
-	// ClientName A user-friendly client name bound to the user's session
-	//
-	// Example: Roger CLI (Windows 11)
-	ClientName *string `json:"client_name,omitempty"`
-
-	// Code The single-use authorization code recieved from the loopback callback
-	//
-	// Example: rgr_ac_abc123
-	Code string `json:"code"`
-
-	// CodeVerifier The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))
-	CodeVerifier string `json:"code_verifier"`
-
-	// GrantType OAuth 2.1 grant type
-	GrantType AuthorizationCodeGrantGrantType `json:"grant_type"`
-
-	// RedirectUri The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))
-	RedirectUri string `json:"redirect_uri"`
-}
-
-// AuthorizationCodeGrantGrantType OAuth 2.1 grant type
-type AuthorizationCodeGrantGrantType string
+// APIKeySecretKind defines model for APIKeySecret.Kind.
+type APIKeySecretKind string
 
 // CreateCredentialRequestBody defines model for CreateCredentialRequestBody.
 type CreateCredentialRequestBody struct {
@@ -784,6 +760,91 @@ type CreateCredentialRequestBody struct {
 type Credential struct {
 	union json.RawMessage
 }
+
+// Deployment defines model for Deployment.
+type Deployment struct {
+	// CreatedAt The ISO timestamp at which the deployment was created
+	//
+	// Example: 2026-09-06T14:47:42.239Z
+	CreatedAt time.Time `json:"created_at"`
+
+	// EnvironmentId The ID of the environment the deployment belongs to
+	//
+	// Example: rgr_env_abc123
+	EnvironmentId string `json:"environment_id"`
+
+	// Id A unique deployment identifier
+	//
+	// Example: rgr_dply_abc123
+	Id string `json:"id"`
+
+	// LastDeployment The ID of the last active deployment
+	//
+	// Example: rgr_dply_abc123
+	LastDeployment *string `json:"last_deployment,omitempty"`
+
+	// Status The status of the deployment
+	//
+	// Example: error
+	Status DeploymentStatus `json:"status"`
+
+	// StatusMessage An optional message attached to the deployment status
+	//
+	// Example: Failed to upload place "lobby": the environment's credential lacks the necessary permissions
+	StatusMessage *string `json:"status_message,omitempty"`
+
+	// Version The deployment version string
+	//
+	// Example: v2.3.1-hotfix
+	Version string `json:"version"`
+}
+
+// DeploymentStatus The status of the deployment
+//
+// Example: error
+type DeploymentStatus string
+
+// Environment defines model for Environment.
+type Environment struct {
+	// CreatedAt The ISO timestamp at which the environment was created
+	CreatedAt time.Time `json:"created_at"`
+
+	// CredentialId The ID of the credential that will be used to communicate to Roblox for this environment
+	//
+	// Example: rgr_cred_abc123
+	CredentialId string `json:"credential_id"`
+
+	// Id A unique environment identifier
+	//
+	// Example: rgr_env_abc123
+	Id string `json:"id"`
+
+	// Kind The kind of resource the environment will manage (whole universe or single place)
+	//
+	// Example: universe
+	Kind EnvironmentKind `json:"kind"`
+
+	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
+	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
+
+	// Name The name of the environment (immutable)
+	//
+	// Example: production
+	Name string `json:"name"`
+
+	// UniverseId The ID of the universe linked to the environment (immutable for now)
+	//
+	// Example: 1234567890
+	UniverseId string `json:"universe_id"`
+
+	// UpdatedAt The ISO timestamp at which the environment was last updated
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+// EnvironmentKind The kind of resource the environment will manage (whole universe or single place)
+//
+// Example: universe
+type EnvironmentKind string
 
 // Error defines model for Error.
 type Error struct {
@@ -796,6 +857,11 @@ type Error struct {
 
 // InternalStorage defines model for InternalStorage.
 type InternalStorage struct {
+	// CreatedAt The ISO timestamp at which the S3 storage bucket was registered on the node
+	//
+	// Example: 2026-09-06T14:47:42.239Z
+	CreatedAt time.Time `json:"created_at"`
+
 	// Id A unique storage identifier
 	//
 	// Example: rgr_strg_abc123
@@ -810,9 +876,6 @@ type InternalStorage struct {
 	//
 	// Example: Main Storage
 	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner StorageOwner `json:"owner"`
 
 	// Status The current status of the storage object
 	//
@@ -834,7 +897,7 @@ type InternalStorage struct {
 	// Example: 1073741824
 	StorageUsed int `json:"storage_used"`
 
-	// UpdatedAt The ISO timestamp when the internal storage object was last updated
+	// UpdatedAt The ISO timestamp when the S3 storage bucket was last updated on the node
 	//
 	// Example: 2026-09-06T16:31:52.845Z
 	UpdatedAt time.Time `json:"updated_at"`
@@ -855,6 +918,119 @@ type LinkStorageObjectRequestBody struct {
 	union json.RawMessage
 }
 
+// Manifest defines model for Manifest.
+type Manifest struct {
+	// Environments Map environment names to their configuration
+	Environments map[string]ManifestEnvironment `json:"environments"`
+
+	// Node The base URL of the node in charge of your project
+	Node string `json:"node"`
+
+	// Project The ID of the target roger project
+	//
+	// Example: rgr_prj_abc123
+	Project string `json:"project"`
+}
+
+// ManifestEnvironment defines model for ManifestEnvironment.
+type ManifestEnvironment struct {
+	union json.RawMessage
+}
+
+// ManifestEnvironmentConfiguration Change the experience settings
+type ManifestEnvironmentConfiguration struct {
+	// AllowedDevices Restrict game access to specific devices
+	AllowedDevices *[]ManifestEnvironmentConfigurationAllowedDevices `json:"allowedDevices,omitempty"`
+
+	// EnableVoiceChat Whether or not voice chat should be enabled
+	EnableVoiceChat *bool `json:"enableVoiceChat,omitempty"`
+
+	// PrivateServerPrice The price of private servers. Disabled if unset
+	PrivateServerPrice *int `json:"privateServerPrice,omitempty"`
+}
+
+// ManifestEnvironmentConfigurationAllowedDevices defines model for ManifestEnvironmentConfiguration.AllowedDevices.
+type ManifestEnvironmentConfigurationAllowedDevices string
+
+// ManifestPlace The universe's starting place (its entry point / root place)
+type ManifestPlace struct {
+	// Description The place's description
+	Description *string `json:"description,omitempty"`
+
+	// File The relative path to the target artefact
+	File string `json:"file"`
+
+	// ServerSize The maximum amount of number allowed in a signle server instance
+	ServerSize *int `json:"serverSize,omitempty"`
+
+	// Title The place's name
+	Title string `json:"title"`
+}
+
+// ManifestPlaceEnvironment defines model for ManifestPlaceEnvironment.
+type ManifestPlaceEnvironment struct {
+	// Branches Branch patterns that need to be matched with the current active git branch in order to push a deployment
+	Branches *[]string `json:"branches,omitempty"`
+
+	// Kind The type of resource the environment manages
+	Kind       ManifestPlaceEnvironmentKind       `json:"kind"`
+	Place      map[string]ManifestPlace           `json:"place"`
+	Versioning ManifestPlaceEnvironmentVersioning `json:"versioning"`
+}
+
+// ManifestPlaceEnvironmentKind The type of resource the environment manages
+type ManifestPlaceEnvironmentKind string
+
+// ManifestPlaceEnvironmentVersioning defines model for ManifestPlaceEnvironment.Versioning.
+type ManifestPlaceEnvironmentVersioning string
+
+// ManifestSocialLink defines model for ManifestSocialLink.
+type ManifestSocialLink struct {
+	// Title The title of the social link (shown to users)
+	Title string `json:"title"`
+
+	// Type The target social platform
+	Type ManifestSocialLinkType `json:"type"`
+
+	// Url The url of the social link
+	Url string `json:"url"`
+}
+
+// ManifestSocialLinkType The target social platform
+type ManifestSocialLinkType string
+
+// ManifestUniverseEnvironment defines model for ManifestUniverseEnvironment.
+type ManifestUniverseEnvironment struct {
+	// Branches Branch patterns that need to be matched with the current active git branch in order to push a deployment
+	Branches *[]string `json:"branches,omitempty"`
+
+	// Configuration Change the experience settings
+	Configuration *ManifestEnvironmentConfiguration `json:"configuration,omitempty"`
+
+	// Kind The type of resource the environment manages
+	Kind ManifestUniverseEnvironmentKind `json:"kind"`
+
+	// Places A map of place names to their configuration. Must include a 'start' place.
+	Places ManifestUniverseEnvironment_Places `json:"places"`
+
+	// SocialLinks An array of social links displayed on the game's front page
+	SocialLinks *[]ManifestSocialLink                 `json:"socialLinks,omitempty"`
+	Versioning  ManifestUniverseEnvironmentVersioning `json:"versioning"`
+}
+
+// ManifestUniverseEnvironmentKind The type of resource the environment manages
+type ManifestUniverseEnvironmentKind string
+
+// ManifestUniverseEnvironment_Places A map of place names to their configuration. Must include a 'start' place.
+type ManifestUniverseEnvironment_Places struct {
+	// Start The universe's starting place (its entry point / root place)
+	Start                ManifestPlace            `json:"start"`
+	AdditionalProperties map[string]ManifestPlace `json:"-"`
+}
+
+// ManifestUniverseEnvironmentVersioning defines model for ManifestUniverseEnvironment.Versioning.
+type ManifestUniverseEnvironmentVersioning string
+
 // PlaceTarget defines model for PlaceTarget.
 type PlaceTarget struct {
 	// CreatedAt The ISO timestamp at which the place was registered
@@ -870,9 +1046,6 @@ type PlaceTarget struct {
 	// Example: place
 	Kind PlaceTargetKind `json:"kind"`
 
-	// LastUpdatedAt The ISO timestamp at which the place was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
 	// Name The name used in the config file to reference this place
 	//
 	// Example: arena
@@ -880,6 +1053,9 @@ type PlaceTarget struct {
 
 	// PlaceId The linked Roblox place's ID
 	PlaceId string `json:"place_id"`
+
+	// UpdatedAt The ISO timestamp at which the place was last updated
+	UpdatedAt time.Time `json:"updated_at"`
 
 	// UsedIn The ID of every deployment that currently uses this target
 	UsedIn []string `json:"used_in"`
@@ -890,38 +1066,48 @@ type PlaceTarget struct {
 // Example: place
 type PlaceTargetKind string
 
-// RefreshTokenGrant defines model for RefreshTokenGrant.
-type RefreshTokenGrant struct {
-	// GrantType OAuth 2.1 grant type
-	GrantType RefreshTokenGrantGrantType `json:"grant_type"`
-
-	// RefreshToken The long-lived refresh token issued by the node on last refresh
+// Project defines model for Project.
+type Project struct {
+	// CreatedAt The ISO timestamp at which the project was created
 	//
-	// Example: rgr_rt_abc123
-	RefreshToken string `json:"refresh_token"`
-}
+	// Example: 2026-09-06T14:47:42.239Z
+	CreatedAt time.Time `json:"created_at"`
 
-// RefreshTokenGrantGrantType OAuth 2.1 grant type
-type RefreshTokenGrantGrantType string
-
-// RefreshTokenRevokeGrant defines model for RefreshTokenRevokeGrant.
-type RefreshTokenRevokeGrant struct {
-	// Token A long-lived token used to request new short-lived JWTs
+	// Id A unique project identifier
 	//
-	// Example: rgr_rt_abc123
-	Token string `json:"token"`
+	// Example: rgr_prj_abc123
+	Id string `json:"id"`
 
-	// TokenTypeHint Hint to optimize node lookup
-	TokenTypeHint RefreshTokenRevokeGrantTokenTypeHint `json:"token_type_hint"`
+	// Kind The type of resource the project will manage
+	//
+	// Example: game
+	Kind ProjectKind `json:"kind"`
+
+	// LastDeployedAt The ISO timestamp of the last project deployment
+	//
+	// Example: 2026-09-06T16:32:57.627Z
+	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
+
+	// Name The name of the project
+	//
+	// Example: My Awesome Game!
+	Name string `json:"name"`
+
+	// StorageId The ID of the storage object used to store the project's artifacts
+	//
+	// Example: rgr_strg_abc123
+	StorageId string `json:"storage_id"`
+
+	// UpdatedAt The ISO timestamp when project was last updated
+	//
+	// Example: 2026-09-06T16:31:52.845Z
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// RefreshTokenRevokeGrantTokenTypeHint Hint to optimize node lookup
-type RefreshTokenRevokeGrantTokenTypeHint string
-
-// RevokeRequestBody defines model for RevokeRequestBody.
-type RevokeRequestBody struct {
-	union json.RawMessage
-}
+// ProjectKind The type of resource the project will manage
+//
+// Example: game
+type ProjectKind string
 
 // RotateCredentialRequestBody defines model for RotateCredentialRequestBody.
 type RotateCredentialRequestBody struct {
@@ -959,9 +1145,6 @@ type S3CompatibleStorage struct {
 	//
 	// Example: Main Storage
 	Name string `json:"name"`
-
-	// Owner An object representing the ressource that owns the storage object
-	Owner StorageOwner `json:"owner"`
 
 	// Region The region of your S3 bucket
 	//
@@ -1009,12 +1192,8 @@ type S3CompatibleStorageInfos struct {
 	// BucketName The name of the target S3 storage bucket
 	//
 	// Example: roger-bucket
-	BucketName string `json:"bucket_name"`
-
-	// Kind The kind of storage referenced by this object
-	//
-	// Example: S3
-	Kind S3CompatibleStorageInfosKind `json:"kind"`
+	BucketName string                       `json:"bucket_name"`
+	Kind       S3CompatibleStorageInfosKind `json:"kind"`
 
 	// Name The human-friendly display name of the storage object
 	//
@@ -1037,9 +1216,7 @@ type S3CompatibleStorageInfos struct {
 	StorageEndpoint string `json:"storage_endpoint"`
 }
 
-// S3CompatibleStorageInfosKind The kind of storage referenced by this object
-//
-// Example: S3
+// S3CompatibleStorageInfosKind defines model for S3CompatibleStorageInfos.Kind.
 type S3CompatibleStorageInfosKind string
 
 // S3Credentials defines model for S3Credentials.
@@ -1047,7 +1224,8 @@ type S3Credentials struct {
 	// AccessKeyId The S3 access key id
 	//
 	// Example: SomeAccessKeyId
-	AccessKeyId string `json:"access_key_id"`
+	AccessKeyId string            `json:"access_key_id"`
+	Kind        S3CredentialsKind `json:"kind"`
 
 	// SecretAccessKey The secret key associated with the Access Key ID
 	//
@@ -1055,23 +1233,16 @@ type S3Credentials struct {
 	SecretAccessKey string `json:"secret_access_key"`
 }
 
+// S3CredentialsKind defines model for S3Credentials.Kind.
+type S3CredentialsKind string
+
 // StorageObject defines model for StorageObject.
 type StorageObject struct {
 	union json.RawMessage
 }
 
-// StorageOwner An object representing the ressource that owns the storage object
-type StorageOwner struct {
-	union json.RawMessage
-}
-
 // Target defines model for Target.
 type Target struct {
-	union json.RawMessage
-}
-
-// TokenRequestBody defines model for TokenRequestBody.
-type TokenRequestBody struct {
 	union json.RawMessage
 }
 
@@ -1111,44 +1282,72 @@ type UserSession struct {
 	LastUsedAt time.Time `json:"last_used_at"`
 }
 
-// UserStorageOwner defines model for UserStorageOwner.
-type UserStorageOwner struct {
-	// Id A unique prefixed user identifier
-	//
-	// Example: rgr_usr_abc123
-	Id string `json:"id"`
-
-	// Kind The type of owner that owns the storage object
-	//
-	// Example: user
-	Kind UserStorageOwnerKind `json:"kind"`
-}
-
-// UserStorageOwnerKind The type of owner that owns the storage object
-//
-// Example: user
-type UserStorageOwnerKind string
-
 // InitiateOAuthLoginParams defines parameters for InitiateOAuthLogin.
 type InitiateOAuthLoginParams struct {
 	// Provider The ID of the provider to use
-	Provider string `form:"provider" json:"provider"`
+	Provider     string                               `form:"provider" json:"provider"`
+	ResponseType InitiateOAuthLoginParamsResponseType `form:"response_type" json:"response_type"`
 
 	// CodeChallenge See [RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.2)
 	CodeChallenge string `form:"code_challenge" json:"code_challenge"`
 
 	// CodeChallengeMethod The hashing method used to create the code challenge (RFC 7636)
-	CodeChallengeMethod *InitiateOAuthLoginParamsCodeChallengeMethod `form:"code_challenge_method,omitempty" json:"code_challenge_method,omitempty"`
+	CodeChallengeMethod InitiateOAuthLoginParamsCodeChallengeMethod `form:"code_challenge_method" json:"code_challenge_method"`
 
 	// RedirectUri The client callback URL the user will be redirected to with a server-issued authorization code
 	RedirectUri string `form:"redirect_uri" json:"redirect_uri"`
 
 	// State A high-entropy unique CSRF token that will be passed back in the loopback callback
-	State string `form:"state" json:"state"`
+	State *string `form:"state,omitempty" json:"state,omitempty"`
 }
+
+// InitiateOAuthLoginParamsResponseType defines parameters for InitiateOAuthLogin.
+type InitiateOAuthLoginParamsResponseType string
 
 // InitiateOAuthLoginParamsCodeChallengeMethod defines parameters for InitiateOAuthLogin.
 type InitiateOAuthLoginParamsCodeChallengeMethod string
+
+// RevokeTokenFormdataBody defines parameters for RevokeToken.
+type RevokeTokenFormdataBody struct {
+	// Token A valid short-lived access token (JWT) or refresh token
+	Token string `form:"token" json:"token"`
+
+	// TokenTypeHint Hint to optimize node lookup
+	TokenTypeHint *RevokeTokenFormdataBodyTokenTypeHint `form:"token_type_hint,omitempty" json:"token_type_hint,omitempty"`
+}
+
+// RevokeTokenFormdataBodyTokenTypeHint defines parameters for RevokeToken.
+type RevokeTokenFormdataBodyTokenTypeHint string
+
+// ExchangeTokenFormdataBody defines parameters for ExchangeToken.
+type ExchangeTokenFormdataBody struct {
+	// ClientName A user-friendly client name bound to the user's session
+	//
+	// Example: Roger CLI (Windows 11)
+	ClientName *string `form:"client_name,omitempty" json:"client_name,omitempty"`
+
+	// Code The single-use authorization code received from the loopback callback
+	//
+	// Example: rgr_ac_abc123
+	Code *string `form:"code,omitempty" json:"code,omitempty"`
+
+	// CodeVerifier The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))
+	CodeVerifier *string `form:"code_verifier,omitempty" json:"code_verifier,omitempty"`
+
+	// GrantType OAuth 2.1 grant type
+	GrantType ExchangeTokenFormdataBodyGrantType `form:"grant_type" json:"grant_type"`
+
+	// RedirectUri The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))
+	RedirectUri *string `form:"redirect_uri,omitempty" json:"redirect_uri,omitempty"`
+
+	// RefreshToken The long-lived refresh token issued by the node on last refresh
+	//
+	// Example: rgr_rt_abc123
+	RefreshToken *string `form:"refresh_token,omitempty" json:"refresh_token,omitempty"`
+}
+
+// ExchangeTokenFormdataBodyGrantType defines parameters for ExchangeToken.
+type ExchangeTokenFormdataBodyGrantType string
 
 // ExchangeToken200JSONResponseBodyTokenType defines parameters for ExchangeToken.
 type ExchangeToken200JSONResponseBodyTokenType string
@@ -1159,6 +1358,9 @@ type GetFeatures200JSONResponseBodyFeaturesCoreAuthProvidersKind string
 // GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds defines parameters for GetFeatures.
 type GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds string
 
+// GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm defines parameters for GetFeatures.
+type GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm string
+
 // GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds defines parameters for GetFeatures.
 type GetFeatures200JSONResponseBodyFeaturesCoreProjectsSupportedProjectKinds string
 
@@ -1168,12 +1370,9 @@ type GetFeatures200JSONResponseBodyFeaturesCoreStorageSupportedStorageKinds stri
 // GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds defines parameters for GetFeatures.
 type GetFeatures200JSONResponseBodyFeaturesCoreTargetsSupportedTargetKinds string
 
-// ListProjects200JSONResponseBodyKind defines parameters for ListProjects.
-type ListProjects200JSONResponseBodyKind string
-
 // CreateProjectJSONBody defines parameters for CreateProject.
 type CreateProjectJSONBody struct {
-	// Kind The type of ressource the project will manage
+	// Kind The type of resource the project will manage
 	//
 	// Example: game
 	Kind CreateProjectJSONBodyKind `json:"kind"`
@@ -1192,12 +1391,6 @@ type CreateProjectJSONBody struct {
 // CreateProjectJSONBodyKind defines parameters for CreateProject.
 type CreateProjectJSONBodyKind string
 
-// CreateProject200JSONResponseBodyKind defines parameters for CreateProject.
-type CreateProject200JSONResponseBodyKind string
-
-// DeleteProject200JSONResponseBodyKind defines parameters for DeleteProject.
-type DeleteProject200JSONResponseBodyKind string
-
 // RenameProjectJSONBody defines parameters for RenameProject.
 type RenameProjectJSONBody struct {
 	// Name The name of the project
@@ -1206,50 +1399,31 @@ type RenameProjectJSONBody struct {
 	Name string `json:"name"`
 }
 
-// RenameProject200JSONResponseBodyKind defines parameters for RenameProject.
-type RenameProject200JSONResponseBodyKind string
-
-// CheckArtifactsJSONBody defines parameters for CheckArtifacts.
-type CheckArtifactsJSONBody struct {
-	// Hashes An array of hashes to check
-	//
-	// Example: ["abcd1234","qwerty0987"]
-	Hashes []string `json:"hashes"`
-}
-
 // RenameCredentialJSONBody defines parameters for RenameCredential.
 type RenameCredentialJSONBody struct {
-	// Name The human-friendly name of the API Key
+	// Name The human-friendly name of the credential
 	//
-	// Example: Test Key
+	// Example: Test Credential
 	Name string `json:"name"`
 }
 
-// ListDeployments200JSONResponseBodyStatus defines parameters for ListDeployments.
-type ListDeployments200JSONResponseBodyStatus string
-
-// CreateDeploymentMultipartBody defines parameters for CreateDeployment.
-type CreateDeploymentMultipartBody struct {
-	// Action The action that should be done on the deployment after upload
+// CreateDeploymentJSONBody defines parameters for CreateDeployment.
+type CreateDeploymentJSONBody struct {
+	// Action The action that should be done on the deployment after creation
 	//
 	// Example: stage
-	Action CreateDeploymentMultipartBodyAction `json:"action"`
-
-	// Config The roger.yml config file
-	Config *openapi_types.File `json:"config,omitempty"`
+	Action CreateDeploymentJSONBodyAction `json:"action"`
 
 	// EnvironmentId The ID of the environment the deployment belongs to
 	//
 	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environmentId"`
+	EnvironmentId string   `json:"environment_id"`
+	Manifest      Manifest `json:"manifest"`
 
-	// PlaceHashes A stringified JSON object mapping place names to artifact hashes already stored on the server (checked via the /artifacts/check route)
+	// PlaceHashes A map of every place name declared in the manifest to their uploaded artifact hash
 	//
-	// Example: {"lobby": "abc123...", "arena": "def456..."}
-	PlaceHashes *string `json:"place_hashes,omitempty"`
-
-	// Places An array of zipped rbxl binaries, one per place. Each part must use the place name as it's filename
-	Places *[]openapi_types.File `json:"places,omitempty"`
+	// Example: {"arena":"c01eaf870848a93224426b8eed25702982f4cce01459c8a53874eccb22fe8a0e","lobby":"f3a1ef5671fbafb086ed06a5be7c091f39ef8cebae9dd0b160ec4d68e5b322db"}
+	PlaceHashes map[string]string `json:"place_hashes"`
 
 	// Version The deployment version string
 	//
@@ -1257,20 +1431,8 @@ type CreateDeploymentMultipartBody struct {
 	Version string `json:"version"`
 }
 
-// CreateDeploymentMultipartBodyAction defines parameters for CreateDeployment.
-type CreateDeploymentMultipartBodyAction string
-
-// CreateDeployment200JSONResponseBodyStatus defines parameters for CreateDeployment.
-type CreateDeployment200JSONResponseBodyStatus string
-
-// DeleteDeployment200JSONResponseBodyStatus defines parameters for DeleteDeployment.
-type DeleteDeployment200JSONResponseBodyStatus string
-
-// TriggerDeployment200JSONResponseBodyStatus defines parameters for TriggerDeployment.
-type TriggerDeployment200JSONResponseBodyStatus string
-
-// ListEnvironments200JSONResponseBodyKind defines parameters for ListEnvironments.
-type ListEnvironments200JSONResponseBodyKind string
+// CreateDeploymentJSONBodyAction defines parameters for CreateDeployment.
+type CreateDeploymentJSONBodyAction string
 
 // CreateEnvironmentJSONBody defines parameters for CreateEnvironment.
 type CreateEnvironmentJSONBody struct {
@@ -1279,7 +1441,7 @@ type CreateEnvironmentJSONBody struct {
 	// Example: rgr_cred_abc123
 	CredentialId string `json:"credential_id"`
 
-	// Kind The kind of ressource the environment will manage (whole universe or single place)
+	// Kind The kind of resource the environment will manage (whole universe or single place)
 	//
 	// Example: universe
 	Kind CreateEnvironmentJSONBodyKind `json:"kind"`
@@ -1298,14 +1460,13 @@ type CreateEnvironmentJSONBody struct {
 // CreateEnvironmentJSONBodyKind defines parameters for CreateEnvironment.
 type CreateEnvironmentJSONBodyKind string
 
-// CreateEnvironment200JSONResponseBodyKind defines parameters for CreateEnvironment.
-type CreateEnvironment200JSONResponseBodyKind string
-
-// DeleteEnvironment200JSONResponseBodyKind defines parameters for DeleteEnvironment.
-type DeleteEnvironment200JSONResponseBodyKind string
-
 // CreateTargetJSONBody defines parameters for CreateTarget.
 type CreateTargetJSONBody struct {
+	// Kind The type of the target
+	//
+	// Example: place
+	Kind CreateTargetJSONBodyKind `json:"kind"`
+
 	// Name The name used in the config file to reference this place
 	//
 	// Example: arena
@@ -1315,8 +1476,11 @@ type CreateTargetJSONBody struct {
 	PlaceId string `json:"place_id"`
 }
 
-// ChangeTargetRessourceIdJSONBody defines parameters for ChangeTargetRessourceId.
-type ChangeTargetRessourceIdJSONBody struct {
+// CreateTargetJSONBodyKind defines parameters for CreateTarget.
+type CreateTargetJSONBodyKind string
+
+// ChangeTargetResourceIdJSONBody defines parameters for ChangeTargetResourceId.
+type ChangeTargetResourceIdJSONBody struct {
 	// PlaceId The linked Roblox place's ID
 	PlaceId string `json:"place_id"`
 }
@@ -1329,20 +1493,17 @@ type RenameStorageObjectJSONBody struct {
 	Name string `json:"name"`
 }
 
-// RevokeTokenJSONRequestBody defines body for RevokeToken for application/json ContentType.
-type RevokeTokenJSONRequestBody = RevokeRequestBody
+// RevokeTokenFormdataRequestBody defines body for RevokeToken for application/x-www-form-urlencoded ContentType.
+type RevokeTokenFormdataRequestBody RevokeTokenFormdataBody
 
-// ExchangeTokenJSONRequestBody defines body for ExchangeToken for application/json ContentType.
-type ExchangeTokenJSONRequestBody = TokenRequestBody
+// ExchangeTokenFormdataRequestBody defines body for ExchangeToken for application/x-www-form-urlencoded ContentType.
+type ExchangeTokenFormdataRequestBody ExchangeTokenFormdataBody
 
 // CreateProjectJSONRequestBody defines body for CreateProject for application/json ContentType.
 type CreateProjectJSONRequestBody CreateProjectJSONBody
 
 // RenameProjectJSONRequestBody defines body for RenameProject for application/json ContentType.
 type RenameProjectJSONRequestBody RenameProjectJSONBody
-
-// CheckArtifactsJSONRequestBody defines body for CheckArtifacts for application/json ContentType.
-type CheckArtifactsJSONRequestBody CheckArtifactsJSONBody
 
 // CreateCredentialJSONRequestBody defines body for CreateCredential for application/json ContentType.
 type CreateCredentialJSONRequestBody = CreateCredentialRequestBody
@@ -1353,8 +1514,8 @@ type RenameCredentialJSONRequestBody RenameCredentialJSONBody
 // RotateCredentialJSONRequestBody defines body for RotateCredential for application/json ContentType.
 type RotateCredentialJSONRequestBody = RotateCredentialRequestBody
 
-// CreateDeploymentMultipartRequestBody defines body for CreateDeployment for multipart/form-data ContentType.
-type CreateDeploymentMultipartRequestBody CreateDeploymentMultipartBody
+// CreateDeploymentJSONRequestBody defines body for CreateDeployment for application/json ContentType.
+type CreateDeploymentJSONRequestBody CreateDeploymentJSONBody
 
 // CreateEnvironmentJSONRequestBody defines body for CreateEnvironment for application/json ContentType.
 type CreateEnvironmentJSONRequestBody CreateEnvironmentJSONBody
@@ -1362,8 +1523,8 @@ type CreateEnvironmentJSONRequestBody CreateEnvironmentJSONBody
 // CreateTargetJSONRequestBody defines body for CreateTarget for application/json ContentType.
 type CreateTargetJSONRequestBody CreateTargetJSONBody
 
-// ChangeTargetRessourceIdJSONRequestBody defines body for ChangeTargetRessourceId for application/json ContentType.
-type ChangeTargetRessourceIdJSONRequestBody ChangeTargetRessourceIdJSONBody
+// ChangeTargetResourceIdJSONRequestBody defines body for ChangeTargetResourceId for application/json ContentType.
+type ChangeTargetResourceIdJSONRequestBody ChangeTargetResourceIdJSONBody
 
 // CreateStorageObjectJSONRequestBody defines body for CreateStorageObject for application/json ContentType.
 type CreateStorageObjectJSONRequestBody = LinkStorageObjectRequestBody
@@ -1373,6 +1534,72 @@ type RenameStorageObjectJSONRequestBody RenameStorageObjectJSONBody
 
 // RotateStorageObjectJSONRequestBody defines body for RotateStorageObject for application/json ContentType.
 type RotateStorageObjectJSONRequestBody = RotateStorageObjectRequestBody
+
+// Getter for additional properties for ManifestUniverseEnvironment_Places. Returns the specified
+// element and whether it was found
+func (a ManifestUniverseEnvironment_Places) Get(fieldName string) (value ManifestPlace, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ManifestUniverseEnvironment_Places
+func (a *ManifestUniverseEnvironment_Places) Set(fieldName string, value ManifestPlace) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]ManifestPlace)
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ManifestUniverseEnvironment_Places to handle AdditionalProperties
+func (a *ManifestUniverseEnvironment_Places) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["start"]; found {
+		err = json.Unmarshal(raw, &a.Start)
+		if err != nil {
+			return fmt.Errorf("error reading 'start': %w", err)
+		}
+		delete(object, "start")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]ManifestPlace)
+		for fieldName, fieldBuf := range object {
+			var fieldVal ManifestPlace
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ManifestUniverseEnvironment_Places to handle AdditionalProperties
+func (a ManifestUniverseEnvironment_Places) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["start"], err = json.Marshal(a.Start)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'start': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // AsAPIKeyInfos returns the union data inside the CreateCredentialRequestBody as a APIKeyInfos
 func (t CreateCredentialRequestBody) AsAPIKeyInfos() (APIKeyInfos, error) {
@@ -1569,31 +1796,31 @@ func (t *LinkStorageObjectRequestBody) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsAccessTokenRevokeGrant returns the union data inside the RevokeRequestBody as a AccessTokenRevokeGrant
-func (t RevokeRequestBody) AsAccessTokenRevokeGrant() (AccessTokenRevokeGrant, error) {
-	var body AccessTokenRevokeGrant
+// AsManifestUniverseEnvironment returns the union data inside the ManifestEnvironment as a ManifestUniverseEnvironment
+func (t ManifestEnvironment) AsManifestUniverseEnvironment() (ManifestUniverseEnvironment, error) {
+	var body ManifestUniverseEnvironment
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromAccessTokenRevokeGrant overwrites any union data inside the RevokeRequestBody as the provided AccessTokenRevokeGrant
-func (t *RevokeRequestBody) FromAccessTokenRevokeGrant(v AccessTokenRevokeGrant) error {
+// FromManifestUniverseEnvironment overwrites any union data inside the ManifestEnvironment as the provided ManifestUniverseEnvironment
+func (t *ManifestEnvironment) FromManifestUniverseEnvironment(v ManifestUniverseEnvironment) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
 	}
-	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"access_token"}`))
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"universe"}`))
 	t.union = b
 	return err
 }
 
-// MergeAccessTokenRevokeGrant performs a merge with any union data inside the RevokeRequestBody, using the provided AccessTokenRevokeGrant
-func (t *RevokeRequestBody) MergeAccessTokenRevokeGrant(v AccessTokenRevokeGrant) error {
+// MergeManifestUniverseEnvironment performs a merge with any union data inside the ManifestEnvironment, using the provided ManifestUniverseEnvironment
+func (t *ManifestEnvironment) MergeManifestUniverseEnvironment(v ManifestUniverseEnvironment) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
 	}
-	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"access_token"}`))
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"universe"}`))
 	if err != nil {
 		return err
 	}
@@ -1603,31 +1830,31 @@ func (t *RevokeRequestBody) MergeAccessTokenRevokeGrant(v AccessTokenRevokeGrant
 	return err
 }
 
-// AsRefreshTokenRevokeGrant returns the union data inside the RevokeRequestBody as a RefreshTokenRevokeGrant
-func (t RevokeRequestBody) AsRefreshTokenRevokeGrant() (RefreshTokenRevokeGrant, error) {
-	var body RefreshTokenRevokeGrant
+// AsManifestPlaceEnvironment returns the union data inside the ManifestEnvironment as a ManifestPlaceEnvironment
+func (t ManifestEnvironment) AsManifestPlaceEnvironment() (ManifestPlaceEnvironment, error) {
+	var body ManifestPlaceEnvironment
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromRefreshTokenRevokeGrant overwrites any union data inside the RevokeRequestBody as the provided RefreshTokenRevokeGrant
-func (t *RevokeRequestBody) FromRefreshTokenRevokeGrant(v RefreshTokenRevokeGrant) error {
+// FromManifestPlaceEnvironment overwrites any union data inside the ManifestEnvironment as the provided ManifestPlaceEnvironment
+func (t *ManifestEnvironment) FromManifestPlaceEnvironment(v ManifestPlaceEnvironment) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
 	}
-	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"refresh_token"}`))
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"place"}`))
 	t.union = b
 	return err
 }
 
-// MergeRefreshTokenRevokeGrant performs a merge with any union data inside the RevokeRequestBody, using the provided RefreshTokenRevokeGrant
-func (t *RevokeRequestBody) MergeRefreshTokenRevokeGrant(v RefreshTokenRevokeGrant) error {
+// MergeManifestPlaceEnvironment performs a merge with any union data inside the ManifestEnvironment, using the provided ManifestPlaceEnvironment
+func (t *ManifestEnvironment) MergeManifestPlaceEnvironment(v ManifestPlaceEnvironment) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
 	}
-	b, err = runtime.JSONMerge(b, []byte(`{"token_type_hint":"refresh_token"}`))
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"place"}`))
 	if err != nil {
 		return err
 	}
@@ -1637,35 +1864,35 @@ func (t *RevokeRequestBody) MergeRefreshTokenRevokeGrant(v RefreshTokenRevokeGra
 	return err
 }
 
-func (t RevokeRequestBody) Discriminator() (string, error) {
+func (t ManifestEnvironment) Discriminator() (string, error) {
 	var discriminator struct {
-		Discriminator string `json:"token_type_hint"`
+		Discriminator string `json:"kind"`
 	}
 	err := json.Unmarshal(t.union, &discriminator)
 	return discriminator.Discriminator, err
 }
 
-func (t RevokeRequestBody) ValueByDiscriminator() (interface{}, error) {
+func (t ManifestEnvironment) ValueByDiscriminator() (interface{}, error) {
 	discriminator, err := t.Discriminator()
 	if err != nil {
 		return nil, err
 	}
 	switch discriminator {
-	case "access_token":
-		return t.AsAccessTokenRevokeGrant()
-	case "refresh_token":
-		return t.AsRefreshTokenRevokeGrant()
+	case "place":
+		return t.AsManifestPlaceEnvironment()
+	case "universe":
+		return t.AsManifestUniverseEnvironment()
 	default:
 		return nil, errors.New("unknown discriminator value: " + discriminator)
 	}
 }
 
-func (t RevokeRequestBody) MarshalJSON() ([]byte, error) {
+func (t ManifestEnvironment) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *RevokeRequestBody) UnmarshalJSON(b []byte) error {
+func (t *ManifestEnvironment) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -1680,6 +1907,10 @@ func (t RotateCredentialRequestBody) AsAPIKeySecret() (APIKeySecret, error) {
 // FromAPIKeySecret overwrites any union data inside the RotateCredentialRequestBody as the provided APIKeySecret
 func (t *RotateCredentialRequestBody) FromAPIKeySecret(v APIKeySecret) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
 	t.union = b
 	return err
 }
@@ -1690,10 +1921,35 @@ func (t *RotateCredentialRequestBody) MergeAPIKeySecret(v APIKeySecret) error {
 	if err != nil {
 		return err
 	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"api-key"}`))
+	if err != nil {
+		return err
+	}
 
 	merged, err := runtime.JSONMerge(t.union, b)
 	t.union = merged
 	return err
+}
+
+func (t RotateCredentialRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t RotateCredentialRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "api-key":
+		return t.AsAPIKeySecret()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
 }
 
 func (t RotateCredentialRequestBody) MarshalJSON() ([]byte, error) {
@@ -1716,6 +1972,10 @@ func (t RotateStorageObjectRequestBody) AsS3Credentials() (S3Credentials, error)
 // FromS3Credentials overwrites any union data inside the RotateStorageObjectRequestBody as the provided S3Credentials
 func (t *RotateStorageObjectRequestBody) FromS3Credentials(v S3Credentials) error {
 	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
 	t.union = b
 	return err
 }
@@ -1726,10 +1986,35 @@ func (t *RotateStorageObjectRequestBody) MergeS3Credentials(v S3Credentials) err
 	if err != nil {
 		return err
 	}
+	b, err = runtime.JSONMerge(b, []byte(`{"kind":"S3"}`))
+	if err != nil {
+		return err
+	}
 
 	merged, err := runtime.JSONMerge(t.union, b)
 	t.union = merged
 	return err
+}
+
+func (t RotateStorageObjectRequestBody) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"kind"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t RotateStorageObjectRequestBody) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "S3":
+		return t.AsS3Credentials()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
 }
 
 func (t RotateStorageObjectRequestBody) MarshalJSON() ([]byte, error) {
@@ -1843,71 +2128,6 @@ func (t *StorageObject) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsUserStorageOwner returns the union data inside the StorageOwner as a UserStorageOwner
-func (t StorageOwner) AsUserStorageOwner() (UserStorageOwner, error) {
-	var body UserStorageOwner
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromUserStorageOwner overwrites any union data inside the StorageOwner as the provided UserStorageOwner
-func (t *StorageOwner) FromUserStorageOwner(v UserStorageOwner) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"kind":"user"}`))
-	t.union = b
-	return err
-}
-
-// MergeUserStorageOwner performs a merge with any union data inside the StorageOwner, using the provided UserStorageOwner
-func (t *StorageOwner) MergeUserStorageOwner(v UserStorageOwner) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"kind":"user"}`))
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t StorageOwner) Discriminator() (string, error) {
-	var discriminator struct {
-		Discriminator string `json:"kind"`
-	}
-	err := json.Unmarshal(t.union, &discriminator)
-	return discriminator.Discriminator, err
-}
-
-func (t StorageOwner) ValueByDiscriminator() (interface{}, error) {
-	discriminator, err := t.Discriminator()
-	if err != nil {
-		return nil, err
-	}
-	switch discriminator {
-	case "user":
-		return t.AsUserStorageOwner()
-	default:
-		return nil, errors.New("unknown discriminator value: " + discriminator)
-	}
-}
-
-func (t StorageOwner) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *StorageOwner) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsPlaceTarget returns the union data inside the Target as a PlaceTarget
 func (t Target) AsPlaceTarget() (PlaceTarget, error) {
 	var body PlaceTarget
@@ -1973,107 +2193,6 @@ func (t *Target) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsAuthorizationCodeGrant returns the union data inside the TokenRequestBody as a AuthorizationCodeGrant
-func (t TokenRequestBody) AsAuthorizationCodeGrant() (AuthorizationCodeGrant, error) {
-	var body AuthorizationCodeGrant
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAuthorizationCodeGrant overwrites any union data inside the TokenRequestBody as the provided AuthorizationCodeGrant
-func (t *TokenRequestBody) FromAuthorizationCodeGrant(v AuthorizationCodeGrant) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"authorization_code"}`))
-	t.union = b
-	return err
-}
-
-// MergeAuthorizationCodeGrant performs a merge with any union data inside the TokenRequestBody, using the provided AuthorizationCodeGrant
-func (t *TokenRequestBody) MergeAuthorizationCodeGrant(v AuthorizationCodeGrant) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"authorization_code"}`))
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRefreshTokenGrant returns the union data inside the TokenRequestBody as a RefreshTokenGrant
-func (t TokenRequestBody) AsRefreshTokenGrant() (RefreshTokenGrant, error) {
-	var body RefreshTokenGrant
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRefreshTokenGrant overwrites any union data inside the TokenRequestBody as the provided RefreshTokenGrant
-func (t *TokenRequestBody) FromRefreshTokenGrant(v RefreshTokenGrant) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"refresh_token"}`))
-	t.union = b
-	return err
-}
-
-// MergeRefreshTokenGrant performs a merge with any union data inside the TokenRequestBody, using the provided RefreshTokenGrant
-func (t *TokenRequestBody) MergeRefreshTokenGrant(v RefreshTokenGrant) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-	b, err = runtime.JSONMerge(b, []byte(`{"grant_type":"refresh_token"}`))
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TokenRequestBody) Discriminator() (string, error) {
-	var discriminator struct {
-		Discriminator string `json:"grant_type"`
-	}
-	err := json.Unmarshal(t.union, &discriminator)
-	return discriminator.Discriminator, err
-}
-
-func (t TokenRequestBody) ValueByDiscriminator() (interface{}, error) {
-	discriminator, err := t.Discriminator()
-	if err != nil {
-		return nil, err
-	}
-	switch discriminator {
-	case "authorization_code":
-		return t.AsAuthorizationCodeGrant()
-	case "refresh_token":
-		return t.AsRefreshTokenGrant()
-	default:
-		return nil, errors.New("unknown discriminator value: " + discriminator)
-	}
-}
-
-func (t TokenRequestBody) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TokenRequestBody) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 	// InitiateOAuthLogin Initiate OAuth Login
@@ -2109,9 +2228,9 @@ type ServerInterface interface {
 	// RenameProject Rename a Project
 	// (PUT /_roger/v1/projects/{projectId})
 	RenameProject(w http.ResponseWriter, r *http.Request, projectId string)
-	// CheckArtifacts Check Artifact is Already Stored
-	// (POST /_roger/v1/projects/{projectId}/artifacts/check)
-	CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string)
+	// UploadArtifact Upload an Artifact
+	// (POST /_roger/v1/projects/{projectId}/artifacts)
+	UploadArtifact(w http.ResponseWriter, r *http.Request, projectId string)
 	// ListCredentials List every Credentials
 	// (GET /_roger/v1/projects/{projectId}/credentials)
 	ListCredentials(w http.ResponseWriter, r *http.Request, projectId string)
@@ -2157,9 +2276,9 @@ type ServerInterface interface {
 	// DeleteTarget Delete Target
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
 	DeleteTarget(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
-	// ChangeTargetRessourceId Edit Target Ressource ID
+	// ChangeTargetResourceId Edit Target Resource ID
 	// (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
+	ChangeTargetResourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string)
 	// ListStorageObjects List Storage Objects
 	// (GET /_roger/v1/storage)
 	ListStorageObjects(w http.ResponseWriter, r *http.Request)
@@ -2250,9 +2369,9 @@ func (_ Unimplemented) RenameProject(w http.ResponseWriter, r *http.Request, pro
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// CheckArtifacts Check Artifact is Already Stored
-// (POST /_roger/v1/projects/{projectId}/artifacts/check)
-func (_ Unimplemented) CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string) {
+// UploadArtifact Upload an Artifact
+// (POST /_roger/v1/projects/{projectId}/artifacts)
+func (_ Unimplemented) UploadArtifact(w http.ResponseWriter, r *http.Request, projectId string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
@@ -2346,9 +2465,9 @@ func (_ Unimplemented) DeleteTarget(w http.ResponseWriter, r *http.Request, proj
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// ChangeTargetRessourceId Edit Target Ressource ID
+// ChangeTargetResourceId Edit Target Resource ID
 // (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-func (_ Unimplemented) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+func (_ Unimplemented) ChangeTargetResourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
@@ -2419,6 +2538,19 @@ func (siw *ServerInterfaceWrapper) InitiateOAuthLogin(w http.ResponseWriter, r *
 		return
 	}
 
+	// ------------- Required query parameter "response_type" -------------
+
+	err = runtime.BindQueryParameterWithOptions("form", true, true, "response_type", r.URL.Query(), &params.ResponseType, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
+	if err != nil {
+		var requiredError *runtime.RequiredParameterError
+		if errors.As(err, &requiredError) {
+			siw.ErrorHandlerFunc(w, r, &RequiredParamError{ParamName: "response_type"})
+		} else {
+			siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "response_type", Err: err})
+		}
+		return
+	}
+
 	// ------------- Required query parameter "code_challenge" -------------
 
 	err = runtime.BindQueryParameterWithOptions("form", true, true, "code_challenge", r.URL.Query(), &params.CodeChallenge, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
@@ -2432,9 +2564,9 @@ func (siw *ServerInterfaceWrapper) InitiateOAuthLogin(w http.ResponseWriter, r *
 		return
 	}
 
-	// ------------- Optional query parameter "code_challenge_method" -------------
+	// ------------- Required query parameter "code_challenge_method" -------------
 
-	err = runtime.BindQueryParameterWithOptions("form", true, false, "code_challenge_method", r.URL.Query(), &params.CodeChallengeMethod, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
+	err = runtime.BindQueryParameterWithOptions("form", true, true, "code_challenge_method", r.URL.Query(), &params.CodeChallengeMethod, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
 	if err != nil {
 		var requiredError *runtime.RequiredParameterError
 		if errors.As(err, &requiredError) {
@@ -2458,9 +2590,9 @@ func (siw *ServerInterfaceWrapper) InitiateOAuthLogin(w http.ResponseWriter, r *
 		return
 	}
 
-	// ------------- Required query parameter "state" -------------
+	// ------------- Optional query parameter "state" -------------
 
-	err = runtime.BindQueryParameterWithOptions("form", true, true, "state", r.URL.Query(), &params.State, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
+	err = runtime.BindQueryParameterWithOptions("form", true, false, "state", r.URL.Query(), &params.State, runtime.BindQueryParameterOptions{Type: "string", Format: ""})
 	if err != nil {
 		var requiredError *runtime.RequiredParameterError
 		if errors.As(err, &requiredError) {
@@ -2658,8 +2790,8 @@ func (siw *ServerInterfaceWrapper) RenameProject(w http.ResponseWriter, r *http.
 	handler.ServeHTTP(w, r)
 }
 
-// CheckArtifacts operation middleware
-func (siw *ServerInterfaceWrapper) CheckArtifacts(w http.ResponseWriter, r *http.Request) {
+// UploadArtifact operation middleware
+func (siw *ServerInterfaceWrapper) UploadArtifact(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -2674,7 +2806,7 @@ func (siw *ServerInterfaceWrapper) CheckArtifacts(w http.ResponseWriter, r *http
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.CheckArtifacts(w, r, projectId)
+		siw.Handler.UploadArtifact(w, r, projectId)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -3164,8 +3296,8 @@ func (siw *ServerInterfaceWrapper) DeleteTarget(w http.ResponseWriter, r *http.R
 	handler.ServeHTTP(w, r)
 }
 
-// ChangeTargetRessourceId operation middleware
-func (siw *ServerInterfaceWrapper) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request) {
+// ChangeTargetResourceId operation middleware
+func (siw *ServerInterfaceWrapper) ChangeTargetResourceId(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	_ = err
@@ -3198,7 +3330,7 @@ func (siw *ServerInterfaceWrapper) ChangeTargetRessourceId(w http.ResponseWriter
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.ChangeTargetRessourceId(w, r, projectId, environmentId, name)
+		siw.Handler.ChangeTargetResourceId(w, r, projectId, environmentId, name)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -3442,7 +3574,13 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 	}
 
 	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/version", wrapper.GetVersion)
+	})
+	r.Group(func(r chi.Router) {
 		r.Get(options.BaseURL+"/_roger/v1/auth/oauth", wrapper.InitiateOAuthLogin)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/auth/token", wrapper.ExchangeToken)
 	})
 	r.Group(func(r chi.Router) {
 		r.Post(options.BaseURL+"/_roger/v1/auth/revoke", wrapper.RevokeToken)
@@ -3455,75 +3593,6 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 	})
 	r.Group(func(r chi.Router) {
 		r.Delete(options.BaseURL+"/_roger/v1/auth/sessions/{sessionId}", wrapper.RevokeSession)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/auth/token", wrapper.ExchangeToken)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/features", wrapper.GetFeatures)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects", wrapper.ListProjects)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects", wrapper.CreateProject)
-	})
-	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.DeleteProject)
-	})
-	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.RenameProject)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/artifacts/check", wrapper.CheckArtifacts)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.ListCredentials)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.CreateCredential)
-	})
-	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.DeleteCredential)
-	})
-	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.RenameCredential)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate", wrapper.RotateCredential)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.ListDeployments)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.CreateDeployment)
-	})
-	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}", wrapper.DeleteDeployment)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy", wrapper.TriggerDeployment)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.ListEnvironments)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.CreateEnvironment)
-	})
-	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}", wrapper.DeleteEnvironment)
-	})
-	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.ListTargets)
-	})
-	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.CreateTarget)
-	})
-	r.Group(func(r chi.Router) {
-		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.DeleteTarget)
-	})
-	r.Group(func(r chi.Router) {
-		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.ChangeTargetRessourceId)
 	})
 	r.Group(func(r chi.Router) {
 		r.Get(options.BaseURL+"/_roger/v1/storage", wrapper.ListStorageObjects)
@@ -3541,7 +3610,70 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 		r.Post(options.BaseURL+"/_roger/v1/storage/{storageId}/rotate", wrapper.RotateStorageObject)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/_roger/version", wrapper.GetVersion)
+		r.Get(options.BaseURL+"/_roger/v1/projects", wrapper.ListProjects)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects", wrapper.CreateProject)
+	})
+	r.Group(func(r chi.Router) {
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.DeleteProject)
+	})
+	r.Group(func(r chi.Router) {
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}", wrapper.RenameProject)
+	})
+	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.ListCredentials)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials", wrapper.CreateCredential)
+	})
+	r.Group(func(r chi.Router) {
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.DeleteCredential)
+	})
+	r.Group(func(r chi.Router) {
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}", wrapper.RenameCredential)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/credentials/{credentialId}/rotate", wrapper.RotateCredential)
+	})
+	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.ListEnvironments)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments", wrapper.CreateEnvironment)
+	})
+	r.Group(func(r chi.Router) {
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}", wrapper.DeleteEnvironment)
+	})
+	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.ListDeployments)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments", wrapper.CreateDeployment)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}/deploy", wrapper.TriggerDeployment)
+	})
+	r.Group(func(r chi.Router) {
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/deployments/{deploymentId}", wrapper.DeleteDeployment)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/artifacts", wrapper.UploadArtifact)
+	})
+	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/v1/features", wrapper.GetFeatures)
+	})
+	r.Group(func(r chi.Router) {
+		r.Get(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.ListTargets)
+	})
+	r.Group(func(r chi.Router) {
+		r.Post(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets", wrapper.CreateTarget)
+	})
+	r.Group(func(r chi.Router) {
+		r.Delete(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.DeleteTarget)
+	})
+	r.Group(func(r chi.Router) {
+		r.Put(options.BaseURL+"/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}", wrapper.ChangeTargetResourceId)
 	})
 
 	return r
@@ -3592,7 +3724,7 @@ func (response InitiateOAuthLogin500JSONResponse) VisitInitiateOAuthLoginRespons
 }
 
 type RevokeTokenRequestObject struct {
-	Body *RevokeTokenJSONRequestBody
+	Body *RevokeTokenFormdataRequestBody
 }
 
 type RevokeTokenResponseObject interface {
@@ -3814,7 +3946,7 @@ func (response RevokeSession500JSONResponse) VisitRevokeSessionResponse(w http.R
 }
 
 type ExchangeTokenRequestObject struct {
-	Body *ExchangeTokenJSONRequestBody
+	Body *ExchangeTokenFormdataRequestBody
 }
 
 type ExchangeTokenResponseObject interface {
@@ -3936,6 +4068,11 @@ type GetFeatures200JSONResponse struct {
 			SupportedCredentialKinds []GetFeatures200JSONResponseBodyFeaturesCoreCredentialsSupportedCredentialKinds `json:"supportedCredentialKinds"`
 		} `json:"core:credentials"`
 		CoreDeployments struct {
+			// ArtifactHashingAlgorithm The hashing algorithm used by the node to hash artifacts
+			//
+			// Example: blake3
+			ArtifactHashingAlgorithm GetFeatures200JSONResponseBodyFeaturesCoreDeploymentsArtifactHashingAlgorithm `json:"artifactHashingAlgorithm"`
+
 			// MaxDeploymentsPerProject The maximum number of deployments a single project can hold
 			//
 			// Example: 50
@@ -4062,42 +4199,7 @@ type ListProjectsResponseObject interface {
 	VisitListProjectsResponse(w http.ResponseWriter) error
 }
 
-type ListProjects200JSONResponse []struct {
-	// CreatedAt The ISO timestamp at which the project was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique project identifier
-	//
-	// Example: rgr_prj_abc123
-	Id string `json:"id"`
-
-	// Kind The type of ressource the project will manage
-	//
-	// Example: game
-	Kind ListProjects200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp of the last project deployment
-	//
-	// Example: 2026-09-06T16:32:57.627Z
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// Name The name of the project
-	//
-	// Example: My Awesome Game!
-	Name string `json:"name"`
-
-	// StorageId The ID of the storage object used to store the project's artifacts
-	//
-	// Example: rgr_strg_abc123
-	StorageId string `json:"storage_id"`
-
-	// UpdatedAt The ISO timestamp when project was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
+type ListProjects200JSONResponse []Project
 
 func (response ListProjects200JSONResponse) VisitListProjectsResponse(w http.ResponseWriter) error {
 
@@ -4147,42 +4249,7 @@ type CreateProjectResponseObject interface {
 	VisitCreateProjectResponse(w http.ResponseWriter) error
 }
 
-type CreateProject200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the project was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique project identifier
-	//
-	// Example: rgr_prj_abc123
-	Id string `json:"id"`
-
-	// Kind The type of ressource the project will manage
-	//
-	// Example: game
-	Kind CreateProject200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp of the last project deployment
-	//
-	// Example: 2026-09-06T16:32:57.627Z
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// Name The name of the project
-	//
-	// Example: My Awesome Game!
-	Name string `json:"name"`
-
-	// StorageId The ID of the storage object used to store the project's artifacts
-	//
-	// Example: rgr_strg_abc123
-	StorageId string `json:"storage_id"`
-
-	// UpdatedAt The ISO timestamp when project was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
+type CreateProject200JSONResponse Project
 
 func (response CreateProject200JSONResponse) VisitCreateProjectResponse(w http.ResponseWriter) error {
 
@@ -4260,42 +4327,7 @@ type DeleteProjectResponseObject interface {
 	VisitDeleteProjectResponse(w http.ResponseWriter) error
 }
 
-type DeleteProject200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the project was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique project identifier
-	//
-	// Example: rgr_prj_abc123
-	Id string `json:"id"`
-
-	// Kind The type of ressource the project will manage
-	//
-	// Example: game
-	Kind DeleteProject200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp of the last project deployment
-	//
-	// Example: 2026-09-06T16:32:57.627Z
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// Name The name of the project
-	//
-	// Example: My Awesome Game!
-	Name string `json:"name"`
-
-	// StorageId The ID of the storage object used to store the project's artifacts
-	//
-	// Example: rgr_strg_abc123
-	StorageId string `json:"storage_id"`
-
-	// UpdatedAt The ISO timestamp when project was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
+type DeleteProject200JSONResponse Project
 
 func (response DeleteProject200JSONResponse) VisitDeleteProjectResponse(w http.ResponseWriter) error {
 
@@ -4388,42 +4420,7 @@ type RenameProjectResponseObject interface {
 	VisitRenameProjectResponse(w http.ResponseWriter) error
 }
 
-type RenameProject200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the project was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// Id A unique project identifier
-	//
-	// Example: rgr_prj_abc123
-	Id string `json:"id"`
-
-	// Kind The type of ressource the project will manage
-	//
-	// Example: game
-	Kind RenameProject200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp of the last project deployment
-	//
-	// Example: 2026-09-06T16:32:57.627Z
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// Name The name of the project
-	//
-	// Example: My Awesome Game!
-	Name string `json:"name"`
-
-	// StorageId The ID of the storage object used to store the project's artifacts
-	//
-	// Example: rgr_strg_abc123
-	StorageId string `json:"storage_id"`
-
-	// UpdatedAt The ISO timestamp when project was last updated
-	//
-	// Example: 2026-09-06T16:31:52.845Z
-	UpdatedAt time.Time `json:"updated_at"`
-}
+type RenameProject200JSONResponse Project
 
 func (response RenameProject200JSONResponse) VisitRenameProjectResponse(w http.ResponseWriter) error {
 
@@ -4507,23 +4504,24 @@ func (response RenameProject500JSONResponse) VisitRenameProjectResponse(w http.R
 	return err
 }
 
-type CheckArtifactsRequestObject struct {
+type UploadArtifactRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *CheckArtifactsJSONRequestBody
+	Body      io.Reader
 }
 
-type CheckArtifactsResponseObject interface {
-	VisitCheckArtifactsResponse(w http.ResponseWriter) error
+type UploadArtifactResponseObject interface {
+	VisitUploadArtifactResponse(w http.ResponseWriter) error
 }
 
-type CheckArtifacts200JSONResponse struct {
-	// Artifacts Returns true(stored)/false(not stored) for every passed hash
-	//
-	// Example: {"abcd1234":false,"qwerty0987":true}
-	Artifacts map[string]bool `json:"artifacts"`
+type UploadArtifact200JSONResponse struct {
+	// AlreadyStored Whether or not the file was already stored on the server
+	AlreadyStored bool `json:"already_stored"`
+
+	// Hash The hash of the uploaded artifact computed by the node
+	Hash string `json:"hash"`
 }
 
-func (response CheckArtifacts200JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact200JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -4535,9 +4533,9 @@ func (response CheckArtifacts200JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts400JSONResponse Error
+type UploadArtifact400JSONResponse Error
 
-func (response CheckArtifacts400JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact400JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -4549,9 +4547,9 @@ func (response CheckArtifacts400JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts401JSONResponse Error
+type UploadArtifact401JSONResponse Error
 
-func (response CheckArtifacts401JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact401JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -4563,9 +4561,9 @@ func (response CheckArtifacts401JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts403JSONResponse Error
+type UploadArtifact403JSONResponse Error
 
-func (response CheckArtifacts403JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact403JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -4577,9 +4575,9 @@ func (response CheckArtifacts403JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts404JSONResponse Error
+type UploadArtifact404JSONResponse Error
 
-func (response CheckArtifacts404JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact404JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -4591,9 +4589,9 @@ func (response CheckArtifacts404JSONResponse) VisitCheckArtifactsResponse(w http
 	return err
 }
 
-type CheckArtifacts500JSONResponse Error
+type UploadArtifact500JSONResponse Error
 
-func (response CheckArtifacts500JSONResponse) VisitCheckArtifactsResponse(w http.ResponseWriter) error {
+func (response UploadArtifact500JSONResponse) VisitUploadArtifactResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -5125,37 +5123,7 @@ type ListDeploymentsResponseObject interface {
 	VisitListDeploymentsResponse(w http.ResponseWriter) error
 }
 
-type ListDeployments200JSONResponse []struct {
-	// CreatedAt The ISO timestamp at which the deployment was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId The ID of the environment the deployment belongs to
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environmentId"`
-
-	// Id A unique deployment identifier
-	//
-	// Example: rgr_dply_abc123
-	Id string `json:"id"`
-
-	// LastDeployment The ID of the last active deployment
-	//
-	// Example: rgr_dply_abc123
-	LastDeployment string `json:"last_deployment"`
-
-	// Status The status of the deployment
-	//
-	// Example: staged
-	Status ListDeployments200JSONResponseBodyStatus `json:"status"`
-
-	// Version The deployment version string
-	//
-	// Example: v2.3.1-hotfix
-	Version string `json:"version"`
-}
+type ListDeployments200JSONResponse []Deployment
 
 func (response ListDeployments200JSONResponse) VisitListDeploymentsResponse(w http.ResponseWriter) error {
 
@@ -5241,44 +5209,14 @@ func (response ListDeployments500JSONResponse) VisitListDeploymentsResponse(w ht
 
 type CreateDeploymentRequestObject struct {
 	ProjectId string `json:"projectId"`
-	Body      *multipart.Reader
+	Body      *CreateDeploymentJSONRequestBody
 }
 
 type CreateDeploymentResponseObject interface {
 	VisitCreateDeploymentResponse(w http.ResponseWriter) error
 }
 
-type CreateDeployment200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the deployment was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId The ID of the environment the deployment belongs to
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environmentId"`
-
-	// Id A unique deployment identifier
-	//
-	// Example: rgr_dply_abc123
-	Id string `json:"id"`
-
-	// LastDeployment The ID of the last active deployment
-	//
-	// Example: rgr_dply_abc123
-	LastDeployment string `json:"last_deployment"`
-
-	// Status The status of the deployment
-	//
-	// Example: staged
-	Status CreateDeployment200JSONResponseBodyStatus `json:"status"`
-
-	// Version The deployment version string
-	//
-	// Example: v2.3.1-hotfix
-	Version string `json:"version"`
-}
+type CreateDeployment200JSONResponse Deployment
 
 func (response CreateDeployment200JSONResponse) VisitCreateDeploymentResponse(w http.ResponseWriter) error {
 
@@ -5371,37 +5309,7 @@ type DeleteDeploymentResponseObject interface {
 	VisitDeleteDeploymentResponse(w http.ResponseWriter) error
 }
 
-type DeleteDeployment200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the deployment was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId The ID of the environment the deployment belongs to
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environmentId"`
-
-	// Id A unique deployment identifier
-	//
-	// Example: rgr_dply_abc123
-	Id string `json:"id"`
-
-	// LastDeployment The ID of the last active deployment
-	//
-	// Example: rgr_dply_abc123
-	LastDeployment string `json:"last_deployment"`
-
-	// Status The status of the deployment
-	//
-	// Example: staged
-	Status DeleteDeployment200JSONResponseBodyStatus `json:"status"`
-
-	// Version The deployment version string
-	//
-	// Example: v2.3.1-hotfix
-	Version string `json:"version"`
-}
+type DeleteDeployment200JSONResponse Deployment
 
 func (response DeleteDeployment200JSONResponse) VisitDeleteDeploymentResponse(w http.ResponseWriter) error {
 
@@ -5508,37 +5416,7 @@ type TriggerDeploymentResponseObject interface {
 	VisitTriggerDeploymentResponse(w http.ResponseWriter) error
 }
 
-type TriggerDeployment200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the deployment was created
-	//
-	// Example: 2026-09-06T14:47:42.239Z
-	CreatedAt time.Time `json:"created_at"`
-
-	// EnvironmentId The ID of the environment the deployment belongs to
-	//
-	// Example: rgr_env_abc123
-	EnvironmentId string `json:"environmentId"`
-
-	// Id A unique deployment identifier
-	//
-	// Example: rgr_dply_abc123
-	Id string `json:"id"`
-
-	// LastDeployment The ID of the last active deployment
-	//
-	// Example: rgr_dply_abc123
-	LastDeployment string `json:"last_deployment"`
-
-	// Status The status of the deployment
-	//
-	// Example: staged
-	Status TriggerDeployment200JSONResponseBodyStatus `json:"status"`
-
-	// Version The deployment version string
-	//
-	// Example: v2.3.1-hotfix
-	Version string `json:"version"`
-}
+type TriggerDeployment200JSONResponse Deployment
 
 func (response TriggerDeployment200JSONResponse) VisitTriggerDeploymentResponse(w http.ResponseWriter) error {
 
@@ -5644,41 +5522,7 @@ type ListEnvironmentsResponseObject interface {
 	VisitListEnvironmentsResponse(w http.ResponseWriter) error
 }
 
-type ListEnvironments200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the environment was created
-	CreatedAt time.Time `json:"created_at"`
-
-	// CredentialId The ID of the credential that will be used to communicate to Roblox for this environment
-	//
-	// Example: rgr_cred_abc123
-	CredentialId string `json:"credential_id"`
-
-	// Id A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of ressource the environment will manage (whole universe or single place)
-	//
-	// Example: universe
-	Kind ListEnvironments200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// LastUpdatedAt The ISO timestamp at which the environment was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name of the environment (immutable)
-	//
-	// Example: production
-	Name string `json:"name"`
-
-	// UniverseId The ID of the universe linked to the environment (immutable for now)
-	//
-	// Example: 1234567890
-	UniverseId string `json:"universe_id"`
-}
+type ListEnvironments200JSONResponse []Environment
 
 func (response ListEnvironments200JSONResponse) VisitListEnvironmentsResponse(w http.ResponseWriter) error {
 
@@ -5757,41 +5601,7 @@ type CreateEnvironmentResponseObject interface {
 	VisitCreateEnvironmentResponse(w http.ResponseWriter) error
 }
 
-type CreateEnvironment200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the environment was created
-	CreatedAt time.Time `json:"created_at"`
-
-	// CredentialId The ID of the credential that will be used to communicate to Roblox for this environment
-	//
-	// Example: rgr_cred_abc123
-	CredentialId string `json:"credential_id"`
-
-	// Id A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of ressource the environment will manage (whole universe or single place)
-	//
-	// Example: universe
-	Kind CreateEnvironment200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// LastUpdatedAt The ISO timestamp at which the environment was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name of the environment (immutable)
-	//
-	// Example: production
-	Name string `json:"name"`
-
-	// UniverseId The ID of the universe linked to the environment (immutable for now)
-	//
-	// Example: 1234567890
-	UniverseId string `json:"universe_id"`
-}
+type CreateEnvironment200JSONResponse Environment
 
 func (response CreateEnvironment200JSONResponse) VisitCreateEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -5884,41 +5694,7 @@ type DeleteEnvironmentResponseObject interface {
 	VisitDeleteEnvironmentResponse(w http.ResponseWriter) error
 }
 
-type DeleteEnvironment200JSONResponse struct {
-	// CreatedAt The ISO timestamp at which the environment was created
-	CreatedAt time.Time `json:"created_at"`
-
-	// CredentialId The ID of the credential that will be used to communicate to Roblox for this environment
-	//
-	// Example: rgr_cred_abc123
-	CredentialId string `json:"credential_id"`
-
-	// Id A unique environment identifier
-	//
-	// Example: rgr_env_abc123
-	Id string `json:"id"`
-
-	// Kind The kind of ressource the environment will manage (whole universe or single place)
-	//
-	// Example: universe
-	Kind DeleteEnvironment200JSONResponseBodyKind `json:"kind"`
-
-	// LastDeployedAt The ISO timestamp at which the last deployment on this environment happened
-	LastDeployedAt *time.Time `json:"last_deployed_at,omitempty"`
-
-	// LastUpdatedAt The ISO timestamp at which the environment was last updated
-	LastUpdatedAt time.Time `json:"last_updated_at"`
-
-	// Name The name of the environment (immutable)
-	//
-	// Example: production
-	Name string `json:"name"`
-
-	// UniverseId The ID of the universe linked to the environment (immutable for now)
-	//
-	// Example: 1234567890
-	UniverseId string `json:"universe_id"`
-}
+type DeleteEnvironment200JSONResponse Environment
 
 func (response DeleteEnvironment200JSONResponse) VisitDeleteEnvironmentResponse(w http.ResponseWriter) error {
 
@@ -6011,15 +5787,7 @@ type ListTargetsResponseObject interface {
 	VisitListTargetsResponse(w http.ResponseWriter) error
 }
 
-type ListTargets200JSONResponse Target
-
-func (t ListTargets200JSONResponse) MarshalJSON() ([]byte, error) {
-	return Target(t).MarshalJSON()
-}
-
-func (t *ListTargets200JSONResponse) UnmarshalJSON(b []byte) error {
-	return (*Target)(t).UnmarshalJSON(b)
-}
+type ListTargets200JSONResponse []Target
 
 func (response ListTargets200JSONResponse) VisitListTargetsResponse(w http.ResponseWriter) error {
 
@@ -6321,28 +6089,28 @@ func (response DeleteTarget500JSONResponse) VisitDeleteTargetResponse(w http.Res
 	return err
 }
 
-type ChangeTargetRessourceIdRequestObject struct {
+type ChangeTargetResourceIdRequestObject struct {
 	ProjectId     string `json:"projectId"`
 	EnvironmentId string `json:"environmentId"`
 	Name          string `json:"name"`
-	Body          *ChangeTargetRessourceIdJSONRequestBody
+	Body          *ChangeTargetResourceIdJSONRequestBody
 }
 
-type ChangeTargetRessourceIdResponseObject interface {
-	VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error
+type ChangeTargetResourceIdResponseObject interface {
+	VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error
 }
 
-type ChangeTargetRessourceId200JSONResponse Target
+type ChangeTargetResourceId200JSONResponse Target
 
-func (t ChangeTargetRessourceId200JSONResponse) MarshalJSON() ([]byte, error) {
+func (t ChangeTargetResourceId200JSONResponse) MarshalJSON() ([]byte, error) {
 	return Target(t).MarshalJSON()
 }
 
-func (t *ChangeTargetRessourceId200JSONResponse) UnmarshalJSON(b []byte) error {
+func (t *ChangeTargetResourceId200JSONResponse) UnmarshalJSON(b []byte) error {
 	return (*Target)(t).UnmarshalJSON(b)
 }
 
-func (response ChangeTargetRessourceId200JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId200JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6354,9 +6122,9 @@ func (response ChangeTargetRessourceId200JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId400JSONResponse Error
+type ChangeTargetResourceId400JSONResponse Error
 
-func (response ChangeTargetRessourceId400JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId400JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6368,9 +6136,9 @@ func (response ChangeTargetRessourceId400JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId401JSONResponse Error
+type ChangeTargetResourceId401JSONResponse Error
 
-func (response ChangeTargetRessourceId401JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId401JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6382,9 +6150,9 @@ func (response ChangeTargetRessourceId401JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId403JSONResponse Error
+type ChangeTargetResourceId403JSONResponse Error
 
-func (response ChangeTargetRessourceId403JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId403JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6396,9 +6164,9 @@ func (response ChangeTargetRessourceId403JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId404JSONResponse Error
+type ChangeTargetResourceId404JSONResponse Error
 
-func (response ChangeTargetRessourceId404JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId404JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6410,9 +6178,9 @@ func (response ChangeTargetRessourceId404JSONResponse) VisitChangeTargetRessourc
 	return err
 }
 
-type ChangeTargetRessourceId500JSONResponse Error
+type ChangeTargetResourceId500JSONResponse Error
 
-func (response ChangeTargetRessourceId500JSONResponse) VisitChangeTargetRessourceIdResponse(w http.ResponseWriter) error {
+func (response ChangeTargetResourceId500JSONResponse) VisitChangeTargetResourceIdResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
@@ -6965,9 +6733,9 @@ type StrictServerInterface interface {
 	// RenameProject Rename a Project
 	// (PUT /_roger/v1/projects/{projectId})
 	RenameProject(ctx context.Context, request RenameProjectRequestObject) (RenameProjectResponseObject, error)
-	// CheckArtifacts Check Artifact is Already Stored
-	// (POST /_roger/v1/projects/{projectId}/artifacts/check)
-	CheckArtifacts(ctx context.Context, request CheckArtifactsRequestObject) (CheckArtifactsResponseObject, error)
+	// UploadArtifact Upload an Artifact
+	// (POST /_roger/v1/projects/{projectId}/artifacts)
+	UploadArtifact(ctx context.Context, request UploadArtifactRequestObject) (UploadArtifactResponseObject, error)
 	// ListCredentials List every Credentials
 	// (GET /_roger/v1/projects/{projectId}/credentials)
 	ListCredentials(ctx context.Context, request ListCredentialsRequestObject) (ListCredentialsResponseObject, error)
@@ -7013,9 +6781,9 @@ type StrictServerInterface interface {
 	// DeleteTarget Delete Target
 	// (DELETE /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
 	DeleteTarget(ctx context.Context, request DeleteTargetRequestObject) (DeleteTargetResponseObject, error)
-	// ChangeTargetRessourceId Edit Target Ressource ID
+	// ChangeTargetResourceId Edit Target Resource ID
 	// (PUT /_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name})
-	ChangeTargetRessourceId(ctx context.Context, request ChangeTargetRessourceIdRequestObject) (ChangeTargetRessourceIdResponseObject, error)
+	ChangeTargetResourceId(ctx context.Context, request ChangeTargetResourceIdRequestObject) (ChangeTargetResourceIdResponseObject, error)
 	// ListStorageObjects List Storage Objects
 	// (GET /_roger/v1/storage)
 	ListStorageObjects(ctx context.Context, request ListStorageObjectsRequestObject) (ListStorageObjectsResponseObject, error)
@@ -7105,15 +6873,16 @@ func (sh *strictHandler) InitiateOAuthLogin(w http.ResponseWriter, r *http.Reque
 func (sh *strictHandler) RevokeToken(w http.ResponseWriter, r *http.Request) {
 	var request RevokeTokenRequestObject
 
-	var body RevokeTokenJSONRequestBody
-	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+	if err := r.ParseForm(); err != nil {
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode formdata: %w", err))
+		return
 	}
+	var body RevokeTokenFormdataRequestBody
+	if err := runtime.BindForm(&body, r.Form, nil, nil); err != nil {
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't bind formdata: %w", err))
+		return
+	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RevokeToken(ctx, request.(RevokeTokenRequestObject))
@@ -7213,15 +6982,16 @@ func (sh *strictHandler) RevokeSession(w http.ResponseWriter, r *http.Request, s
 func (sh *strictHandler) ExchangeToken(w http.ResponseWriter, r *http.Request) {
 	var request ExchangeTokenRequestObject
 
-	var body ExchangeTokenJSONRequestBody
-	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+	if err := r.ParseForm(); err != nil {
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode formdata: %w", err))
+		return
 	}
+	var body ExchangeTokenFormdataRequestBody
+	if err := runtime.BindForm(&body, r.Form, nil, nil); err != nil {
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't bind formdata: %w", err))
+		return
+	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.ExchangeToken(ctx, request.(ExchangeTokenRequestObject))
@@ -7297,13 +7067,10 @@ func (sh *strictHandler) CreateProject(w http.ResponseWriter, r *http.Request) {
 
 	var body CreateProjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateProject(ctx, request.(CreateProjectRequestObject))
@@ -7359,13 +7126,10 @@ func (sh *strictHandler) RenameProject(w http.ResponseWriter, r *http.Request, p
 
 	var body RenameProjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RenameProject(ctx, request.(RenameProjectRequestObject))
@@ -7387,35 +7151,27 @@ func (sh *strictHandler) RenameProject(w http.ResponseWriter, r *http.Request, p
 	}
 }
 
-// CheckArtifacts operation middleware
-func (sh *strictHandler) CheckArtifacts(w http.ResponseWriter, r *http.Request, projectId string) {
-	var request CheckArtifactsRequestObject
+// UploadArtifact operation middleware
+func (sh *strictHandler) UploadArtifact(w http.ResponseWriter, r *http.Request, projectId string) {
+	var request UploadArtifactRequestObject
 
 	request.ProjectId = projectId
 
-	var body CheckArtifactsJSONRequestBody
-	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
-	}
+	request.Body = r.Body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.CheckArtifacts(ctx, request.(CheckArtifactsRequestObject))
+		return sh.ssi.UploadArtifact(ctx, request.(UploadArtifactRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "CheckArtifacts")
+		handler = middleware(handler, "UploadArtifact")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(CheckArtifactsResponseObject); ok {
-		if err := validResponse.VisitCheckArtifactsResponse(w); err != nil {
+	} else if validResponse, ok := response.(UploadArtifactResponseObject); ok {
+		if err := validResponse.VisitUploadArtifactResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -7457,13 +7213,10 @@ func (sh *strictHandler) CreateCredential(w http.ResponseWriter, r *http.Request
 
 	var body CreateCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateCredential(ctx, request.(CreateCredentialRequestObject))
@@ -7521,13 +7274,10 @@ func (sh *strictHandler) RenameCredential(w http.ResponseWriter, r *http.Request
 
 	var body RenameCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RenameCredential(ctx, request.(RenameCredentialRequestObject))
@@ -7558,13 +7308,10 @@ func (sh *strictHandler) RotateCredential(w http.ResponseWriter, r *http.Request
 
 	var body RotateCredentialJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RotateCredential(ctx, request.(RotateCredentialRequestObject))
@@ -7618,12 +7365,12 @@ func (sh *strictHandler) CreateDeployment(w http.ResponseWriter, r *http.Request
 
 	request.ProjectId = projectId
 
-	if reader, err := r.MultipartReader(); err != nil {
-		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode multipart body: %w", err))
+	var body CreateDeploymentJSONRequestBody
+	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
 		return
-	} else {
-		request.Body = reader
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateDeployment(ctx, request.(CreateDeploymentRequestObject))
@@ -7733,13 +7480,10 @@ func (sh *strictHandler) CreateEnvironment(w http.ResponseWriter, r *http.Reques
 
 	var body CreateEnvironmentJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateEnvironment(ctx, request.(CreateEnvironmentRequestObject))
@@ -7824,13 +7568,10 @@ func (sh *strictHandler) CreateTarget(w http.ResponseWriter, r *http.Request, pr
 
 	var body CreateTargetJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateTarget(ctx, request.(CreateTargetRequestObject))
@@ -7880,37 +7621,34 @@ func (sh *strictHandler) DeleteTarget(w http.ResponseWriter, r *http.Request, pr
 	}
 }
 
-// ChangeTargetRessourceId operation middleware
-func (sh *strictHandler) ChangeTargetRessourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
-	var request ChangeTargetRessourceIdRequestObject
+// ChangeTargetResourceId operation middleware
+func (sh *strictHandler) ChangeTargetResourceId(w http.ResponseWriter, r *http.Request, projectId string, environmentId string, name string) {
+	var request ChangeTargetResourceIdRequestObject
 
 	request.ProjectId = projectId
 	request.EnvironmentId = environmentId
 	request.Name = name
 
-	var body ChangeTargetRessourceIdJSONRequestBody
+	var body ChangeTargetResourceIdJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
-		return sh.ssi.ChangeTargetRessourceId(ctx, request.(ChangeTargetRessourceIdRequestObject))
+		return sh.ssi.ChangeTargetResourceId(ctx, request.(ChangeTargetResourceIdRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "ChangeTargetRessourceId")
+		handler = middleware(handler, "ChangeTargetResourceId")
 	}
 
 	response, err := handler(r.Context(), w, r, request)
 
 	if err != nil {
 		sh.options.ResponseErrorHandlerFunc(w, r, err)
-	} else if validResponse, ok := response.(ChangeTargetRessourceIdResponseObject); ok {
-		if err := validResponse.VisitChangeTargetRessourceIdResponse(w); err != nil {
+	} else if validResponse, ok := response.(ChangeTargetResourceIdResponseObject); ok {
+		if err := validResponse.VisitChangeTargetResourceIdResponse(w); err != nil {
 			sh.options.ResponseErrorHandlerFunc(w, r, err)
 		}
 	} else if response != nil {
@@ -7948,13 +7686,10 @@ func (sh *strictHandler) CreateStorageObject(w http.ResponseWriter, r *http.Requ
 
 	var body CreateStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.CreateStorageObject(ctx, request.(CreateStorageObjectRequestObject))
@@ -8010,13 +7745,10 @@ func (sh *strictHandler) RenameStorageObject(w http.ResponseWriter, r *http.Requ
 
 	var body RenameStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RenameStorageObject(ctx, request.(RenameStorageObjectRequestObject))
@@ -8046,13 +7778,10 @@ func (sh *strictHandler) RotateStorageObject(w http.ResponseWriter, r *http.Requ
 
 	var body RotateStorageObjectJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		if !errors.Is(err, io.EOF) {
-			sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
-			return
-		}
-	} else {
-		request.Body = &body
+		sh.options.RequestErrorHandlerFunc(w, r, fmt.Errorf("can't decode JSON body: %w", err))
+		return
 	}
+	request.Body = &body
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.RotateStorageObject(ctx, request.(RotateStorageObjectRequestObject))
@@ -8103,152 +7832,162 @@ func (sh *strictHandler) GetVersion(w http.ResponseWriter, r *http.Request) {
 // const string: with thousands of chunks the chained `+` fold is several
 // times slower for the Go compiler than parsing a slice literal.
 var swaggerSpec = []string{
-	"7H37V9u49u+/opvzvat0nZAEQl/8Rluml5lOywF65p4zw2UUW0k02JJHkoFMF//7XXrZsi0nDgT6GPFT",
-	"sGVpS9qPz97akj73IppmlCAieG//c49Hc5RC9fPg+OgntHjDUIyIwDCRzzJGM8QERqoEjCKaE3GBY/lf",
-	"jHjEcCYwJb393tkcgaO3gE6BmCNwQicJvQHmAyDmUAB6Tbh6eXB8BH5Ci16/h25gmiWot9/beTbaeTF6",
-	"tjMe9/o9scjkMy4YJrPebb8XMQQFii+gaGn49CMQOEVcwDQDUIDrOY7mbmPgGnLA0AxzgRiKASXqLaEx",
-	"qtCxO9p9vj16tT16frazt7/3Yn9vd7A7fvXfXr83pSyVBPRiKNC2bM5HKrrJMEP8PqSaKjZL1yUmLbMm",
-	"39h5i8rZ7/cQydPe/q89mOHtS7TonbsE2YeepghMkb+peZ5Csj1lGJE4WQBZ0LbsY4ozxAX4yd8IF1Dk",
-	"3N9MlDOGiAC6jKcF0zGeRxHicqAxmdJev3cNGZH193uIMcqqPdaPWkm5SBHncObp+QEBVP2GiSXJlAVQ",
-	"CBjNUQwEVTRe1kdgjnnBF3PIDW/EfZAlCHIkWRoRxKBAAAKCrgEl3unPs3gNCbqeI9KQngRyAUw9neTn",
-	"+f54Z//Z7uDl3rOufHrb7zH0Zy67KCdIMa1hqL6rfor5r+iGivRV+nze7wksFIUlG5i26eQPFAk5SFoD",
-	"HpEp5U3l990JEIoYEheSBG9Tdup1uQZnQjxeZOT9p9ll/vHP9FX+7tWLl//3nzdI3Lxib+k1ffVu7634",
-	"17+Okp/+MxgMVs60mWIz4Q5t68zcqfqsOXVfV1fX75zSUmf0EpETdEUv0TsGiaebQpbwqB9wBRMcAz6n",
-	"TGwn+ArF0jAjzoH6Amz9+MvZ00qP0eLH+eRdhD/iH08//XW08wEfcW/X+rrRC/n4Yo6JR7v8H0yEVG9S",
-	"Bab4L60zQELpZZ65MqIoutB9OF81hrpYs3V3QHUXz2zJxqjmYk4Z/gtKOt/QuG1UowQjIi78MnkAco5Y",
-	"KZC6sJbLCc1JodhlsScccMS5/NId7BM6Qwy8eX8Etn7BJKbXHOzsPPXCIBq36AWOySxB2zlHALr9AvIT",
-	"wFCEkZz2KaOpIiehNJvA6BJEMEnkjwpFbMYuYHQBJ9HO7riNkIsrxPAUI+aniMFrcPzTm0NNgS0rx0GN",
-	"SWG1lNKU1UVzmCSIzBDY+vXkhzfgxfPx8/OtuRAZ3x8Or6+vB2wabaMYC8oGlM2G0mYP2TSSBYf/4CiS",
-	"rW/vDXaeegdvJqf3Qj+uE/xRMgPYHewAVQqoUg5vukN6oWbh3NMCQzFmKBIXOcMtg2JKgJxhkEHOS8s/",
-	"xYwLPWKS0REXYOvXgq5yIKgkZkCQGO4Odoa+rtZExem34aD6/NUod2Wowktv9McNSXqjLHDpOJxo+l/T",
-	"WOtbLIchxQQKqpglhVkmKd3/XBjB/d4/hqVjMjReydA1yLd9K5iLD0oWtbG47fcoQR+nvf1fP/f+h6Fp",
-	"p7rONdmOp3NvKp3qNkOqW6Gk91Dhz4Z+QvZxXTOlMJpjgrYZgjGcJAiokiCqzGLJvertRaWSZUBWI5Fa",
-	"3W7xVXxZIOwGPx0RgRiByamgzADqapd9/ucByAn+M0eA668AVoNnGLyq27hgsyXabTXSs20wNEUMkQjF",
-	"YLIAQoJ1041SeWDTmyr6K57eB/7FmGcJrMJAS1pJR9HmzxATYAfV0y69JlqbL+NN8/1HVfZOfliTwju5",
-	"Y+XLezlkbZ5YlUpQuBslAWYkAExSygWY5kkCtl4++9/Kxj3106W+uIhgBiMsWtCofWvHy7JKnSRMwGQh",
-	"EAdbE8jR9m4Fwj0bP3/5YvRqZ3fU76WY4FQO8fZOQZSsdGZnUFMlyfZTRPJ0gpikRzcoS8rml1HnI2pn",
-	"9GL8Ym/n5e6eQ9TIR9Md3dU2Yuru6wO6rMo51ZJUOK4F81j3ps4HtUloc12PGkqjVJrvMbm0sqkermGF",
-	"T8et0j5+Q9MMCjxJkKl9M9a4vWJp6o4TGKEzyGY+b+4ewcBM1lsLBXaP7JErzChJUUsEtLBATsFlVgiR",
-	"qzsZIVnU6gahx6jUoaqHVUWpH3makBJxsZ6ktYxmTba6jWe7mZNvKkomomSKZ2CKEyT1c2F2tcm1HSy7",
-	"DBki0NemKtoav04wuUSxDV6rsk84OHrrq0mSd4HJskA4ukJsAWKUJXSRIhsGN0YxWcgect2DYhqxQClf",
-	"wlpOZUs4K86SxRLWMg8gY3CxIuRW43lnAMsRqIXg6lzl6K/jKieWyusETRnic+Wrt7jh93DfmK69NbbQ",
-	"r5Xw8wYlMxM8MaVN9ARznlv8Z4IblGiJMAUb88NE6+wsc96a/TDjaoavPdbhju/dQkhO93W3rSNvnVUZ",
-	"e3YjTD/+csbX6fjmIkmrpnv9UFKH8ZVjuo7f60a72rxAf9ivwa3+r9umvGm46x3v7qb6CbztL/+slTJp",
-	"+U+oWBZLgGTR2X820WCn2mX4qFvNp+OSNINVPEimKVeTPLpEbUHEwuRVjDo4HRcwVn9eFSc6Q2y7eLHJ",
-	"JdNGw4+2ePpNOfan4yrOOh1/8868nGNK2mKX8p2kbEFzJpnEw5Uo344QEcwf2AixgvVjBYjEGfWawzMt",
-	"qp9O3tdHyzMxNnzMx4NyjrZHo/FARv8nCfwLTXYHEU1dWc0Z3uBasl+tfIFV5S4uuquwPZNRiEoN/Ppx",
-	"7+kYlDbChx9avWFfCo4EDpdo0erFnI7t8t4lWgBcDXac0hRpuy2D4bFveh/fVv2d9PJDq1i9uFyyib+l",
-	"cqUbQM5phJX4XWNhMpHU52pN/OhtpfXTPENMI6vWxJyvVHEtzTioynsh3B7Br0qgb8TXlHwHUH4Jcf/S",
-	"HFOblrWH1xk+3/i6kH+jcVAFPUw8tuWr+kLWAwRNV3pbDRrOnVGxGLEJeTSSYShjiMvhJTM1zQxxTnMW",
-	"oVpKZ0MhLhvmnCPWRu4njlgdld5rzJoVygEoY8vLCNWBxZaK3Rj1fYms1KXo085x93hCM0OhzTf2p73c",
-	"IarQFk9wYlbdQwl+qtYJJThBBDXnJtNmvXyeM5Oq40+x05+C6zkFBvWpxyapB2xFkIAJAjyjdCpXxZ+2",
-	"5fn8DKOPpy0pPjkRrG1lUL+UkJqhStMlkua11a0fGCT+8P89IgRus6YaD15/ub27e7azu7+ztz8aD56N",
-	"9zYVCDCtLwsESGPRHgjA2QWMY6nMWoK9dijB0TGYUqaRpi95a2f3xWA0GA123K7hzNsovzBObrPRIxLj",
-	"CArEAZ5WGgNYK1jzpQ23Sn1ckmOamlCaIEjKpR1+/9n1M1Uxv8+kP/ZstD8eD/b29u7jjzlTUhmqfkVg",
-	"vWsNvHS46ua/of3XyyXJGJriGxQrnbCM33LO7rWWp7zRVTbVOjiSmKqLo550TKbGsYugPlW+tAOnYWHO",
-	"sFicSlVrgpgIMsSkqi7/+8FO94+/nPX6tR4eEqF6hYAb7wYMiZwR7cINpeUa2hi80uuKlVXlJWHSC+jd",
-	"3t6acM/+5zI2r7TqMaOCRjQBpxmK8FTKkhaNK8S0GeiNBuPBaHuCBBzsKMOUIQIz3NvvjaUE9/q9DIq5",
-	"6ujwQnmsw6sdTZ7KuZMvLGao95ItgHIPlK7I8kmCI2MsOBAUJHSmFzKxSoBkA3Bml4r4nOZJDHCaohhD",
-	"gZJFmSRo80ZtmMnIPopBxugVjhEDeuUrk2yyNR7tAoHSjDLI3FoogFcUx2DC6LWsLVJ5YTNpfqQgqJE6",
-	"ipUSwkLSoCp9L2lWg8JgigRiXBnxZZt+CqoElXQrgNzb7/2ZI7awkZb9ni3Vc7lTsByZ6Yer9hY1mykF",
-	"YUbpLPFqnHqdpwiB++WZ7j5t6WE1nXWNfm6IppV9V1EOyCUXgBSJOY2L5TytXousXOBk5VrCunX7Qlfc",
-	"q/Z2CvNEyJ7uPnve62+crCIEJKs/7zgSBtXZTGgVlyhE7xonicR0Vpw0OcrthYAjdoXYtlkBbiZetwxU",
-	"Jdt2PSl4UFqrQZf94TChEUzmlIv98Wg00mpwaNsefraCeNsh9NI0sXM8m28jIhjNFtbevjk9+cGsLytb",
-	"aHtkUqVVlzFpzWD3DTYXUKwjgw9CWH04ziU9PKOEa8s6Hu02KTlxNLis2Oh6M+hPeG0SixDVbb+3NxrJ",
-	"+iJKhIGbMMsSYxWHf3DtF5VDsMzH0mnHyvbWMaveV2IzAIbgE+F5llFWMVFDcJQkaAaTSvb7ABxTznE1",
-	"LZnvg9+xrvXC1Pp7331Uyo18npfNXdjmfpfdf/YY3ddBMSlU0i9LYvJEgDkkcYJ09NYOS5yrnCVIyuxE",
-	"1ePWEdCVXqiHv2sslqcpZAvHRBtmsEZawJk0zypfHxFheto7lx/XwQxTS+4KCFMufGwn3wNYuAG53FwC",
-	"YC3tZVjZQ9TAEroWmzDBqpGMjUxMM+fi9vb2tiZYu6NRs4dnNR/HrCXKRbkF0MMTg48nen1DdVaWMlw4",
-	"NDswH03MfoaJVK6oFLQJjReAMpBirqbGqjZDbIHY1pExV5bKhJDvXJoKVrd8uo4cGQ4yEYQECdQqSzoR",
-	"EEYCX5Wc54uiw7Jd43T2AbqJkjy2AVj7tbJCKYyR6xm0SOFHMS/iYbzXkJA9DxD1SUTRYcX5O4/DE3be",
-	"ExhdcrOREVZmx9lyy1dyvGLt75Orjb+uvDTXU//1/Pbcw/SHiicVawCHN6wEFI9kPNXr9r5DAmCicZ8s",
-	"CeCE5sLwuuUVl8sNjGnyeINt32Mu2vl1vXkrMmpXLhLoBj0JsksZUxkPFKMYQBKXoQ2YJDWBf1y5MVwn",
-	"DVdO1A4tQStDX7gN35DMOKruISRDsh040JO2XCSWmIPhZ/PrKL7tYBpKmCX3y6gMGCxU0jnYIkhLzaQm",
-	"NE9b9PxpERBeI2hjm1epvLIW60fJaJjjRtlO3Tls42tojaD97fl9DdcXRmx9MEcwRoz3NULjgDKgnNXO",
-	"OO37sLx7o/Hj9KBpaUBMEQeESo1ypfVJhliKjbESVP4r506vwUAVVlvSNZ5PpzhSyxNOPaaXe486T4rb",
-	"zNq80puqmxMEpuoYAkrsspLSrJSVYSM5JlrJXqHSqQPY1bGaY/fB77aNC0LFhao6oCmlxkvl281eFDst",
-	"/F744U00h2SGCshUO9JhuHoXilyLgHIfBvhntXDDfNjGHtJdb2Q0tHvrndvz5kq1bGE5re5NqUcv7nT2",
-	"iT1tqG0bWIKnSOAUAUwARxElcZHYXCHWaf7VaCT/i5Kc4yv0s90kqw3t8j2zKzYxPfIentV7Fw3LmjNo",
-	"uIAkhiwG5WYu/UZ+4sb2XytpXL2vpzbCDmWVieu37hcqFkNv+8tQRsXK9I0HwI3kSZ+gunvoC0Vn+/bk",
-	"sA7KpC/NgzqJpDi2JcU8hSKa3yVsq/KB6jGmMknoO48xfZwIiIkcUcsH9YOJusWcpgiKnJm9kG3+uNX9",
-	"8qQhO9TAfqmYUS9C6/20ObOr5FVz8A6JH2xrG9XQbh+qbyLK0L5dZa+++uNaHKsV9Z98qan6lUpLtdpM",
-	"Me1CiR/HM6KaBFvHhz9vIyJnLK6mZW3Lv9eH744+gONPr98fvQE/Hf5HPfyN/Hx09Proj4MPr2eXf84v",
-	"8btX16PXB/86HAwGvxFV5PDD2/pX3m3HZnWCVyISqxNRJMfiuGXh2y44qWU5kLPEvxKeYvIekZkc2p3O",
-	"uSkHIGMoRlNM3KWcRDrIElaYZUhBQYyEBL5EAxVXvRdfbQlaJNHjSOJsWYWh1NXsBcmSpzTpEaOcTkWv",
-	"35thMc8nJrOUMuWHqn3ayt3l/Fo/o2JeT45pywlo2wNw4D1lb0pZpVuVwX7XabB9aU9uFrovgWnpXu2S",
-	"rfpVMfHVpEQsWpZsnsKbMptaJnParvjYMoU3Eos4Z4NEc8hgJBCTxq9sSA9fBIlyMNxhe77ngzEVKvgx",
-	"YseMFsnbrWTAVB00K8koPwYQZPpj3T5NKmlsz7zNY7LGIGCyziCkOReNURj7qCi0d0nLT5jE3JusrZhD",
-	"Nl585bZ8qb5zGqycR1koI89ZlesdHNA6b+1j2m9luSUj0Mrb5dkIft5+W77vylXlvDqVA2iO21vOXKsP",
-	"3knhjUr8/gEn6BT/hV4vBOLLCdJHbqhzMLYGbHKTPAVc7oTf1FlAKbz5t86Y6yL7iSojhwc6AwRMzh0w",
-	"jFOT+FUUYNKFAkzuRsGOQ4Cn/SZP+7nGQ6dn8NqmuJWFneM2/Dx8WBa4n4ImlVNqSu1EqJArjgjF9Xnz",
-	"MotDzx1UtdvdjlK1TI4kBZ8IlpOPupKgBIpL/K/ag3FsoL87PHSqkc2T3NT+BLhE7Y5aGHmd2VpqSdpm",
-	"q4MtaXJ0y5wtobjfznoto9/K4WZy/dxtSOnK2a7wW6YxeMrHuXpoLcMYOo4RO9DHSneVItsDOSv2fHsf",
-	"q+6MfC1j0rWTHg3X1smxp6XCfpr22uBDkhTVKqTggAi7w7a+HfvX3kwScN56XJEb6XF3jJWyrfLnUkj0",
-	"PrrCATDVOtgd+veHrEIinultGfy+n/HaBrCVsXnb0R8pvDE7EO4JqWunDKwPqyt7ITtzfqkrqwSsFIBx",
-	"i1bsOhrLsbVvNO6Arw0xLdJxaosVzcmqamha7S93T/lsYOpGibX5uXXqWka072e7to63crXe3u/X1nq/",
-	"4l2Uta51ma6uMq5u6Q4Aw5C/wg/cedZmwDt20aOqW7q4s5QZdXMtvKhf+pU08ujo4iTABjsWb9Zmw+ZE",
-	"+Iep7+WPlp6e+7YfuQ2XwcE6iPDB5hrnegIfNY3tcR9XklREMrssF3xYOyJbDSHLyK6sAzhRWRs1fiuj",
-	"YTLlqhEwdpGWN2B8YlcqbARBRnUhJirbN0mcOJ6SHDp1FL43Zeu4nJbNpGxt7txPCzuW7ld9qIOrbOtL",
-	"9g9m7I977R98GJSltldqueg87oZr5KcFHaVoLTvVZ3f/2YvB890X/93UCaJVBq6e0rIAB9eI0xSBdzBF",
-	"/2t1nNyeBLL67qsaMrHLEvJxZXrkDg4m8BRqkVnrJLM7HMHkysBjnoVcPVDUGcblRyetCIQvX5OtpGGW",
-	"K+5Scz3hhQcXEpm/6dQbla7p2BxrEs0jlbnsT67RF1aYC7OsXOQkRsy9q8X6NkV2vlluiS2qq1pAXWmJ",
-	"i+6aRNP11qmHVf1/V9W6/FqqklAf7ttsOlOAOwHuBJn8e8KdFfDGPXzITndIbv86ktt3dx+nByp1ew45",
-	"mGOd95XCm4LpE5zi9i0yKby5MCX5hV7sQ3/zNG6DCA9Aid+acNIfXxl+Nr9WbPh5q547ocgMsRQSdRVE",
-	"A0zqwiUxSzf0LLe8ns08BcFrnYuwGfPu2ccTUFJASQElBZS0YZSkFXFASWELYNgCGLYAPhx2LIDdMuzY",
-	"72W5Ry1/UvoNCMc6Qcc21Xd5yzLfLyjcRLz08ay/L1IYooIB7wa8G/DuF8G7TJmHgHcD3g14N+Ddhzzy",
-	"QhkWeM9Y6bDQ+8NojqLL9rMwjiF3stToVO9/kicFIzVt6nObS1c5VlvngUjVr845o0xxiCylqsBcG6TY",
-	"vGmu6cuaDxz7FCB3E5LqiVi+M7E2WbXtiJMo3tkd7/X6vT+vEROL0auXLyqZq+slqhqCHh6Ml8hF/hPH",
-	"WN8TeFwp1LycwZ+GKad9S7Pj0+EUJhxtSWY1T/SeaXW2njlzWPbSHcfP5Tjuq88ro6m46nZVWmvZofXX",
-	"JOW8GrIQD8AjAI8APALw2OwirbLz1hxL632QMATjhbpvEcV3BSK1QxG8yfIq2VDrX6c4SDC51J4tJag1",
-	"cCc/rt5TF9Zz1zugtRy9tXOBE8yrJyIE4xSMUzBOwTg9QDa6NhBVVW9Nkvu0PTX9PSaXJjH9RB1v5MiW",
-	"6kurkdEpTGUrwVvtwGL1QdvwAZVdTVrHfM+oYgWDCQsmLJiwYMI2nQQLQcWI+O3Xem7V8HP5T9c02fIL",
-	"MGU0LS3fAHygAu2rOxSdQsXxRRPkuGWQFBevVE4bmqApZUjniOkjonwJuN+rNfVcx+aMpGlkVQ/cKV2r",
-	"EyuaqvZDFn4453NDBtqmGgYDHQx0MNAPbaD3Rq8ep7fmEBdHX8lOCZlQVA38UQZSyqompnUmy+ouMJG3",
-	"V4f0ya6ooyWL0q5IE4BusL4cPXIr86VRBtP+LZj2h00J9Z3zbPLXDo6PgDxJ2aX5TIqGfviFckE3BFds",
-	"pliAKwGuBLgS4gkPnSj20PGEIaMCimV3Gqv3nQGCKh0AwvcLEJbeK03FN7AkoDk+mPBgwoMJDyb84Uy4",
-	"MZwbMuG1KzqWHEtayffWy+rOxwCTJSvhcineubYhpFs97OGq5bw83NZCJ7B2tHLvmVO4TuAEyUsQpQJo",
-	"jDoiV0v2mi3d2+g0sGRa4yxZLGnB2WeYIiJWdVIWtytbLVsLOzTKBRR5ywn++p1tr9qGvSxIta+kpPjJ",
-	"BZzp6VeKrrLHsnjXIMTc2OKnpNPNLr2r3cF4sLM9p2KKb7pty6uyVUlFMTDNaals2NvcQaWuZgxALgC5",
-	"AOQCkNt4emIVFBVHyDtPO56ZW9GHvjTEt26Bv0saYponAmeQiaEUze0YCrj8vmrRavH0OyDmUNi9jBME",
-	"YrXWSOqgBk4FYiDPEgpjxzjrEtYiewyxzw7rewj8RClsP1ikibmtQG2idCHcBBPJbV8jflN3Xly0blU0",
-	"eEJyRAx+PP34wR5ckMIsk+FC9b1aIeJKZu0mFF0jgGYjit1OqufIKIEtuzfuCkP1vL71FTCaC1S9lvbz",
-	"b72ETiaL33r74Lee7pi8d7bXl/8yRKB+E6Pp3rPn6s1ta8dX7M78C2cZioG8TxCoOcSI9/WOFsR01wfg",
-	"EEZzqV+FzrTKubFLxcAAyAGWBzpItjAnHTRZo+XKqANLxKCkYjFQOV62OlDoEXvz7Rste9tvMc8oV7sv",
-	"DXjRNKorq4EoV/IdYk0Va3NyFd59AeDajlmNQvmqD6EJzmJwFoOzuN4xz06FwTUMrmFwDYNr+CBp/xWn",
-	"ze8drhfjH34u/+mY9u+s0Jffuhn/5dNKxr8xbpW0fqWbfWn936t32l8bdHh64E7ZXTqxAXzz9ZwRHuBq",
-	"gKsBrq533naAqwGuBrj6vW2Cce0At8oZkhhEkJh+GwXQOntlFRf6+7Dx5VFwt3nVnh6r21KXqksbNrQW",
-	"b9k6zxnDsxliAUoHKB2gdIDSAUpvFkpn6rj5gKUDlg5Y+vvG0pJ4rfBkvzBpgdZaIXTB1rJvusK/N742",
-	"CBVAcKqHdzM4293j3+W4ULe8zluf4avyKgpv9vqh20ZIX38IOOqivyoe7QY13VMcVkLNsrBO6VJ30kxQ",
-	"cS1KRNM0J7LXSjzMyX9Tpecwd2ldb4/cCkDqjsGSCV0Oedvv5ZFvmvfyVAa+vJsHbF3PaYIkaRJeIakM",
-	"OSazxKQYPXXwpC3TM+lNVfTovN3IZT4VtpEVuPrbWia3V3OYZYiswUuKqvVus1nKy7WbbTZ5j5Db1BZO",
-	"01zASVJLXcsYjfPIrL812rHT00FsbFHntJV2GpS4EHpdpUWeh//s+YuXr0ZrXdTjEllc21MV+drNPfU5",
-	"vMP1PWYrAEwSz2jzAJ8DfA6ZE19fUn0Nq1lcWXncMa3eVWw5iZGeJ56hSCcmFwcg/ofmOvshU1fjlIoS",
-	"KyUp1WUzxEVtdgVW6RXFN0ZvSmsbIYs9LF/AJKHXZVml8qT059I2q1NyLtGCgwWqJGm47epsWw5KRS1d",
-	"G0X9RKXhJvQasQhyNGjZTHBYgT/hUGMvDv4WwOg3BRX/9njIoJ4qFDL4qMpwX3XGeXD0gqMXHL2g2L4a",
-	"R8/UVu9hWOAJHmrwUIOH+jC5/dK9rPpRLY7qmisgw8+VxfGuOf4VaCDmet9oFaUMwGHt2B+ASZTksXQ8",
-	"G6ZYAQy7F0AOoRQWRlOqgRZWqzEEYAlSto0GHrRsD/hu/c3++gDR04V6NsTa3dgAGg3rSMG9CO5FcC+C",
-	"e9G6DSO4F8G9CO5FcC8eYwsDeRTfYqjT59qzrt4hAaC68FdqfrmObr6oXddSxUHN9Ksz004A/98n+F8m",
-	"f3ruu2RrMIyuJE8ZZgn2NdjXYF+Dfd14gklpjaxZtU86ppWYrHNfRskyS6jr0G0FU/g1m8KHvSVLvtER",
-	"puaZeVISGJoihogKy2CuoyyVTqjTCtsPZWzz3w1mM0EsVfYJB0dvuyYuFLU/9k1cHSFEsQ5oigf8EPBD",
-	"wA8BP2x++a+w4U0AsSGXfPhZKt1uF3vrT8yl3tW1wC2VFqpr8Nz6ATmnEVbyolYNnZNdp5hx8bRlQS9g",
-	"mK8aw/Q3iDo8fTRwoGvXHhLyfA2Ri2J9IMCOADsC7PiOtpUXl5MX6knpL/eC8oo1XevwJt1GuLG8RDJL",
-	"UFXLPeVv5pDMtITh2C5OV7MayqnMKCZqo46gDVijK9LtndjvlQEPCCcgnC+PcDYRkHqg4NDXHhVCMQ7o",
-	"LKCzgM5CUOiB4MthjO2iEijAg1GdK+JDXFAGZ2jl3a1FDoaO4ZjPzJ1KbjYGVPP5RPJtRPOWdIxT/flH",
-	"/XVvUxegLpvQSpN3v9Wx1vGgDL8dZfj3XnM2/A9KmbOqwbzpuvZclQCzBq361ibx+vOqAD7MTf/vMbms",
-	"tPOIV/3XFMxShVLoyznyjOmjYcQjrQkKpqQMGOWwliKxyLBfPnI+D4Ax6MhvaFtdVU961aQXQQ0/mx8d",
-	"t8zV9ahaPHPVqD195ah6LY7y8CcLAMmiiMd0uyOnroC7BZYsmauiMkXv7xKR8TZSjcZwwWZfJn90LcXu",
-	"7tX4Qlo9eP5BkYd1mQddl6np7mKZJufNBZriiK82o6XrCuswrnHsYIVXr8jY3Yl1W9uwjyfqNuLv3j4+",
-	"bFLpPE8h2Z4yjEgskxIwzxK4qGwRbUxD2YWfISZ21rulgz52tH8tGMAURwUYEGBAgAFhAeDB7aY2YBvy",
-	"XoeMCqhdV3848ES9rx1fwbtZWvVpsLRrs6Nn4L7W2KZmn2D7gu0Lti/Yvoe3fdoarW37ynvHWk8eIDRG",
-	"ABN9So4UN0jiwjLokW1YuHdI/Lu4TGyDB1ot2c1HY5kpZVLGHJdqAU5kV8EHGvvP9aExuqjU1zCLBFD1",
-	"GyZ6MNzXblvHDF/JWVCF6BQcRCkCbyjLWtttvfftTc4YImbwTSmwdYrSfyMG9FTUDvIZjAe7vnZ4nmWU",
-	"CRTbxjz33f0M/6DMNsNB8YkMsQszuGBrCDM8vPrHcDAYVNr+tXe1I2+Pk81fjaVLWuQiZFAIxGQT/+/q",
-	"t9/if/6Pj8JaDoJ302NltLyd6nKg0IcOrHx768qVFAD11VH5lXvLEuYRlbkgUqzkh0qCNYDLWdLb782F",
-	"yPj+cKjkLWNU0IgmA8pmw14zffJNzgVNrXL5dPK+1zfVfI7Uq4ucJbdymCHD8lAnNcjlKz2zU5gnwjS9",
-	"PxwmNILJnHKx/3L0ciSH5bzoQJ2A15DjCCASqyxdrkN5+uAoyfdFbwuYWQ5AszeH5p4oWxlDiYZEVCv8",
-	"mhWXcyEfUYb/suNsWjmolPQ0dYqUyTNnpamcVkZzgXhZhynCPV8fJIkp7tJYT3Ipa9IvPBWd6ErssXUz",
-	"JIZ6N+xQr4gM9QFYNhrq1HmsnywnztabYF6ruHqjSlHrYfWelRZynT6rSjGZDadIRHP5A8XqWgXdjvyh",
-	"gC0mMxd1lS2+cR6uHB/ViO2IHhrbn+YBN/4enhWnlHSbVGejgMPEzsPb89v/PwA=",
+	"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",
 }
 
 // decodeSpec returns the embedded OpenAPI spec as raw JSON bytes,

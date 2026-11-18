@@ -17,7 +17,3 @@ func (s *Server) RenameProject(ctx context.Context, request RenameProjectRequest
 func (s *Server) DeleteProject(ctx context.Context, request DeleteProjectRequestObject) (DeleteProjectResponseObject, error) {
 	panic("unimplemented")
 }
-
-func (s *Server) CheckArtifacts(ctx context.Context, request CheckArtifactsRequestObject) (CheckArtifactsResponseObject, error) {
-	panic("unimplemented")
-}

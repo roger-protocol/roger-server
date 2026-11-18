@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Roger Protocol Specification",
-    "version": "0.3.0-beta.1"
+    "version": "0.3.0"
   },
   "servers": [
     {
@@ -43,143 +43,6 @@
         "required": [
           "error"
         ]
-      },
-      "TokenRequestBody": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AuthorizationCodeGrant"
-          },
-          {
-            "$ref": "#/components/schemas/RefreshTokenGrant"
-          }
-        ],
-        "discriminator": {
-          "propertyName": "grant_type",
-          "mapping": {
-            "authorization_code": "#/components/schemas/AuthorizationCodeGrant",
-            "refresh_token": "#/components/schemas/RefreshTokenGrant"
-          }
-        }
-      },
-      "AuthorizationCodeGrant": {
-        "type": "object",
-        "properties": {
-          "grant_type": {
-            "type": "string",
-            "enum": [
-              "authorization_code"
-            ],
-            "description": "OAuth 2.1 grant type"
-          },
-          "code": {
-            "type": "string",
-            "description": "The single-use authorization code recieved from the loopback callback",
-            "example": "rgr_ac_abc123"
-          },
-          "code_verifier": {
-            "type": "string",
-            "description": "The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))"
-          },
-          "redirect_uri": {
-            "type": "string",
-            "description": "The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))"
-          },
-          "client_name": {
-            "type": "string",
-            "description": "A user-friendly client name bound to the user's session",
-            "example": "Roger CLI (Windows 11)"
-          }
-        },
-        "required": [
-          "grant_type",
-          "code",
-          "code_verifier",
-          "redirect_uri"
-        ],
-        "title": "Authorization Code"
-      },
-      "RefreshTokenGrant": {
-        "type": "object",
-        "properties": {
-          "grant_type": {
-            "type": "string",
-            "enum": [
-              "refresh_token"
-            ],
-            "description": "OAuth 2.1 grant type"
-          },
-          "refresh_token": {
-            "type": "string",
-            "description": "The long-lived refresh token issued by the node on last refresh",
-            "example": "rgr_rt_abc123"
-          }
-        },
-        "required": [
-          "grant_type",
-          "refresh_token"
-        ],
-        "title": "Refresh Token"
-      },
-      "RevokeRequestBody": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AccessTokenRevokeGrant"
-          },
-          {
-            "$ref": "#/components/schemas/RefreshTokenRevokeGrant"
-          }
-        ],
-        "discriminator": {
-          "propertyName": "token_type_hint",
-          "mapping": {
-            "access_token": "#/components/schemas/AccessTokenRevokeGrant",
-            "refresh_token": "#/components/schemas/RefreshTokenRevokeGrant"
-          }
-        }
-      },
-      "AccessTokenRevokeGrant": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "A valid short-lived access token (JWT)",
-            "example": "eyJhbGciOiJSUzI1NiIs..."
-          },
-          "token_type_hint": {
-            "type": "string",
-            "enum": [
-              "access_token"
-            ],
-            "description": "Hint to optimize node lookup"
-          }
-        },
-        "required": [
-          "token",
-          "token_type_hint"
-        ],
-        "title": "Access Token"
-      },
-      "RefreshTokenRevokeGrant": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "A long-lived token used to request new short-lived JWTs",
-            "example": "rgr_rt_abc123"
-          },
-          "token_type_hint": {
-            "type": "string",
-            "enum": [
-              "refresh_token"
-            ],
-            "description": "Hint to optimize node lookup"
-          }
-        },
-        "required": [
-          "token",
-          "token_type_hint"
-        ],
-        "title": "Refresh Token"
       },
       "UserSession": {
         "type": "object",
@@ -256,9 +119,6 @@
             "description": "A unique storage identifier",
             "example": "rgr_strg_abc123"
           },
-          "owner": {
-            "$ref": "#/components/schemas/StorageOwner"
-          },
           "name": {
             "type": "string",
             "description": "The human-friendly display name of the storage object",
@@ -279,6 +139,18 @@
             "type": "string",
             "description": "An optional message attached to the storage object status",
             "example": "Storage almost full (85% used)"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
+            "example": "2026-09-06T16:31:52.845Z"
           },
           "kind": {
             "type": "string",
@@ -303,70 +175,20 @@
             "type": "string",
             "description": "The region of your S3 bucket",
             "example": "eu-central"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
-            "example": "2026-09-06T14:47:42.239Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
-            "example": "2026-09-06T16:31:52.845Z"
           }
         },
         "required": [
           "id",
-          "owner",
           "name",
           "status",
+          "created_at",
+          "updated_at",
           "kind",
           "bucket_name",
           "storage_endpoint",
-          "region",
-          "created_at",
-          "updated_at"
+          "region"
         ],
         "title": "S3 Compatible"
-      },
-      "StorageOwner": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/UserStorageOwner"
-          }
-        ],
-        "discriminator": {
-          "propertyName": "kind",
-          "mapping": {
-            "user": "#/components/schemas/UserStorageOwner"
-          }
-        },
-        "description": "An object representing the ressource that owns the storage object"
-      },
-      "UserStorageOwner": {
-        "type": "object",
-        "properties": {
-          "kind": {
-            "type": "string",
-            "enum": [
-              "user"
-            ],
-            "description": "The type of owner that owns the storage object",
-            "example": "user"
-          },
-          "id": {
-            "type": "string",
-            "description": "A unique prefixed user identifier",
-            "example": "rgr_usr_abc123"
-          }
-        },
-        "required": [
-          "kind",
-          "id"
-        ],
-        "title": "User"
       },
       "InternalStorage": {
         "type": "object",
@@ -375,9 +197,6 @@
             "type": "string",
             "description": "A unique storage identifier",
             "example": "rgr_strg_abc123"
-          },
-          "owner": {
-            "$ref": "#/components/schemas/StorageOwner"
           },
           "name": {
             "type": "string",
@@ -400,6 +219,18 @@
             "description": "An optional message attached to the storage object status",
             "example": "Storage almost full (85% used)"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the S3 storage bucket was registered on the node",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the S3 storage bucket was last updated on the node",
+            "example": "2026-09-06T16:31:52.845Z"
+          },
           "kind": {
             "type": "string",
             "enum": [
@@ -419,23 +250,17 @@
             "minimum": 0,
             "description": "The number of bytes used in the internal storage object (base-2)",
             "example": 1073741824
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The ISO timestamp when the internal storage object was last updated",
-            "example": "2026-09-06T16:31:52.845Z"
           }
         },
         "required": [
           "id",
-          "owner",
           "name",
           "status",
+          "created_at",
+          "updated_at",
           "kind",
           "storage_capacity",
-          "storage_used",
-          "updated_at"
+          "storage_used"
         ],
         "title": "Internal"
       },
@@ -464,9 +289,7 @@
             "type": "string",
             "enum": [
               "S3"
-            ],
-            "description": "The kind of storage referenced by this object",
-            "example": "S3"
+            ]
           },
           "bucket_name": {
             "type": "string",
@@ -507,15 +330,27 @@
         "title": "S3 Compatible"
       },
       "RotateStorageObjectRequestBody": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/S3Credentials"
           }
-        ]
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "S3": "#/components/schemas/S3Credentials"
+          }
+        }
       },
       "S3Credentials": {
         "type": "object",
         "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "S3"
+            ]
+          },
           "access_key_id": {
             "type": "string",
             "description": "The S3 access key id",
@@ -528,10 +363,66 @@
           }
         },
         "required": [
+          "kind",
           "access_key_id",
           "secret_access_key"
         ],
         "title": "S3 Credentials"
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique project identifier",
+            "example": "rgr_prj_abc123"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "game"
+            ],
+            "description": "The type of resource the project will manage",
+            "example": "game"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The name of the project",
+            "example": "My Awesome Game!"
+          },
+          "storage_id": {
+            "type": "string",
+            "description": "The ID of the storage object used to store the project's artifacts",
+            "example": "rgr_strg_abc123"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the project was created",
+            "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when project was last updated",
+            "example": "2026-09-06T16:31:52.845Z"
+          },
+          "last_deployed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp of the last project deployment",
+            "example": "2026-09-06T16:32:57.627Z"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "name",
+          "storage_id",
+          "created_at",
+          "updated_at"
+        ]
       },
       "Credential": {
         "oneOf": [
@@ -549,23 +440,15 @@
       "APIKeyCredential": {
         "type": "object",
         "properties": {
-          "kind": {
+          "id": {
             "type": "string",
-            "enum": [
-              "api-key"
-            ],
-            "description": "The kind of the credential",
-            "example": "api-key"
+            "description": "A credential unique identifier",
+            "example": "rgr_cred_abc123"
           },
           "name": {
             "type": "string",
-            "description": "The human-friendly name of the API Key",
-            "example": "Test Key"
-          },
-          "account_id": {
-            "type": "string",
-            "description": "The ID of the Roblox account that owns the API Key",
-            "example": "1501705133"
+            "description": "The human-friendly name of the credential",
+            "example": "Test Credential"
           },
           "status": {
             "type": "string",
@@ -575,41 +458,52 @@
               "warning",
               "error"
             ],
-            "description": "The current status of the API Key",
+            "description": "The current status of the credential",
             "example": "error"
           },
           "status_message": {
             "type": "string",
-            "description": "An optional status message attached to the key",
-            "example": "This API Key has expired, please regenerate a new one"
+            "description": "An optional status message",
+            "example": "This credential has expired, please rotate the secret"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The ISO timestamp at which the API Key was registered on the node",
+            "description": "The ISO timestamp at which the credential was created",
             "example": "2026-09-06T14:47:42.239Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp when the credential was last updated",
+            "example": "2026-09-06T16:31:52.845Z"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "api-key"
+            ]
+          },
+          "account_id": {
+            "type": "string",
+            "description": "The ID of the Roblox account that owns the API Key",
+            "example": "1501705133"
           },
           "expires_at": {
             "type": "string",
             "format": "date-time",
             "description": "The ISO timestamp at which the API Key expires",
             "example": "2026-09-06T14:47:42.239Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The ISO timestamp when the API Key was last updated on the node",
-            "example": "2026-09-06T16:31:52.845Z"
           }
         },
         "required": [
-          "kind",
+          "id",
           "name",
-          "account_id",
           "status",
           "created_at",
-          "expires_at",
-          "updated_at"
+          "updated_at",
+          "kind",
+          "account_id"
         ],
         "title": "API Key"
       },
@@ -631,16 +525,14 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The human-friendly name of the API Key",
-            "example": "Test Key"
+            "description": "The human-friendly name of the credential",
+            "example": "Test Credential"
           },
           "kind": {
             "type": "string",
             "enum": [
               "api-key"
-            ],
-            "description": "The kind of the credential",
-            "example": "api-key"
+            ]
           },
           "secret_key": {
             "type": "string",
@@ -656,15 +548,27 @@
         "title": "API Key"
       },
       "RotateCredentialRequestBody": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/APIKeySecret"
           }
-        ]
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "api-key": "#/components/schemas/APIKeySecret"
+          }
+        }
       },
       "APIKeySecret": {
         "type": "object",
         "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "api-key"
+            ]
+          },
           "secret_key": {
             "type": "string",
             "description": "The API Key secret key",
@@ -672,9 +576,347 @@
           }
         },
         "required": [
+          "kind",
           "secret_key"
         ],
         "title": "API Key"
+      },
+      "Environment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique environment identifier",
+            "example": "rgr_env_abc123"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "universe",
+              "place"
+            ],
+            "description": "The kind of resource the environment will manage (whole universe or single place)",
+            "example": "universe"
+          },
+          "universe_id": {
+            "type": "string",
+            "description": "The ID of the universe linked to the environment (immutable for now)",
+            "example": "1234567890"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the environment (immutable)",
+            "example": "production"
+          },
+          "credential_id": {
+            "type": "string",
+            "description": "The ID of the credential that will be used to communicate to Roblox for this environment",
+            "example": "rgr_cred_abc123"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the environment was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the environment was last updated"
+          },
+          "last_deployed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the last deployment on this environment happened"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "universe_id",
+          "name",
+          "credential_id",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique deployment identifier",
+            "example": "rgr_dply_abc123"
+          },
+          "environment_id": {
+            "type": "string",
+            "description": "The ID of the environment the deployment belongs to",
+            "example": "rgr_env_abc123"
+          },
+          "version": {
+            "type": "string",
+            "description": "The deployment version string",
+            "example": "v2.3.1-hotfix"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "staged",
+              "error"
+            ],
+            "description": "The status of the deployment",
+            "example": "error"
+          },
+          "status_message": {
+            "type": "string",
+            "description": "An optional message attached to the deployment status",
+            "example": "Failed to upload place \"lobby\": the environment's credential lacks the necessary permissions"
+          },
+          "last_deployment": {
+            "type": "string",
+            "description": "The ID of the last active deployment",
+            "example": "rgr_dply_abc123"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO timestamp at which the deployment was created",
+            "example": "2026-09-06T14:47:42.239Z"
+          }
+        },
+        "required": [
+          "id",
+          "environment_id",
+          "version",
+          "status",
+          "created_at"
+        ]
+      },
+      "Manifest": {
+        "type": "object",
+        "properties": {
+          "node": {
+            "type": "string",
+            "format": "uri",
+            "description": "The base URL of the node in charge of your project"
+          },
+          "project": {
+            "type": "string",
+            "description": "The ID of the target roger project",
+            "example": "rgr_prj_abc123"
+          },
+          "environments": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ManifestEnvironment"
+            },
+            "description": "Map environment names to their configuration"
+          }
+        },
+        "required": [
+          "node",
+          "project",
+          "environments"
+        ]
+      },
+      "ManifestEnvironment": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ManifestUniverseEnvironment"
+          },
+          {
+            "$ref": "#/components/schemas/ManifestPlaceEnvironment"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "universe": "#/components/schemas/ManifestUniverseEnvironment",
+            "place": "#/components/schemas/ManifestPlaceEnvironment"
+          }
+        }
+      },
+      "ManifestUniverseEnvironment": {
+        "type": "object",
+        "properties": {
+          "versioning": {
+            "type": "string",
+            "enum": [
+              "semver",
+              "incremental",
+              "custom"
+            ]
+          },
+          "branches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Branch patterns that need to be matched with the current active git branch in order to push a deployment"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "universe"
+            ],
+            "description": "The type of resource the environment manages"
+          },
+          "socialLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ManifestSocialLink"
+            },
+            "description": "An array of social links displayed on the game's front page"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/ManifestEnvironmentConfiguration"
+          },
+          "places": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "$ref": "#/components/schemas/ManifestPlace"
+              }
+            },
+            "required": [
+              "start"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ManifestPlace"
+            },
+            "description": "A map of place names to their configuration. Must include a 'start' place."
+          }
+        },
+        "required": [
+          "versioning",
+          "kind",
+          "places"
+        ]
+      },
+      "ManifestSocialLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "facebook",
+              "twitter",
+              "youtube",
+              "twitch",
+              "discord",
+              "group",
+              "guilded"
+            ],
+            "description": "The target social platform"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the social link (shown to users)"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The url of the social link"
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "url"
+        ]
+      },
+      "ManifestEnvironmentConfiguration": {
+        "type": "object",
+        "properties": {
+          "enableVoiceChat": {
+            "type": "boolean",
+            "description": "Whether or not voice chat should be enabled"
+          },
+          "allowedDevices": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "desktop",
+                "mobile",
+                "tablet",
+                "console",
+                "vr"
+              ]
+            },
+            "description": "Restrict game access to specific devices"
+          },
+          "privateServerPrice": {
+            "type": "integer",
+            "description": "The price of private servers. Disabled if unset"
+          }
+        },
+        "description": "Change the experience settings"
+      },
+      "ManifestPlace": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The relative path to the target artefact"
+          },
+          "title": {
+            "type": "string",
+            "description": "The place's name"
+          },
+          "description": {
+            "type": "string",
+            "description": "The place's description"
+          },
+          "serverSize": {
+            "type": "integer",
+            "description": "The maximum amount of number allowed in a signle server instance"
+          }
+        },
+        "required": [
+          "file",
+          "title"
+        ],
+        "description": "The universe's starting place (its entry point / root place)"
+      },
+      "ManifestPlaceEnvironment": {
+        "type": "object",
+        "properties": {
+          "versioning": {
+            "type": "string",
+            "enum": [
+              "semver",
+              "incremental",
+              "custom"
+            ]
+          },
+          "branches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Branch patterns that need to be matched with the current active git branch in order to push a deployment"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "place"
+            ],
+            "description": "The type of resource the environment manages"
+          },
+          "place": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ManifestPlace"
+            }
+          }
+        },
+        "required": [
+          "versioning",
+          "kind",
+          "place"
+        ]
       },
       "Target": {
         "oneOf": [
@@ -728,7 +970,7 @@
             "format": "date-time",
             "description": "The ISO timestamp at which the place was registered"
           },
-          "last_updated_at": {
+          "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The ISO timestamp at which the place was last updated"
@@ -741,7 +983,7 @@
           "place_id",
           "used_in",
           "created_at",
-          "last_updated_at"
+          "updated_at"
         ],
         "title": "Place"
       }
@@ -829,6 +1071,17 @@
           {
             "schema": {
               "type": "string",
+              "enum": [
+                "code"
+              ]
+            },
+            "required": true,
+            "name": "response_type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
               "description": "See [RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.2)"
             },
             "required": true,
@@ -842,10 +1095,9 @@
               "enum": [
                 "S256"
               ],
-              "default": "S256",
               "description": "The hashing method used to create the code challenge (RFC 7636)"
             },
-            "required": false,
+            "required": true,
             "description": "The hashing method used to create the code challenge (RFC 7636)",
             "name": "code_challenge_method",
             "in": "query"
@@ -867,7 +1119,7 @@
               "type": "string",
               "description": "A high-entropy unique CSRF token that will be passed back in the loopback callback"
             },
-            "required": true,
+            "required": false,
             "description": "A high-entropy unique CSRF token that will be passed back in the loopback callback",
             "name": "state",
             "in": "query"
@@ -878,7 +1130,7 @@
             "description": "Redirect to the OAuth provider's authorization endpoint"
           },
           "400": {
-            "description": "Invalid request / Unsupported provider / Illegal redirect uri. Possible error codes: `invalid_request`, `invalid_redirect_uri`, `unsupported_provider`",
+            "description": "Invalid request / Unsupported provider / Illegal redirect uri. Possible error codes: `invalid_request`, `invalid_redirect_uri`, `unsupported_provider`, `unsupported_response_type`",
             "content": {
               "application/json": {
                 "schema": {
@@ -909,10 +1161,47 @@
         ],
         "description": "Exchange the authorization code / refresh token issued by the node for a JWT + refresh token",
         "requestBody": {
+          "required": true,
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/TokenRequestBody"
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "authorization_code",
+                      "refresh_token"
+                    ],
+                    "description": "OAuth 2.1 grant type"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "The single-use authorization code received from the loopback callback",
+                    "example": "rgr_ac_abc123"
+                  },
+                  "code_verifier": {
+                    "type": "string",
+                    "description": "The raw PKCE code verifier used to generate the code_challenge ([RFC 7636](https://www.rfc-editor.org/info/rfc7636/#section-4.1))"
+                  },
+                  "redirect_uri": {
+                    "type": "string",
+                    "description": "The redirect uri passed to the first PKCE request ([OAuth 2.1](https://oauth.net/2.1/))"
+                  },
+                  "client_name": {
+                    "type": "string",
+                    "description": "A user-friendly client name bound to the user's session",
+                    "example": "Roger CLI (Windows 11)"
+                  },
+                  "refresh_token": {
+                    "type": "string",
+                    "description": "The long-lived refresh token issued by the node on last refresh",
+                    "example": "rgr_rt_abc123"
+                  }
+                },
+                "required": [
+                  "grant_type"
+                ]
               }
             }
           }
@@ -992,10 +1281,28 @@
         ],
         "description": "Revoke a session using a refresh token / access token",
         "requestBody": {
+          "required": true,
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/RevokeRequestBody"
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "A valid short-lived access token (JWT) or refresh token"
+                  },
+                  "token_type_hint": {
+                    "type": "string",
+                    "enum": [
+                      "access_token",
+                      "refresh_token"
+                    ],
+                    "description": "Hint to optimize node lookup"
+                  }
+                },
+                "required": [
+                  "token"
+                ]
               }
             }
           }
@@ -1176,7 +1483,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -1270,6 +1577,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1359,6 +1667,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1379,7 +1688,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfull renamed the storage object",
+            "description": "Successfully renamed the storage object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1419,7 +1728,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -1467,7 +1776,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfull deleted the storage object",
+            "description": "Successfully deleted the storage object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1507,7 +1816,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -1566,6 +1875,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1576,7 +1886,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfull rotated the storage object",
+            "description": "Successfully rotated the storage object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1616,7 +1926,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -1659,59 +1969,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "description": "A unique project identifier",
-                        "example": "rgr_prj_abc123"
-                      },
-                      "kind": {
-                        "type": "string",
-                        "enum": [
-                          "game"
-                        ],
-                        "description": "The type of ressource the project will manage",
-                        "example": "game"
-                      },
-                      "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "description": "The name of the project",
-                        "example": "My Awesome Game!"
-                      },
-                      "storage_id": {
-                        "type": "string",
-                        "description": "The ID of the storage object used to store the project's artifacts",
-                        "example": "rgr_strg_abc123"
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "The ISO timestamp at which the project was created",
-                        "example": "2026-09-06T14:47:42.239Z"
-                      },
-                      "updated_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "The ISO timestamp when project was last updated",
-                        "example": "2026-09-06T16:31:52.845Z"
-                      },
-                      "last_deployed_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "The ISO timestamp of the last project deployment",
-                        "example": "2026-09-06T16:32:57.627Z"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "kind",
-                      "name",
-                      "storage_id",
-                      "created_at",
-                      "updated_at"
-                    ]
+                    "$ref": "#/components/schemas/Project"
                   }
                 }
               }
@@ -1752,6 +2010,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1768,7 +2027,7 @@
                     "enum": [
                       "game"
                     ],
-                    "description": "The type of ressource the project will manage",
+                    "description": "The type of resource the project will manage",
                     "example": "game"
                   },
                   "storage_id": {
@@ -1792,59 +2051,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique project identifier",
-                      "example": "rgr_prj_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "game"
-                      ],
-                      "description": "The type of ressource the project will manage",
-                      "example": "game"
-                    },
-                    "name": {
-                      "type": "string",
-                      "minLength": 1,
-                      "description": "The name of the project",
-                      "example": "My Awesome Game!"
-                    },
-                    "storage_id": {
-                      "type": "string",
-                      "description": "The ID of the storage object used to store the project's artifacts",
-                      "example": "rgr_strg_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the project was created",
-                      "example": "2026-09-06T14:47:42.239Z"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp when project was last updated",
-                      "example": "2026-09-06T16:31:52.845Z"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp of the last project deployment",
-                      "example": "2026-09-06T16:32:57.627Z"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "name",
-                    "storage_id",
-                    "created_at",
-                    "updated_at"
-                  ]
+                  "$ref": "#/components/schemas/Project"
                 }
               }
             }
@@ -1919,6 +2126,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1944,59 +2152,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique project identifier",
-                      "example": "rgr_prj_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "game"
-                      ],
-                      "description": "The type of ressource the project will manage",
-                      "example": "game"
-                    },
-                    "name": {
-                      "type": "string",
-                      "minLength": 1,
-                      "description": "The name of the project",
-                      "example": "My Awesome Game!"
-                    },
-                    "storage_id": {
-                      "type": "string",
-                      "description": "The ID of the storage object used to store the project's artifacts",
-                      "example": "rgr_strg_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the project was created",
-                      "example": "2026-09-06T14:47:42.239Z"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp when project was last updated",
-                      "example": "2026-09-06T16:31:52.845Z"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp of the last project deployment",
-                      "example": "2026-09-06T16:32:57.627Z"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "name",
-                    "storage_id",
-                    "created_at",
-                    "updated_at"
-                  ]
+                  "$ref": "#/components/schemas/Project"
                 }
               }
             }
@@ -2032,7 +2188,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2084,59 +2240,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique project identifier",
-                      "example": "rgr_prj_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "game"
-                      ],
-                      "description": "The type of ressource the project will manage",
-                      "example": "game"
-                    },
-                    "name": {
-                      "type": "string",
-                      "minLength": 1,
-                      "description": "The name of the project",
-                      "example": "My Awesome Game!"
-                    },
-                    "storage_id": {
-                      "type": "string",
-                      "description": "The ID of the storage object used to store the project's artifacts",
-                      "example": "rgr_strg_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the project was created",
-                      "example": "2026-09-06T14:47:42.239Z"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp when project was last updated",
-                      "example": "2026-09-06T16:31:52.845Z"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp of the last project deployment",
-                      "example": "2026-09-06T16:32:57.627Z"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "name",
-                    "storage_id",
-                    "created_at",
-                    "updated_at"
-                  ]
+                  "$ref": "#/components/schemas/Project"
                 }
               }
             }
@@ -2172,138 +2276,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/_roger/v1/projects/{projectId}/artifacts/check": {
-      "post": {
-        "operationId": "checkArtifacts",
-        "summary": "Check Artifact is Already Stored",
-        "description": "Pass an array of file hashes to check and the node should return whether or not the file is stored or not",
-        "tags": [
-          "Project"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "description": "A unique project identifier",
-              "example": "rgr_prj_abc123"
-            },
-            "required": true,
-            "description": "A unique project identifier",
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "hashes": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "An array of hashes to check",
-                    "example": [
-                      "abcd1234",
-                      "qwerty0987"
-                    ]
-                  }
-                },
-                "required": [
-                  "hashes"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully checked hashes",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "artifacts": {
-                      "type": "object",
-                      "additionalProperties": {
-                        "type": "boolean"
-                      },
-                      "description": "Returns true(stored)/false(not stored) for every passed hash",
-                      "example": {
-                        "abcd1234": false,
-                        "qwerty0987": true
-                      }
-                    }
-                  },
-                  "required": [
-                    "artifacts"
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2396,7 +2369,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2443,6 +2416,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2493,7 +2467,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2553,6 +2527,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2560,8 +2535,8 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "description": "The human-friendly name of the API Key",
-                    "example": "Test Key"
+                    "description": "The human-friendly name of the credential",
+                    "example": "Test Credential"
                   }
                 },
                 "required": [
@@ -2613,7 +2588,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2712,7 +2687,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2782,6 +2757,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2832,7 +2808,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2886,62 +2862,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique environment identifier",
-                      "example": "rgr_env_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "universe",
-                        "place"
-                      ],
-                      "description": "The kind of ressource the environment will manage (whole universe or single place)",
-                      "example": "universe"
-                    },
-                    "universe_id": {
-                      "type": "string",
-                      "description": "The ID of the universe linked to the environment (immutable for now)",
-                      "example": "1234567890"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "The name of the environment (immutable)",
-                      "example": "production"
-                    },
-                    "credential_id": {
-                      "type": "string",
-                      "description": "The ID of the credential that will be used to communicate to Roblox for this environment",
-                      "example": "rgr_cred_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was created"
-                    },
-                    "last_updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was last updated"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the last deployment on this environment happened"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "universe_id",
-                    "name",
-                    "credential_id",
-                    "created_at",
-                    "last_updated_at"
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Environment"
+                  }
                 }
               }
             }
@@ -2967,7 +2891,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -2991,7 +2915,7 @@
       "post": {
         "operationId": "createEnvironment",
         "summary": "Create a new Environment",
-        "description": "Create a new environment under the specified project. You must pass a universe id to link the environment to an exisiting universe for now since Roblox doesn't allow universe creation using API keys yet. Note: The environment name is immutable and must be in lowercase.",
+        "description": "Create a new environment under the specified project. You must pass a universe id to link the environment to an existing universe for now since Roblox doesn't allow universe creation using API keys yet. Note: The environment name is immutable and must be in lowercase.",
         "tags": [
           "Environments"
         ],
@@ -3014,6 +2938,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3035,7 +2960,7 @@
                       "universe",
                       "place"
                     ],
-                    "description": "The kind of ressource the environment will manage (whole universe or single place)",
+                    "description": "The kind of resource the environment will manage (whole universe or single place)",
                     "example": "universe"
                   },
                   "credential_id": {
@@ -3060,62 +2985,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique environment identifier",
-                      "example": "rgr_env_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "universe",
-                        "place"
-                      ],
-                      "description": "The kind of ressource the environment will manage (whole universe or single place)",
-                      "example": "universe"
-                    },
-                    "universe_id": {
-                      "type": "string",
-                      "description": "The ID of the universe linked to the environment (immutable for now)",
-                      "example": "1234567890"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "The name of the environment (immutable)",
-                      "example": "production"
-                    },
-                    "credential_id": {
-                      "type": "string",
-                      "description": "The ID of the credential that will be used to communicate to Roblox for this environment",
-                      "example": "rgr_cred_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was created"
-                    },
-                    "last_updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was last updated"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the last deployment on this environment happened"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "universe_id",
-                    "name",
-                    "credential_id",
-                    "created_at",
-                    "last_updated_at"
-                  ]
+                  "$ref": "#/components/schemas/Environment"
                 }
               }
             }
@@ -3151,7 +3021,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -3216,62 +3086,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique environment identifier",
-                      "example": "rgr_env_abc123"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "universe",
-                        "place"
-                      ],
-                      "description": "The kind of ressource the environment will manage (whole universe or single place)",
-                      "example": "universe"
-                    },
-                    "universe_id": {
-                      "type": "string",
-                      "description": "The ID of the universe linked to the environment (immutable for now)",
-                      "example": "1234567890"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "The name of the environment (immutable)",
-                      "example": "production"
-                    },
-                    "credential_id": {
-                      "type": "string",
-                      "description": "The ID of the credential that will be used to communicate to Roblox for this environment",
-                      "example": "rgr_cred_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was created"
-                    },
-                    "last_updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the environment was last updated"
-                    },
-                    "last_deployed_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the last deployment on this environment happened"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "universe_id",
-                    "name",
-                    "credential_id",
-                    "created_at",
-                    "last_updated_at"
-                  ]
+                  "$ref": "#/components/schemas/Environment"
                 }
               }
             }
@@ -3307,7 +3122,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -3363,54 +3178,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "description": "A unique deployment identifier",
-                        "example": "rgr_dply_abc123"
-                      },
-                      "environmentId": {
-                        "type": "string",
-                        "description": "The ID of the environment the deployment belongs to",
-                        "example": "rgr_env_abc123"
-                      },
-                      "version": {
-                        "type": "string",
-                        "description": "The deployment version string",
-                        "example": "v2.3.1-hotfix"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "active",
-                          "inactive",
-                          "staged",
-                          "error"
-                        ],
-                        "description": "The status of the deployment",
-                        "example": "staged"
-                      },
-                      "last_deployment": {
-                        "type": "string",
-                        "description": "The ID of the last active deployment",
-                        "example": "rgr_dply_abc123"
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "The ISO timestamp at which the deployment was created",
-                        "example": "2026-09-06T14:47:42.239Z"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "environmentId",
-                      "version",
-                      "status",
-                      "last_deployment",
-                      "created_at"
-                    ]
+                    "$ref": "#/components/schemas/Deployment"
                   }
                 }
               }
@@ -3447,7 +3215,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -3494,12 +3262,13 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "environmentId": {
+                  "environment_id": {
                     "type": "string",
                     "description": "The ID of the environment the deployment belongs to",
                     "example": "rgr_env_abc123"
@@ -3515,34 +3284,30 @@
                       "deploy",
                       "stage"
                     ],
-                    "description": "The action that should be done on the deployment after upload",
+                    "description": "The action that should be done on the deployment after creation",
                     "example": "stage"
                   },
-                  "config": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "The roger.yml config file"
+                  "manifest": {
+                    "$ref": "#/components/schemas/Manifest"
                   },
                   "place_hashes": {
-                    "type": "string",
-                    "description": "A stringified JSON object mapping place names to artifact hashes already stored on the server (checked via the /artifacts/check route)",
-                    "example": "{\"lobby\": \"abc123...\", \"arena\": \"def456...\"}"
-                  },
-                  "places": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary",
-                      "description": "A zipped .rbxl binary. The filename parameter in the Content-Disposition header must match the target place name in the config file"
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
                     },
-                    "format": "binary",
-                    "description": "An array of zipped rbxl binaries, one per place. Each part must use the place name as it's filename"
+                    "description": "A map of every place name declared in the manifest to their uploaded artifact hash",
+                    "example": {
+                      "lobby": "f3a1ef5671fbafb086ed06a5be7c091f39ef8cebae9dd0b160ec4d68e5b322db",
+                      "arena": "c01eaf870848a93224426b8eed25702982f4cce01459c8a53874eccb22fe8a0e"
+                    }
                   }
                 },
                 "required": [
-                  "environmentId",
+                  "environment_id",
                   "version",
-                  "action"
+                  "action",
+                  "manifest",
+                  "place_hashes"
                 ]
               }
             }
@@ -3554,54 +3319,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique deployment identifier",
-                      "example": "rgr_dply_abc123"
-                    },
-                    "environmentId": {
-                      "type": "string",
-                      "description": "The ID of the environment the deployment belongs to",
-                      "example": "rgr_env_abc123"
-                    },
-                    "version": {
-                      "type": "string",
-                      "description": "The deployment version string",
-                      "example": "v2.3.1-hotfix"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "active",
-                        "inactive",
-                        "staged",
-                        "error"
-                      ],
-                      "description": "The status of the deployment",
-                      "example": "staged"
-                    },
-                    "last_deployment": {
-                      "type": "string",
-                      "description": "The ID of the last active deployment",
-                      "example": "rgr_dply_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the deployment was created",
-                      "example": "2026-09-06T14:47:42.239Z"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "environmentId",
-                    "version",
-                    "status",
-                    "last_deployment",
-                    "created_at"
-                  ]
+                  "$ref": "#/components/schemas/Deployment"
                 }
               }
             }
@@ -3637,7 +3355,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -3702,54 +3420,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "A unique deployment identifier",
-                      "example": "rgr_dply_abc123"
-                    },
-                    "environmentId": {
-                      "type": "string",
-                      "description": "The ID of the environment the deployment belongs to",
-                      "example": "rgr_env_abc123"
-                    },
-                    "version": {
-                      "type": "string",
-                      "description": "The deployment version string",
-                      "example": "v2.3.1-hotfix"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "active",
-                        "inactive",
-                        "staged",
-                        "error"
-                      ],
-                      "description": "The status of the deployment",
-                      "example": "staged"
-                    },
-                    "last_deployment": {
-                      "type": "string",
-                      "description": "The ID of the last active deployment",
-                      "example": "rgr_dply_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the deployment was created",
-                      "example": "2026-09-06T14:47:42.239Z"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "environmentId",
-                    "version",
-                    "status",
-                    "last_deployment",
-                    "created_at"
-                  ]
+                  "$ref": "#/components/schemas/Deployment"
                 }
               }
             }
@@ -3785,7 +3456,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -3860,53 +3531,132 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request body, headers, params or query. Possible error codes: `invalid_request`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The request lacks valid authentication credentials. Possible error codes: `invalid_token`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user does not have the permissions to perform this action. Possible error codes: `insufficient_permissions`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The target deployment is active and cannot be deleted. Possible error codes: `deployment_active`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The server couldn't handle your request due to an internal error. Possible error codes: `server_error`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_roger/v1/projects/{projectId}/artifacts": {
+      "post": {
+        "operationId": "uploadArtifact",
+        "summary": "Upload an Artifact",
+        "description": "Upload an artifact to the node",
+        "tags": [
+          "Deployments"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "A unique project identifier",
+              "example": "rgr_prj_abc123"
+            },
+            "required": true,
+            "description": "A unique project identifier",
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary",
+                "description": "Raw binary .rbxl place artifact"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully uploaded file",
+            "content": {
+              "application/json": {
+                "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "hash": {
                       "type": "string",
-                      "description": "A unique deployment identifier",
-                      "example": "rgr_dply_abc123"
+                      "description": "The hash of the uploaded artifact computed by the node"
                     },
-                    "environmentId": {
-                      "type": "string",
-                      "description": "The ID of the environment the deployment belongs to",
-                      "example": "rgr_env_abc123"
-                    },
-                    "version": {
-                      "type": "string",
-                      "description": "The deployment version string",
-                      "example": "v2.3.1-hotfix"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "active",
-                        "inactive",
-                        "staged",
-                        "error"
-                      ],
-                      "description": "The status of the deployment",
-                      "example": "staged"
-                    },
-                    "last_deployment": {
-                      "type": "string",
-                      "description": "The ID of the last active deployment",
-                      "example": "rgr_dply_abc123"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "The ISO timestamp at which the deployment was created",
-                      "example": "2026-09-06T14:47:42.239Z"
+                    "already_stored": {
+                      "type": "boolean",
+                      "description": "Whether or not the file was already stored on the server"
                     }
                   },
                   "required": [
-                    "id",
-                    "environmentId",
-                    "version",
-                    "status",
-                    "last_deployment",
-                    "created_at"
+                    "hash",
+                    "already_stored"
                   ]
                 }
               }
@@ -3943,17 +3693,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The target deployment is active and cannot be deleted. Possible error codes: `deployment_active`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -4073,7 +3813,7 @@
                                 "enum": [
                                   "game"
                                 ],
-                                "description": "The type of ressource the project will manage",
+                                "description": "The type of resource the project will manage",
                                 "example": "game"
                               },
                               "description": "All project kinds supported by this node",
@@ -4265,13 +4005,23 @@
                               "minimum": -1,
                               "description": "The maximum place file (.rbxl) size in bytes (base-2)",
                               "example": 5368709120
+                            },
+                            "artifactHashingAlgorithm": {
+                              "type": "string",
+                              "enum": [
+                                "sha256",
+                                "blake3"
+                              ],
+                              "description": "The hashing algorithm used by the node to hash artifacts",
+                              "example": "blake3"
                             }
                           },
                           "required": [
                             "maxDeploymentsPerProject",
                             "minVersionLength",
                             "maxVersionLength",
-                            "maxPlaceFileSizeBytes"
+                            "maxPlaceFileSizeBytes",
+                            "artifactHashingAlgorithm"
                           ]
                         }
                       },
@@ -4339,7 +4089,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Target"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Target"
+                  }
                 }
               }
             }
@@ -4375,7 +4128,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -4433,11 +4186,20 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "place"
+                    ],
+                    "description": "The type of the target",
+                    "example": "place"
+                  },
                   "name": {
                     "type": "string",
                     "description": "The name used in the config file to reference this place",
@@ -4449,6 +4211,7 @@
                   }
                 },
                 "required": [
+                  "kind",
                   "name",
                   "place_id"
                 ]
@@ -4498,7 +4261,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -4522,9 +4285,9 @@
     },
     "/_roger/v1/projects/{projectId}/environments/{environmentId}/targets/{name}": {
       "put": {
-        "operationId": "changeTargetRessourceId",
-        "summary": "Edit Target Ressource ID",
-        "description": "Change the id of the ressource the target is pointing to",
+        "operationId": "changeTargetResourceId",
+        "summary": "Edit Target Resource ID",
+        "description": "Change the id of the resource the target is pointing to",
         "tags": [
           "Targets"
         ],
@@ -4569,6 +4332,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4628,7 +4392,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {
@@ -4738,7 +4502,7 @@
             }
           },
           "404": {
-            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible params: `resource_not_found`",
+            "description": "The requested resource could not be found on this server or the user doesn't have access to it. Possible error codes: `resource_not_found`",
             "content": {
               "application/json": {
                 "schema": {

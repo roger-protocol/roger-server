@@ -139,9 +139,10 @@ type StorageFeatureConfig struct {
 }
 
 type DeploymentsFeatureConfig struct {
-	MaxDeploymentsPerProject int `yaml:"maxDeploymentsPerProject" json:"maxDeploymentsPerProject" jsonschema:"default=50"`
-	MaxPlacesPerDeployment   int `yaml:"maxPlacesPerDeployment" json:"maxPlacesPerDeployment" jsonschema:"default=10"`
-	MinVersionLength         int `yaml:"minVersionLength" json:"minVersionLength" jsonschema:"default=1"`
-	MaxVersionLength         int `yaml:"maxVersionLength" json:"maxVersionLength" jsonschema:"default=64"`
-	MaxPlaceFileSizeBytes    int `yaml:"maxPlaceFileSizeBytes" json:"maxPlaceFileSizeBytes" jsonschema:"default=5368709120"`
+	MaxDeploymentsPerProject int    `yaml:"maxDeploymentsPerProject" json:"maxDeploymentsPerProject" jsonschema:"default=50"`
+	MaxPlacesPerDeployment   int    `yaml:"maxPlacesPerDeployment" json:"maxPlacesPerDeployment" jsonschema:"default=10"`
+	MinVersionLength         int    `yaml:"minVersionLength" json:"minVersionLength" jsonschema:"default=1"`
+	MaxVersionLength         int    `yaml:"maxVersionLength" json:"maxVersionLength" jsonschema:"default=64"`
+	MaxPlaceFileSizeBytes    int    `yaml:"maxPlaceFileSizeBytes" json:"maxPlaceFileSizeBytes" jsonschema:"default=5368709120"`
+	ArtifactHashingAlgorithm string `yaml:"artifactHashingAlgorithm" json:"artifactHashingAlgorithm" jsonschema:"enum=sha256,enum=blake3,default=blake3"`
 }

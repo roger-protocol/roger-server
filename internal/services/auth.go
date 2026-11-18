@@ -50,14 +50,14 @@ func NewAuthService(db *sql.DB, q *db.Queries, cfg *config.Config) *AuthService 
 const oauthStateTTL = 5 * time.Minute
 
 type oauthState struct {
-	ClientState         string `json:"cs"`
-	CodeChallenge       string `json:"cc"`
-	CodeChallengeMethod string `json:"ccm"`
-	RedirectURI         string `json:"ru"`
-	IssuedAt            string `json:"iat"`
+	ClientState         *string `json:"cs"`
+	CodeChallenge       string  `json:"cc"`
+	CodeChallengeMethod string  `json:"ccm"`
+	RedirectURI         string  `json:"ru"`
+	IssuedAt            string  `json:"iat"`
 }
 
-func (s *AuthService) ForgeState(clientState string, codeChallenge string, codeChallengeMethod string, clientRedirectUri string) (string, error) {
+func (s *AuthService) ForgeState(clientState *string, codeChallenge string, codeChallengeMethod string, clientRedirectUri string) (string, error) {
 	stateData := oauthState{
 		ClientState:         clientState,
 		CodeChallenge:       codeChallenge,
@@ -126,7 +126,7 @@ func isValidRedirectUri(redirectUri string, allowed []*glob.Pattern) bool {
 	}
 	return false
 }
-func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge string, codeChallengeMethod string, clientState string, clientRedirectUri string) (string, error) {
+func (s *AuthService) GetProviderRedirectURL(providerID string, codeChallenge string, codeChallengeMethod string, clientState *string, clientRedirectUri string) (string, error) {
 	providerCfg, ok := s.config.Auth.Providers[providerID]
 	if !ok {
 		return "", ErrUnsupportedProvider

@@ -6,7 +6,7 @@ func (s *Server) CreateTarget(ctx context.Context, request CreateTargetRequestOb
 	panic("unimplemented")
 }
 
-func (s *Server) ChangeTargetRessourceId(ctx context.Context, request ChangeTargetRessourceIdRequestObject) (ChangeTargetRessourceIdResponseObject, error) {
+func (s *Server) ChangeTargetResourceId(ctx context.Context, request ChangeTargetResourceIdRequestObject) (ChangeTargetResourceIdResponseObject, error) {
 	panic("unimplemented")
 }
 

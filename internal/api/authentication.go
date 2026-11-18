@@ -2,13 +2,17 @@ package api
 
 import (
 	"context"
+	"database/sql"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"log"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/roger-protocol/roger-server/internal/crypto"
 	"github.com/roger-protocol/roger-server/internal/services"
 )
 
@@ -24,10 +28,16 @@ func (r InitiateOAuthLogin302ResponseWithLocation) VisitInitiateOAuthLoginRespon
 
 func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLoginRequestObject) (InitiateOAuthLoginResponseObject, error) {
 	params := request.Params
+
+	if params.ResponseType != "code" {
+		description := "Unsupported response type. Expected 'code'"
+		return InitiateOAuthLogin400JSONResponse{Error: "unsupported_response_type", ErrorDescription: &description}, nil
+	}
+
 	url, err := s.auth.GetProviderRedirectURL(
 		params.Provider,
 		params.CodeChallenge,
-		string(*params.CodeChallengeMethod),
+		string(params.CodeChallengeMethod),
 		params.State,
 		params.RedirectUri,
 	)
@@ -81,7 +91,9 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 		redirectWithError := func(errCode string, errDescription string) {
 			q := redirectURL.Query()
 			q.Set("error", errCode)
-			q.Set("state", oauthState.ClientState)
+			if oauthState.ClientState != nil {
+				q.Set("state", *oauthState.ClientState)
+			}
 			if errDescription != "" {
 				q.Set("error_description", errDescription)
 			}
@@ -140,7 +152,9 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 		// Redirect to the callback url with the code and client state
 		q := redirectURL.Query()
 		q.Set("code", id)
-		q.Set("state", oauthState.ClientState)
+		if oauthState.ClientState != nil {
+			q.Set("state", *oauthState.ClientState)
+		}
 		redirectURL.RawQuery = q.Encode()
 		http.Redirect(w, r, redirectURL.String(), http.StatusSeeOther)
 	}
@@ -149,16 +163,20 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequestObject) (ExchangeTokenResponseObject, error) {
 	body := request.Body
 
-	if authorizationCodeGrant, err := body.AsAuthorizationCodeGrant(); err == nil && authorizationCodeGrant.GrantType == "authorization_code" {
-		authorizationCode := authorizationCodeGrant.Code
-		codeVerifier := authorizationCodeGrant.CodeVerifier
-		redirectUri := authorizationCodeGrant.RedirectUri
+	if body.GrantType == "authorization_code" {
+		authorizationCode := body.Code
+		codeVerifier := body.CodeVerifier
+		redirectUri := body.RedirectUri
+		if authorizationCode == nil || codeVerifier == nil || redirectUri == nil {
+			description := "invalid request body"
+			return ExchangeToken400JSONResponse{Error: "invalid_request", ErrorDescription: &description}, nil
+		}
 		var clientName string
-		if authorizationCodeGrant.ClientName != nil {
-			clientName = *authorizationCodeGrant.ClientName
+		if body.ClientName != nil {
+			clientName = *body.ClientName
 		}
 
-		user, err := s.auth.ConsumeAuthorizationCode(ctx, s.queries, authorizationCode, redirectUri, codeVerifier)
+		user, err := s.auth.ConsumeAuthorizationCode(ctx, s.queries, *authorizationCode, *redirectUri, *codeVerifier)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
 				message := err.Error()
@@ -183,12 +201,16 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		}, nil
 	}
 
-	if refreshTokenGrant, err := body.AsRefreshTokenGrant(); err == nil && refreshTokenGrant.GrantType == "refresh_token" {
-		refreshToken := refreshTokenGrant.RefreshToken
+	if body.GrantType == "refresh_token" {
+		refreshToken := body.RefreshToken
+		if refreshToken == nil {
+			description := "invalid request body"
+			return ExchangeToken400JSONResponse{Error: "invalid_request", ErrorDescription: &description}, nil
+		}
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
 
-		newSession, err := s.auth.RefreshSession(ctx, s.queries, refreshToken, ipAddress, country)
+		newSession, err := s.auth.RefreshSession(ctx, s.queries, *refreshToken, ipAddress, country)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
 				message := err.Error()

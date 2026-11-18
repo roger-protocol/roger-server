@@ -70,3 +70,4 @@ features:
     minVersionLength: 1
     maxVersionLength: 64
     maxPlaceFileSizeBytes: 5368709120
+    artifactHashingAlgorithm: blake3
