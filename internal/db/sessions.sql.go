@@ -271,3 +271,27 @@ func (q *Queries) RevokeSession(ctx context.Context, id string) (Session, error)
 	)
 	return i, err
 }
+
+const revokeSessionFromRefreshToken = `-- name: RevokeSessionFromRefreshToken :one
+DELETE FROM sessions
+WHERE refresh_token_hash = ?
+RETURNING id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at
+`
+
+func (q *Queries) RevokeSessionFromRefreshToken(ctx context.Context, refreshTokenHash string) (Session, error) {
+	row := q.db.QueryRowContext(ctx, revokeSessionFromRefreshToken, refreshTokenHash)
+	var i Session
+	err := row.Scan(
+		&i.ID,
+		&i.UserID,
+		&i.IpAddress,
+		&i.Country,
+		&i.ClientName,
+		&i.RefreshTokenHash,
+		&i.AccessTokenJti,
+		&i.AccessTokenExpiresAt,
+		&i.CreatedAt,
+		&i.LastUsedAt,
+	)
+	return i, err
+}

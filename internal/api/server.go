@@ -25,3 +25,7 @@ func NewServer(db *sql.DB, q *db.Queries, cfg *config.Config) *Server {
 		auth:    services.NewAuthService(db, q, cfg),
 	}
 }
+
+func (s *Server) Close() {
+	s.auth.Close()
+}

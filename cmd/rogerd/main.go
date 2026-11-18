@@ -34,6 +34,7 @@ func main() {
 
 	queries := db.New(database)
 	server := api.NewServer(database, queries, cfg)
+	defer server.Close()
 	router, err := api.NewRouter(server)
 
 	if err != nil {

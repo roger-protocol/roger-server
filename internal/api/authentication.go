@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/roger-protocol/roger-server/internal/crypto"
 	"github.com/roger-protocol/roger-server/internal/services"
 )
@@ -232,5 +233,42 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 }
 
 func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObject) (RevokeTokenResponseObject, error) {
-	panic("unimplemented")
+	body := request.Body
+
+	if strings.Count(body.Token, ".") == 2 && strings.HasPrefix(body.Token, "eyJ") {
+		accessToken := body.Token
+		claims, err := s.auth.ParseJwt(accessToken, jwt.WithoutClaimsValidation())
+		if err != nil {
+			fmt.Printf("err: %v\n", err)
+			if errors.Is(err, services.ErrInvalidJwt) {
+				return RevokeToken200Response{}, nil
+			}
+			return nil, err
+		}
+
+		session, err := s.queries.RevokeSession(ctx, claims.SessionId)
+		if err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				return RevokeToken200Response{}, nil
+			}
+			return nil, err
+		}
+		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+		return RevokeToken200Response{}, nil
+	}
+
+	if strings.HasPrefix(body.Token, "rgr_rt_") {
+		refreshToken := body.Token
+		rtHash := crypto.Hash256([]byte(refreshToken), hex.EncodeToString)
+
+		session, err := s.queries.RevokeSessionFromRefreshToken(ctx, rtHash)
+		if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			return nil, err
+		}
+		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+		return RevokeToken200Response{}, nil
+	}
+
+	description := "Unsupported grant type"
+	return RevokeToken400JSONResponse{Error: "unsupported_grant_type", ErrorDescription: &description}, nil
 }

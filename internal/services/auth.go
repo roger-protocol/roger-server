@@ -16,6 +16,7 @@ import (
 
 	"github.com/gobwas/glob"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/roger-protocol/roger-server/internal/cache"
 	"github.com/roger-protocol/roger-server/internal/config"
 	"github.com/roger-protocol/roger-server/internal/convert"
 	"github.com/roger-protocol/roger-server/internal/crypto"
@@ -34,16 +35,29 @@ var (
 	ErrInvalidRefreshToken      = fmt.Errorf("%w: invalid refresh token", ErrInvalidGrant)
 	ErrInvalidCodeVerifier      = fmt.Errorf("%w: invalid code verifier", ErrInvalidGrant)
 	ErrAuthorizationCodeExpired = fmt.Errorf("%w: expired authorization code", ErrInvalidGrant)
+
+	ErrInvalidJwt           = errors.New("invalid jwt")
+	ErrInvalidJwtSigningAlg = fmt.Errorf("%w: invalid jwt signing algorithm (expected ES256)", ErrInvalidJwt)
+	ErrInvalidJwtSignature  = fmt.Errorf("%w: invalid jwt signature", ErrInvalidJwt)
+	ErrJwtMalformed         = fmt.Errorf("%w: invalid or malformed jwt", ErrInvalidJwt)
+	ErrJwtExpired           = fmt.Errorf("%w: jwt has expired", ErrInvalidJwt)
+	ErrJwtRevoked           = fmt.Errorf("%w: jwt was revoked", ErrInvalidJwt)
 )
 
 type AuthService struct {
-	db      *sql.DB
-	config  *config.Config
-	queries *db.Queries
+	db           *sql.DB
+	config       *config.Config
+	queries      *db.Queries
+	revokedCache *cache.Cache[string, struct{}]
 }
 
 func NewAuthService(db *sql.DB, q *db.Queries, cfg *config.Config) *AuthService {
-	return &AuthService{db: db, config: cfg, queries: q}
+	revokedCache := cache.New[string, struct{}](JwtTTL)
+	return &AuthService{db: db, config: cfg, queries: q, revokedCache: revokedCache}
+}
+
+func (s *AuthService) Close() {
+	s.revokedCache.Close()
 }
 
 // State Encoding / Decoding
@@ -400,12 +414,13 @@ type CreatedSession struct {
 }
 type JWTClaims struct {
 	jwt.RegisteredClaims
+	SessionId     string  `json:"sid"`
 	Username      string  `json:"username"`
 	Email         *string `json:"email,omitempty"`
 	EmailVerified *bool   `json:"email_verified,omitempty"`
 }
 
-func (s *AuthService) CreateJWT(user db.User) (*jwt.Token, JWTClaims) {
+func (s *AuthService) CreateJWT(user db.User, sessionId string) (*jwt.Token, JWTClaims) {
 	now := time.Now().UTC()
 
 	var emailPtr *string
@@ -426,6 +441,7 @@ func (s *AuthService) CreateJWT(user db.User) (*jwt.Token, JWTClaims) {
 			IssuedAt:  jwt.NewNumericDate(now),
 			ExpiresAt: jwt.NewNumericDate(now.Add(JwtTTL)),
 		},
+		SessionId:     sessionId,
 		Username:      user.Username,
 		Email:         emailPtr,
 		EmailVerified: emailVerifiedPtr,
@@ -436,9 +452,60 @@ func (s *AuthService) CreateJWT(user db.User) (*jwt.Token, JWTClaims) {
 	return token, claims
 }
 
+func (s *AuthService) ValidateJWT(jwtString string) (JWTClaims, error) {
+	claims, err := s.ParseJwt(jwtString)
+	if err != nil {
+		return JWTClaims{}, err
+	}
+
+	if s.revokedCache.Has(claims.ID) {
+		return JWTClaims{}, ErrJwtRevoked
+	}
+
+	return claims, nil
+}
+
+func (s *AuthService) ParseJwt(jwtString string, extraOpts ...jwt.ParserOption) (JWTClaims, error) {
+	opts := append([]jwt.ParserOption{jwt.WithIssuer(s.config.Server.ServerURL)}, extraOpts...)
+	token, err := jwt.ParseWithClaims(
+		jwtString,
+		&JWTClaims{},
+		func(t *jwt.Token) (any, error) {
+			if t.Method.Alg() != "ES256" {
+				return nil, ErrInvalidJwtSigningAlg
+			}
+			return s.config.Auth.JWTPublicKey, nil
+		},
+		opts...,
+	)
+
+	if err != nil {
+		switch {
+		case errors.Is(err, jwt.ErrTokenSignatureInvalid):
+			return JWTClaims{}, ErrInvalidJwtSignature
+		case errors.Is(err, jwt.ErrTokenExpired):
+			return JWTClaims{}, ErrJwtExpired
+		case errors.Is(err, jwt.ErrTokenMalformed),
+			errors.Is(err, jwt.ErrTokenNotValidYet),
+			errors.Is(err, jwt.ErrTokenInvalidClaims),
+			errors.Is(err, jwt.ErrTokenInvalidIssuer):
+			return JWTClaims{}, ErrJwtMalformed
+		default:
+			return JWTClaims{}, fmt.Errorf("parse jwt: %w", err)
+		}
+	}
+
+	claims, ok := token.Claims.(*JWTClaims)
+	if !ok || !token.Valid {
+		return JWTClaims{}, ErrJwtMalformed
+	}
+	return *claims, nil
+}
+
 func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, user db.User, ipAddress string, country string, clientName string) (CreatedSession, error) {
 	// Create a JWT for the session
-	jwt, claims := s.CreateJWT(user)
+	sessId := crypto.GenerateID("rgr_sess")
+	jwt, claims := s.CreateJWT(user, sessId)
 	expires_at := claims.ExpiresAt
 
 	// Sign JWT
@@ -449,7 +516,6 @@ func (s *AuthService) CreateSession(ctx context.Context, q *db.Queries, user db.
 
 	// Create the session
 	refreshToken := crypto.GenerateID("rgr_rt")
-	sessId := crypto.GenerateID("rgr_sess")
 	now := time.Now().UTC().Format(time.RFC3339)
 	session, err := q.CreateSession(ctx, db.CreateSessionParams{
 		ID:                   sessId,
@@ -495,7 +561,7 @@ func (s *AuthService) RefreshSession(ctx context.Context, q *db.Queries, refresh
 		return CreatedSession{}, fmt.Errorf("fetch user profile: %w", err)
 	}
 
-	jwt, claims := s.CreateJWT(user)
+	jwt, claims := s.CreateJWT(user, oldSession.ID)
 	expires_at := claims.ExpiresAt
 	signedJwt, err := jwt.SignedString(s.config.Auth.JWTPrivateKey)
 	if err != nil {
@@ -520,6 +586,14 @@ func (s *AuthService) RefreshSession(ctx context.Context, q *db.Queries, refresh
 	if err != nil {
 		return CreatedSession{}, fmt.Errorf("database error: %w", err)
 	}
+	s.RevokeJwt(ctx, oldSession.AccessTokenJti)
 
 	return CreatedSession{Session: newSession, AccessToken: signedJwt, RefreshToken: refreshToken, Claims: claims}, nil
+}
+
+func (s *AuthService) RevokeJwt(ctx context.Context, jti string) {
+	if jti == "" {
+		return
+	}
+	s.revokedCache.Set(jti, struct{}{}, JwtTTL)
 }

@@ -45,6 +45,11 @@ DELETE FROM sessions
 WHERE id = ?
 RETURNING *;
 
+-- name: RevokeSessionFromRefreshToken :one
+DELETE FROM sessions
+WHERE refresh_token_hash = ?
+RETURNING *;
+
 -- name: RevokeAllSessionsExcept :many
 DELETE FROM sessions
 WHERE user_id = ? AND id != ?
