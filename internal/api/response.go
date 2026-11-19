@@ -5,6 +5,8 @@ import (
 	"net/http"
 )
 
+var serverError Error = newApiError("server_error", "There was an unexpected error while handling your request. Please try again later.")
+
 func writeJSON(w http.ResponseWriter, status int, data any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
@@ -23,5 +25,5 @@ func writeError(w http.ResponseWriter, status int, code string, description stri
 }
 
 func writeServerError(w http.ResponseWriter) {
-	writeError(w, http.StatusInternalServerError, "server_error", "There was an unexpected error while handling your request. Please try again later.")
+	writeJSON(w, http.StatusInternalServerError, serverError)
 }
