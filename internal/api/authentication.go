@@ -31,8 +31,7 @@ func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLo
 	params := request.Params
 
 	if params.ResponseType != "code" {
-		description := "Unsupported response type. Expected 'code'"
-		return InitiateOAuthLogin400JSONResponse{Error: "unsupported_response_type", ErrorDescription: &description}, nil
+		return InitiateOAuthLogin400JSONResponse(newApiError("unsupported_response_type", "Unsupported response type. Expected 'code'")), nil
 	}
 
 	url, err := s.auth.GetProviderRedirectURL(
@@ -43,16 +42,19 @@ func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLo
 		params.RedirectUri,
 	)
 	if err != nil {
-		message := err.Error()
-		if errors.Is(err, services.ErrUnsupportedProvider) {
-			return InitiateOAuthLogin400JSONResponse{Error: "unsupported_provider", ErrorDescription: &message}, nil
-		} else if errors.Is(err, services.ErrIllegalRedirectUri) {
-			return InitiateOAuthLogin400JSONResponse{Error: "invalid_redirect_uri", ErrorDescription: &message}, nil
-		} else if errors.Is(err, services.ErrUnknownCodeChallengeMethod) {
-			return InitiateOAuthLogin400JSONResponse{Error: "invalid_request", ErrorDescription: &message}, nil
-		} else {
+		var code string
+		switch {
+		case errors.Is(err, services.ErrUnsupportedProvider):
+			code = "unsupported_provider"
+		case errors.Is(err, services.ErrIllegalRedirectUri):
+			code = "invalid_redirect_uri"
+		case errors.Is(err, services.ErrUnknownCodeChallengeMethod):
+			code = "invalid_request"
+		default:
 			return nil, err
 		}
+
+		return InitiateOAuthLogin400JSONResponse(newApiError(code, err.Error())), nil
 	}
 
 	return InitiateOAuthLogin302ResponseWithLocation{
@@ -73,19 +75,19 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 
 		// Decode the encrypted state passed to the provider by the server
 		if state == "" {
-			http.Error(w, "missing state", http.StatusBadRequest)
+			writeError(w, http.StatusBadRequest, "invalid_request", "missing state")
 			return
 		}
 		oauthState, err := s.auth.DecodeState(state)
 		if err != nil {
-			http.Error(w, "invalid state", http.StatusBadRequest)
+			writeError(w, http.StatusBadRequest, "invalid_request", "invalid state")
 			return
 		}
 
 		// Parse the redirect URL
 		redirectURL, err := url.Parse(oauthState.RedirectURI)
 		if err != nil {
-			http.Error(w, "invalid redirect URI in state", http.StatusBadRequest)
+			writeError(w, http.StatusBadRequest, "invalid_request", "invalid redirect URI in state")
 			return
 		}
 
@@ -169,8 +171,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		codeVerifier := body.CodeVerifier
 		redirectUri := body.RedirectUri
 		if authorizationCode == nil || codeVerifier == nil || redirectUri == nil {
-			description := "invalid request body"
-			return ExchangeToken400JSONResponse{Error: "invalid_request", ErrorDescription: &description}, nil
+			return ExchangeToken400JSONResponse(newApiError("invalid_request", "invalid request body")), nil
 		}
 		var clientName string
 		if body.ClientName != nil {
@@ -180,8 +181,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		user, err := s.auth.ConsumeAuthorizationCode(ctx, s.queries, *authorizationCode, *redirectUri, *codeVerifier)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
-				message := err.Error()
-				return ExchangeToken400JSONResponse{Error: "invalid_grant", ErrorDescription: &message}, nil
+				return ExchangeToken400JSONResponse(newApiError("invalid_grant", err.Error())), nil
 			}
 			return nil, fmt.Errorf("consume authorization code: %w", err)
 		}
@@ -205,8 +205,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 	if body.GrantType == "refresh_token" {
 		refreshToken := body.RefreshToken
 		if refreshToken == nil {
-			description := "invalid request body"
-			return ExchangeToken400JSONResponse{Error: "invalid_request", ErrorDescription: &description}, nil
+			return ExchangeToken400JSONResponse(newApiError("invalid_request", "invalid request body")), nil
 		}
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
@@ -214,8 +213,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		newSession, err := s.auth.RefreshSession(ctx, s.queries, *refreshToken, ipAddress, country)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
-				message := err.Error()
-				return ExchangeToken400JSONResponse{Error: "invalid_grant", ErrorDescription: &message}, nil
+				return ExchangeToken400JSONResponse(newApiError("invalid_grant", err.Error())), nil
 			}
 			return nil, fmt.Errorf("refresh session: %w", err)
 		}
@@ -228,8 +226,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		}, nil
 	}
 
-	message := "The given grant type is invalid"
-	return ExchangeToken400JSONResponse{Error: "unsupported_grant_type", ErrorDescription: &message}, nil
+	return ExchangeToken400JSONResponse(newApiError("unsupported_grant_type", "The given grant type is invalid")), nil
 }
 
 func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObject) (RevokeTokenResponseObject, error) {
@@ -269,6 +266,5 @@ func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObje
 		return RevokeToken200Response{}, nil
 	}
 
-	description := "Unsupported grant type"
-	return RevokeToken400JSONResponse{Error: "unsupported_grant_type", ErrorDescription: &description}, nil
+	return RevokeToken400JSONResponse(newApiError("unsupported_grant_type", "Unsupported grant type")), nil
 }
