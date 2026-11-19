@@ -42,7 +42,7 @@ RETURNING *;
 
 -- name: RevokeSession :one
 DELETE FROM sessions
-WHERE id = ?
+WHERE id = ? AND user_id == ?
 RETURNING *;
 
 -- name: RevokeSessionFromRefreshToken :one

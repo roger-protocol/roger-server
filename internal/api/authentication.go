@@ -14,6 +14,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/roger-protocol/roger-server/internal/crypto"
+	"github.com/roger-protocol/roger-server/internal/db"
 	"github.com/roger-protocol/roger-server/internal/services"
 )
 
@@ -243,7 +244,7 @@ func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObje
 			return nil, err
 		}
 
-		session, err := s.queries.RevokeSession(ctx, claims.SessionId)
+		session, err := s.queries.RevokeSession(ctx, db.RevokeSessionParams{ID: claims.SessionId, UserID: claims.Subject})
 		if err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
 				return RevokeToken200Response{}, nil

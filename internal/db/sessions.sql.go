@@ -250,12 +250,17 @@ func (q *Queries) RevokeAllSessionsExcept(ctx context.Context, arg RevokeAllSess
 
 const revokeSession = `-- name: RevokeSession :one
 DELETE FROM sessions
-WHERE id = ?
+WHERE id = ? AND user_id == ?
 RETURNING id, user_id, ip_address, country, client_name, refresh_token_hash, access_token_jti, access_token_expires_at, created_at, last_used_at
 `
 
-func (q *Queries) RevokeSession(ctx context.Context, id string) (Session, error) {
-	row := q.db.QueryRowContext(ctx, revokeSession, id)
+type RevokeSessionParams struct {
+	ID     string `json:"id"`
+	UserID string `json:"user_id"`
+}
+
+func (q *Queries) RevokeSession(ctx context.Context, arg RevokeSessionParams) (Session, error) {
+	row := q.db.QueryRowContext(ctx, revokeSession, arg.ID, arg.UserID)
 	var i Session
 	err := row.Scan(
 		&i.ID,

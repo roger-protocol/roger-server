@@ -28,7 +28,7 @@ type Querier interface {
 	GetUserSessions(ctx context.Context, userID string) ([]Session, error)
 	RefreshSession(ctx context.Context, arg RefreshSessionParams) (Session, error)
 	RevokeAllSessionsExcept(ctx context.Context, arg RevokeAllSessionsExceptParams) ([]Session, error)
-	RevokeSession(ctx context.Context, id string) (Session, error)
+	RevokeSession(ctx context.Context, arg RevokeSessionParams) (Session, error)
 	RevokeSessionFromRefreshToken(ctx context.Context, refreshTokenHash string) (Session, error)
 	SetProviderLastUsed(ctx context.Context, arg SetProviderLastUsedParams) (Provider, error)
 	SetProviderRawClaims(ctx context.Context, arg SetProviderRawClaimsParams) (Provider, error)
