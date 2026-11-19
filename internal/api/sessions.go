@@ -2,9 +2,12 @@ package api
 
 import (
 	"context"
+	"database/sql"
+	"errors"
 	"time"
 
 	"github.com/roger-protocol/roger-server/internal/convert"
+	"github.com/roger-protocol/roger-server/internal/db"
 )
 
 func (s *Server) ListSessions(ctx context.Context, request ListSessionsRequestObject) (ListSessionsResponseObject, error) {
@@ -43,7 +46,21 @@ func (s *Server) ListSessions(ctx context.Context, request ListSessionsRequestOb
 }
 
 func (s *Server) RevokeSession(ctx context.Context, request RevokeSessionRequestObject) (RevokeSessionResponseObject, error) {
-	panic("unimplemented")
+	actor, ok := GetActorFromContext(ctx)
+	if !ok || actor.SessionID == nil {
+		return RevokeSession500JSONResponse(serverError), nil
+	}
+
+	session, err := s.queries.RevokeSession(ctx, db.RevokeSessionParams{ID: request.SessionId, UserID: actor.UserID})
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return RevokeSession404JSONResponse(newApiError("resource_not_found", "session not found")), nil
+		}
+		return RevokeSession500JSONResponse(newApiError("server_error", "couldn't reach database")), nil
+	}
+	s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+
+	return RevokeSession204Response{}, nil
 }
 
 func (s *Server) RevokeOtherSessions(ctx context.Context, request RevokeOtherSessionsRequestObject) (RevokeOtherSessionsResponseObject, error) {
