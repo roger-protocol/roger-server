@@ -64,5 +64,18 @@ func (s *Server) RevokeSession(ctx context.Context, request RevokeSessionRequest
 }
 
 func (s *Server) RevokeOtherSessions(ctx context.Context, request RevokeOtherSessionsRequestObject) (RevokeOtherSessionsResponseObject, error) {
-	panic("unimplemented")
+	actor, ok := GetActorFromContext(ctx)
+	if !ok || actor.SessionID == nil {
+		return RevokeOtherSessions500JSONResponse(serverError), nil
+	}
+
+	sessions, err := s.queries.RevokeAllSessionsExcept(ctx, db.RevokeAllSessionsExceptParams{ID: *actor.SessionID, UserID: actor.UserID})
+	if err != nil {
+		return RevokeOtherSessions500JSONResponse(newApiError("server_error", "couldn't reach database")), nil
+	}
+	for _, session := range sessions {
+		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+	}
+
+	return RevokeOtherSessions204Response{}, nil
 }
