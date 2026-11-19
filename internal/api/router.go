@@ -2,7 +2,6 @@ package api
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
@@ -18,19 +17,33 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	nethttpmiddleware "github.com/oapi-codegen/nethttp-middleware"
+	"github.com/roger-protocol/roger-server/internal/services"
 	"golang.org/x/text/language"
 )
 
-func handleServerError(w http.ResponseWriter, r *http.Request, err error) {
-	log.Printf("internal error: %v", err)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusInternalServerError)
+type AuthError struct {
+	Code             string
+	ErrorDescription string
+}
 
-	description := "There was an unexpected error while handling your request. Please try again later."
-	json.NewEncoder(w).Encode(Error{
-		Error:            "server_error",
-		ErrorDescription: &description,
-	})
+func (e *AuthError) Error() string {
+	if e.ErrorDescription != "" {
+		return e.ErrorDescription
+	}
+	return e.Code
+}
+
+type actorContextKey struct{}
+
+type AuthMethod string
+
+const AuthMethodBearer AuthMethod = "bearer"
+
+type Actor struct {
+	UserID     string
+	SessionID  *string
+	JwtID      *string
+	AuthMethod AuthMethod
 }
 
 func recoverer(next http.Handler) http.Handler {
@@ -71,7 +84,7 @@ func recoverer(next http.Handler) http.Handler {
 				}
 
 				log.Print(trace.String())
-				handleServerError(w, r, nil)
+				writeServerError(w)
 			}
 		}()
 		next.ServeHTTP(w, r)
@@ -97,16 +110,24 @@ func validationErrorHandler(ctx context.Context, err error, w http.ResponseWrite
 				errorMessage = "Invalid request parameters"
 			}
 		}
+	} else if secErr, ok := errors.AsType[*openapi3filter.SecurityRequirementsError](err); ok {
+		var authErr *AuthError
+		for _, err := range secErr.Errors {
+			if errors.As(err, &authErr) {
+				break
+			}
+		}
+
+		if authErr != nil {
+			writeError(w, http.StatusUnauthorized, authErr.Code, authErr.ErrorDescription)
+			return
+		}
+
+		writeServerError(w)
+		return
 	}
 
-	resp := Error{
-		Error:            "invalid_request",
-		ErrorDescription: &errorMessage,
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(opts.StatusCode)
-	json.NewEncoder(w).Encode(resp)
+	writeError(w, opts.StatusCode, "invalid_request", errorMessage)
 }
 
 func clientCountryFromHeader(header string) func(http.Handler) http.Handler {
@@ -126,11 +147,56 @@ func clientCountryFromHeader(header string) func(http.Handler) http.Handler {
 	}
 }
 
+func makeAuthenticationFunc(auth *services.AuthService) openapi3filter.AuthenticationFunc {
+	return func(ctx context.Context, ai *openapi3filter.AuthenticationInput) error {
+		switch ai.SecuritySchemeName {
+		case "bearerAuth":
+			authHeader := ai.RequestValidationInput.Request.Header.Get("Authorization")
+			if authHeader == "" {
+				return &AuthError{Code: "invalid_token", ErrorDescription: "missing Authorization header"}
+			}
+
+			prefix := "Bearer "
+			if !strings.HasPrefix(authHeader, prefix) {
+				return &AuthError{Code: "invalid_token", ErrorDescription: "Authorization header must be Bearer"}
+			}
+			jwt := strings.TrimPrefix(authHeader, prefix)
+
+			claims, err := auth.ValidateJWT(jwt)
+			if err != nil {
+				if errors.Is(err, services.ErrInvalidJwt) {
+					return &AuthError{Code: "invalid_token", ErrorDescription: err.Error()}
+				}
+				return fmt.Errorf("validate jwt: %w", err)
+			}
+
+			actor := Actor{
+				UserID:     claims.Subject,
+				SessionID:  &claims.SessionId,
+				JwtID:      &claims.ID,
+				AuthMethod: AuthMethodBearer,
+			}
+
+			ctx = context.WithValue(ctx, actorContextKey{}, actor)
+			*ai.RequestValidationInput.Request = *ai.RequestValidationInput.Request.WithContext(ctx)
+
+			return nil
+		default:
+			return fmt.Errorf("unsupported security scheme: %v", ai.SecuritySchemeName)
+		}
+	}
+}
+
 func GetClientCountry(ctx context.Context) string {
 	if v, ok := ctx.Value("clientCountry").(string); ok {
 		return v
 	}
 	return ""
+}
+
+func GetActorFromContext(ctx context.Context) (Actor, bool) {
+	actor, ok := ctx.Value(actorContextKey{}).(Actor)
+	return actor, ok
 }
 
 func NewRouter(s *Server) (http.Handler, error) {
@@ -170,6 +236,9 @@ func NewRouter(s *Server) (http.Handler, error) {
 
 	validator := nethttpmiddleware.OapiRequestValidatorWithOptions(specs, &nethttpmiddleware.Options{
 		ErrorHandlerWithOpts: validationErrorHandler,
+		Options: openapi3filter.Options{
+			AuthenticationFunc: makeAuthenticationFunc(s.auth),
+		},
 		Skipper: func(r *http.Request) bool {
 			if r.Method == http.MethodOptions {
 				return true
@@ -185,7 +254,10 @@ func NewRouter(s *Server) (http.Handler, error) {
 	})
 
 	strictHandler := NewStrictHandlerWithOptions(s, nil, StrictHTTPServerOptions{
-		ResponseErrorHandlerFunc: handleServerError,
+		ResponseErrorHandlerFunc: func(w http.ResponseWriter, r *http.Request, err error) {
+			log.Printf("unhandled server error: %v", err)
+			writeServerError(w)
+		},
 	})
 
 	for providerID := range s.config.Auth.Providers {
