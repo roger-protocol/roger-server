@@ -9,6 +9,13 @@ func ToNullString(s string) sql.NullString {
 	}
 }
 
+func FromNullString(s sql.NullString) *string {
+	if s.Valid {
+		return &s.String
+	}
+	return nil
+}
+
 func BoolToNullInt64(b bool, valid bool) sql.NullInt64 {
 	var val int64
 	if b {
