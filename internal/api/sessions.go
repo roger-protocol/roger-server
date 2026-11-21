@@ -58,7 +58,7 @@ func (s *Server) RevokeSession(ctx context.Context, request RevokeSessionRequest
 		}
 		return RevokeSession500JSONResponse(newApiError("server_error", "couldn't reach database")), nil
 	}
-	s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+	s.tokens.RevokeJwt(ctx, session.AccessTokenJti)
 
 	return RevokeSession204Response{}, nil
 }
@@ -74,7 +74,7 @@ func (s *Server) RevokeOtherSessions(ctx context.Context, request RevokeOtherSes
 		return RevokeOtherSessions500JSONResponse(newApiError("server_error", "couldn't reach database")), nil
 	}
 	for _, session := range sessions {
-		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+		s.tokens.RevokeJwt(ctx, session.AccessTokenJti)
 	}
 
 	return RevokeOtherSessions204Response{}, nil

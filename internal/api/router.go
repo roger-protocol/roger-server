@@ -147,7 +147,7 @@ func clientCountryFromHeader(header string) func(http.Handler) http.Handler {
 	}
 }
 
-func makeAuthenticationFunc(auth *services.AuthService) openapi3filter.AuthenticationFunc {
+func makeAuthenticationFunc(tokens *services.TokenService) openapi3filter.AuthenticationFunc {
 	return func(ctx context.Context, ai *openapi3filter.AuthenticationInput) error {
 		switch ai.SecuritySchemeName {
 		case "bearerAuth":
@@ -162,7 +162,7 @@ func makeAuthenticationFunc(auth *services.AuthService) openapi3filter.Authentic
 			}
 			jwt := strings.TrimPrefix(authHeader, prefix)
 
-			claims, err := auth.ValidateJWT(jwt)
+			claims, err := tokens.ValidateJWT(jwt)
 			if err != nil {
 				if errors.Is(err, services.ErrInvalidJwt) {
 					return &AuthError{Code: "invalid_token", ErrorDescription: err.Error()}
@@ -237,7 +237,7 @@ func NewRouter(s *Server) (http.Handler, error) {
 	validator := nethttpmiddleware.OapiRequestValidatorWithOptions(specs, &nethttpmiddleware.Options{
 		ErrorHandlerWithOpts: validationErrorHandler,
 		Options: openapi3filter.Options{
-			AuthenticationFunc: makeAuthenticationFunc(s.auth),
+			AuthenticationFunc: makeAuthenticationFunc(s.tokens),
 		},
 		Skipper: func(r *http.Request) bool {
 			if r.Method == http.MethodOptions {

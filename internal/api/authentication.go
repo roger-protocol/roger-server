@@ -35,7 +35,7 @@ func (s *Server) InitiateOAuthLogin(ctx context.Context, request InitiateOAuthLo
 		return InitiateOAuthLogin400JSONResponse(newApiError("unsupported_response_type", "Unsupported response type. Expected 'code'")), nil
 	}
 
-	url, err := s.auth.GetProviderRedirectURL(
+	url, err := s.providers.GetProviderRedirectURL(
 		params.Provider,
 		params.CodeChallenge,
 		string(params.CodeChallengeMethod),
@@ -79,7 +79,7 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 			writeError(w, http.StatusBadRequest, "invalid_request", "missing state")
 			return
 		}
-		oauthState, err := s.auth.DecodeState(state)
+		oauthState, err := s.providers.DecodeState(state)
 		if err != nil {
 			writeError(w, http.StatusBadRequest, "invalid_request", "invalid state")
 			return
@@ -104,6 +104,7 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 			redirectURL.RawQuery = q.Encode()
 			http.Redirect(w, r, redirectURL.String(), http.StatusSeeOther)
 		}
+
 		if oauthErr != "" {
 			redirectWithError(oauthErr, oauthErrDesc)
 			return
@@ -113,49 +114,16 @@ func (s *Server) newOAuthCallbackHandler(providerID string) http.HandlerFunc {
 			return
 		}
 
-		// Exchange the provider code for a roger user
-		user, err := s.auth.GetUserFromProviderCode(ctx, providerID, code)
+		ac, err := s.oauth.HandleOAuthCallback(ctx, s.queries, providerID, oauthState, code)
 		if err != nil {
-			log.Printf("oauth exchange error for provider %s: %v", providerID, err)
-			redirectWithError("server_error", "failed to authenticate with provider")
-			return
-		}
-
-		// Create a transaction
-		tx, err := s.db.BeginTx(ctx, nil)
-		if err != nil {
-			log.Printf("transaction creation failed: %v", err)
-			redirectWithError("server_error", "failed to create database transaction")
-			return
-		}
-		defer tx.Rollback()
-		qtx := s.queries.WithTx(tx)
-
-		// Clean previous user authorization codes
-		_, err = qtx.DeleteUserAuthorizationCodes(ctx, user.ID)
-		if err != nil {
-			log.Printf("authorization codes deletion failed: %v", err)
-			redirectWithError("server_error", "failed to clean authorization codes")
-			return
-		}
-		// Create a new authorization code
-		id, _, err := s.auth.CreateAuthorizationCode(ctx, qtx, user.ID, oauthState.CodeChallenge, oauthState.CodeChallengeMethod, oauthState.RedirectURI)
-		if err != nil {
-			log.Printf("authorization code creation failed: %v", err)
-			redirectWithError("server_error", "failed to create authorization code")
-			return
-		}
-
-		// Commit the transaction
-		if err = tx.Commit(); err != nil {
-			log.Printf("failed to commit transaction: %v", err)
-			redirectWithError("server_error", "failed to commit transaction")
+			log.Printf("error while handling oauth callback: %v", err)
+			redirectWithError("server_error", "there was an error while handling your request, please try again later.")
 			return
 		}
 
 		// Redirect to the callback url with the code and client state
 		q := redirectURL.Query()
-		q.Set("code", id)
+		q.Set("code", ac)
 		if oauthState.ClientState != nil {
 			q.Set("state", *oauthState.ClientState)
 		}
@@ -179,7 +147,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 			clientName = *body.ClientName
 		}
 
-		user, err := s.auth.ConsumeAuthorizationCode(ctx, s.queries, *authorizationCode, *redirectUri, *codeVerifier)
+		user, err := s.oauth.ConsumeAuthorizationCode(ctx, s.queries, *authorizationCode, *redirectUri, *codeVerifier)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
 				return ExchangeToken400JSONResponse(newApiError("invalid_grant", err.Error())), nil
@@ -190,7 +158,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
 
-		createdSession, err := s.auth.CreateSession(ctx, s.queries, user, ipAddress, country, clientName)
+		createdSession, err := s.sessions.CreateSession(ctx, s.queries, user, ipAddress, country, clientName)
 		if err != nil {
 			return nil, err
 		}
@@ -211,7 +179,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
 
-		newSession, err := s.auth.RefreshSession(ctx, s.queries, *refreshToken, ipAddress, country)
+		newSession, err := s.sessions.RefreshSession(ctx, s.queries, *refreshToken, ipAddress, country)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
 				return ExchangeToken400JSONResponse(newApiError("invalid_grant", err.Error())), nil
@@ -235,7 +203,7 @@ func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObje
 
 	if strings.Count(body.Token, ".") == 2 && strings.HasPrefix(body.Token, "eyJ") {
 		accessToken := body.Token
-		claims, err := s.auth.ParseJwt(accessToken, jwt.WithoutClaimsValidation())
+		claims, err := s.tokens.ParseJwt(accessToken, jwt.WithoutClaimsValidation())
 		if err != nil {
 			fmt.Printf("err: %v\n", err)
 			if errors.Is(err, services.ErrInvalidJwt) {
@@ -251,7 +219,7 @@ func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObje
 			}
 			return nil, err
 		}
-		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+		s.tokens.RevokeJwt(ctx, session.AccessTokenJti)
 		return RevokeToken200Response{}, nil
 	}
 
@@ -263,7 +231,7 @@ func (s *Server) RevokeToken(ctx context.Context, request RevokeTokenRequestObje
 		if err != nil && !errors.Is(err, sql.ErrNoRows) {
 			return nil, err
 		}
-		s.auth.RevokeJwt(ctx, session.AccessTokenJti)
+		s.tokens.RevokeJwt(ctx, session.AccessTokenJti)
 		return RevokeToken200Response{}, nil
 	}
 
