@@ -3,6 +3,8 @@ package cache
 import (
 	"sync"
 	"time"
+
+	"github.com/roger-protocol/roger-server/internal/task"
 )
 
 type Entry[V any] struct {
@@ -11,19 +13,17 @@ type Entry[V any] struct {
 }
 
 type Cache[K comparable, V any] struct {
-	items     map[K]Entry[V]
-	stop      chan string
-	mux       sync.RWMutex
-	closeOnce sync.Once
+	items map[K]Entry[V]
+	mux   sync.RWMutex
+	task  *task.PeriodicTask
 }
 
 func New[K comparable, V any](cleanupInterval time.Duration) *Cache[K, V] {
 	c := &Cache[K, V]{
 		items: make(map[K]Entry[V]),
-		stop:  make(chan string),
 	}
 
-	go c.cleanupLoop(cleanupInterval)
+	c.task = task.NewPeriodicTask(cleanupInterval, c.doCleanup)
 
 	return c
 }
@@ -34,6 +34,7 @@ func (c *Cache[K, V]) Get(key K) (V, bool) {
 	c.mux.RUnlock()
 
 	if !exists || time.Now().After(item.expiresAt) {
+		c.Delete(key)
 		var zero V
 		return zero, false
 	}
@@ -49,21 +50,21 @@ func (c *Cache[K, V]) Set(key K, value V, lifetime time.Duration) {
 }
 
 func (c *Cache[K, V]) SetUntil(key K, value V, expiresAt time.Time) {
-	if expiresAt.Before(time.Now()) || expiresAt.Equal(time.Now()) {
+	if !expiresAt.After(time.Now()) {
 		return
 	}
 
 	c.mux.Lock()
+	defer c.mux.Unlock()
 	c.items[key] = Entry[V]{
 		value:     value,
 		expiresAt: expiresAt,
 	}
-	c.mux.Unlock()
 }
 
 func (c *Cache[K, V]) Len() int {
 	c.mux.RLock()
-	defer c.mux.Unlock()
+	defer c.mux.RUnlock()
 	return len(c.items)
 }
 
@@ -74,33 +75,21 @@ func (c *Cache[K, V]) Has(key K) bool {
 
 func (c *Cache[K, V]) Delete(key K) {
 	c.mux.Lock()
+	defer c.mux.Unlock()
 	delete(c.items, key)
-	c.mux.Unlock()
 }
 
 func (c *Cache[K, V]) Close() {
-	c.closeOnce.Do(func() {
-		close(c.stop)
-	})
+	c.task.Close()
 }
 
-func (c *Cache[K, V]) cleanupLoop(cleanupInterval time.Duration) {
-	ticker := time.NewTicker(cleanupInterval)
-	defer ticker.Stop()
-
-	for {
-		select {
-		case <-ticker.C:
-			now := time.Now()
-			c.mux.Lock()
-			for k, item := range c.items {
-				if now.After(item.expiresAt) {
-					delete(c.items, k)
-				}
-			}
-			c.mux.Unlock()
-		case <-c.stop:
-			return
+func (c *Cache[K, V]) doCleanup() {
+	now := time.Now()
+	c.mux.Lock()
+	defer c.mux.Unlock()
+	for k, item := range c.items {
+		if !now.Before(item.expiresAt) {
+			delete(c.items, k)
 		}
 	}
 }
