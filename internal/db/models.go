@@ -8,15 +8,6 @@ import (
 	"database/sql"
 )
 
-type AuthorizationCode struct {
-	IDHash              string `json:"id_hash"`
-	UserID              string `json:"user_id"`
-	CodeChallenge       string `json:"code_challenge"`
-	CodeChallengeMethod string `json:"code_challenge_method"`
-	RedirectUri         string `json:"redirect_uri"`
-	CreatedAt           string `json:"created_at"`
-}
-
 type Provider struct {
 	ID         string         `json:"id"`
 	UserID     string         `json:"user_id"`

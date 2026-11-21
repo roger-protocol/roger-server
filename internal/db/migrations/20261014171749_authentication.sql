@@ -35,18 +35,7 @@ CREATE TABLE sessions (
 );
 CREATE INDEX idx_sessions_user_id ON sessions(user_id);
 
-CREATE TABLE authorization_codes (
-    id_hash TEXT PRIMARY KEY,
-    user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    code_challenge TEXT NOT NULL,
-    code_challenge_method TEXT NOT NULL,
-    redirect_uri TEXT NOT NULL,
-    created_at TEXT NOT NULL
-);
-CREATE INDEX idx_authorization_codes_user_id ON authorization_codes(user_id);
-
 -- +goose Down
 DROP TABLE IF EXISTS providers;
 DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS authorization_codes;

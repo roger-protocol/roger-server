@@ -2,7 +2,6 @@ package services
 
 import (
 	"context"
-	"crypto/sha256"
 	"crypto/subtle"
 	"database/sql"
 	"encoding/base64"
@@ -11,6 +10,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/roger-protocol/roger-server/internal/cache"
 	"github.com/roger-protocol/roger-server/internal/crypto"
 	"github.com/roger-protocol/roger-server/internal/db"
 )
@@ -28,32 +28,37 @@ type OAuthService struct {
 	db        *sql.DB
 	providers *ProviderService
 	users     *UserService
+	acStore   *cache.Cache[string, AuthorizationCode]
 }
 
 func NewOAuthService(db *sql.DB, pvd *ProviderService, usr *UserService) *OAuthService {
-	return &OAuthService{db: db, providers: pvd, users: usr}
+	acStore := cache.New[string, AuthorizationCode](AuthorizationCodeTTL)
+	return &OAuthService{db: db, providers: pvd, users: usr, acStore: acStore}
 }
 
 const AuthorizationCodeTTL = 5 * time.Minute
 
-func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) (string, db.AuthorizationCode, error) {
-	id := crypto.GenerateID("rgr_ac")
-	idHashBytes := sha256.Sum256([]byte(id))
+type AuthorizationCode struct {
+	UserID              string
+	CodeChallenge       string
+	CodeChallengeMethod string
+	RedirectUri         string
+}
 
-	newAc, err := q.CreateAuthorizationCode(ctx, db.CreateAuthorizationCodeParams{
-		IDHash:              hex.EncodeToString(idHashBytes[:]),
+func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) string {
+	acId := crypto.GenerateID("rgr_ac")
+	acIdHash := crypto.Hash256([]byte(acId), hex.EncodeToString)
+
+	newAc := AuthorizationCode{
 		UserID:              userId,
 		CodeChallenge:       codeChallenge,
 		CodeChallengeMethod: codeChallengeMethod,
 		RedirectUri:         redirectUri,
-		CreatedAt:           time.Now().UTC().Format(time.RFC3339),
-	})
-
-	if err != nil {
-		return "", db.AuthorizationCode{}, fmt.Errorf("create authorization code: %w", err)
 	}
 
-	return id, newAc, nil
+	s.acStore.Set(acIdHash, newAc, AuthorizationCodeTTL)
+
+	return acId
 }
 
 // Possible Error Codes:
@@ -64,49 +69,40 @@ func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Querie
 func (s *OAuthService) ConsumeAuthorizationCode(ctx context.Context, q *db.Queries, authorizationCode string, redirectUri string, codeVerifier string) (db.User, error) {
 	// Hash the authorizationCode and get it's details
 	acHash := crypto.Hash256([]byte(authorizationCode), hex.EncodeToString)
-	acDetails, err := q.DeleteAuthorizationCode(ctx, acHash)
-	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return db.User{}, ErrInvalidAuthorizationCode
-		}
-		return db.User{}, fmt.Errorf("delete authorization code: %w", err)
+	ac, exists := s.acStore.Get(acHash)
+	if !exists {
+		return db.User{}, ErrInvalidAuthorizationCode
 	}
-
-	// Check if the authorization code has expired
-	createdAt, err := time.Parse(time.RFC3339Nano, acDetails.CreatedAt)
-	if err != nil {
-		return db.User{}, fmt.Errorf("parse creation date: %w", err)
-	}
-	if createdAt.Add(AuthorizationCodeTTL).Before(time.Now().UTC()) {
-		return db.User{}, ErrAuthorizationCodeExpired
-	}
+	s.acStore.Delete(acHash)
 
 	// Check if the redirect uri matches the previous redirect uri
-	if acDetails.RedirectUri != redirectUri {
+	if ac.RedirectUri != redirectUri {
 		return db.User{}, ErrRedirectUriMismatch
 	}
 
 	// Check if the code verifier is valid
 	var codeChallenge string
-	switch acDetails.CodeChallengeMethod {
+	switch ac.CodeChallengeMethod {
 	case "S256":
 		codeChallenge = crypto.Hash256([]byte(codeVerifier), base64.RawURLEncoding.EncodeToString)
 	case "plain":
 		codeChallenge = codeVerifier
 	default:
-		return db.User{}, fmt.Errorf("invalid code challenge method: %w", err)
+		return db.User{}, errors.New("invalid code challenge method")
 	}
-	if subtle.ConstantTimeCompare([]byte(acDetails.CodeChallenge), []byte(codeChallenge)) != 1 { // Use ConstantTimeCompare for security ig
+
+	if subtle.ConstantTimeCompare([]byte(ac.CodeChallenge), []byte(codeChallenge)) != 1 { // Use ConstantTimeCompare for security ig
 		return db.User{}, ErrInvalidCodeVerifier
 	}
 
-	user, err := q.GetUserByID(ctx, acDetails.UserID)
+	user, err := q.GetUserByID(ctx, ac.UserID)
 	if err != nil {
 		return db.User{}, fmt.Errorf("fetch user profile: %w", err)
 	}
 
 	return user, nil
 }
+
 func (s *OAuthService) HandleOAuthCallback(ctx context.Context, q *db.Queries, providerID string, state oauthState, code string) (string, error) {
 	// Create transaction
 	tx, err := s.db.BeginTx(ctx, nil)
@@ -128,24 +124,16 @@ func (s *OAuthService) HandleOAuthCallback(ctx context.Context, q *db.Queries, p
 		return "", fmt.Errorf("get user from provider claims: %w", err)
 	}
 
-	// If the user was newly created, link the provider to the user, else cleanup their old authorization codes
+	// If the user was newly created, link the provider to the user
 	if created {
 		_, err := s.providers.LinkProviderToUser(ctx, qtx, user.ID, providerID, providerClaims.Subject, &providerClaims)
 		if err != nil {
 			return "", fmt.Errorf("link provider to user: %w", err)
 		}
-	} else {
-		_, err := qtx.DeleteUserAuthorizationCodes(ctx, user.ID)
-		if err != nil {
-			return "", fmt.Errorf("cleanup user authorization codes: %w", err)
-		}
 	}
 
 	// Create an authorization code
-	ac, _, err := s.CreateAuthorizationCode(ctx, qtx, user.ID, state.CodeChallenge, state.CodeChallengeMethod, state.RedirectURI)
-	if err != nil {
-		return "", fmt.Errorf("create authorization code: %w", err)
-	}
+	ac := s.CreateAuthorizationCode(ctx, qtx, user.ID, state.CodeChallenge, state.CodeChallengeMethod, state.RedirectURI)
 
 	// Commit the transaction
 	if err = tx.Commit(); err != nil {

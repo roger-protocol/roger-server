@@ -9,15 +9,11 @@ import (
 )
 
 type Querier interface {
-	CreateAuthorizationCode(ctx context.Context, arg CreateAuthorizationCodeParams) (AuthorizationCode, error)
 	CreateProvider(ctx context.Context, arg CreateProviderParams) (Provider, error)
 	CreateSession(ctx context.Context, arg CreateSessionParams) (Session, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
-	DeleteAuthorizationCode(ctx context.Context, idHash string) (AuthorizationCode, error)
 	DeleteProvider(ctx context.Context, id string) (Provider, error)
 	DeleteUser(ctx context.Context, id string) (User, error)
-	DeleteUserAuthorizationCodes(ctx context.Context, userID string) ([]AuthorizationCode, error)
-	GetAuthorizationCodeDetails(ctx context.Context, idHash string) (AuthorizationCode, error)
 	GetProvider(ctx context.Context, id string) (Provider, error)
 	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
 	GetSession(ctx context.Context, id string) (Session, error)
