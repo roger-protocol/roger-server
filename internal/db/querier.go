@@ -12,6 +12,8 @@ type Querier interface {
 	CreateProvider(ctx context.Context, arg CreateProviderParams) (Provider, error)
 	CreateSession(ctx context.Context, arg CreateSessionParams) (Session, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	CreateWorkspace(ctx context.Context, arg CreateWorkspaceParams) (Workspace, error)
+	CreateWorkspaceMember(ctx context.Context, arg CreateWorkspaceMemberParams) (WorkspaceMember, error)
 	DeleteProvider(ctx context.Context, id string) (Provider, error)
 	DeleteUser(ctx context.Context, id string) (User, error)
 	GetProvider(ctx context.Context, id string) (Provider, error)

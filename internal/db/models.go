@@ -39,3 +39,18 @@ type User struct {
 	CreatedAt     string         `json:"created_at"`
 	UpdatedAt     string         `json:"updated_at"`
 }
+
+type Workspace struct {
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	IsPersonal bool   `json:"is_personal"`
+	CreatedBy  string `json:"created_by"`
+	CreatedAt  string `json:"created_at"`
+}
+
+type WorkspaceMember struct {
+	WorkspaceID string `json:"workspace_id"`
+	UserID      string `json:"user_id"`
+	Role        string `json:"role"`
+	JoinedAt    string `json:"joined_at"`
+}

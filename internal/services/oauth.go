@@ -119,7 +119,7 @@ func (s *OAuthService) HandleOAuthCallback(ctx context.Context, q *db.Queries, p
 	}
 
 	// Get the user linked to that provider or create it
-	user, created, err := s.users.GetOrCreateUserFromProviderClaims(ctx, qtx, providerID, providerClaims)
+	user, created, err := s.users.GetOrCreateUserFromProviderClaimsTx(ctx, qtx, providerID, providerClaims)
 	if err != nil {
 		return "", fmt.Errorf("get user from provider claims: %w", err)
 	}
