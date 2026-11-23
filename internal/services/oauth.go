@@ -48,8 +48,11 @@ type AuthorizationCode struct {
 	RedirectUri         string
 }
 
-func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) string {
-	acId := crypto.GenerateID("rgr_ac")
+func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Queries, userId string, codeChallenge string, codeChallengeMethod string, redirectUri string) (string, error) {
+	acId, err := crypto.GenerateSafeToken("rgr_ac")
+	if err != nil {
+		return "", fmt.Errorf("generate authorization code: %w", err)
+	}
 	acIdHash := crypto.Hash256([]byte(acId), hex.EncodeToString)
 
 	newAc := AuthorizationCode{
@@ -61,7 +64,7 @@ func (s *OAuthService) CreateAuthorizationCode(ctx context.Context, q *db.Querie
 
 	s.acStore.Set(acIdHash, newAc, AuthorizationCodeTTL)
 
-	return acId
+	return acId, nil
 }
 
 // Possible Error Codes:
@@ -136,7 +139,10 @@ func (s *OAuthService) HandleOAuthCallback(ctx context.Context, q *db.Queries, p
 	}
 
 	// Create an authorization code
-	ac := s.CreateAuthorizationCode(ctx, qtx, user.ID, state.CodeChallenge, state.CodeChallengeMethod, state.RedirectURI)
+	ac, err := s.CreateAuthorizationCode(ctx, qtx, user.ID, state.CodeChallenge, state.CodeChallengeMethod, state.RedirectURI)
+	if err != nil {
+		return "", fmt.Errorf("create authorization code: %w", err)
+	}
 
 	// Commit the transaction
 	if err = tx.Commit(); err != nil {

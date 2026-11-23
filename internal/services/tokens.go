@@ -63,13 +63,11 @@ func (s *TokenService) CreateJWT(user db.User, sessionId string) (string, JWTCla
 	}
 
 	claims := JWTClaims{
-		RegisteredClaims: jwt.RegisteredClaims{
-			ID:        crypto.GenerateID("rgr_jti"),
-			Issuer:    s.config.Server.ServerURL,
-			Subject:   user.ID,
-			IssuedAt:  jwt.NewNumericDate(now),
-			ExpiresAt: jwt.NewNumericDate(now.Add(JwtTTL)),
-		},
+		ID:            crypto.GenerateID("rgr_jti"),
+		Issuer:        s.config.Server.ServerURL,
+		Subject:       user.ID,
+		IssuedAt:      jwt.NewNumericDate(now),
+		ExpiresAt:     jwt.NewNumericDate(now.Add(JwtTTL)),
 		SessionId:     sessionId,
 		Username:      user.Username,
 		Email:         emailPtr,

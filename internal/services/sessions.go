@@ -37,7 +37,11 @@ func (s *SessionService) CreateSession(ctx context.Context, q *db.Queries, user 
 	}
 
 	// Create the session
-	refreshToken := crypto.GenerateID("rgr_rt")
+	refreshToken, err := crypto.GenerateSafeToken("rgr_rt")
+	if err != nil {
+		return CreatedSession{}, fmt.Errorf("generate refresh token: %w", err)
+	}
+
 	now := time.Now().UTC().Format(time.RFC3339)
 	session, err := q.CreateSession(ctx, db.CreateSessionParams{
 		ID:                   sessId,
