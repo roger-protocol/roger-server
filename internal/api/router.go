@@ -5,11 +5,13 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
 
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/getkin/kin-openapi/routers"
@@ -17,6 +19,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	nethttpmiddleware "github.com/oapi-codegen/nethttp-middleware"
+	"github.com/roger-protocol/roger-server/internal/logging"
 	"github.com/roger-protocol/roger-server/internal/services"
 	"golang.org/x/text/language"
 )
@@ -42,7 +45,7 @@ const AuthMethodBearer AuthMethod = "bearer"
 type Actor struct {
 	UserID     string
 	SessionID  *string
-	JwtID      *string
+	JwtID      string
 	AuthMethod AuthMethod
 }
 
@@ -173,17 +176,64 @@ func makeAuthenticationFunc(tokens *services.TokenService) openapi3filter.Authen
 			actor := Actor{
 				UserID:     claims.Subject,
 				SessionID:  &claims.SessionId,
-				JwtID:      &claims.ID,
+				JwtID:      claims.ID,
 				AuthMethod: AuthMethodBearer,
 			}
 
 			ctx = context.WithValue(ctx, actorContextKey{}, actor)
+			ctx = logging.With(ctx, slog.String("user_id", actor.UserID))
 			*ai.RequestValidationInput.Request = *ai.RequestValidationInput.Request.WithContext(ctx)
 
 			return nil
 		default:
 			return fmt.Errorf("unsupported security scheme: %v", ai.SecuritySchemeName)
 		}
+	}
+}
+
+func requestLogger(baseLogger *slog.Logger) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			// Create a logger with metadata about that request
+			reqLogger := baseLogger.With(
+				slog.String("method", r.Method),
+				slog.String("path", r.URL.Path),
+				slog.String("req_id", middleware.GetReqID(r.Context())),
+			)
+
+			ctxWithLogger := logging.NewContextWithLogger(r.Context(), reqLogger) // Insert that logger into the request context
+			requestHijacker := middleware.NewWrapResponseWriter(w, r.ProtoMajor)  // Wrap the writer into some hijacking stuff so I can observe the request results
+
+			start := time.Now()
+			next.ServeHTTP(requestHijacker, r.WithContext(ctxWithLogger)) // Run the next middlewares and the http handler
+
+			// Get the request results and log them
+			status := requestHijacker.Status()
+			duration := time.Since(start)
+
+			var logLevel slog.Level
+			switch {
+			case status >= 500:
+				logLevel = slog.LevelError
+			case status == http.StatusUnauthorized || status == http.StatusForbidden || status == http.StatusTooManyRequests:
+				logLevel = slog.LevelWarn
+			default:
+				logLevel = slog.LevelDebug
+			}
+
+			finalLogger := logging.LoggerFromContext(ctxWithLogger) // Get the hydrated logger
+			finalLogger.Log(ctxWithLogger, logLevel, "http request",
+				slog.Int("status", status),
+				slog.Duration("duration", duration),
+			)
+		})
+	}
+}
+
+func strictServerOperationLogger(f StrictHandlerFunc, operationID string) StrictHandlerFunc {
+	return func(ctx context.Context, w http.ResponseWriter, r *http.Request, request any) (any, error) {
+		ctx = logging.With(ctx, slog.String("op", operationID))
+		return f(ctx, w, r, request)
 	}
 }
 
@@ -213,7 +263,7 @@ func NewRouter(s *Server) (http.Handler, error) {
 	r.Use(middleware.AllowContentEncoding("identity"))
 
 	// Tracing
-	r.Use(middleware.RequestID)
+	reqId := middleware.RequestID
 	if s.config.Server.IPHeader != "" {
 		r.Use(middleware.ClientIPFromHeader(s.config.Server.IPHeader))
 	}
@@ -222,7 +272,7 @@ func NewRouter(s *Server) (http.Handler, error) {
 	}
 
 	// Logging
-	r.Use(middleware.Logger)
+	logger := requestLogger(s.logger)
 
 	// Sending
 	r.Use(middleware.Compress(5))
@@ -253,18 +303,27 @@ func NewRouter(s *Server) (http.Handler, error) {
 		},
 	})
 
-	strictHandler := NewStrictHandlerWithOptions(s, nil, StrictHTTPServerOptions{
+	strictHandler := NewStrictHandlerWithOptions(s, []StrictMiddlewareFunc{strictServerOperationLogger}, StrictHTTPServerOptions{
 		ResponseErrorHandlerFunc: func(w http.ResponseWriter, r *http.Request, err error) {
-			log.Printf("unhandled server error: %v", err)
+			logging.With(r.Context(), slog.Any("error", err))
 			writeServerError(w)
 		},
 	})
 
 	for providerID := range s.config.Auth.Providers {
-		log.Printf("registering %v with %v path", providerID, s.config.Auth.Providers[providerID].CallbackPath)
+		s.logger.Debug("registering oauth provider",
+			slog.String("provider", providerID),
+			slog.String("callback", s.config.Auth.Providers[providerID].CallbackPath),
+		)
 		handler := s.newOAuthCallbackHandler(providerID)
 		r.Get(s.config.Auth.Providers[providerID].CallbackPath, handler)
 	}
 
-	return corsMiddleware(validator(HandlerFromMux(strictHandler, r))), nil
+	handler := HandlerFromMux(strictHandler, r)
+	handler = validator(handler)
+	handler = corsMiddleware(handler)
+	handler = logger(handler)
+	handler = reqId(handler)
+
+	return handler, nil
 }

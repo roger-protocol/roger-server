@@ -1,7 +1,8 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"log/slog"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,51 +12,69 @@ import (
 	"github.com/roger-protocol/roger-server/internal/api"
 	"github.com/roger-protocol/roger-server/internal/config"
 	"github.com/roger-protocol/roger-server/internal/db"
+	"github.com/roger-protocol/roger-server/internal/logging"
 	_ "modernc.org/sqlite"
 )
 
 const CONFIG_FILE_PATH = "config.yaml"
 
 func main() {
+	if err := run(); err != nil {
+		slog.Error("rogerd exited with error", slog.Any("error", err))
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("failed to load env: %v", err)
+		return fmt.Errorf("load env: %w", err)
 	}
 
 	cfg, err := config.Load(CONFIG_FILE_PATH)
 	if err != nil {
-		log.Fatalf("failed to load config: %v", err)
+		return fmt.Errorf("load config: %w", err)
+	}
+
+	var logger *slog.Logger
+	if cfg.Server.Logging != nil {
+		logger = logging.New(cfg.Server.Logging.LogLevel, cfg.Server.Logging.Format)
+	} else {
+		logger = logging.New("info", "text")
 	}
 
 	database, err := db.Open(cfg.Server.DBPath)
 	if err != nil {
-		log.Fatalf("failed to initialize database: %v", err)
+		return fmt.Errorf("initialize database: %w", err)
 	}
 	defer database.Close()
 
 	queries := db.New(database)
-	server := api.NewServer(database, queries, cfg)
+	server := api.NewServer(database, queries, cfg, logger)
 	defer server.Close()
 	router, err := api.NewRouter(server)
 
 	if err != nil {
-		log.Fatalf("failed to setup router: %v", err)
+		return fmt.Errorf("setup router: %w", err)
 	}
 
 	go func() {
-		log.Printf("Listening on port %s...", cfg.Server.Addr)
+		logger.Info("rogerd started",
+			slog.String("version", cfg.Server.Version),
+			slog.String("port", cfg.Server.Addr),
+		)
 
 		if err := http.ListenAndServe(cfg.Server.Addr, router); err != nil {
-			log.Fatalf("failed to open http server: %v", err)
+			slog.Error("rogerd exited with error", slog.Any("error", fmt.Errorf("open http server: %w", err)))
+			os.Exit(1)
 		}
 	}()
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	<-c
-	log.Println("OK")
 
 	if err := database.Close(); err != nil {
-		log.Printf("Couldn't close database cleanly. Current WAL checkpoint wasn't commited")
+		return fmt.Errorf("close database (current WAL checkpoint wasn't commited): %w", err)
 	}
-
+	return nil
 }

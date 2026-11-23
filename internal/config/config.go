@@ -32,6 +32,13 @@ type ServerConfig struct {
 	IPHeader string `yaml:"ip_header,omitempty" json:"ip_header,omitempty"`
 	// The header read by the server to determine the client country. Must follow the ISO 3166-1 alpha-2 standard (ex: with cloudflare use CF-IPCountry)
 	GeoHeader string `yaml:"geo_header,omitempty" json:"geo_header,omitempty"`
+	// Server logging configuration
+	Logging *LoggingConfig `yaml:"logging,omitempty" json:"logging,omitempty"`
+}
+
+type LoggingConfig struct {
+	LogLevel string `yaml:"log_level" json:"log_level" jsonschema:"enum=debug,enum=info,enum=warn,enum=error"`
+	Format   string `yaml:"format" json:"format" jsonschema:"enum=text,enum=json"`
 }
 
 type AuthConfig struct {

@@ -2,6 +2,7 @@ package api
 
 import (
 	"database/sql"
+	"log/slog"
 
 	"github.com/roger-protocol/roger-server/internal/config"
 	"github.com/roger-protocol/roger-server/internal/db"
@@ -12,6 +13,7 @@ type Server struct {
 	db         *sql.DB
 	queries    *db.Queries
 	config     *config.Config
+	logger     *slog.Logger
 	users      *services.UserService
 	tokens     *services.TokenService
 	providers  *services.ProviderService
@@ -22,18 +24,19 @@ type Server struct {
 
 var _ StrictServerInterface = (*Server)(nil)
 
-func NewServer(db *sql.DB, q *db.Queries, cfg *config.Config) *Server {
+func NewServer(db *sql.DB, q *db.Queries, cfg *config.Config, logger *slog.Logger) *Server {
 	workspaces := services.NewWorkspaceService(db)
 	users := services.NewUserService(db, workspaces)
-	tokens := services.NewTokenService(cfg)
+	tokens := services.NewTokenService(logger, cfg)
 	providers := services.NewProviderService(cfg)
 	sessions := services.NewSessionService(tokens)
-	oauth := services.NewOAuthService(db, providers, users)
+	oauth := services.NewOAuthService(logger, db, providers, users)
 
 	return &Server{
 		db:         db,
 		queries:    q,
 		config:     cfg,
+		logger:     logger,
 		users:      users,
 		tokens:     tokens,
 		providers:  providers,

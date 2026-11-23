@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"embed"
 	"fmt"
+	"log/slog"
 
 	"github.com/pressly/goose/v3"
 )
@@ -12,6 +13,7 @@ import (
 var embededMigrations embed.FS
 
 func Open(path string) (db *sql.DB, err error) {
+	goose.SetLogger(slog.NewLogLogger(slog.Default().Handler(), slog.LevelDebug))
 	dsn := path + "?" + "_pragma=journal_mode(WAL)&" + "_pragma=synchronous(NORMAL)&" + "_pragma=busy_timeout(5000)&" + "_pragma=foreign_keys(ON)"
 	db, err = sql.Open("sqlite", dsn)
 	if err != nil {

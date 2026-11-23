@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log/slog"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -23,13 +24,15 @@ var (
 )
 
 type TokenService struct {
+	logger       *slog.Logger
 	config       *config.Config
 	revokedCache *cache.Cache[string, struct{}]
 }
 
-func NewTokenService(cfg *config.Config) *TokenService {
-	revokedCache := cache.New[string, struct{}](JwtTTL)
-	return &TokenService{config: cfg, revokedCache: revokedCache}
+func NewTokenService(logger *slog.Logger, cfg *config.Config) *TokenService {
+	serviceLogger := logger.With(slog.String("service", "tokens"))
+	revokedCache := cache.New[string, struct{}](JwtTTL, serviceLogger.With(slog.String("cache", "revoked_jwts")))
+	return &TokenService{logger: serviceLogger, config: cfg, revokedCache: revokedCache}
 }
 
 func (s *TokenService) Close() {

@@ -8,6 +8,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"log/slog"
 	"time"
 
 	"github.com/roger-protocol/roger-server/internal/cache"
@@ -25,15 +26,17 @@ var (
 )
 
 type OAuthService struct {
+	logger    *slog.Logger
 	db        *sql.DB
 	providers *ProviderService
 	users     *UserService
 	acStore   *cache.Cache[string, AuthorizationCode]
 }
 
-func NewOAuthService(db *sql.DB, pvd *ProviderService, usr *UserService) *OAuthService {
-	acStore := cache.New[string, AuthorizationCode](AuthorizationCodeTTL)
-	return &OAuthService{db: db, providers: pvd, users: usr, acStore: acStore}
+func NewOAuthService(logger *slog.Logger, db *sql.DB, pvd *ProviderService, usr *UserService) *OAuthService {
+	serviceLogger := logger.With(slog.String("service", "oauth"))
+	acStore := cache.New[string, AuthorizationCode](AuthorizationCodeTTL, serviceLogger.With(slog.String("cache", "authorization_codes")))
+	return &OAuthService{logger: serviceLogger, db: db, providers: pvd, users: usr, acStore: acStore}
 }
 
 const AuthorizationCodeTTL = 5 * time.Minute

@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"log/slog"
 	"sync"
 	"time"
 
@@ -13,14 +14,16 @@ type Entry[V any] struct {
 }
 
 type Cache[K comparable, V any] struct {
-	items map[K]Entry[V]
-	mux   sync.RWMutex
-	task  *task.PeriodicTask
+	items  map[K]Entry[V]
+	mux    sync.RWMutex
+	task   *task.PeriodicTask
+	logger *slog.Logger
 }
 
-func New[K comparable, V any](cleanupInterval time.Duration) *Cache[K, V] {
+func New[K comparable, V any](cleanupInterval time.Duration, logger *slog.Logger) *Cache[K, V] {
 	c := &Cache[K, V]{
-		items: make(map[K]Entry[V]),
+		items:  make(map[K]Entry[V]),
+		logger: logger,
 	}
 
 	c.task = task.NewPeriodicTask(cleanupInterval, c.doCleanup)
@@ -87,9 +90,19 @@ func (c *Cache[K, V]) doCleanup() {
 	now := time.Now()
 	c.mux.Lock()
 	defer c.mux.Unlock()
+
+	var count int
 	for k, item := range c.items {
 		if !now.Before(item.expiresAt) {
+			count++
 			delete(c.items, k)
 		}
+	}
+
+	if c.logger != nil {
+		c.logger.Debug("cleaned up cache",
+			slog.Int("items_cleaned", count),
+			slog.Int("cache_length", len(c.items)),
+		)
 	}
 }
