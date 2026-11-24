@@ -158,7 +158,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
 
-		createdSession, err := s.sessions.CreateSession(ctx, s.queries, user, ipAddress, country, clientName)
+		createdSession, err := s.sessions.CreateSession(ctx, s.queries, user, nil, ipAddress, country, clientName)
 		if err != nil {
 			return nil, err
 		}
@@ -179,7 +179,7 @@ func (s *Server) ExchangeToken(ctx context.Context, request ExchangeTokenRequest
 		ipAddress := middleware.GetClientIP(ctx)
 		country := GetClientCountry(ctx)
 
-		newSession, err := s.sessions.RefreshSession(ctx, s.queries, *refreshToken, ipAddress, country)
+		newSession, err := s.sessions.RefreshSession(ctx, s.queries, nil, *refreshToken, ipAddress, country)
 		if err != nil {
 			if errors.Is(err, services.ErrInvalidGrant) {
 				return ExchangeToken400JSONResponse(newApiError("invalid_grant", err.Error())), nil

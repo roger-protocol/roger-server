@@ -84,3 +84,24 @@ func (q *Queries) CreateWorkspaceMember(ctx context.Context, arg CreateWorkspace
 	)
 	return i, err
 }
+
+const getPersonalWorkspace = `-- name: GetPersonalWorkspace :one
+SELECT w.id, w.name, w.is_personal, w.created_by, w.created_at
+FROM workspaces w
+JOIN workspace_members m ON m.workspace_id = w.id
+WHERE m.user_id = ? AND w.is_personal = true
+LIMIT 1
+`
+
+func (q *Queries) GetPersonalWorkspace(ctx context.Context, userID string) (Workspace, error) {
+	row := q.db.QueryRowContext(ctx, getPersonalWorkspace, userID)
+	var i Workspace
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.IsPersonal,
+		&i.CreatedBy,
+		&i.CreatedAt,
+	)
+	return i, err
+}

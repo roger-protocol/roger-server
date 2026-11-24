@@ -44,12 +44,13 @@ const JwtTTL = 15 * time.Minute
 type JWTClaims struct {
 	jwt.RegisteredClaims
 	SessionId     string  `json:"sid"`
+	WorkspaceId   string  `json:"workspace_id"`
 	Username      string  `json:"username"`
 	Email         *string `json:"email,omitempty"`
 	EmailVerified *bool   `json:"email_verified,omitempty"`
 }
 
-func (s *TokenService) CreateJWT(user db.User, sessionId string) (string, JWTClaims, error) {
+func (s *TokenService) CreateJWT(user db.User, workspaceId string, sessionId string) (string, JWTClaims, error) {
 	now := time.Now().UTC()
 
 	var emailPtr *string
@@ -69,6 +70,7 @@ func (s *TokenService) CreateJWT(user db.User, sessionId string) (string, JWTCla
 		IssuedAt:      jwt.NewNumericDate(now),
 		ExpiresAt:     jwt.NewNumericDate(now.Add(JwtTTL)),
 		SessionId:     sessionId,
+		WorkspaceId:   workspaceId,
 		Username:      user.Username,
 		Email:         emailPtr,
 		EmailVerified: emailVerifiedPtr,

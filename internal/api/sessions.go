@@ -12,7 +12,7 @@ import (
 
 func (s *Server) ListSessions(ctx context.Context, request ListSessionsRequestObject) (ListSessionsResponseObject, error) {
 	actor, ok := GetActorFromContext(ctx)
-	if !ok || actor.SessionID == nil {
+	if !ok {
 		return ListSessions500JSONResponse(serverError), nil
 	}
 
@@ -37,7 +37,7 @@ func (s *Server) ListSessions(ctx context.Context, request ListSessionsRequestOb
 			ClientName: session.ClientName.String,
 			Country:    convert.FromNullString(session.Country),
 			IpAddress:  session.IpAddress.String,
-			IsCurrent:  session.ID == *actor.SessionID,
+			IsCurrent:  session.ID == actor.SessionID,
 			CreatedAt:  createdAt,
 			LastUsedAt: lastUsedAt,
 		})
@@ -47,7 +47,7 @@ func (s *Server) ListSessions(ctx context.Context, request ListSessionsRequestOb
 
 func (s *Server) RevokeSession(ctx context.Context, request RevokeSessionRequestObject) (RevokeSessionResponseObject, error) {
 	actor, ok := GetActorFromContext(ctx)
-	if !ok || actor.SessionID == nil {
+	if !ok {
 		return RevokeSession500JSONResponse(serverError), nil
 	}
 
@@ -65,11 +65,11 @@ func (s *Server) RevokeSession(ctx context.Context, request RevokeSessionRequest
 
 func (s *Server) RevokeOtherSessions(ctx context.Context, request RevokeOtherSessionsRequestObject) (RevokeOtherSessionsResponseObject, error) {
 	actor, ok := GetActorFromContext(ctx)
-	if !ok || actor.SessionID == nil {
+	if !ok {
 		return RevokeOtherSessions500JSONResponse(serverError), nil
 	}
 
-	sessions, err := s.queries.RevokeAllSessionsExcept(ctx, db.RevokeAllSessionsExceptParams{ID: *actor.SessionID, UserID: actor.UserID})
+	sessions, err := s.queries.RevokeAllSessionsExcept(ctx, db.RevokeAllSessionsExceptParams{ID: actor.SessionID, UserID: actor.UserID})
 	if err != nil {
 		return RevokeOtherSessions500JSONResponse(newApiError("server_error", "couldn't reach database")), nil
 	}

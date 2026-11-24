@@ -43,10 +43,11 @@ type AuthMethod string
 const AuthMethodBearer AuthMethod = "bearer"
 
 type Actor struct {
-	UserID     string
-	SessionID  *string
-	JwtID      string
-	AuthMethod AuthMethod
+	UserID      string
+	WorkspaceID string
+	SessionID   string
+	JwtID       string
+	AuthMethod  AuthMethod
 }
 
 func recoverer(next http.Handler) http.Handler {
@@ -174,14 +175,16 @@ func makeAuthenticationFunc(tokens *services.TokenService) openapi3filter.Authen
 			}
 
 			actor := Actor{
-				UserID:     claims.Subject,
-				SessionID:  &claims.SessionId,
-				JwtID:      claims.ID,
-				AuthMethod: AuthMethodBearer,
+				UserID:      claims.Subject,
+				SessionID:   claims.SessionId,
+				WorkspaceID: claims.WorkspaceId,
+				JwtID:       claims.ID,
+				AuthMethod:  AuthMethodBearer,
 			}
 
 			ctx = context.WithValue(ctx, actorContextKey{}, actor)
 			ctx = logging.With(ctx, slog.String("user_id", actor.UserID))
+			ctx = logging.With(ctx, slog.String("workspace_id", actor.WorkspaceID))
 			*ai.RequestValidationInput.Request = *ai.RequestValidationInput.Request.WithContext(ctx)
 
 			return nil

@@ -16,6 +16,7 @@ type Querier interface {
 	CreateWorkspaceMember(ctx context.Context, arg CreateWorkspaceMemberParams) (WorkspaceMember, error)
 	DeleteProvider(ctx context.Context, id string) (Provider, error)
 	DeleteUser(ctx context.Context, id string) (User, error)
+	GetPersonalWorkspace(ctx context.Context, userID string) (Workspace, error)
 	GetProvider(ctx context.Context, id string) (Provider, error)
 	GetProviderFromSubject(ctx context.Context, arg GetProviderFromSubjectParams) (Provider, error)
 	GetSession(ctx context.Context, id string) (Session, error)

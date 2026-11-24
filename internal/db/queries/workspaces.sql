@@ -20,3 +20,10 @@ INSERT INTO workspace_members (
     ?, ?, ?, ?
 )
 RETURNING *;
+
+-- name: GetPersonalWorkspace :one
+SELECT w.*
+FROM workspaces w
+JOIN workspace_members m ON m.workspace_id = w.id
+WHERE m.user_id = ? AND w.is_personal = true
+LIMIT 1;

@@ -28,10 +28,19 @@ type CreatedSession struct {
 	Claims       JWTClaims
 }
 
-func (s *SessionService) CreateSession(ctx context.Context, q *db.Queries, user db.User, ipAddress string, country string, clientName string) (CreatedSession, error) {
+func (s *SessionService) CreateSession(ctx context.Context, q *db.Queries, user db.User, workspaceId *string, ipAddress string, country string, clientName string) (CreatedSession, error) {
+	// Get the workspace id
+	if workspaceId == nil {
+		w, err := q.GetPersonalWorkspace(ctx, user.ID)
+		if err != nil {
+			return CreatedSession{}, fmt.Errorf("get personal workspace: %w", err)
+		}
+		workspaceId = &w.ID
+	}
+
 	// Create a JWT for the session
 	sessId := crypto.GenerateID("rgr_sess")
-	jwt, claims, err := s.tokens.CreateJWT(user, sessId)
+	jwt, claims, err := s.tokens.CreateJWT(user, *workspaceId, sessId)
 	if err != nil {
 		return CreatedSession{}, fmt.Errorf("create jwt: %w", err)
 	}
@@ -83,7 +92,7 @@ func (s *SessionService) GetSessionFromRefreshToken(ctx context.Context, q *db.Q
 
 // Possible errors:
 // - ErrInvalidRefreshToken
-func (s *SessionService) RefreshSession(ctx context.Context, q *db.Queries, refreshToken string, ipAddress string, country string) (CreatedSession, error) {
+func (s *SessionService) RefreshSession(ctx context.Context, q *db.Queries, workspaceId *string, refreshToken string, ipAddress string, country string) (CreatedSession, error) {
 	oldSession, err := s.GetSessionFromRefreshToken(ctx, q, refreshToken)
 	if err != nil {
 		return CreatedSession{}, err
@@ -94,7 +103,16 @@ func (s *SessionService) RefreshSession(ctx context.Context, q *db.Queries, refr
 		return CreatedSession{}, fmt.Errorf("fetch user profile: %w", err)
 	}
 
-	jwt, claims, err := s.tokens.CreateJWT(user, oldSession.ID)
+	// Get the workspace id
+	if workspaceId == nil {
+		w, err := q.GetPersonalWorkspace(ctx, user.ID)
+		if err != nil {
+			return CreatedSession{}, fmt.Errorf("get personal workspace: %w", err)
+		}
+		workspaceId = &w.ID
+	}
+
+	jwt, claims, err := s.tokens.CreateJWT(user, *workspaceId, oldSession.ID)
 	if err != nil {
 		return CreatedSession{}, fmt.Errorf("create jwt: %w", err)
 	}
