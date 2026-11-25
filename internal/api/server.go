@@ -48,4 +48,5 @@ func NewServer(db *sql.DB, q *db.Queries, cfg *config.Config, logger *slog.Logge
 
 func (s *Server) Close() {
 	s.tokens.Close()
+	s.oauth.Close()
 }

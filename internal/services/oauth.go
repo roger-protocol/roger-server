@@ -39,6 +39,10 @@ func NewOAuthService(logger *slog.Logger, db *sql.DB, pvd *ProviderService, usr 
 	return &OAuthService{logger: serviceLogger, db: db, providers: pvd, users: usr, acStore: acStore}
 }
 
+func (s *OAuthService) Close() {
+	s.acStore.Close()
+}
+
 const AuthorizationCodeTTL = 5 * time.Minute
 
 type AuthorizationCode struct {
